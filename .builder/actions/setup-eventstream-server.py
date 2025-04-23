@@ -1,6 +1,7 @@
 import atexit
 import Builder
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -23,8 +24,7 @@ class SetupEventstreamServer(Builder.Action):
 
             try:
                 # The EchoTest server is in test-only code
-                env.shell.exec(["mvn", "-q", "test-compile"], check=True)
-
+                env.shell.exec(["mvn", "test-compile"], check=True)
                 env.shell.exec(["mvn", "dependency:build-classpath", "-Dmdep.outputFile=classpath.txt"], check=True)
 
                 time.sleep(1)
@@ -58,9 +58,7 @@ class SetupEventstreamServer(Builder.Action):
                 probe_output = ""
                 probe = subprocess.Popen(
                     echo_server_probe_command,
-                    stderr=subprocess.PIPE,
-                    shell=True,
-                    bufsize=0)  # do not buffer output
+                    stderr=subprocess.PIPE)
                 with probe:
 
                     # Convert all output to strings, which makes it much easier to both print
@@ -86,9 +84,6 @@ class SetupEventstreamServer(Builder.Action):
 
                 echo_server_command = [
                     "java",
-                    "-Daws.crt.log.level=Trace",
-                    "-Daws.crt.log.destination=File",
-                    "-Daws.crt.log.filename=/tmp/crt.txt",
                     "-classpath",
                     f"{test_class_path}{directory_separator}{target_class_path}{directory_separator}{classpath}",
                     "software.amazon.awssdk.eventstreamrpc.echotest.EchoTestServiceRunner",
@@ -104,14 +99,7 @@ class SetupEventstreamServer(Builder.Action):
                 def _terminate_echo_server():
                     proc.terminate()
                     proc.wait()
-                    with open('/tmp/crt.txt', 'r') as logfile:
-                        serverlog = logfile.read()
-                        print("**************************************************")
-                        print("Eventstream Server Log:\n\n")
-                        print(serverlog)
-                        print("\n\nEnd Log")
-                        print("**************************************************")
-                        os.remove("/tmp/crt.txt")
+                    shutil.rmtree(java_sdk_dir)
 
                 env.shell.setenv("AWS_TEST_EVENT_STREAM_ECHO_SERVER_HOST", "127.0.0.1", quiet=False)
                 env.shell.setenv("AWS_TEST_EVENT_STREAM_ECHO_SERVER_PORT", "8033", quiet=False)
@@ -122,18 +110,16 @@ class SetupEventstreamServer(Builder.Action):
             print('Failed to set up event stream server.  Eventstream CI tests will not be run.')
             print(ex)
 
-        return java_sdk_dir
+        return
 
     def run(self, env):
 
         actions = []
-        java_sdk_dir = None
 
         try:
-            java_sdk_dir = self._build_and_run_eventstream_echo_server(env)
+            self._build_and_run_eventstream_echo_server(env)
             Builder.SetupCrossCICrtEnvironment().run(env)
         except:
-            if java_sdk_dir:
-                env.shell.rm(java_sdk_dir)
+            pass
 
         return Builder.Script(actions, name='setup-eventstream-server')
