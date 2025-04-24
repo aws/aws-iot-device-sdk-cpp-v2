@@ -107,7 +107,7 @@ def delete_iot_thing(thing_name, region):
             iot_client.update_certificate(certificateId=certificate_id, newStatus='INACTIVE')
             cert_ids.append(certificate_id)
     except Exception:
-        print("ERROR: Could not detatch principal or set its certificate to INACTIVE for {thing_name}, probably thing does not exist",
+        print(f"ERROR: Could not detatch principal or set its certificate to INACTIVE for {thing_name}, probably thing does not exist",
               file=sys.stderr)
         raise
 
@@ -119,7 +119,7 @@ def delete_iot_thing(thing_name, region):
         try:
             iot_client.delete_certificate(certificateId=cert, forceDelete=True)
         except Exception:
-            print("ERROR: Could not delete certificate for IoT thing {thing_name}.",
+            print(f"ERROR: Could not delete certificate for IoT thing {thing_name}.",
               file=sys.stderr)
             raise
 
