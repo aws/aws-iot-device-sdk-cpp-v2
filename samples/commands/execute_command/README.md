@@ -47,7 +47,7 @@ Once connected, the sample supports the following sample commands:
 targeting the IoT Thing set on the application startup
 * open-client-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
 targeting the MQTT client ID set on the application startup
-* update-command-execution <execution-id> \<status> \[<reason-code>] \[<reason-description>] - update status for specified
+* update-command-execution <execution-id> \<status> \[\<reason-code>] \[\<reason-description>] - update status for specified
 execution ID;
   * status can be one of the following: IN_PROGRESS, SUCCEEDED, REJECTED, FAILED, TIMED_OUT
   * reason-code and reason-description may be optionally provided for the REJECTED, FAILED, or TIMED_OUT statuses
@@ -307,7 +307,7 @@ aws iot describe-thing --thing-name <Thing Name>
 
 > [!NOTE]
 > In this document, all AWS IOT command executions target IoT Thing. If you want to create an AWS IoT command execution
-> for MQTT client ID, you should use the "arn:aws:iot:<region>:<account>:client/<client-id>" format for --target-arn option.
+> for MQTT client ID, you should use the "arn:aws:iot:\<region>:\<account>:client/\<client-id>" format for --target-arn option.
 
 With that in hand, create a new AWS IoT command execution targeting your IoT thing using the AWS CLI command:
 
