@@ -122,17 +122,17 @@ appropriate permissions be sourceable. At a minimum, the following permissions m
 <pre>
 {
     "Version": "2012-10-17",
-    "Statement": 
+    "Statement":
     {
         "Action": "iot:CreateCommand",
         "Effect": "Allow",
-        "Resource": "arn:aws:iot:&lt;region&gt;:&lt;account&gt;:command/&lt;command_name&gt;"          
+        "Resource": "arn:aws:iot:&lt;region&gt;:&lt;account&gt;:command/&lt;command_name&gt;"
     }
 }
 </pre>
 
 Replace with the following with the data from your AWS account:
-* `<region>`: The AWS IoT Core region where you created your AWS IoT Core thing you wish to use with this sample. 
+* `<region>`: The AWS IoT Core region where you created your AWS IoT Core thing you wish to use with this sample.
   For example `us-east-1`.
 * `<account>`: Your AWS IoT Core account ID. This is the set of numbers in the top right next to your AWS account name
   when using the AWS IoT Core website.
@@ -188,7 +188,7 @@ and some of which are AWS CLI control plane commands for creating and deleting A
 
 ### Creating AWS IoT Commands
 
-Creation of an AWS IoT Command is achieved by using control plane operations, i.e. AWS CLI.  
+Creation of an AWS IoT Command is achieved by using control plane operations, i.e. AWS CLI.
 
 We'll start with creation of a couple of AWS IoT commands. When creating the AWS IoT command, you must provide a payload.
 The payload that you provide is base64 encoded.
