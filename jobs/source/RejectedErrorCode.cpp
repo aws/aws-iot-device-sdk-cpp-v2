@@ -108,5 +108,5 @@ namespace Aws
                 return static_cast<RejectedErrorCode>(-1);
             }
         } // namespace RejectedErrorCodeMarshaller
-    }     // namespace Iotjobs
+    } // namespace Iotjobs
 } // namespace Aws

@@ -18,7 +18,10 @@ namespace Aws
             (void)doc;
         }
 
-        void ShadowUpdatedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+        void ShadowUpdatedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
         ShadowUpdatedSubscriptionRequest::ShadowUpdatedSubscriptionRequest(const Crt::JsonView &doc)
         {

@@ -506,7 +506,8 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
         Awstest::EchoTestRpcClient client(*testContext->clientBootstrap, allocator);
         auto connectedStatus = client.Connect(lifecycleHandler);
         ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
-        auto invokeOperation = [&](void) -> int {
+        auto invokeOperation = [&](void) -> int
+        {
             auto echoMessage = client.NewEchoMessage();
             messageData.SetStringMessage(expectedMessage);
             echoMessageRequest.SetMessage(messageData);
