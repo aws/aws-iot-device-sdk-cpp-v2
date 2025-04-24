@@ -20,34 +20,42 @@ namespace Aws
     {
 
         /**
-         * Sample wrapper around client for the IoT command service.
+         * Sample wrapper around client for the AWS IoT command service.
+         * It helps
          */
         class CommandStreamHandler
         {
           public:
             explicit CommandStreamHandler(std::shared_ptr<Aws::Iotcommands::IClientV2> &&commandClient);
 
-            CommandStreamHandler(CommandStreamHandler &&) noexcept = default;
-            CommandStreamHandler &operator=(CommandStreamHandler &&) noexcept = default;
-
-            /**
-             * TODO Explain why no copy.
-             */
+            CommandStreamHandler(CommandStreamHandler &&) noexcept = delete;
+            CommandStreamHandler &operator=(CommandStreamHandler &&) noexcept = delete;
             CommandStreamHandler(const CommandStreamHandler &) = delete;
             CommandStreamHandler &operator=(const CommandStreamHandler &) = delete;
 
             /**
+             * Opens new streaming operation for the specified device and payload format.
              *
-             * @param deviceType
-             * @param deviceId
-             * @param payloadFormat
-             * @return
+             * @param deviceType Indicates if device is IoT Thing or MQTT client ID.
+             * @param deviceId Depending on deviceType it's either IoT Thing or MQTT client ID.
+             * @param payloadFormat String representation of payload format. `json` and `cbor` have a special meaning.
+             * All other values will convert to `generic`.
+             * @return Success status.
              */
-            bool subscribeToCommandExecutionsStream(
+            bool openCommandExecutionsStream(
                 Aws::Iotcommands::DeviceType deviceType,
                 const Aws::Crt::String &deviceId,
                 const Aws::Crt::String &payloadFormat);
 
+            /**
+             * Update the command execution status.
+             *
+             * @param executionId Unique ID associated with command execution.
+             * @param status One of the following statuses: IN_PROGRESS, SUCCEEDED, FAILED, REJECTED, TIMED_OUT.
+             * @param reasonCode A short code in the [A-Z0-9_-]+ format and not exceeding 64 characters in length.
+             * @param reasonDescription Detailed description of the reason.
+             * @return Success status.
+             */
             bool updateCommandExecutionStatus(
                 const Aws::Crt::String &executionId,
                 Aws::Iotcommands::CommandExecutionStatus status,
@@ -124,6 +132,7 @@ namespace Aws
              * for more information on IoT command statuses.
              */
             std::unordered_map<Aws::Crt::String, CommandExecutionContext> m_activeCommandExecutions;
+            std::mutex m_activeExecutionsMutex;
         };
 
     } // namespace IotcommandsSample

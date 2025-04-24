@@ -27,7 +27,7 @@ namespace Aws
         {
         }
 
-        bool CommandStreamHandler::subscribeToCommandExecutionsStream(
+        bool CommandStreamHandler::openCommandExecutionsStream(
             Aws::Iotcommands::DeviceType deviceType,
             const Aws::Crt::String &deviceId,
             const Aws::Crt::String &payloadFormat)
@@ -61,6 +61,7 @@ namespace Aws
                     }
 
                     CommandExecutionContext commandExecution{deviceType, deviceId, std::move(event)};
+                    std::lock_guard<std::mutex> lock(m_activeExecutionsMutex);
                     m_activeCommandExecutions.insert(
                         {*commandExecution.event.ExecutionId, std::move(commandExecution)});
                 });
@@ -69,6 +70,13 @@ namespace Aws
             options.WithSubscriptionStatusEventHandler(
                 [streamId](Aws::Iot::RequestResponse::SubscriptionStatusEvent &&event)
                 { s_onSubscriptionStatusEvent(streamId, std::move(event)); });
+
+            // NOTE It might be a good idea to track which streams are already open, to prevent opening the same stream
+            // multiple times.
+            // In a real-world application, `deviceType` and `deviceId` most probably won't be changing. So, to track
+            // opened streams, the application needs to check `payloadFormat`.
+            // Notice that Aws IoT Commands service distinguishes only JSON and CBOR, all other payload format will be
+            // routed to the generic stream.
 
             std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> operation;
             if (payloadFormat == "json")
@@ -95,17 +103,22 @@ namespace Aws
             const Aws::Crt::String &reasonCode,
             const Aws::Crt::String &reasonDescription)
         {
-            auto iter = m_activeCommandExecutions.find(executionId);
-            if (iter == m_activeCommandExecutions.end())
-            {
-                fprintf(
-                    stdout,
-                    "Failed to update command execution status: unknown command execution ID '%s'\n",
-                    executionId.c_str());
-                return false;
-            }
+            CommandExecutionContext commandExecutionContext;
 
-            const auto &commandExecutionContext = iter->second;
+            {
+                std::lock_guard<std::mutex> lock(m_activeExecutionsMutex);
+                auto iter = m_activeCommandExecutions.find(executionId);
+                if (iter == m_activeCommandExecutions.end())
+                {
+                    fprintf(
+                        stdout,
+                        "Failed to update command execution status: unknown command execution ID '%s'\n",
+                        executionId.c_str());
+                    return false;
+                }
+
+                commandExecutionContext = iter->second;
+            }
 
             Aws::Iotcommands::UpdateCommandExecutionRequest request;
             request.Status = status;
@@ -170,7 +183,30 @@ namespace Aws
                     }
                     updateWaiter.set_value();
                 });
+
             updateWaiter.get_future().wait();
+
+            switch (status)
+            {
+                case Iotcommands::CommandExecutionStatus::SUCCEEDED:
+                case Iotcommands::CommandExecutionStatus::FAILED:
+                case Iotcommands::CommandExecutionStatus::REJECTED:
+                {
+                    // NOTE: After the command execution reaches its terminal state, it should be removed from the set
+                    // of active command executions. However, for educational purposes, this functionality is disabled,
+                    // so it's possible to try to update the same command execution even after a terminal state is set.
+                    constexpr bool ENABLE_REMOVING_COMMAND_EXECUTIONS = false;
+                    if (ENABLE_REMOVING_COMMAND_EXECUTIONS)
+                    {
+                        std::lock_guard<std::mutex> lock(m_activeExecutionsMutex);
+                        m_activeCommandExecutions.erase(executionId);
+                    }
+                }
+                break;
+                case Iotcommands::CommandExecutionStatus::IN_PROGRESS:
+                case Iotcommands::CommandExecutionStatus::TIMED_OUT:
+                    break;
+            }
 
             return true;
         }

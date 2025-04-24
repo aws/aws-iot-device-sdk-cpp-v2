@@ -505,6 +505,17 @@ aws iot delete-command --command-id <command-id>
 
 ### Misc Topics
 
+### What happens if I open the same stream twice?
+
+The C++ AWS IoT Commands client **does** allow you to subscribe multiple times to the same stream of events. You can even
+do this using this sample, just execute the same opening stream sample command few times. The client will receive event
+for each opened subscription.
+
+A real-world application may prevent such situations by tracking which streams are open. The uniqueness of the AWS IoT
+command executions stream is determined by `device type`, `device ID`, and `payload format`. Most probably, `device type`
+and `device ID` will be constant, so the application needs to check `payload format`. Notice that Aws IoT Commands service
+distinguishes only JSON and CBOR, all other payload format will be  routed to the generic stream.
+
 #### What is the proper generic architecture for a command-processing application running on a device?
 
 1. On startup, create and open streaming operations for the needed AWS IoT command events using

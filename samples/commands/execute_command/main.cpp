@@ -20,7 +20,7 @@
 struct ApplicationContext
 {
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_protocolClient;
-    Aws::IotcommandsSample::CommandStreamHandler commandStreamHandler;
+    std::unique_ptr<Aws::IotcommandsSample::CommandStreamHandler> commandStreamHandler;
     Aws::Crt::String thingName;
     Aws::Crt::String clientId;
 };
@@ -95,12 +95,10 @@ static void s_handleOpenStream(
     switch (deviceType)
     {
         case Aws::Iotcommands::DeviceType::THING:
-            context.commandStreamHandler.subscribeToCommandExecutionsStream(
-                deviceType, context.thingName, payloadFormat);
+            context.commandStreamHandler->openCommandExecutionsStream(deviceType, context.thingName, payloadFormat);
             break;
         case Aws::Iotcommands::DeviceType::CLIENT:
-            context.commandStreamHandler.subscribeToCommandExecutionsStream(
-                deviceType, context.clientId, payloadFormat);
+            context.commandStreamHandler->openCommandExecutionsStream(deviceType, context.clientId, payloadFormat);
             break;
     }
 }
@@ -125,13 +123,13 @@ static void s_handleUpdateCommandExecution(const Aws::Crt::String &params, Appli
     Aws::Crt::String reasonCode = s_nibbleNextToken(paramCopy);
     Aws::Crt::String reasonDescription = paramCopy;
 
-    context.commandStreamHandler.updateCommandExecutionStatus(
+    context.commandStreamHandler->updateCommandExecutionStatus(
         commandExecutionId, status, reasonCode, reasonDescription);
 }
 
 static void s_handleListStreams(ApplicationContext &context)
 {
-    context.commandStreamHandler.listOpenedStreams();
+    context.commandStreamHandler->listOpenedStreams();
 }
 
 static void s_handleCloseStream(const Aws::Crt::String &params, ApplicationContext &context)
@@ -147,7 +145,7 @@ static void s_handleCloseStream(const Aws::Crt::String &params, ApplicationConte
     }
 
     uint64_t id = std::stoull(streamId.c_str());
-    context.commandStreamHandler.closeStream(id);
+    context.commandStreamHandler->closeStream(id);
 }
 
 static bool s_handleInput(const Aws::Crt::String &input, ApplicationContext &context)
@@ -252,7 +250,8 @@ int main(int argc, char *argv[])
     requestResponseOptions.WithOperationTimeoutInSeconds(30);
 
     auto commandClient = Aws::Iotcommands::NewClientFrom5(*protocolClient, requestResponseOptions);
-    auto commandStreamHandler = Aws::IotcommandsSample::CommandStreamHandler(std::move(commandClient));
+    auto commandStreamHandler =
+        std::make_unique<Aws::IotcommandsSample::CommandStreamHandler>(std::move(commandClient));
 
     protocolClient->Start();
     auto isConnected = connectedWaiter.get_future().get();
