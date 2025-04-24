@@ -9,18 +9,9 @@ service to receive and process remote instructions.
 > The sample walkthrough assumes the [AWS CLI](https://aws.amazon.com/cli/) has been installed and configured in order
 > to invoke control plane operations that are not possible with the device SDK.
 
-> [!NOTE]
-> In a real use case, control plane commands (the AWS CLI commands) would be issued by applications under control of
-> the customer, while the data plane operations (the actions performed by the sample application) would be issued by
-> software running on the IoT device itself.
-
-> [!NOTE]
-> The word `command` is quite overloaded in this sample. It's supposed to be used with three different meanings:
-> - AWS IoT command - an event with instructions sent from the IoT Core to a device
-> - AWS CLI command - a shell command for executing a control plane operation
-> - sample command - an action that this sample can perform, such as `open-thing-stream`
->
-> To avoid confusion, the `command` word will allways be used with a context.
+In a real use case, control plane commands (the AWS CLI commands) would be issued by applications under control of
+the customer, while the data plane operations (the actions performed by the sample application) would be issued by
+software running on the IoT device itself.
 
 Using the IoT Commands service and this sample requires an understanding of two closely-related but different service terms:
 * **AWS IoT Command** - metadata describing a task that the user would like one or more devices to run.
@@ -39,6 +30,15 @@ AWS IoT Commands service distinguishes the following payload formats:
 This also means that if your device wants to receive JSON **and** CBOR payloads, it needs to subscribe to both topics
 using two separate API calls.
 
+> [!NOTE]
+> The word `command` is quite overloaded in this sample. It's supposed to be used with multiple meanings:
+> - AWS IoT command - an event with instructions sent from the IoT Core to a device
+> - AWS CLI command - a shell command for executing a control plane operation
+> - sample command - an action that this sample application can perform, such as `open-thing-stream`
+> - there is also AWS IoT command execution.
+>
+> To avoid confusion, the `command` word will allways be used with a context.
+
 ### Interaction with sample application
 
 Once connected, the sample supports the following sample commands:
@@ -47,8 +47,8 @@ Once connected, the sample supports the following sample commands:
 targeting the IoT Thing set on the application startup
 * open-client-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
 targeting the MQTT client ID set on the application startup
-* update-command-execution <execution-id> \<status> [<reason-code>] [<reason-description>] - update status for specified
-AWS IoT command execution ID;
+* update-command-execution <execution-id> \<status> \[<reason-code>] \[<reason-description>] - update status for specified
+execution ID;
   * status can be one of the following: IN_PROGRESS, SUCCEEDED, REJECTED, FAILED, TIMED_OUT
   * reason-code and reason-description may be optionally provided for the REJECTED, FAILED, or TIMED_OUT statuses
 
@@ -170,7 +170,7 @@ To run the sample:
     --client_id <client id>
 ```
 
-The sample will automatically connect to IoT Core and then will subscribe to streams of AWs IoT Command Executions
+The sample will automatically connect to IoT Core and then will subscribe to streams of AWs IoT command executions
 related to the IoT Thing name and MQTT client ID you specified.
 
 As soon as you create a new AWS IoT command execution targeting your thing/client, the sample will receive and process it, and
@@ -291,12 +291,12 @@ For example, to close `generic` stream, execute this sample command:
 close-stream 2
 ```
 
-### Sending IoT Command Executions
+### Sending AWS IoT Command Executions
 
 AWS IoT command just defines a set of instructions. It cannot target any device. For sending AWS IoT command to a device,
 you need to create AWS IoT command execution.
 
-Keep the sample running in the background to see AWS IoT command execution notifications arrive by the sample's streaming
+Keep the sample running in the background to see execution notifications arrive by the sample's streaming
 operations.
 
 First, you'll need the full ARN of the IoT Thing in use:
@@ -389,18 +389,15 @@ Let's proceed to the next section where we're going to update the status of an A
 
 ### Updating and monitoring AWS IoT command execution status
 
-> [!NOTE]
-> In this section, you're going to execute both `AWS CLI` and the sample commands.
-
 The sample didn't yet update the status of the AWS IoT command execution, so the following AWS CLI command
 
 ```shell
-aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID>
+aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <AWS IoT command execution ID>
 ```
 
 should return `CREATED` status:
 
-```
+```json
 {
     "executionId": "22222222-2222-2222-2222-222222222222",
     "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
@@ -418,7 +415,14 @@ Take an AWS IoT command execution ID your sample received at the end of the prev
 update-command-execution <execution-id> IN_PROGRESS
 ```
 
+Then this AWS CLI command
+```shell
+aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID>
 ```
+
+should return something like
+
+```json
 {
     "executionId": "22222222-2222-2222-2222-222222222222",
     "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
@@ -443,7 +447,7 @@ update-command-execution <execution-id> SUCCEEDED
 ```
 or
 ```
-update-command-execution <execution-id> FAILED SHORT_FAILURE_CODE A longer description.
+update-command-execution <execution-id> FAILED SHORT_FAILURE_CODE A longer description
 ```
 
 will yield something like
@@ -463,14 +467,38 @@ Updating command execution '22222222-2222-2222-2222-222222222222'
 Failed to update execution status: execution ID 22222222-2222-2222-2222-222222222222
 Failed to update execution status: response code 5174
 Failed to update execution status: error message Command Execution status cannot be updated to REJECTED since
-                                   execution has already completed with status SUCCEEDED.
+                                   execution has already completed with status FAILED.
 Failed to update execution status: error code 8 (TerminalStateReached)
+```
+
+Let's check one last time the execution status with AWS CLI command:
+
+```shell
+aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID>
+```
+
+which will yield
+
+```json
+{
+    "executionId": "22222222-2222-2222-2222-222222222222",
+    "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
+    "targetArn": "arn:aws:iot:...:thing/MyIotThing",
+    "status": "FAILED",
+    "statusReason": {
+        "reasonCode": "SHORT_FAILURE_CODE",
+        "reasonDescription": "A longer description"
+    },
+    "executionTimeoutSeconds": 300,
+    ...
+}
 ```
 
 ### Cleaning up
 
-When all executions for a given AWS IoT command have reached a terminal state (SUCCEEDED, FAILED, REJECTED), you can delete
-the AWS IoT command itself. This is a control plane operation that requires an HTTP-based SDK or the AWS CLI to perform:
+When all executions for a given AWS IoT command have reached a terminal state (`SUCCEEDED`, `FAILED`, `REJECTED`), you
+can delete the AWS IoT command itself. This is a control plane operation that requires an HTTP-based SDK or the AWS CLI
+to perform:
 
 ```shell
 aws iot delete-command --command-id <command-id>
@@ -485,7 +513,7 @@ aws iot delete-command --command-id <command-id>
    and/or `IClientV2::CreateCommandExecutionsGenericPayloadStream` functions.
 2. **DO NOT** process received AWS IoT commands right in the callback passed to `CreateCommandExecutions*PayloadStream`.
    As a general rule, **DO NOT** perform any time-consuming or blocking operations in the callback. One of possible
-   approaches is to put incoming IoT commands to a shared queue, then the designated executor(s) will process them in
+   approaches is to put incoming IoT commands into a shared queue, then the designated executor(s) will process them in
    separate thread(s).
 3. If your application is expected to receive a lot of AWS IoT commands, monitor the number of them enqueued for processing.
    Consider introducing priorities based on AWS IoT command timeouts or some internal value.
