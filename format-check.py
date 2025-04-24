@@ -20,9 +20,10 @@ os.chdir(Path(__file__).parent)
 
 check_dirs = ['deviceadvisor', 'devicedefender', 'discovery', 'eventstream_rpc', 'greengrass_ipc', 'identity', 'iotdevicecommon', 'jobs', 'shadow', 'samples', 'secure_tunneling']
 
+filepaths_file = NamedTemporaryFile(delete=False)
 for check_dir in check_dirs:
     # create file containing list of all files to format
-    filepaths_file = NamedTemporaryFile(delete=False)
+
     for dirpath, dirnames, filenames in os.walk(check_dir):
         for filename in filenames:
 
@@ -35,7 +36,8 @@ for check_dir in check_dirs:
                 continue
 
             filepaths_file.write(f"{filepath}\n".encode())
-    filepaths_file.close()
+
+filepaths_file.close()
 
 # use pipx to run clang-format from PyPI
 # this is a simple way to run the same clang-format version regardless of OS

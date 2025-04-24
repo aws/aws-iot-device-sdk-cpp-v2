@@ -36,7 +36,10 @@ namespace Awstest
 
     const char *Product::MODEL_NAME = "awstest#Product";
 
-    Aws::Crt::String Product::GetModelName() const noexcept { return Product::MODEL_NAME; }
+    Aws::Crt::String Product::GetModelName() const noexcept
+    {
+        return Product::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Product::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -84,7 +87,10 @@ namespace Awstest
 
     const char *Pair::MODEL_NAME = "awstest#Pair";
 
-    Aws::Crt::String Pair::GetModelName() const noexcept { return Pair::MODEL_NAME; }
+    Aws::Crt::String Pair::GetModelName() const noexcept
+    {
+        return Pair::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Pair::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -140,7 +146,10 @@ namespace Awstest
 
     const char *Customer::MODEL_NAME = "awstest#Customer";
 
-    Aws::Crt::String Customer::GetModelName() const noexcept { return Customer::MODEL_NAME; }
+    Aws::Crt::String Customer::GetModelName() const noexcept
+    {
+        return Customer::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Customer::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -317,7 +326,7 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::Optional<FruitEnum> MessageData::GetEnumMessage() noexcept
+    Aws::Crt::Optional<FruitEnum> MessageData::GetEnumMessage() const noexcept
     {
         if (!m_enumMessage.has_value())
             return Aws::Crt::Optional<FruitEnum>();
@@ -343,7 +352,10 @@ namespace Awstest
 
     const char *MessageData::MODEL_NAME = "awstest#MessageData";
 
-    Aws::Crt::String MessageData::GetModelName() const noexcept { return MessageData::MODEL_NAME; }
+    Aws::Crt::String MessageData::GetModelName() const noexcept
+    {
+        return MessageData::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> MessageData::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -419,7 +431,10 @@ namespace Awstest
 
     const char *EchoStreamingMessage::MODEL_NAME = "awstest#EchoStreamingMessage";
 
-    Aws::Crt::String EchoStreamingMessage::GetModelName() const noexcept { return EchoStreamingMessage::MODEL_NAME; }
+    Aws::Crt::String EchoStreamingMessage::GetModelName() const noexcept
+    {
+        return EchoStreamingMessage::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingMessage::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -468,7 +483,10 @@ namespace Awstest
 
     const char *ServiceError::MODEL_NAME = "awstest#ServiceError";
 
-    Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
+    Aws::Crt::String ServiceError::GetModelName() const noexcept
+    {
+        return ServiceError::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -566,7 +584,10 @@ namespace Awstest
 
     const char *GetAllProductsRequest::MODEL_NAME = "awstest#GetAllProductsRequest";
 
-    Aws::Crt::String GetAllProductsRequest::GetModelName() const noexcept { return GetAllProductsRequest::MODEL_NAME; }
+    Aws::Crt::String GetAllProductsRequest::GetModelName() const noexcept
+    {
+        return GetAllProductsRequest::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> GetAllProductsRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -707,7 +728,10 @@ namespace Awstest
 
     const char *EchoStreamingResponse::MODEL_NAME = "awstest#EchoStreamingResponse";
 
-    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept { return EchoStreamingResponse::MODEL_NAME; }
+    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept
+    {
+        return EchoStreamingResponse::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingResponse::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -745,7 +769,10 @@ namespace Awstest
 
     const char *EchoStreamingRequest::MODEL_NAME = "awstest#EchoStreamingRequest";
 
-    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept { return EchoStreamingRequest::MODEL_NAME; }
+    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept
+    {
+        return EchoStreamingRequest::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -791,7 +818,10 @@ namespace Awstest
 
     const char *EchoMessageResponse::MODEL_NAME = "awstest#EchoMessageResponse";
 
-    Aws::Crt::String EchoMessageResponse::GetModelName() const noexcept { return EchoMessageResponse::MODEL_NAME; }
+    Aws::Crt::String EchoMessageResponse::GetModelName() const noexcept
+    {
+        return EchoMessageResponse::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoMessageResponse::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -837,7 +867,10 @@ namespace Awstest
 
     const char *EchoMessageRequest::MODEL_NAME = "awstest#EchoMessageRequest";
 
-    Aws::Crt::String EchoMessageRequest::GetModelName() const noexcept { return EchoMessageRequest::MODEL_NAME; }
+    Aws::Crt::String EchoMessageRequest::GetModelName() const noexcept
+    {
+        return EchoMessageRequest::MODEL_NAME;
+    }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoMessageRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
