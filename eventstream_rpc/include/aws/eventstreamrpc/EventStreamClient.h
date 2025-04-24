@@ -127,9 +127,9 @@ namespace Aws
             void PrependHeaders(Crt::List<EventStreamHeader> &&headers);
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
             void SetPayload(Crt::Optional<Crt::ByteBuf> &&payload);
-            const Crt::List<EventStreamHeader> &GetHeaders() const &noexcept;
+            const Crt::List<EventStreamHeader> &GetHeaders() const & noexcept;
             Crt::List<EventStreamHeader> &&GetHeaders() &&;
-            const Crt::Optional<Crt::ByteBuf> &GetPayload() const &noexcept;
+            const Crt::Optional<Crt::ByteBuf> &GetPayload() const & noexcept;
             Crt::Optional<Crt::ByteBuf> &&GetPayload() &&;
 
           private:
@@ -408,7 +408,7 @@ namespace Aws
             explicit OperationError() noexcept = default;
             static void s_customDeleter(OperationError *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
-            virtual Crt::Optional<Crt::String> GetMessage() noexcept = 0;
+            virtual Crt::Optional<Crt::String> GetMessage() const noexcept = 0;
         };
 
         /**
