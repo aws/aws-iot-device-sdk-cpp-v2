@@ -305,7 +305,7 @@ First, you'll need the full ARN of the IoT Thing in use:
 aws iot describe-thing --thing-name <Thing Name>
 ```
 
-> [!NOTE]
+> [!TIP]
 > In this document, all AWS IOT command executions target IoT Thing. If you want to create an AWS IoT command execution
 > for MQTT client ID, you should use the "arn:aws:iot:\<region>:\<account>:client/\<client-id>" format for --target-arn option.
 
@@ -347,7 +347,9 @@ The AWS IoT command execution you sent will probably time out before you manage 
 You can check the AWS IoT command execution status using the following AWS CLI command:
 
 ```shell
-aws iot get-command-execution --execution-id <execution ID returned by start-command-execution> --target-arn <thing ARN>
+aws iot get-command-execution \
+    --execution-id <execution ID returned by start-command-execution> \
+    --target-arn <thing ARN>
 ```
 
 will yield something like this:
@@ -361,7 +363,7 @@ will yield something like this:
     "statusReason": {
         "reasonCode": "$NO_RESPONSE_FROM_DEVICE"
     },
-    "executionTimeoutSeconds": 10,
+    "executionTimeoutSeconds": 10
 }
 ```
 
@@ -403,8 +405,7 @@ should return `CREATED` status:
     "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
     "targetArn": "arn:aws:iot:...:thing/MyIotThing",
     "status": "CREATED",
-    "executionTimeoutSeconds": 300,
-    ...
+    "executionTimeoutSeconds": 300
 }
 ```
 
@@ -428,8 +429,7 @@ should return something like
     "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
     "targetArn": "arn:aws:iot:...:thing/MyIotThing",
     "status": "IN_PROGRESS",
-    "executionTimeoutSeconds": 300,
-    ...
+    "executionTimeoutSeconds": 300
 }
 ```
 
@@ -489,8 +489,7 @@ which will yield
         "reasonCode": "SHORT_FAILURE_CODE",
         "reasonDescription": "A longer description"
     },
-    "executionTimeoutSeconds": 300,
-    ...
+    "executionTimeoutSeconds": 300
 }
 ```
 
