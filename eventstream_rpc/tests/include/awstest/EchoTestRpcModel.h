@@ -34,7 +34,7 @@ namespace Awstest
         /**
          * The product's name
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetName() noexcept { return m_name; }
+        Aws::Crt::Optional<Aws::Crt::String> GetName() const noexcept { return m_name; }
         /**
          * How much the product costs
          */
@@ -42,7 +42,7 @@ namespace Awstest
         /**
          * How much the product costs
          */
-        Aws::Crt::Optional<float> GetPrice() noexcept { return m_price; }
+        Aws::Crt::Optional<float> GetPrice() const noexcept { return m_price; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Product &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -76,7 +76,7 @@ namespace Awstest
         /**
          * Pair.key as a string
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetKey() noexcept { return m_key; }
+        Aws::Crt::Optional<Aws::Crt::String> GetKey() const noexcept { return m_key; }
         /**
          * Pair.value also a string!
          */
@@ -84,7 +84,7 @@ namespace Awstest
         /**
          * Pair.value also a string!
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
+        Aws::Crt::Optional<Aws::Crt::String> GetValue() const noexcept { return m_value; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Pair &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -126,7 +126,7 @@ namespace Awstest
         /**
          * Opaque customer identifier
          */
-        Aws::Crt::Optional<int64_t> GetId() noexcept { return m_id; }
+        Aws::Crt::Optional<int64_t> GetId() const noexcept { return m_id; }
         /**
          * First name of the customer
          */
@@ -134,7 +134,7 @@ namespace Awstest
         /**
          * First name of the customer
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetFirstName() noexcept { return m_firstName; }
+        Aws::Crt::Optional<Aws::Crt::String> GetFirstName() const noexcept { return m_firstName; }
         /**
          * Last name of the customer
          */
@@ -142,7 +142,7 @@ namespace Awstest
         /**
          * Last name of the customer
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetLastName() noexcept { return m_lastName; }
+        Aws::Crt::Optional<Aws::Crt::String> GetLastName() const noexcept { return m_lastName; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Customer &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -177,7 +177,7 @@ namespace Awstest
         /**
          * Some string data
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetStringMessage() noexcept { return m_stringMessage; }
+        Aws::Crt::Optional<Aws::Crt::String> GetStringMessage() const noexcept { return m_stringMessage; }
         /**
          * Some boolean data
          */
@@ -185,7 +185,7 @@ namespace Awstest
         /**
          * Some boolean data
          */
-        Aws::Crt::Optional<bool> GetBooleanMessage() noexcept { return m_booleanMessage; }
+        Aws::Crt::Optional<bool> GetBooleanMessage() const noexcept { return m_booleanMessage; }
         /**
          * Some timestamp data
          */
@@ -193,7 +193,7 @@ namespace Awstest
         /**
          * Some timestamp data
          */
-        Aws::Crt::Optional<Aws::Crt::DateTime> GetTimeMessage() noexcept { return m_timeMessage; }
+        Aws::Crt::Optional<Aws::Crt::DateTime> GetTimeMessage() const noexcept { return m_timeMessage; }
         /**
          * Some document data
          */
@@ -204,7 +204,7 @@ namespace Awstest
         /**
          * Some document data
          */
-        Aws::Crt::Optional<Aws::Crt::JsonObject> GetDocumentMessage() noexcept { return m_documentMessage; }
+        Aws::Crt::Optional<Aws::Crt::JsonObject> GetDocumentMessage() const noexcept { return m_documentMessage; }
         /**
          * Some FruitEnum data
          */
@@ -212,7 +212,7 @@ namespace Awstest
         /**
          * Some FruitEnum data
          */
-        Aws::Crt::Optional<FruitEnum> GetEnumMessage() noexcept;
+        Aws::Crt::Optional<FruitEnum> GetEnumMessage() const noexcept;
         /**
          * Some blob data
          */
@@ -220,7 +220,7 @@ namespace Awstest
         /**
          * Some blob data
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetBlobMessage() noexcept { return m_blobMessage; }
+        Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetBlobMessage() const noexcept { return m_blobMessage; }
         /**
          * Some list of strings data
          */
@@ -231,7 +231,7 @@ namespace Awstest
         /**
          * Some list of strings data
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetStringListMessage() noexcept
+        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetStringListMessage() const noexcept
         {
             return m_stringListMessage;
         }
@@ -245,7 +245,7 @@ namespace Awstest
         /**
          * A list of key-value pairs
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Pair>> GetKeyValuePairList() noexcept { return m_keyValuePairList; }
+        Aws::Crt::Optional<Aws::Crt::Vector<Pair>> GetKeyValuePairList() const noexcept { return m_keyValuePairList; }
         /**
          * A map from strings to Product shapes
          */
@@ -256,7 +256,7 @@ namespace Awstest
         /**
          * A map from strings to Product shapes
          */
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetStringToValue() noexcept
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetStringToValue() const noexcept
         {
             return m_stringToValue;
         }
@@ -305,7 +305,7 @@ namespace Awstest
         /**
          * A message data record
          */
-        Aws::Crt::Optional<MessageData> GetStreamMessage() noexcept
+        Aws::Crt::Optional<MessageData> GetStreamMessage() const noexcept
         {
             if (m_chosenMember == TAG_STREAM_MESSAGE)
             {
@@ -327,7 +327,7 @@ namespace Awstest
         /**
          * A key value pair
          */
-        Aws::Crt::Optional<Pair> GetKeyValuePair() noexcept
+        Aws::Crt::Optional<Pair> GetKeyValuePair() const noexcept
         {
             if (m_chosenMember == TAG_KEY_VALUE_PAIR)
             {
@@ -376,7 +376,7 @@ namespace Awstest
         /**
          * An error message
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+        Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
         /**
          * Some auxiliary value
          */
@@ -384,7 +384,7 @@ namespace Awstest
         /**
          * Some auxiliary value
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
+        Aws::Crt::Optional<Aws::Crt::String> GetValue() const noexcept { return m_value; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(ServiceError &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -418,7 +418,7 @@ namespace Awstest
         /**
          * A map from strings to products
          */
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetProducts() noexcept { return m_products; }
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetProducts() const noexcept { return m_products; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllProductsResponse &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -475,7 +475,7 @@ namespace Awstest
         /**
          * A list of all known customers
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Customer>> GetCustomers() noexcept { return m_customers; }
+        Aws::Crt::Optional<Aws::Crt::Vector<Customer>> GetCustomers() const noexcept { return m_customers; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllCustomersResponse &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -580,7 +580,7 @@ namespace Awstest
         /**
          * Some message data
          */
-        Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
+        Aws::Crt::Optional<MessageData> GetMessage() const noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageResponse &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -613,7 +613,7 @@ namespace Awstest
         /**
          * Some message data
          */
-        Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
+        Aws::Crt::Optional<MessageData> GetMessage() const noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageRequest &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(

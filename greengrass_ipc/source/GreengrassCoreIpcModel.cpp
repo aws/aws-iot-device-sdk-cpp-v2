@@ -211,7 +211,8 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<DetailedDeploymentStatus> DeploymentStatusDetails::GetDetailedDeploymentStatus() noexcept
+        Aws::Crt::Optional<DetailedDeploymentStatus> DeploymentStatusDetails::GetDetailedDeploymentStatus()
+            const noexcept
         {
             if (!m_detailedDeploymentStatus.has_value())
                 return Aws::Crt::Optional<DetailedDeploymentStatus>();
@@ -626,7 +627,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<PayloadFormat> MQTTMessage::GetPayloadFormat() noexcept
+        Aws::Crt::Optional<PayloadFormat> MQTTMessage::GetPayloadFormat() const noexcept
         {
             if (!m_payloadFormat.has_value())
                 return Aws::Crt::Optional<PayloadFormat>();
@@ -988,7 +989,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<MetricUnitType> Metric::GetUnit() noexcept
+        Aws::Crt::Optional<MetricUnitType> Metric::GetUnit() const noexcept
         {
             if (!m_unit.has_value())
                 return Aws::Crt::Optional<MetricUnitType>();
@@ -1119,7 +1120,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<DeploymentStatus> LocalDeployment::GetStatus() noexcept
+        Aws::Crt::Optional<DeploymentStatus> LocalDeployment::GetStatus() const noexcept
         {
             if (!m_status.has_value())
                 return Aws::Crt::Optional<DeploymentStatus>();
@@ -1252,7 +1253,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<LifecycleState> ComponentDetails::GetState() noexcept
+        Aws::Crt::Optional<LifecycleState> ComponentDetails::GetState() const noexcept
         {
             if (!m_state.has_value())
                 return Aws::Crt::Optional<LifecycleState>();
@@ -1956,7 +1957,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<CertificateType> CertificateOptions::GetCertificateType() noexcept
+        Aws::Crt::Optional<CertificateType> CertificateOptions::GetCertificateType() const noexcept
         {
             if (!m_certificateType.has_value())
                 return Aws::Crt::Optional<CertificateType>();
@@ -2048,7 +2049,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<ConfigurationValidityStatus> ConfigurationValidityReport::GetStatus() noexcept
+        Aws::Crt::Optional<ConfigurationValidityStatus> ConfigurationValidityReport::GetStatus() const noexcept
         {
             if (!m_status.has_value())
                 return Aws::Crt::Optional<ConfigurationValidityStatus>();
@@ -3007,7 +3008,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<ReportedLifecycleState> UpdateStateRequest::GetState() noexcept
+        Aws::Crt::Optional<ReportedLifecycleState> UpdateStateRequest::GetState() const noexcept
         {
             if (!m_state.has_value())
                 return Aws::Crt::Optional<ReportedLifecycleState>();
@@ -3396,7 +3397,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<ReceiveMode> SubscribeToTopicRequest::GetReceiveMode() noexcept
+        Aws::Crt::Optional<ReceiveMode> SubscribeToTopicRequest::GetReceiveMode() const noexcept
         {
             if (!m_receiveMode.has_value())
                 return Aws::Crt::Optional<ReceiveMode>();
@@ -3523,7 +3524,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<QOS> SubscribeToIoTCoreRequest::GetQos() noexcept
+        Aws::Crt::Optional<QOS> SubscribeToIoTCoreRequest::GetQos() const noexcept
         {
             if (!m_qos.has_value())
                 return Aws::Crt::Optional<QOS>();
@@ -3961,7 +3962,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<RequestStatus> StopComponentResponse::GetStopStatus() noexcept
+        Aws::Crt::Optional<RequestStatus> StopComponentResponse::GetStopStatus() const noexcept
         {
             if (!m_stopStatus.has_value())
                 return Aws::Crt::Optional<RequestStatus>();
@@ -4283,7 +4284,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<RequestStatus> RestartComponentResponse::GetRestartStatus() noexcept
+        Aws::Crt::Optional<RequestStatus> RestartComponentResponse::GetRestartStatus() const noexcept
         {
             if (!m_restartStatus.has_value())
                 return Aws::Crt::Optional<RequestStatus>();
@@ -4757,7 +4758,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<QOS> PublishToIoTCoreRequest::GetQos() noexcept
+        Aws::Crt::Optional<QOS> PublishToIoTCoreRequest::GetQos() const noexcept
         {
             if (!m_qos.has_value())
                 return Aws::Crt::Optional<QOS>();
@@ -4787,7 +4788,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<PayloadFormat> PublishToIoTCoreRequest::GetPayloadFormat() noexcept
+        Aws::Crt::Optional<PayloadFormat> PublishToIoTCoreRequest::GetPayloadFormat() const noexcept
         {
             if (!m_payloadFormat.has_value())
                 return Aws::Crt::Optional<PayloadFormat>();
@@ -6535,7 +6536,8 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<FailureHandlingPolicy> CreateLocalDeploymentRequest::GetFailureHandlingPolicy() noexcept
+        Aws::Crt::Optional<FailureHandlingPolicy> CreateLocalDeploymentRequest::GetFailureHandlingPolicy()
+            const noexcept
         {
             if (!m_failureHandlingPolicy.has_value())
                 return Aws::Crt::Optional<FailureHandlingPolicy>();

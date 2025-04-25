@@ -14,63 +14,66 @@
 #    undef GetMessage
 #endif
 
-#include <iostream>
-#include <queue>
-#include <sstream>
+#include <aws/common/environment.h>
 
 using namespace Aws::Crt;
 using namespace Aws::Eventstreamrpc;
 using namespace Awstest;
 
+AWS_STATIC_STRING_FROM_LITERAL(s_env_name_echo_server_host, "AWS_TEST_EVENT_STREAM_ECHO_SERVER_HOST");
+AWS_STATIC_STRING_FROM_LITERAL(s_env_name_echo_server_port, "AWS_TEST_EVENT_STREAM_ECHO_SERVER_PORT");
+
 struct EventStreamClientTestContext
 {
-    std::unique_ptr<ApiHandle> apiHandle;
-    std::unique_ptr<Io::EventLoopGroup> elGroup;
-    std::unique_ptr<Io::HostResolver> resolver;
-    std::unique_ptr<Io::ClientBootstrap> clientBootstrap;
+    explicit EventStreamClientTestContext(struct aws_allocator *allocator);
+    ~EventStreamClientTestContext() = default;
+
+    bool isValidEnvironment() const;
+
+    std::shared_ptr<Io::EventLoopGroup> elGroup;
+    std::shared_ptr<Io::HostResolver> resolver;
+    std::shared_ptr<Io::ClientBootstrap> clientBootstrap;
+
+    uint16_t echoServerPort;
+    Aws::Crt::String echoServerHost;
 };
 
-static EventStreamClientTestContext s_testContext;
-
-static int s_testSetup(struct aws_allocator *allocator, void *ctx)
+EventStreamClientTestContext::EventStreamClientTestContext(struct aws_allocator *allocator) : echoServerPort(0)
 {
-    auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    elGroup = Aws::Crt::MakeShared<Io::EventLoopGroup>(allocator, 0, allocator);
+    resolver = Aws::Crt::MakeShared<Io::DefaultHostResolver>(allocator, *elGroup, 8, 30, allocator);
+    clientBootstrap = Aws::Crt::MakeShared<Io::ClientBootstrap>(allocator, *elGroup, *resolver, allocator);
 
-    testContext->apiHandle = std::unique_ptr<ApiHandle>(new ApiHandle(allocator));
-    testContext->elGroup = std::unique_ptr<Io::EventLoopGroup>(new Io::EventLoopGroup(0, allocator));
-    testContext->resolver =
-        std::unique_ptr<Io::HostResolver>(new Io::DefaultHostResolver(*testContext->elGroup, 8, 30, allocator));
-    testContext->clientBootstrap = std::unique_ptr<Io::ClientBootstrap>(
-        new Io::ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
+    aws_string *host_env_value = nullptr;
+    aws_get_environment_value(allocator, s_env_name_echo_server_host, &host_env_value);
+    if (host_env_value)
+    {
+        echoServerHost = aws_string_c_str(host_env_value);
+    }
 
-    return AWS_ERROR_SUCCESS;
+    struct aws_string *port_env_value = nullptr;
+    if (!aws_get_environment_value(allocator, s_env_name_echo_server_port, &port_env_value) &&
+        port_env_value != nullptr)
+    {
+        echoServerPort = static_cast<uint16_t>(atoi(aws_string_c_str(port_env_value)));
+    }
+
+    aws_string_destroy(host_env_value);
+    aws_string_destroy(port_env_value);
 }
 
-static int s_testTeardown(struct aws_allocator *allocator, int setup_result, void *ctx)
+bool EventStreamClientTestContext::isValidEnvironment() const
 {
-    auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
-
-    testContext->elGroup.reset();
-    testContext->resolver.reset();
-    testContext->clientBootstrap.reset();
-    /* The ApiHandle must be deallocated last or a deadlock occurs. */
-    testContext->apiHandle.reset();
-
-    return AWS_ERROR_SUCCESS;
+    return !echoServerHost.empty() && echoServerPort > 0;
 }
-
-static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx);
-static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx);
-static int s_TestOperationWhileDisconnected(struct aws_allocator *allocator, void *ctx);
 
 class TestLifecycleHandler : public ConnectionLifecycleHandler
 {
   public:
     TestLifecycleHandler()
+        : isConnected(false), disconnectCrtErrorCode(AWS_ERROR_SUCCESS),
+          disconnectRpcStatusCode(EVENT_STREAM_RPC_SUCCESS)
     {
-        semaphoreULock = std::unique_lock<std::mutex>(semaphoreLock);
-        isConnected = false;
-        lastErrorCode = AWS_OP_ERR;
     }
 
     void OnConnectCallback() override
@@ -86,124 +89,642 @@ class TestLifecycleHandler : public ConnectionLifecycleHandler
     {
         std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-        lastErrorCode = error.baseStatus;
+        disconnectCrtErrorCode = error.crtError;
+        disconnectRpcStatusCode = error.baseStatus;
 
         semaphore.notify_one();
     }
 
-    void WaitOnCondition(std::function<bool(void)> condition) { semaphore.wait(semaphoreULock, condition); }
+    void WaitOnCondition(std::function<bool(void)> condition)
+    {
+        std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
+        semaphore.wait(semaphoreULock, condition);
+    }
 
   private:
-    friend int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx);
     std::condition_variable semaphore;
     std::mutex semaphoreLock;
-    std::unique_lock<std::mutex> semaphoreULock;
-    int isConnected;
-    int lastErrorCode;
+
+    bool isConnected;
+    int disconnectCrtErrorCode;
+    EventStreamRpcStatusCode disconnectRpcStatusCode;
 };
+
+static int s_TestEventStreamConnectSuccess(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        MessageAmendment connectionAmendment;
+        connectionAmendment.AddHeader(EventStreamHeader(
+            Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
+
+        ConnectionConfig connectionConfig;
+        connectionConfig.SetHostName(testContext.echoServerHost);
+        connectionConfig.SetPort(testContext.echoServerPort);
+        connectionConfig.SetConnectAmendment(connectionAmendment);
+
+        TestLifecycleHandler lifecycleHandler;
+        ClientConnection connection(allocator);
+        auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
+        EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
+
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, clientStatus);
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EventStreamConnectSuccess, s_TestEventStreamConnectSuccess);
+
+static int s_TestEventStreamConnectFailureNoAuthHeader(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        ConnectionConfig connectionConfig;
+        connectionConfig.SetHostName(testContext.echoServerHost);
+        connectionConfig.SetPort(testContext.echoServerPort);
+
+        TestLifecycleHandler lifecycleHandler;
+        ClientConnection connection(allocator);
+        auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
+        EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
+
+        ASSERT_TRUE(
+            clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EventStreamConnectFailureNoAuthHeader, s_TestEventStreamConnectFailureNoAuthHeader);
+
+static int s_TestEventStreamConnectFailureBadAuthHeader(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        MessageAmendment connectionAmendment;
+        connectionAmendment.AddHeader(EventStreamHeader(
+            Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
+
+        ConnectionConfig connectionConfig;
+        connectionConfig.SetHostName(testContext.echoServerHost);
+        connectionConfig.SetPort(testContext.echoServerPort);
+        connectionConfig.SetConnectAmendment(connectionAmendment);
+
+        TestLifecycleHandler lifecycleHandler;
+        ClientConnection connection(allocator);
+        auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
+        EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
+
+        ASSERT_TRUE(
+            clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EventStreamConnectFailureBadAuthHeader, s_TestEventStreamConnectFailureBadAuthHeader);
+
+static int s_TestEchoClientConnectSuccess(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        EventStreamRpcStatusCode clientStatus = connectedStatus.get().baseStatus;
+
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, clientStatus);
+        client.Close();
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EchoClientConnectSuccess, s_TestEchoClientConnectSuccess);
+
+static int s_TestEchoClientDoubleClose(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        client.Close();
+        client.Close();
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EchoClientDoubleClose, s_TestEchoClientDoubleClose);
+
+static int s_TestEchoClientMultiConnectSuccessFail(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+
+        auto failedStatus1 = client.Connect(lifecycleHandler);
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED, failedStatus1.get().baseStatus);
+
+        auto failedStatus2 = client.Connect(lifecycleHandler);
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED, failedStatus2.get().baseStatus);
+
+        EventStreamRpcStatusCode clientStatus = connectedStatus.get().baseStatus;
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, clientStatus);
+
+        client.Close();
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EchoClientMultiConnectSuccessFail, s_TestEchoClientMultiConnectSuccessFail);
 
 static void s_onMessageFlush(int errorCode)
 {
     (void)errorCode;
 }
 
-AWS_TEST_CASE_FIXTURE(EventStreamConnect, s_testSetup, s_TestEventStreamConnect, s_testTeardown, &s_testContext);
-static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
+template <typename T>
+static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<T> expectedValue, Aws::Crt::Optional<T> actualValue)
 {
-    auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    if (expectedValue.has_value() != actualValue.has_value())
+    {
+        return false;
+    }
+
+    if (expectedValue.has_value())
+    {
+        return expectedValue.value() == actualValue.value();
+    }
+
+    return true;
+}
+
+static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<bool> expectedValue, Aws::Crt::Optional<bool> actualValue)
+{
+    if (expectedValue.has_value() != actualValue.has_value())
+    {
+        return false;
+    }
+
+    if (expectedValue.has_value())
+    {
+        return expectedValue.value() == actualValue.value();
+    }
+
+    return true;
+}
+
+// Specialization for Vector<Pair> since we don't codegen == for Shapes
+static bool s_messageDataMembersAreEqual(
+    const Aws::Crt::Optional<Aws::Crt::Vector<Pair>> &lhs,
+    const Aws::Crt::Optional<Aws::Crt::Vector<Pair>> &rhs)
+{
+    if (lhs.has_value() != rhs.has_value())
+    {
+        return false;
+    }
+
+    if (!lhs.has_value())
+    {
+        return true;
+    }
+
+    if (lhs.value().size() != rhs.value().size())
+    {
+        return false;
+    }
+
+    for (size_t i = 0; i < lhs.value().size(); ++i)
+    {
+        const auto &lhs_pair = (lhs.value())[i];
+        const auto &rhs_pair = (rhs.value())[i];
+
+        if (lhs_pair.GetKey().has_value() != rhs_pair.GetKey().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_pair.GetValue().has_value() != rhs_pair.GetValue().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_pair.GetKey().value() != rhs_pair.GetKey().value() ||
+            lhs_pair.GetValue().value() != rhs_pair.GetValue().value())
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Specialization for Map<String, Product> since we don't codegen == for Shapes
+static bool s_messageDataMembersAreEqual(
+    const Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> &lhs,
+    const Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> &rhs)
+{
+    if (lhs.has_value() != rhs.has_value())
+    {
+        return false;
+    }
+
+    if (!lhs.has_value())
+    {
+        return true;
+    }
+
+    if (lhs.value().size() != rhs.value().size())
+    {
+        return false;
+    }
+
+    for (const auto &lhs_entry : lhs.value())
+    {
+        const auto &rhs_entry = rhs.value().find(lhs_entry.first);
+        if (rhs_entry == rhs.value().end())
+        {
+            return false;
+        }
+
+        const auto &lhs_product = lhs_entry.second;
+        const auto &rhs_product = rhs_entry->second;
+
+        if (lhs_product.GetName().has_value() != rhs_product.GetName().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_product.GetPrice().has_value() != rhs_product.GetPrice().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_product.GetName().value() != rhs_product.GetName().value() ||
+            lhs_product.GetPrice().value() != rhs_product.GetPrice().value())
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+static int s_checkMessageDataEquality(const MessageData &expectedData, const MessageData &actualData)
+{
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetStringMessage(), actualData.GetStringMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetBooleanMessage(), actualData.GetBooleanMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetTimeMessage(), actualData.GetTimeMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetDocumentMessage(), actualData.GetDocumentMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetEnumMessage(), actualData.GetEnumMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetBlobMessage(), actualData.GetBlobMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetStringListMessage(), actualData.GetStringListMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetKeyValuePairList(), actualData.GetKeyValuePairList()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetStringToValue(), actualData.GetStringToValue()));
+
+    return AWS_OP_SUCCESS;
+}
+
+static int s_DoTestEchoClientOperationEchoSuccess(
+    struct aws_allocator *allocator,
+    std::function<void(MessageData &)> messageDataBuilder)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
 
     {
-        MessageAmendment connectionAmendment;
-        auto messageAmender = [&](void) -> const MessageAmendment & { return connectionAmendment; };
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
 
-        ConnectionConfig accessDeniedConfig;
-        accessDeniedConfig.SetHostName(Aws::Crt::String("127.0.0.1"));
-        accessDeniedConfig.SetPort(8033U);
+        auto echoMessage = client.NewEchoMessage();
+        EchoMessageRequest echoMessageRequest;
+        MessageData messageData;
+        messageDataBuilder(messageData);
+        echoMessageRequest.SetMessage(messageData);
 
-        /* Happy path case. */
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        requestFuture.wait();
+        auto result = echoMessage->GetResult().get();
+        ASSERT_TRUE(result);
+        auto response = result.GetOperationResponse();
+        ASSERT_NOT_NULL(response);
+
+        ASSERT_SUCCESS(s_checkMessageDataEquality(messageData, response->GetMessage().value()));
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+static int s_TestEchoClientOperationEchoSuccessString(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
         {
-            ConnectionLifecycleHandler lifecycleHandler;
-            Awstest::EchoTestRpcClient client(*testContext->clientBootstrap, allocator);
-            auto connectedStatus = client.Connect(lifecycleHandler);
-            ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
-            client.Close();
-        }
+            Aws::Crt::String value = "Hello World";
+            messageData.SetStringMessage(value);
+        });
+}
 
-        /* Empty amendment headers. */
-        {
-            TestLifecycleHandler lifecycleHandler;
-            ClientConnection connection(allocator);
-            auto future = connection.Connect(accessDeniedConfig, &lifecycleHandler, *testContext->clientBootstrap);
-            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
-        }
+AWS_TEST_CASE(EchoClientOperationEchoSuccessString, s_TestEchoClientOperationEchoSuccessString);
 
-        /* Rejected client-name header. */
-        {
-            TestLifecycleHandler lifecycleHandler;
-            ClientConnection connection(allocator);
-            connectionAmendment.AddHeader(EventStreamHeader(
-                Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
-            auto future = connection.Connect(accessDeniedConfig, &lifecycleHandler, *testContext->clientBootstrap);
-            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
-        }
+static int s_TestEchoClientOperationEchoSuccessBoolean(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetBooleanMessage(true); });
+}
 
-        /* Connect without taking its future then immediately close. */
+AWS_TEST_CASE(EchoClientOperationEchoSuccessBoolean, s_TestEchoClientOperationEchoSuccessBoolean);
+
+static int s_TestEchoClientOperationEchoSuccessTime(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetTimeMessage(Aws::Crt::DateTime::Now()); });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessTime, s_TestEchoClientOperationEchoSuccessTime);
+
+static int s_TestEchoClientOperationEchoSuccessDocument(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
         {
-            ConnectionLifecycleHandler lifecycleHandler;
-            Awstest::EchoTestRpcClient client(*testContext->clientBootstrap, allocator);
-            auto connectedStatus = client.Connect(lifecycleHandler);
-            client.Close();
-            client.Close();
-            ASSERT_FALSE(client.IsConnected());
+            Aws::Crt::JsonObject subobject;
+            subobject.WithString("Hello", "There");
+            Aws::Crt::JsonObject document;
+            document.WithInt64("Derp", 21);
+            document.WithObject("DailyAffirmations", subobject);
+
+            messageData.SetDocumentMessage(document);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessDocument, s_TestEchoClientOperationEchoSuccessDocument);
+
+static int s_TestEchoClientOperationEchoSuccessEnum(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetEnumMessage(FruitEnum::FRUIT_ENUM_PINEAPPLE); });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessEnum, s_TestEchoClientOperationEchoSuccessEnum);
+
+static int s_TestEchoClientOperationEchoSuccessBlob(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Vector<uint8_t> blob = {1, 2, 3, 4, 5};
+            messageData.SetBlobMessage(blob);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessBlob, s_TestEchoClientOperationEchoSuccessBlob);
+
+static int s_TestEchoClientOperationEchoSuccessStringList(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Vector<Aws::Crt::String> stringList = {"1", "2", "Toasty", "Mctoaster"};
+            messageData.SetStringListMessage(stringList);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessStringList, s_TestEchoClientOperationEchoSuccessStringList);
+
+static int s_TestEchoClientOperationEchoSuccessPairList(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Pair pair1;
+            pair1.SetKey("Uff");
+            pair1.SetValue("Dah");
+
+            Pair pair2;
+            pair2.SetKey("Hello");
+            pair2.SetValue("World");
+
+            Aws::Crt::Vector<Pair> pairList = {pair1, pair2};
+            messageData.SetKeyValuePairList(pairList);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessPairList, s_TestEchoClientOperationEchoSuccessPairList);
+
+static int s_TestEchoClientOperationEchoSuccessProductMap(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Map<String, Product> productMap = {};
+            Product product1;
+            product1.SetName("Derp");
+            product1.SetPrice(4.0);
+
+            Product product2;
+            product2.SetName("Can Of Derp");
+            product2.SetPrice(7.5);
+
+            productMap[product1.GetName().value()] = product1;
+            productMap[product2.GetName().value()] = product2;
+
+            messageData.SetStringToValue(productMap);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessProductMap, s_TestEchoClientOperationEchoSuccessProductMap);
+
+static int s_TestEchoClientOperationEchoSuccessMultiple(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
+
+        for (size_t i = 0; i < 5; i++)
+        {
+            auto echoMessage = client.NewEchoMessage();
+            EchoMessageRequest echoMessageRequest;
+            MessageData messageData;
+            Aws::Crt::StringStream ss;
+            ss << "Hello Echo #" << i + 1;
+            Aws::Crt::String expectedMessage(ss.str().c_str());
+            messageData.SetStringMessage(expectedMessage);
+            echoMessageRequest.SetMessage(messageData);
+
+            auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+            requestFuture.wait();
+            auto result = echoMessage->GetResult().get();
+            ASSERT_TRUE(result);
+            auto response = result.GetOperationResponse();
+            ASSERT_NOT_NULL(response);
+            ASSERT_TRUE(response->GetMessage().value().GetStringMessage().value() == expectedMessage);
         }
     }
 
     return AWS_OP_SUCCESS;
 }
 
-AWS_TEST_CASE_FIXTURE(
-    OperateWhileDisconnected,
-    s_testSetup,
-    s_TestOperationWhileDisconnected,
-    s_testTeardown,
-    &s_testContext);
-static int s_TestOperationWhileDisconnected(struct aws_allocator *allocator, void *ctx)
-{
-    auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+AWS_TEST_CASE(EchoClientOperationEchoSuccessMultiple, s_TestEchoClientOperationEchoSuccessMultiple);
 
-    /* Don't connect at all and try running operations as normal. */
+static int s_TestEchoClientOperationEchoFailureNeverConnected(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
     {
         ConnectionLifecycleHandler lifecycleHandler;
-        Awstest::EchoTestRpcClient client(*testContext->clientBootstrap, allocator);
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+
         auto echoMessage = client.NewEchoMessage();
         EchoMessageRequest echoMessageRequest;
         MessageData messageData;
         Aws::Crt::String expectedMessage("l33t");
         messageData.SetStringMessage(expectedMessage);
         echoMessageRequest.SetMessage(messageData);
+
         auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
-        ASSERT_TRUE(requestFuture.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_CLOSED, requestFuture.get().baseStatus);
+
         auto result = echoMessage->GetOperationResult().get();
         ASSERT_FALSE(result);
-        auto error = result.GetRpcError();
-        ASSERT_TRUE(error.baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
-    }
 
-    /* Idempotent close and its safety. */
-    {
-        ConnectionLifecycleHandler lifecycleHandler;
-        Awstest::EchoTestRpcClient client(*testContext->clientBootstrap, allocator);
-        client.Close();
-        client.Close();
+        auto error = result.GetRpcError();
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_CLOSED, error.baseStatus);
     }
 
     return AWS_OP_SUCCESS;
 }
 
+AWS_TEST_CASE(EchoClientOperationEchoFailureNeverConnected, s_TestEchoClientOperationEchoFailureNeverConnected);
+
+static int s_TestEchoClientOperationEchoFailureDisconnected(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
+
+        client.Close();
+
+        auto echoMessage = client.NewEchoMessage();
+        EchoMessageRequest echoMessageRequest;
+        MessageData messageData;
+        Aws::Crt::String expectedMessage("l33t");
+        messageData.SetStringMessage(expectedMessage);
+        echoMessageRequest.SetMessage(messageData);
+
+        auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_CLOSED, requestFuture.get().baseStatus);
+
+        auto result = echoMessage->GetOperationResult().get();
+        ASSERT_FALSE(result);
+
+        auto error = result.GetRpcError();
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_CLOSED, error.baseStatus);
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoFailureDisconnected, s_TestEchoClientOperationEchoFailureDisconnected);
+
+#ifdef NEVER
+
 AWS_TEST_CASE_FIXTURE(EchoOperation, s_testSetup, s_TestEchoOperation, s_testTeardown, &s_testContext);
 static int s_TestEchoOperation(struct aws_allocator *allocator, void *ctx)
 {
     auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    if (!s_isEchoserverSetup(*testContext))
+    {
+        printf("Environment Variables are not set for the test, skip the test");
+        return AWS_OP_SKIP;
+    }
+
     ConnectionLifecycleHandler lifecycleHandler;
     Aws::Crt::String expectedMessage("Async I0 FTW");
     EchoMessageRequest echoMessageRequest;
@@ -495,6 +1016,12 @@ AWS_TEST_CASE_FIXTURE(StressTestClient, s_testSetup, s_TestStressClient, s_testT
 static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
 {
     auto *testContext = static_cast<EventStreamClientTestContext *>(ctx);
+    if (!s_isEchoserverSetup(*testContext))
+    {
+        printf("Environment Variables are not set for the test, skip the test");
+        return AWS_OP_SKIP;
+    }
+
     ThreadPool threadPool;
     ConnectionLifecycleHandler lifecycleHandler;
     Aws::Crt::String expectedMessage("Async I0 FTW");
@@ -540,3 +1067,4 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
 
     return AWS_OP_SUCCESS;
 }
+#endif

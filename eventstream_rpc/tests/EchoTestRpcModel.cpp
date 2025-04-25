@@ -326,7 +326,7 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::Optional<FruitEnum> MessageData::GetEnumMessage() noexcept
+    Aws::Crt::Optional<FruitEnum> MessageData::GetEnumMessage() const noexcept
     {
         if (!m_enumMessage.has_value())
             return Aws::Crt::Optional<FruitEnum>();
