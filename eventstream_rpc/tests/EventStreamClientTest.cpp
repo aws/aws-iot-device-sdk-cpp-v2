@@ -290,26 +290,129 @@ static void s_onMessageFlush(int errorCode)
     (void)errorCode;
 }
 
-#define DEFINE_CHECK_MESSAGE_DATA_MEMBER_EQUALITY_FN(TYPENAME)                                                         \
-    static int s_checkMessageDataMemberEquality(                                                                       \
-        Aws::Crt::Optional<TYPENAME> expectedValue, Aws::Crt::Optional<TYPENAME> actualValue)                          \
-    {                                                                                                                  \
-        ASSERT_TRUE(expectedValue.has_value() == actualValue.has_value());                                             \
-        if (expectedValue.has_value())                                                                                 \
-        {                                                                                                              \
-            ASSERT_TRUE(expectedValue.value() == actualValue.value());                                                 \
-        }                                                                                                              \
-                                                                                                                       \
-        return AWS_OP_SUCCESS;                                                                                         \
+template <typename T>
+static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<T> expectedValue, Aws::Crt::Optional<T> actualValue)
+{
+    if (expectedValue.has_value() != actualValue.has_value())
+    {
+        return false;
     }
 
-DEFINE_CHECK_MESSAGE_DATA_MEMBER_EQUALITY_FN(Aws::Crt::String)
-DEFINE_CHECK_MESSAGE_DATA_MEMBER_EQUALITY_FN(bool)
+    if (expectedValue.has_value())
+    {
+        return expectedValue.value() == actualValue.value();
+    }
+
+    return true;
+}
+
+// Specialization for Vector<Pair> since we don't codegen == for Shapes
+static bool s_messageDataMembersAreEqual(
+    const Aws::Crt::Optional<Aws::Crt::Vector<Pair>> &lhs,
+    const Aws::Crt::Optional<Aws::Crt::Vector<Pair>> &rhs)
+{
+    if (lhs.has_value() != rhs.has_value())
+    {
+        return false;
+    }
+
+    if (!lhs.has_value())
+    {
+        return true;
+    }
+
+    if (lhs.value().size() != rhs.value().size())
+    {
+        return false;
+    }
+
+    for (size_t i = 0; i < lhs.value().size(); ++i)
+    {
+        const auto &lhs_pair = (lhs.value())[i];
+        const auto &rhs_pair = (rhs.value())[i];
+
+        if (lhs_pair.GetKey().has_value() != rhs_pair.GetKey().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_pair.GetValue().has_value() != rhs_pair.GetValue().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_pair.GetKey().value() != rhs_pair.GetKey().value() ||
+            lhs_pair.GetValue().value() != rhs_pair.GetValue().value())
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Specialization for Map<String, Product> since we don't codegen == for Shapes
+static bool s_messageDataMembersAreEqual(
+    const Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> &lhs,
+    const Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> &rhs)
+{
+    if (lhs.has_value() != rhs.has_value())
+    {
+        return false;
+    }
+
+    if (!lhs.has_value())
+    {
+        return true;
+    }
+
+    if (lhs.value().size() != rhs.value().size())
+    {
+        return false;
+    }
+
+    for (const auto &lhs_entry : lhs.value())
+    {
+        const auto &rhs_entry = rhs.value().find(lhs_entry.first);
+        if (rhs_entry == rhs.value().end())
+        {
+            return false;
+        }
+
+        const auto &lhs_product = lhs_entry.second;
+        const auto &rhs_product = rhs_entry->second;
+
+        if (lhs_product.GetName().has_value() != rhs_product.GetName().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_product.GetPrice().has_value() != rhs_product.GetPrice().has_value())
+        {
+            return false;
+        }
+
+        if (lhs_product.GetName().value() != rhs_product.GetName().value() ||
+            lhs_product.GetPrice().value() != rhs_product.GetPrice().value())
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 static int s_checkMessageDataEquality(const MessageData &expectedData, const MessageData &actualData)
 {
-    ASSERT_SUCCESS(s_checkMessageDataMemberEquality(expectedData.GetStringMessage(), actualData.GetStringMessage()));
-    ASSERT_SUCCESS(s_checkMessageDataMemberEquality(expectedData.GetBooleanMessage(), actualData.GetBooleanMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetStringMessage(), actualData.GetStringMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetBooleanMessage(), actualData.GetBooleanMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetTimeMessage(), actualData.GetTimeMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetDocumentMessage(), actualData.GetDocumentMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetEnumMessage(), actualData.GetEnumMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetBlobMessage(), actualData.GetBlobMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetStringListMessage(), actualData.GetStringListMessage()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetKeyValuePairList(), actualData.GetKeyValuePairList()));
+    ASSERT_TRUE(s_messageDataMembersAreEqual(expectedData.GetStringToValue(), actualData.GetStringToValue()));
 
     return AWS_OP_SUCCESS;
 }
@@ -363,6 +466,119 @@ static int s_TestEchoClientOperationEchoSuccessString(struct aws_allocator *allo
 }
 
 AWS_TEST_CASE(EchoClientOperationEchoSuccessString, s_TestEchoClientOperationEchoSuccessString);
+
+static int s_TestEchoClientOperationEchoSuccessBoolean(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetBooleanMessage(true); });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessBoolean, s_TestEchoClientOperationEchoSuccessBoolean);
+
+static int s_TestEchoClientOperationEchoSuccessTime(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetTimeMessage(Aws::Crt::DateTime::Now()); });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessTime, s_TestEchoClientOperationEchoSuccessTime);
+
+static int s_TestEchoClientOperationEchoSuccessDocument(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::JsonObject subobject;
+            subobject.WithString("Hello", "There");
+            Aws::Crt::JsonObject document;
+            document.WithInt64("Derp", 21);
+            document.WithObject("DailyAffirmations", subobject);
+
+            messageData.SetDocumentMessage(document);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessDocument, s_TestEchoClientOperationEchoSuccessDocument);
+
+static int s_TestEchoClientOperationEchoSuccessEnum(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetEnumMessage(FruitEnum::FRUIT_ENUM_PINEAPPLE); });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessEnum, s_TestEchoClientOperationEchoSuccessEnum);
+
+static int s_TestEchoClientOperationEchoSuccessBlob(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Vector<uint8_t> blob = {1, 2, 3, 4, 5};
+            messageData.SetBlobMessage(blob);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessBlob, s_TestEchoClientOperationEchoSuccessBlob);
+
+static int s_TestEchoClientOperationEchoSuccessStringList(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Vector<Aws::Crt::String> stringList = {"1", "2", "Toasty", "Mctoaster"};
+            messageData.SetStringListMessage(stringList);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessStringList, s_TestEchoClientOperationEchoSuccessStringList);
+
+static int s_TestEchoClientOperationEchoSuccessPairList(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Pair pair1;
+            pair1.SetKey("Uff");
+            pair1.SetValue("Dah");
+
+            Pair pair2;
+            pair2.SetKey("Hello");
+            pair2.SetValue("World");
+
+            Aws::Crt::Vector<Pair> pairList = {pair1, pair2};
+            messageData.SetKeyValuePairList(pairList);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessPairList, s_TestEchoClientOperationEchoSuccessPairList);
+
+static int s_TestEchoClientOperationEchoSuccessProductMap(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Map<String, Product> productMap = {};
+            Product product1;
+            product1.SetName("Derp");
+            product1.SetPrice(4.0);
+
+            Product product2;
+            product2.SetName("Can Of Derp");
+            product2.SetPrice(7.5);
+
+            productMap[product1.GetName().value()] = product1;
+            productMap[product2.GetName().value()] = product2;
+
+            messageData.SetStringToValue(productMap);
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationEchoSuccessProductMap, s_TestEchoClientOperationEchoSuccessProductMap);
 
 static int s_TestEchoClientOperationEchoSuccessMultiple(struct aws_allocator *allocator, void *ctx)
 {
