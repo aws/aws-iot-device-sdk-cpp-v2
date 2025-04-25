@@ -306,6 +306,21 @@ static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<T> expectedValue, Aw
     return true;
 }
 
+static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<bool> expectedValue, Aws::Crt::Optional<bool> actualValue)
+{
+    if (expectedValue.has_value() != actualValue.has_value())
+    {
+        return false;
+    }
+
+    if (expectedValue.has_value())
+    {
+        return expectedValue.value() == actualValue.value();
+    }
+
+    return true;
+}
+
 // Specialization for Vector<Pair> since we don't codegen == for Shapes
 static bool s_messageDataMembersAreEqual(
     const Aws::Crt::Optional<Aws::Crt::Vector<Pair>> &lhs,
