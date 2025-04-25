@@ -53,7 +53,10 @@ namespace Aws
             }
         }
 
-        UpdateShadowRequest::UpdateShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        UpdateShadowRequest::UpdateShadowRequest(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         UpdateShadowRequest &UpdateShadowRequest::operator=(const Crt::JsonView &doc)
         {
