@@ -18,7 +18,10 @@ namespace Aws
             (void)doc;
         }
 
-        void CreateKeysAndCertificateRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+        void CreateKeysAndCertificateRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
         CreateKeysAndCertificateRequest::CreateKeysAndCertificateRequest(const Crt::JsonView &doc)
         {

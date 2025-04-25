@@ -75,7 +75,10 @@ namespace Aws
             }
         }
 
-        GetShadowResponse::GetShadowResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        GetShadowResponse::GetShadowResponse(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         GetShadowResponse &GetShadowResponse::operator=(const Crt::JsonView &doc)
         {

@@ -31,9 +31,15 @@ namespace Aws
             m_connection = Aws::Crt::Mqtt::MqttConnection::NewConnectionFromMqtt5Client(mqtt5Client);
         }
 
-        IotIdentityClient::operator bool() const noexcept { return m_connection && *m_connection; }
+        IotIdentityClient::operator bool() const noexcept
+        {
+            return m_connection && *m_connection;
+        }
 
-        int IotIdentityClient::GetLastError() const noexcept { return aws_last_error(); }
+        int IotIdentityClient::GetLastError() const noexcept
+        {
+            return aws_last_error();
+        }
 
         bool IotIdentityClient::SubscribeToCreateCertificateFromCsrAccepted(
             const Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest &request,
@@ -47,7 +53,8 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
+                                           int errorCode)
+            {
                 (void)topic;
                 if (errorCode)
                 {
@@ -61,13 +68,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::CreateCertificateFromCsrResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
+                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
+            {
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotidentity::CreateCertificateFromCsrResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"
@@ -99,7 +106,8 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
+                                           int errorCode)
+            {
                 (void)topic;
                 if (errorCode)
                 {
@@ -113,13 +121,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::ErrorResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
+                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
+            {
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotidentity::ErrorResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"
@@ -151,7 +159,8 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
+                                           int errorCode)
+            {
                 (void)topic;
                 if (errorCode)
                 {
@@ -165,13 +174,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::CreateKeysAndCertificateResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
+                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
+            {
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotidentity::CreateKeysAndCertificateResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"
@@ -203,7 +212,8 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
+                                           int errorCode)
+            {
                 (void)topic;
                 if (errorCode)
                 {
@@ -217,13 +227,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::ErrorResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
+                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
+            {
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotidentity::ErrorResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"
@@ -255,7 +265,8 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
+                                           int errorCode)
+            {
                 (void)topic;
                 if (errorCode)
                 {
@@ -269,13 +280,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::RegisterThingResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
+                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
+            {
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotidentity::RegisterThingResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"
@@ -307,7 +318,8 @@ namespace Aws
                                            uint16_t,
                                            const Aws::Crt::String &topic,
                                            Aws::Crt::Mqtt::QOS,
-                                           int errorCode) {
+                                           int errorCode)
+            {
                 (void)topic;
                 if (errorCode)
                 {
@@ -321,13 +333,13 @@ namespace Aws
             };
 
             auto onSubscribePublish =
-                [handler](
-                    Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload) {
-                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
-                    Aws::Crt::JsonObject jsonObject(objectStr);
-                    Aws::Iotidentity::ErrorResponse response(jsonObject);
-                    handler(&response, AWS_ERROR_SUCCESS);
-                };
+                [handler](Aws::Crt::Mqtt::MqttConnection &, const Aws::Crt::String &, const Aws::Crt::ByteBuf &payload)
+            {
+                Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.buffer), payload.len);
+                Aws::Crt::JsonObject jsonObject(objectStr);
+                Aws::Iotidentity::ErrorResponse response(jsonObject);
+                handler(&response, AWS_ERROR_SUCCESS);
+            };
 
             Aws::Crt::StringStream subscribeTopicSStr;
             subscribeTopicSStr << "$aws"
@@ -367,7 +379,8 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](Aws::Crt::Mqtt::MqttConnection &, uint16_t, int errorCode) {
+            auto onPublishComplete = [buf, onPubAck](Aws::Crt::Mqtt::MqttConnection &, uint16_t, int errorCode)
+            {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };
@@ -396,7 +409,8 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](Aws::Crt::Mqtt::MqttConnection &, uint16_t, int errorCode) {
+            auto onPublishComplete = [buf, onPubAck](Aws::Crt::Mqtt::MqttConnection &, uint16_t, int errorCode)
+            {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };
@@ -425,7 +439,8 @@ namespace Aws
             Aws::Crt::ByteBuf buf = Aws::Crt::ByteBufNewCopy(
                 Aws::Crt::g_allocator, reinterpret_cast<const uint8_t *>(outgoingJson.data()), outgoingJson.length());
 
-            auto onPublishComplete = [buf, onPubAck](Aws::Crt::Mqtt::MqttConnection &, uint16_t, int errorCode) {
+            auto onPublishComplete = [buf, onPubAck](Aws::Crt::Mqtt::MqttConnection &, uint16_t, int errorCode)
+            {
                 onPubAck(errorCode);
                 Aws::Crt::ByteBufDelete(const_cast<Aws::Crt::ByteBuf &>(buf));
             };

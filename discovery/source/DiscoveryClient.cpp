@@ -119,7 +119,8 @@ namespace Aws
 
             bool res = m_connectionManager->AcquireConnection(
                 [this, callbackContext, thingName, onDiscoverResponse](
-                    std::shared_ptr<Crt::Http::HttpClientConnection> connection, int errorCode) {
+                    std::shared_ptr<Crt::Http::HttpClientConnection> connection, int errorCode)
+                {
                     if (errorCode)
                     {
                         onDiscoverResponse(nullptr, errorCode, 0);
@@ -164,15 +165,14 @@ namespace Aws
                         [](Crt::Http::HttpStream &, aws_http_header_block, const Crt::Http::HttpHeader *, std::size_t) {
                         };
                     requestOptions.onIncomingHeadersBlockDone =
-                        [callbackContext](Crt::Http::HttpStream &stream, aws_http_header_block) {
-                            callbackContext->responseCode = stream.GetResponseStatusCode();
-                        };
+                        [callbackContext](Crt::Http::HttpStream &stream, aws_http_header_block)
+                    { callbackContext->responseCode = stream.GetResponseStatusCode(); };
                     requestOptions.onIncomingBody =
-                        [callbackContext](Crt::Http::HttpStream &, const Crt::ByteCursor &data) {
-                            callbackContext->ss.write(reinterpret_cast<const char *>(data.ptr), data.len);
-                        };
+                        [callbackContext](Crt::Http::HttpStream &, const Crt::ByteCursor &data)
+                    { callbackContext->ss.write(reinterpret_cast<const char *>(data.ptr), data.len); };
                     requestOptions.onStreamComplete = [request, connection, callbackContext, onDiscoverResponse](
-                                                          Crt::Http::HttpStream &, int errorCode) {
+                                                          Crt::Http::HttpStream &, int errorCode)
+                    {
                         if (!errorCode && callbackContext->responseCode == 200)
                         {
                             Crt::JsonObject jsonObject(callbackContext->ss.str());

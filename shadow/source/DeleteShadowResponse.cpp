@@ -51,7 +51,10 @@ namespace Aws
             }
         }
 
-        DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         DeleteShadowResponse &DeleteShadowResponse::operator=(const Crt::JsonView &doc)
         {
