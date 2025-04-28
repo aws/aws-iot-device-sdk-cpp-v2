@@ -10,8 +10,8 @@ service to receive and process remote instructions.
 > to invoke control plane operations that are not possible with the device SDK.
 
 In a real use case, control plane commands (the AWS CLI commands) would be issued by applications under control of
-the customer, while the data plane operations (the actions performed by the sample application) would be issued by
-software running on the IoT device itself.
+the customer, while data plane operations (the actions performed by the sample application) would be issued by software
+running on the IoT device itself.
 
 Using the IoT Commands service and this sample requires an understanding of two closely-related but different service terms:
 * **AWS IoT Command** - metadata describing a task that the user would like one or more devices to run.
@@ -20,18 +20,18 @@ Using the IoT Commands service and this sample requires an understanding of two 
 In particular, you can define an **AWS IoT Command** and then send it multiple times to the same device. The device will
 try to execute each received **AWS IoT Command Execution**.
 
-Another important feature of AWS IoT command service is using different MQTT topics for different payload formats. This
-means that your device can choose to receive only AWS IoT commands with specified payload format.
-AWS IoT Commands service distinguishes the following payload formats:
+AWS IoT command service uses different MQTT topics for different payload formats. This allows a device to choose which
+AWS IoT command payload formats to receive. AWS IoT Commands service distinguishes the following payload formats:
 - JSON
 - CBOR
 - generic (i.e. everything else)
 
-This also means that if your device wants to receive JSON **and** CBOR payloads, it needs to subscribe to both topics
-using two separate API calls.
+If your device wants to receive both JSON and CBOR payloads, it will need to subscribe to both topics using two separate
+API calls.
 
 > [!NOTE]
-> The word `command` is quite overloaded in this sample. It's supposed to be used with multiple meanings:
+> In this sample the term command is used with multiple different meanings. To keep them straight we qualify the word
+> with a prefix:
 > - AWS IoT command - an event with instructions sent from the IoT Core to a device
 > - AWS CLI command - a shell command for executing a control plane operation
 > - sample command - an action that this sample application can perform, such as `open-thing-stream`
@@ -41,7 +41,7 @@ using two separate API calls.
 
 ### Interaction with sample application
 
-Once connected, the sample supports the following sample commands:
+Once connected, the sample supports the following commands:
 
 * open-thing-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
 targeting the IoT Thing set on the application startup
@@ -58,9 +58,9 @@ Miscellaneous
 * quit - quit the sample application
 
 ### Prerequisites
-Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect as well as subscribe, publish,
-and receive as necessary to perform all of the data plane operations. Below is a sample policy that can be used on your
-IoT Core Thing that will allow this sample to run as intended.
+Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive
+in order to perform its data plane operations. Below is a sample policy that can be used on your IoT Core Thing that will
+allow this sample to run as intended.
 
 <details>
 <summary>Sample Policy</summary>
@@ -115,8 +115,8 @@ to send the client ID your policy supports.
 
 </details>
 
-Additionally, the AWS CLI triggered control plane operations in the walkthrough require that AWS credentials with
-appropriate permissions be sourceable. At a minimum, the following permissions must be granted:
+The AWS CLI triggered control plane operations in the walkthrough require AWS credentials with appropriate permissions
+be sourceable. The following permissions must be granted:
 <details>
 <summary>Sample Policy</summary>
 <pre>
@@ -170,13 +170,7 @@ To run the sample:
     --client_id <client id>
 ```
 
-The sample will automatically connect to IoT Core and then will subscribe to streams of AWs IoT command executions
-related to the IoT Thing name and MQTT client ID you specified.
-
-As soon as you create a new AWS IoT command execution targeting your thing/client, the sample will receive and process it, and
-then will update its status in IoT Core.
-
-Once successfully connected, you can issue instructions to the sample.
+The sample will automatically connect to IoT Core. Once successfully connected, you can issue instructions to the sample.
 
 ## Walkthrough
 
