@@ -101,6 +101,7 @@ namespace Aws
             MessageAmendment(const MessageAmendment &lhs);
             MessageAmendment(MessageAmendment &&rhs);
             MessageAmendment &operator=(const MessageAmendment &lhs);
+            MessageAmendment &operator=(MessageAmendment &&rhs);
             ~MessageAmendment() noexcept;
             explicit MessageAmendment(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             MessageAmendment(
@@ -114,10 +115,22 @@ namespace Aws
                 Crt::List<EventStreamHeader> &&headers,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             MessageAmendment(const Crt::ByteBuf &payload, Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+
+            /**
+             * Add a given header to the end of the header list.
+             */
             void AddHeader(EventStreamHeader &&header) noexcept;
+
+            /**
+             * Add given headers to the beginning of the header list.
+             */
+            void PrependHeaders(Crt::List<EventStreamHeader> &&headers);
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
-            const Crt::List<EventStreamHeader> &GetHeaders() const noexcept;
-            const Crt::Optional<Crt::ByteBuf> &GetPayload() const noexcept;
+            void SetPayload(Crt::Optional<Crt::ByteBuf> &&payload);
+            const Crt::List<EventStreamHeader> &GetHeaders() const & noexcept;
+            Crt::List<EventStreamHeader> &&GetHeaders() &&;
+            const Crt::Optional<Crt::ByteBuf> &GetPayload() const & noexcept;
+            Crt::Optional<Crt::ByteBuf> &&GetPayload() &&;
 
           private:
             Crt::List<EventStreamHeader> m_headers;
