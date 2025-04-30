@@ -84,7 +84,8 @@ int main(int argc, char *argv[])
             connectedWaiter.set_value(true);
         });
     builder->WithClientConnectionFailureCallback(
-        [](const Mqtt5::OnConnectionFailureEventData &event) {
+        [](const Mqtt5::OnConnectionFailureEventData &event)
+        {
             fprintf(
                 stdout,
                 "Mqtt5 client connection attempt failed with error: %s.\n",
@@ -160,13 +161,17 @@ int main(int argc, char *argv[])
         registerThingRequest.Parameters = finalTemplateParameters;
     }
 
-    std::promise<RegisterThingResult> registerThingResultPromise;
+    // A simple `std::promise<RegisterThingResult>` can be used here. But to support old VS compilers requiring
+    // a template parameter be default-constructible, we wrap Result into Optional.
+    std::promise<Aws::Crt::Optional<RegisterThingResult>> registerThingResultPromise;
     identityClient->RegisterThing(
         registerThingRequest,
         [&registerThingResultPromise](RegisterThingResult &&result)
-        { registerThingResultPromise.set_value(std::move(result)); });
+        {
+            registerThingResultPromise.set_value(std::move(result));
+        });
 
-    const auto &registerThingResult = registerThingResultPromise.get_future().get();
+    const auto &registerThingResult = registerThingResultPromise.get_future().get().value();
     if (!registerThingResult.IsSuccess())
     {
         s_onServiceError(registerThingResult.GetError(), "register-thing");
