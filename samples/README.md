@@ -20,10 +20,10 @@
 * [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
 * [Cognito Connect](./mqtt/cognito_connect/README.md)
 ## Other Samples
-* [Jobs Sandobox](./jobs/job-sandbox/README.md)
+* [Jobs Sandbox](./jobs/jobs-sandbox/README.md)
 * [Shadow Sandbox](./shadow/shadow-sandbox/README.md)
-* [Basic Fleet Provisioning](./fleet_provisioning/provision_basic/README.md)
-* [CSR Fleet Provisioning](./fleet_provisioning/provision_csr/README.md)
+* [Basic Fleet Provisioning](./fleet_provisioning/provision-basic/README.md)
+* [CSR Fleet Provisioning](./fleet_provisioning/provision-csr/README.md)
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
