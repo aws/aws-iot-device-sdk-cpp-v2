@@ -750,22 +750,6 @@ namespace Aws
 
         static bool s_initModeledEvent(
             const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
-            ShadowDeltaUpdatedEvent &modeledEvent)
-        {
-            const auto &payload = publishEvent.GetPayload();
-            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-            Aws::Crt::JsonObject jsonObject(objectStr);
-            if (!jsonObject.WasParseSuccessful())
-            {
-                return false;
-            }
-
-            modeledEvent = ShadowDeltaUpdatedEvent(jsonObject);
-            return true;
-        }
-
-        static bool s_initModeledEvent(
-            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
             ShadowUpdatedEvent &modeledEvent)
         {
             const auto &payload = publishEvent.GetPayload();
@@ -777,6 +761,22 @@ namespace Aws
             }
 
             modeledEvent = ShadowUpdatedEvent(jsonObject);
+            return true;
+        }
+
+        static bool s_initModeledEvent(
+            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
+            ShadowDeltaUpdatedEvent &modeledEvent)
+        {
+            const auto &payload = publishEvent.GetPayload();
+            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
+            Aws::Crt::JsonObject jsonObject(objectStr);
+            if (!jsonObject.WasParseSuccessful())
+            {
+                return false;
+            }
+
+            modeledEvent = ShadowDeltaUpdatedEvent(jsonObject);
             return true;
         }
 
