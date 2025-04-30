@@ -128,13 +128,15 @@ int main(int argc, char *argv[])
     CreateCertificateFromCsrRequest createFromCsrRequest;
     createFromCsrRequest.CertificateSigningRequest = csr_data;
 
-    std::promise<CreateCertificateFromCsrResult> createFromCsrResultPromise;
+    // A simple `std::promise<Result>` can be used here. But to support old VS compilers requiring a template parameter
+    // be default-constructible, we wrap Result into Optional.
+    std::promise<Aws::Crt::Optional<CreateCertificateFromCsrResult>> createFromCsrResultPromise;
     identityClient->CreateCertificateFromCsr(
         createFromCsrRequest,
         [&createFromCsrResultPromise](CreateCertificateFromCsrResult &&result)
         { createFromCsrResultPromise.set_value(std::move(result)); });
 
-    const auto &createFromCsrResult = createFromCsrResultPromise.get_future().get();
+    const auto &createFromCsrResult = createFromCsrResultPromise.get_future().get().value();
     if (!createFromCsrResult.IsSuccess())
     {
         s_onServiceError(createFromCsrResult.GetError(), "create-certificate-from-csr");
@@ -171,13 +173,13 @@ int main(int argc, char *argv[])
         registerThingRequest.Parameters = finalTemplateParameters;
     }
 
-    std::promise<RegisterThingResult> registerThingResultPromise;
+    std::promise<Aws::Crt::Optional<RegisterThingResult>> registerThingResultPromise;
     identityClient->RegisterThing(
         registerThingRequest,
         [&registerThingResultPromise](RegisterThingResult &&result)
         { registerThingResultPromise.set_value(std::move(result)); });
 
-    const auto &registerThingResult = registerThingResultPromise.get_future().get();
+    const auto &registerThingResult = registerThingResultPromise.get_future().get().value();
     if (!registerThingResult.IsSuccess())
     {
         s_onServiceError(registerThingResult.GetError(), "register-thing");

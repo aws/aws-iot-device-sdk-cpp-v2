@@ -121,13 +121,15 @@ int main(int argc, char *argv[])
      */
     CreateKeysAndCertificateRequest createKeysRequest;
 
-    std::promise<CreateKeysAndCertificateResult> createKeysResultPromise;
+    // A simple `std::promise<Result>` can be used here. But to support old VS compilers requiring a template parameter
+    // be default-constructible, we wrap Result into Optional.
+    std::promise<Aws::Crt::Optional<CreateKeysAndCertificateResult>> createKeysResultPromise;
     identityClient->CreateKeysAndCertificate(
         createKeysRequest,
         [&createKeysResultPromise](CreateKeysAndCertificateResult &&result)
         { createKeysResultPromise.set_value(std::move(result)); });
 
-    const auto &createKeysResult = createKeysResultPromise.get_future().get();
+    const auto &createKeysResult = createKeysResultPromise.get_future().get().value();
     if (!createKeysResult.IsSuccess())
     {
         s_onServiceError(createKeysResult.GetError(), "create-keys-and-certificate");
@@ -161,15 +163,11 @@ int main(int argc, char *argv[])
         registerThingRequest.Parameters = finalTemplateParameters;
     }
 
-    // A simple `std::promise<RegisterThingResult>` can be used here. But to support old VS compilers requiring
-    // a template parameter be default-constructible, we wrap Result into Optional.
     std::promise<Aws::Crt::Optional<RegisterThingResult>> registerThingResultPromise;
     identityClient->RegisterThing(
         registerThingRequest,
         [&registerThingResultPromise](RegisterThingResult &&result)
-        {
-            registerThingResultPromise.set_value(std::move(result));
-        });
+        { registerThingResultPromise.set_value(std::move(result)); });
 
     const auto &registerThingResult = registerThingResultPromise.get_future().get().value();
     if (!registerThingResult.IsSuccess())
