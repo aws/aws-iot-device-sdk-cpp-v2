@@ -246,20 +246,16 @@ Before building and running the sample, you must first build and install the SDK
 
 ``` sh
 cd <sdk-root-directory>
-mkdir _build
-cd _build
-cmake -DCMAKE_INSTALL_PREFIX=<sdk_install_path> ..
-make && make install
+cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
+cmake --build _build/ --target install
 ```
 
 Now build the sample:
 
 ``` sh
 cd samples/fleet_provisioning/provision-basic
-mkdir _build
-cd _build
-cmake -DCMAKE_PREFIX_PATH=<sdk_install_path> ..
-make
+cmake -S ./ -B _build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
+cmake --build _build/
 ```
 
 To run the sample:
@@ -271,4 +267,3 @@ To run the sample:
 As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
 On success, you will find you have a new AWS IoT Core thing.  A real provisioning process would also need to persist the final certificate and key (in the response to the CreateCertificateAndKeys API call) to a durable, safe storage medium for future use.  After provisioning, the provisioning certificate and key pair are no longer needed.
-

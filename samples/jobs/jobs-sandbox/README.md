@@ -131,20 +131,16 @@ Before building and running the sample, you must first build and install the SDK
 
 ``` sh
 cd <sdk-root-directory>
-mkdir _build
-cd _build
-cmake -DCMAKE_INSTALL_PREFIX=<sdk_install_path> ..
-make && make install
+cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
+cmake --build _build/ --target install
 ```
 
 Now build the sample:
 
 ``` sh
 cd samples/jobs/jobs-sandbox
-mkdir _build
-cd _build
-cmake -DCMAKE_PREFIX_PATH=<sdk_install_path> ..
-make
+cmake -S ./ -B _build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
+cmake --build _build/
 ```
 
 To run the sample:
