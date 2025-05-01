@@ -1,4 +1,4 @@
-# Commands Execution
+# Commands Sandbox
 
 [**Return to main sample list**](../../README.md)
 
@@ -154,7 +154,7 @@ cmake --build build/ --target install
 Now build the sample:
 
 ```shell
-cd samples/commands/execute_command
+cd samples/commands/commands-sandbox
 cmake -S . -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
 cmake --build build/
 ```
@@ -162,7 +162,7 @@ cmake --build build/
 To run the sample:
 
 ```shell
-./build/execute-command \
+./build/commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
@@ -243,7 +243,7 @@ Take a notice of the `commandArn` field. It is used in creation of AWS IoT comma
 
 It's time to run the sample (unless you did it already) with the following shell command:
 ```shell
-./build/execute-command \
+./build/commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \

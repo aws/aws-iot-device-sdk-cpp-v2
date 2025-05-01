@@ -24,7 +24,7 @@ add_subdirectory(pub_sub/cycle_pub_sub)
 add_subdirectory(secure_tunneling/secure_tunnel)
 add_subdirectory(secure_tunneling/tunnel_notification)
 add_subdirectory(shadow/shadow_sync)
-add_subdirectory(commands/execute_command)
+add_subdirectory(commands/commands-sandbox)
 
 
 add_subdirectory(deprecated/shadow/shadow_sync)

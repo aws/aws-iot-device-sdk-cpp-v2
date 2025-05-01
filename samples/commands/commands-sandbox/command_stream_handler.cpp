@@ -57,7 +57,7 @@ namespace Aws
                     }
                     if (event.Payload)
                     {
-                        fprintf(stdout, "  payload size: %lu\n", event.Payload->size());
+                        fprintf(stdout, "  payload size: %zu\n", event.Payload->size());
                     }
 
                     CommandExecutionContext commandExecution{deviceType, deviceId, std::move(event)};

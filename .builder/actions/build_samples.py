@@ -19,6 +19,7 @@ class BuildSamples(Builder.Action):
 
         steps = []
         samples = [
+            'samples/commands/commands-sandbox',
             'samples/deprecated/fleet_provisioning/fleet_provisioning',
             'samples/deprecated/fleet_provisioning/mqtt5_fleet_provisioning',
             'samples/deprecated/jobs/job_execution',

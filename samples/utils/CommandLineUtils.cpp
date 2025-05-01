@@ -550,7 +550,7 @@ namespace Utils
     cmdData parseSampleInputCommands(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
         CommandLineUtils cmdUtils = CommandLineUtils();
-        cmdUtils.RegisterProgramName("execute-commands");
+        cmdUtils.RegisterProgramName("commands-sandbox");
         cmdUtils.AddCommonMQTTCommands();
         cmdUtils.AddCommonKeyCertCommands();
         cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");

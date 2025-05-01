@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/crt/Types.h>
 #include <aws/iotcommands/CommandExecutionEvent.h>
 #include <aws/iotcommands/CommandExecutionStatus.h>
 #include <aws/iotcommands/DeviceType.h>
@@ -121,7 +122,7 @@ namespace Aws
             /**
              * Opened streaming operations.
              */
-            std::unordered_map<uint64_t, StreamingOperationWrapper> m_streams;
+            Aws::Crt::UnorderedMap<uint64_t, StreamingOperationWrapper> m_streams;
 
             /**
              * Active command executions that were received on one of the open streams.
@@ -131,7 +132,7 @@ namespace Aws
              * https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command-concepts.html#iot-command-execution-status
              * for more information on IoT command statuses.
              */
-            std::unordered_map<Aws::Crt::String, CommandExecutionContext> m_activeCommandExecutions;
+            Aws::Crt::Map<Aws::Crt::String, CommandExecutionContext> m_activeCommandExecutions;
             std::mutex m_activeExecutionsMutex;
         };
 

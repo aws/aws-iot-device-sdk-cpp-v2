@@ -13,6 +13,7 @@
 #include <cinttypes>
 #include <condition_variable>
 #include <iostream>
+#include <memory>
 #include <thread>
 
 #include "../../utils/CommandLineUtils.h"
@@ -20,7 +21,7 @@
 struct ApplicationContext
 {
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> m_protocolClient;
-    std::unique_ptr<Aws::IotcommandsSample::CommandStreamHandler> commandStreamHandler;
+    std::shared_ptr<Aws::IotcommandsSample::CommandStreamHandler> commandStreamHandler;
     Aws::Crt::String thingName;
     Aws::Crt::String clientId;
 };
@@ -251,7 +252,7 @@ int main(int argc, char *argv[])
 
     auto commandClient = Aws::Iotcommands::NewClientFrom5(*protocolClient, requestResponseOptions);
     auto commandStreamHandler =
-        std::make_unique<Aws::IotcommandsSample::CommandStreamHandler>(std::move(commandClient));
+        std::make_shared<Aws::IotcommandsSample::CommandStreamHandler>(std::move(commandClient));
 
     protocolClient->Start();
     auto isConnected = connectedWaiter.get_future().get();
