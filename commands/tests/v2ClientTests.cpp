@@ -5,14 +5,13 @@
 
 #include <aws/common/environment.h>
 #include <aws/crt/Api.h>
-#include <aws/crt/JsonObject.h>
 #include <aws/crt/Types.h>
 #include <aws/crt/UUID.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/MqttRequestResponseClient.h>
 #include <aws/testing/aws_test_harness.h>
 
-#include <aws/iotjobs/IotJobsClientV2.h>
+#include <aws/iotcommands/IotCommandsClientV2.h>
 
 #include <utility>
 
@@ -167,8 +166,9 @@ template <typename R> class ResultWaiter
             }
 
             m_result = std::move(result);
-            m_signal.notify_all();
         }
+
+        m_signal.notify_all();
     }
 
     const R &GetResult()
@@ -188,7 +188,7 @@ template <typename R> class ResultWaiter
     Aws::Crt::Optional<R> m_result;
 };
 
-static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createJobsClient5(
+static std::shared_ptr<Aws::Iotcommands::IClientV2> s_createCommandsClient5(
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> protocolClient,
     Aws::Crt::Allocator *allocator)
 {
@@ -203,10 +203,10 @@ static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createJobsClient5(
     serviceClientOptions.WithMaxStreamingSubscriptions(2);
     serviceClientOptions.WithOperationTimeoutInSeconds(5);
 
-    return Aws::Iotjobs::NewClientFrom5(*protocolClient, serviceClientOptions, allocator);
+    return Aws::Iotcommands::NewClientFrom5(*protocolClient, serviceClientOptions, allocator);
 }
 
-static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createJobsClient311(
+static std::shared_ptr<Aws::Iotcommands::IClientV2> s_createCommandsClient311(
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> protocolClient,
     Aws::Crt::Allocator *allocator)
 {
@@ -221,16 +221,16 @@ static std::shared_ptr<Aws::Iotjobs::IClientV2> s_createJobsClient311(
     serviceClientOptions.WithMaxStreamingSubscriptions(2);
     serviceClientOptions.WithOperationTimeoutInSeconds(5);
 
-    return Aws::Iotjobs::NewClientFrom311(*protocolClient, serviceClientOptions, allocator);
+    return Aws::Iotcommands::NewClientFrom311(*protocolClient, serviceClientOptions, allocator);
 }
 
-static int s_JobsV2ClientCreateDestroy5(Aws::Crt::Allocator *allocator, void *)
+static int s_CommandsV2ClientCreateDestroy5(Aws::Crt::Allocator *allocator, void *)
 {
     {
         Aws::Crt::ApiHandle handle;
 
         auto protocolClient = s_createProtocolClient5(allocator);
-        auto shadowClient = s_createJobsClient5(protocolClient, allocator);
+        auto shadowClient = s_createCommandsClient5(protocolClient, allocator);
         if (!shadowClient)
         {
             return AWS_OP_SKIP;
@@ -239,15 +239,15 @@ static int s_JobsV2ClientCreateDestroy5(Aws::Crt::Allocator *allocator, void *)
 
     return AWS_OP_SUCCESS;
 }
-AWS_TEST_CASE(JobsV2ClientCreateDestroy5, s_JobsV2ClientCreateDestroy5)
+AWS_TEST_CASE(CommandsV2ClientCreateDestroy5, s_CommandsV2ClientCreateDestroy5)
 
-static int s_JobsV2ClientCreateDestroy311(Aws::Crt::Allocator *allocator, void *)
+static int s_CommandsV2ClientCreateDestroy311(Aws::Crt::Allocator *allocator, void *)
 {
     {
         Aws::Crt::ApiHandle handle;
 
         auto protocolClient = s_createProtocolClient311(allocator);
-        auto shadowClient = s_createJobsClient311(protocolClient, allocator);
+        auto shadowClient = s_createCommandsClient311(protocolClient, allocator);
         if (!shadowClient)
         {
             return AWS_OP_SKIP;
@@ -256,4 +256,4 @@ static int s_JobsV2ClientCreateDestroy311(Aws::Crt::Allocator *allocator, void *
 
     return AWS_OP_SUCCESS;
 }
-AWS_TEST_CASE(JobsV2ClientCreateDestroy311, s_JobsV2ClientCreateDestroy311)
+AWS_TEST_CASE(CommandsV2ClientCreateDestroy311, s_CommandsV2ClientCreateDestroy311)

@@ -304,8 +304,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_DeleteShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -411,8 +410,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_GetNamedShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -516,8 +514,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_GetShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -741,8 +738,7 @@ namespace Aws
             options.correlation_token = Aws::Crt::ByteCursorFromString(uuid);
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
-            {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
                 s_UpdateShadowResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -750,22 +746,6 @@ namespace Aws
             int submitResult = m_bindingClient->SubmitRequest(options, std::move(resultHandler));
 
             return submitResult == AWS_OP_SUCCESS;
-        }
-
-        static bool s_initModeledEvent(
-            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
-            ShadowDeltaUpdatedEvent &modeledEvent)
-        {
-            const auto &payload = publishEvent.GetPayload();
-            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-            Aws::Crt::JsonObject jsonObject(objectStr);
-            if (!jsonObject.WasParseSuccessful())
-            {
-                return false;
-            }
-
-            modeledEvent = ShadowDeltaUpdatedEvent(jsonObject);
-            return true;
         }
 
         static bool s_initModeledEvent(
@@ -781,6 +761,22 @@ namespace Aws
             }
 
             modeledEvent = ShadowUpdatedEvent(jsonObject);
+            return true;
+        }
+
+        static bool s_initModeledEvent(
+            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
+            ShadowDeltaUpdatedEvent &modeledEvent)
+        {
+            const auto &payload = publishEvent.GetPayload();
+            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
+            Aws::Crt::JsonObject jsonObject(objectStr);
+            if (!jsonObject.WasParseSuccessful())
+            {
+                return false;
+            }
+
+            modeledEvent = ShadowDeltaUpdatedEvent(jsonObject);
             return true;
         }
 

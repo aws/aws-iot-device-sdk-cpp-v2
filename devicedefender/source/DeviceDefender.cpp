@@ -25,7 +25,7 @@ namespace Aws
           public:
             Crt::Allocator *m_allocator;
 
-            virtual ~CustomMetricBase(){};
+            virtual ~CustomMetricBase() {};
         };
 
         /**
@@ -97,9 +97,10 @@ namespace Aws
             CustomMetricNumberList *metric = (CustomMetricNumberList *)data;
             Crt::Vector<double> function_data = Crt::Vector<double>();
             int returnValue = metric->m_metricFunction(&function_data);
-            std::for_each(function_data.begin(), function_data.end(), [output](double &i) {
-                aws_array_list_push_back(output, &i);
-            });
+            std::for_each(
+                function_data.begin(),
+                function_data.end(),
+                [output](double &i) { aws_array_list_push_back(output, &i); });
             return returnValue;
         }
 
@@ -116,10 +117,14 @@ namespace Aws
             CustomMetricStringList *metric = (CustomMetricStringList *)data;
             Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
             int returnValue = metric->m_metricFunction(&function_data);
-            std::for_each(function_data.begin(), function_data.end(), [output, metric](Crt::String &i) {
-                aws_string *tmp_str = aws_string_new_from_c_str(metric->m_allocator, i.c_str());
-                aws_array_list_push_back(output, &tmp_str);
-            });
+            std::for_each(
+                function_data.begin(),
+                function_data.end(),
+                [output, metric](Crt::String &i)
+                {
+                    aws_string *tmp_str = aws_string_new_from_c_str(metric->m_allocator, i.c_str());
+                    aws_array_list_push_back(output, &tmp_str);
+                });
             return returnValue;
         }
 
@@ -134,10 +139,14 @@ namespace Aws
             CustomMetricIpList *metric = (CustomMetricIpList *)data;
             Crt::Vector<Crt::String> function_data = Crt::Vector<Crt::String>();
             int returnValue = metric->m_metricFunction(&function_data);
-            std::for_each(function_data.begin(), function_data.end(), [output, metric](Crt::String &i) {
-                aws_string *tmp_str = aws_string_new_from_c_str(metric->m_allocator, i.c_str());
-                aws_array_list_push_back(output, &tmp_str);
-            });
+            std::for_each(
+                function_data.begin(),
+                function_data.end(),
+                [output, metric](Crt::String &i)
+                {
+                    aws_string *tmp_str = aws_string_new_from_c_str(metric->m_allocator, i.c_str());
+                    aws_array_list_push_back(output, &tmp_str);
+                });
             return returnValue;
         }
 
@@ -184,7 +193,10 @@ namespace Aws
             }
         }
 
-        ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
+        ReportTaskStatus ReportTask::GetStatus() noexcept
+        {
+            return this->m_status;
+        }
 
         int ReportTask::StartTask() noexcept
         {

@@ -33,7 +33,7 @@ namespace Aws
             SUCCEEDED,
 
             /**
-             * The divice failed to complete the command.
+             * The device failed to complete the command.
              */
             FAILED,
 

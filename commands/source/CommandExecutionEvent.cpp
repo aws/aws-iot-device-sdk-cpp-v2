@@ -45,7 +45,6 @@ namespace Aws
         void CommandExecutionEvent::SetContentType(Aws::Crt::ByteCursor contentType)
         {
             ContentType = Aws::Crt::String((const char *)contentType.ptr, contentType.len);
-            ;
         }
 
         void CommandExecutionEvent::SetTimeout(int32_t messageExpiryInterval)

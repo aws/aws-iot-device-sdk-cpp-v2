@@ -51,7 +51,7 @@ namespace Aws
         }
 
         MessageAmendment::MessageAmendment(Crt::List<EventStreamHeader> &&headers, Crt::Allocator *allocator) noexcept
-            : m_headers(headers), m_payload(), m_allocator(allocator)
+            : m_headers(std::move(headers)), m_payload(), m_allocator(allocator)
         {
         }
 
@@ -79,14 +79,16 @@ namespace Aws
 
         MessageAmendment &MessageAmendment::operator=(const MessageAmendment &lhs)
         {
-            m_headers = lhs.m_headers;
-            if (lhs.m_payload.has_value())
+            if (this != &lhs)
             {
-                m_payload =
-                    Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_payload.value().buffer, lhs.m_payload.value().len);
+                m_headers = lhs.m_headers;
+                if (lhs.m_payload.has_value())
+                {
+                    m_payload =
+                        Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_payload.value().buffer, lhs.m_payload.value().len);
+                }
+                m_allocator = lhs.m_allocator;
             }
-            m_allocator = lhs.m_allocator;
-
             return *this;
         }
 
@@ -97,9 +99,49 @@ namespace Aws
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
         }
 
-        const Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const noexcept { return m_headers; }
+        MessageAmendment &MessageAmendment::operator=(MessageAmendment &&rhs)
+        {
+            if (this != &rhs)
+            {
+                m_headers = std::move(rhs.m_headers);
+                m_payload = std::move(rhs.m_payload);
+                m_allocator = rhs.m_allocator;
 
-        const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const noexcept { return m_payload; }
+                rhs.m_allocator = nullptr;
+                rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
+            }
+            return *this;
+        }
+
+        const Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const & noexcept
+        {
+            return m_headers;
+        }
+
+        Crt::List<EventStreamHeader> &&MessageAmendment::GetHeaders() &&
+        {
+            return std::move(m_headers);
+        }
+
+        const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const & noexcept
+        {
+            return m_payload;
+        }
+
+        Crt::Optional<Crt::ByteBuf> &&MessageAmendment::GetPayload() &&
+        {
+            return std::move(m_payload);
+        }
+
+        void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept
+        {
+            m_headers.emplace_back(std::move(header));
+        }
+
+        void MessageAmendment::PrependHeaders(Crt::List<EventStreamHeader> &&headers)
+        {
+            m_headers.splice(m_headers.begin(), std::move(headers));
+        }
 
         void MessageAmendment::SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept
         {
@@ -107,6 +149,11 @@ namespace Aws
             {
                 m_payload = Crt::ByteBufNewCopy(m_allocator, payload.value().buffer, payload.value().len);
             }
+        }
+
+        void MessageAmendment::SetPayload(Crt::Optional<Crt::ByteBuf> &&payload)
+        {
+            m_payload = std::move(payload);
         }
 
         MessageAmendment::~MessageAmendment() noexcept
@@ -225,7 +272,10 @@ namespace Aws
 
         void ConnectionLifecycleHandler::OnConnectCallback() {}
 
-        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error) { (void)error; }
+        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error)
+        {
+            (void)error;
+        }
 
         Crt::String RpcError::StatusToString()
         {
@@ -663,23 +713,17 @@ namespace Aws
                 thisConnection->m_clientState = WAITING_FOR_CONNECT_ACK;
                 thisConnection->m_underlyingConnection = connection;
                 MessageAmendment messageAmendment;
-                Crt::List<EventStreamHeader> messageAmendmentHeaders = messageAmendment.GetHeaders();
 
                 if (thisConnection->m_connectMessageAmender)
                 {
                     MessageAmendment connectAmendment(thisConnection->m_connectMessageAmender());
-                    Crt::List<EventStreamHeader> amenderHeaderList = connectAmendment.GetHeaders();
                     /* The version header is necessary for establishing the connection. */
                     messageAmendment.AddHeader(EventStreamHeader(
                         Crt::String(EVENTSTREAM_VERSION_HEADER),
                         Crt::String(EVENTSTREAM_VERSION_STRING),
                         thisConnection->m_allocator));
-                    /* Note that we are prepending headers from the user-provided amender. */
-                    if (amenderHeaderList.size() > 0)
-                    {
-                        messageAmendmentHeaders.splice(messageAmendmentHeaders.end(), amenderHeaderList);
-                    }
-                    messageAmendment.SetPayload(connectAmendment.GetPayload());
+                    messageAmendment.PrependHeaders(std::move(connectAmendment).GetHeaders());
+                    messageAmendment.SetPayload(std::move(connectAmendment).GetPayload());
                 }
 
                 /* Send a CONNECT packet to the server. */
@@ -694,8 +738,6 @@ namespace Aws
 
             thisConnection->m_connectionSetupPromise.set_value();
         }
-
-        void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept { m_headers.emplace_back(header); }
 
         void ClientConnection::s_onConnectionShutdown(
             struct aws_event_stream_rpc_client_connection *connection,
@@ -1099,7 +1141,10 @@ namespace Aws
         {
         }
 
-        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const { (void)payloadObject; }
+        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
+        {
+            (void)payloadObject;
+        }
 
         AbstractShapeBase::AbstractShapeBase() noexcept : m_allocator(nullptr) {}
 
@@ -1187,7 +1232,10 @@ namespace Aws
             rhs.m_rpcError = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
         }
 
-        TaggedResult::operator bool() const noexcept { return m_responseType == OPERATION_RESPONSE; }
+        TaggedResult::operator bool() const noexcept
+        {
+            return m_responseType == OPERATION_RESPONSE;
+        }
 
         AbstractShapeBase *TaggedResult::GetOperationResponse() const noexcept
         {
@@ -1516,7 +1564,10 @@ namespace Aws
             }
         }
 
-        void ClientOperation::WithLaunchMode(std::launch mode) noexcept { m_asyncLaunchMode = mode; }
+        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
+        {
+            m_asyncLaunchMode = mode;
+        }
 
         std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
         {

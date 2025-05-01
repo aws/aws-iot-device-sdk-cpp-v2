@@ -89,7 +89,8 @@ if (BUILD_DEPS)
     endif()
 endif()
 
-target_link_libraries(IotCommands-cpp ${DEP_AWS_LIBS})
+aws_add_sanitizers(IotCommands-cpp)
+target_link_libraries(IotCommands-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTCOMMANDS_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotcommands/" COMPONENT Development)
 
