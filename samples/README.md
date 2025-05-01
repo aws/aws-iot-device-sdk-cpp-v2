@@ -24,6 +24,7 @@
 * [Shadow Sandbox](./shadow/shadow-sandbox/README.md)
 * [Basic Fleet Provisioning](./fleet_provisioning/provision-basic/README.md)
 * [CSR Fleet Provisioning](./fleet_provisioning/provision-csr/README.md)
+* [Commands Sandbox](./commands/commands-sandbox/README.md)
 * [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
 * [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
 * [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)

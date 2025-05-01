@@ -547,6 +547,26 @@ namespace Utils
         return returnData;
     }
 
+    cmdData parseSampleInputCommands(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
+    {
+        CommandLineUtils cmdUtils = CommandLineUtils();
+        cmdUtils.RegisterProgramName("commands-sandbox");
+        cmdUtils.AddCommonMQTTCommands();
+        cmdUtils.AddCommonKeyCertCommands();
+        cmdUtils.RegisterCommand(m_cmd_client_id, "<str>", "Client id to use (optional, default='test-*')");
+        cmdUtils.RegisterCommand(m_cmd_thing_name, "<str>", "The name of your IOT thing");
+        s_addLoggingSendArgumentsStartLogging(argc, argv, api_handle, &cmdUtils);
+
+        cmdData returnData = cmdData();
+        s_parseCommonMQTTCommands(&cmdUtils, &returnData);
+        returnData.input_cert = cmdUtils.GetCommandRequired(m_cmd_cert_file);
+        returnData.input_key = cmdUtils.GetCommandRequired(m_cmd_key_file);
+        returnData.input_clientId =
+            cmdUtils.GetCommandOrDefault(m_cmd_client_id, Aws::Crt::String("test-") + Aws::Crt::UUID().ToString());
+        returnData.input_thingName = cmdUtils.GetCommandRequired(m_cmd_thing_name);
+        return returnData;
+    }
+
     cmdData parseSampleInputBasicConnect(int argc, char *argv[], Aws::Crt::ApiHandle *api_handle)
     {
         CommandLineUtils cmdUtils = CommandLineUtils();
