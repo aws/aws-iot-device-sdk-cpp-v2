@@ -214,11 +214,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html#update-delta-pub-sub-topic
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowDeltaUpdatedStream(
                 const NamedShadowDeltaUpdatedSubscriptionRequest &request,
@@ -231,11 +231,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html#update-documents-pub-sub-topic
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNamedShadowUpdatedStream(
                 const NamedShadowUpdatedSubscriptionRequest &request,
@@ -248,11 +248,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html#update-delta-pub-sub-topic
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowDeltaUpdatedStream(
                 const ShadowDeltaUpdatedSubscriptionRequest &request,
@@ -265,11 +265,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html#update-documents-pub-sub-topic
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateShadowUpdatedStream(
                 const ShadowUpdatedSubscriptionRequest &request,

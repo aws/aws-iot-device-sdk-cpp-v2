@@ -179,11 +179,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-jobexecutionschanged
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateJobExecutionsChangedStream(
                 const JobExecutionsChangedSubscriptionRequest &request,
@@ -196,11 +196,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-nextjobexecutionchanged
              *
-             * @param request modeled streaming operation subscription configuration
-             * @param options
+             * @param request Modeled streaming operation subscription configuration.
+             * @param options Configuration options for the streaming operation.
              *
-             * @return a streaming operation which will emit a modeled event every time a message is received on the
-             *    associated MQTT topic
+             * @return A streaming operation which will emit a modeled event every time a message is received on the
+             * associated MQTT topic.
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNextJobExecutionChangedStream(
                 const NextJobExecutionChangedSubscriptionRequest &request,
