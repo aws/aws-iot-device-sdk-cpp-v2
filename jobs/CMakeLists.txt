@@ -90,7 +90,6 @@ if (BUILD_DEPS)
 endif()
 
 aws_add_sanitizers(IotJobs-cpp)
-
 target_link_libraries(IotJobs-cpp PUBLIC ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTJOBS_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/iotjobs/" COMPONENT Development)
@@ -121,3 +120,9 @@ configure_file("cmake/iotjobs-cpp-config.cmake"
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/IotJobs-cpp/"
         COMPONENT Development)
+
+if(NOT CMAKE_CROSSCOMPILING)
+    if (BUILD_TESTING AND NOT BYO_CRYPTO)
+        add_subdirectory(tests)
+    endif()
+endif()

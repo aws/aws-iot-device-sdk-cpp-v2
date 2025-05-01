@@ -1,6 +1,6 @@
 {
     "language": "CPP",
-    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/fleet_provisioning/mqtt5_fleet_provisioning/mqtt5-fleet-provisioning",
+    "sample_file": "./aws-iot-device-sdk-cpp-v2/build/samples/deprecated/fleet_provisioning/mqtt5_fleet_provisioning/mqtt5-fleet-provisioning",
     "sample_region": "us-east-1",
     "sample_main_class": "",
     "arguments": [

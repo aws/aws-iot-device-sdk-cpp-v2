@@ -23,6 +23,10 @@
     "build",
     "build-samples"
   ],
+  "test_steps": [
+    "sdk-ci-prep",
+    "test"
+  ],
   "variants" : {
     "skip_sample": {
         "!build_steps": [
@@ -46,6 +50,13 @@
           "build",
           "build-gg-samples"
         ]
+    }
+  },
+  "targets" : {
+    "macos" : {
+      "!test_steps": [
+        "test"
+      ]
     }
   }
 }

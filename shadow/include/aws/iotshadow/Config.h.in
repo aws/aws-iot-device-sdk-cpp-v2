@@ -1,7 +1,8 @@
 #pragma once
-/**
- * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
+ *
+ * This file is generated
  */
 
 #define AWS_IOT_DEVICE_SDK_CPP_V2_IOTSHADOW_VERSION "@FULL_VERSION@"
