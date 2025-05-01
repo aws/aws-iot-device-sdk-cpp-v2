@@ -450,7 +450,7 @@ int main(int argc, char *argv[])
         String input;
         std::getline(std::cin, input);
 
-        if (s_handleInput(input, context))
+        if (s_handleInput(input, context) || !std::cin)
         {
             fprintf(stdout, "Exiting...");
             break;
