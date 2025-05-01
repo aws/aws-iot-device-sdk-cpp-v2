@@ -36,6 +36,7 @@ for check_dir in check_dirs:
                 continue
 
             filepaths_file.write(f"{filepath}\n".encode())
+
 filepaths_file.close()
 
 # use pipx to run clang-format from PyPI
