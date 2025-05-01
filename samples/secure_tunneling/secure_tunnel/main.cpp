@@ -209,38 +209,41 @@ int main(int argc, char *argv[])
     builder.WithClientToken(cmdData.input_clientToken.c_str());
 
     /* Add callbacks using the builder */
-    builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
+    builder.WithOnMessageReceived(
+        [&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData)
         {
-            std::shared_ptr<Message> message = eventData.message;
-
-            logMessage(message);
-
-            /* Send an echo message back to the Source Device */
-            if (localProxyMode == AWS_SECURE_TUNNELING_DESTINATION_MODE)
             {
-                std::shared_ptr<Message> echoMessage = std::make_shared<Message>(message->getPayload().value());
+                std::shared_ptr<Message> message = eventData.message;
 
-                /* Echo message on same service id received message arrived on */
-                if (message->getServiceId().has_value())
+                logMessage(message);
+
+                /* Send an echo message back to the Source Device */
+                if (localProxyMode == AWS_SECURE_TUNNELING_DESTINATION_MODE)
                 {
-                    echoMessage->WithServiceId(message->getServiceId().value());
+                    std::shared_ptr<Message> echoMessage = std::make_shared<Message>(message->getPayload().value());
+
+                    /* Echo message on same service id received message arrived on */
+                    if (message->getServiceId().has_value())
+                    {
+                        echoMessage->WithServiceId(message->getServiceId().value());
+                    }
+
+                    /* Echo message on the same connection id received message arrived on */
+                    if (message->getConnectionId() > 0)
+                    {
+                        echoMessage->WithConnectionId(message->getConnectionId());
+                    }
+
+                    secureTunnel->SendMessage(echoMessage);
+
+                    fprintf(stdout, "Sending Echo Message\n");
                 }
-
-                /* Echo message on the same connection id received message arrived on */
-                if (message->getConnectionId() > 0)
-                {
-                    echoMessage->WithConnectionId(message->getConnectionId());
-                }
-
-                secureTunnel->SendMessage(echoMessage);
-
-                fprintf(stdout, "Sending Echo Message\n");
             }
-        }
-    });
+        });
 
     builder.WithOnSendMessageComplete(
-        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData) {
+        [&](SecureTunnel *secureTunnel, int errorCode, const SendMessageCompleteEventData &eventData)
+        {
             (void)secureTunnel;
             (void)eventData;
 
@@ -257,41 +260,44 @@ int main(int argc, char *argv[])
             }
         });
 
-    builder.WithOnConnectionSuccess([&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
-        logConnectionData(eventData);
-
-        /* Stream Start can only be called from Source Mode */
-        if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
+    builder.WithOnConnectionSuccess(
+        [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData)
         {
-            /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
-            if (eventData.connectionData->getServiceId1().has_value())
-            {
-                /* Store the service id for future use */
-                aws_byte_buf_clean_up(&m_serviceIdStorage);
-                AWS_ZERO_STRUCT(m_serviceIdStorage);
-                aws_byte_buf_init_copy_from_cursor(
-                    &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
-                m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+            logConnectionData(eventData);
 
-                fprintf(
-                    stdout,
-                    "Sending Stream Start request on Service Id:'" PRInSTR "' with Connection Id: (%d)\n",
-                    AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()),
-                    connectionId);
-
-                secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value(), connectionId);
-            }
-            else
+            /* Stream Start can only be called from Source Mode */
+            if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
             {
-                fprintf(stdout, "Sending Stream Start request\n");
-                secureTunnel->SendStreamStart();
+                /* Use a Multiplexing (Service Id) if available on this Secure Tunnel */
+                if (eventData.connectionData->getServiceId1().has_value())
+                {
+                    /* Store the service id for future use */
+                    aws_byte_buf_clean_up(&m_serviceIdStorage);
+                    AWS_ZERO_STRUCT(m_serviceIdStorage);
+                    aws_byte_buf_init_copy_from_cursor(
+                        &m_serviceIdStorage, allocator, eventData.connectionData->getServiceId1().value());
+                    m_serviceId = aws_byte_cursor_from_buf(&m_serviceIdStorage);
+
+                    fprintf(
+                        stdout,
+                        "Sending Stream Start request on Service Id:'" PRInSTR "' with Connection Id: (%d)\n",
+                        AWS_BYTE_CURSOR_PRI(eventData.connectionData->getServiceId1().value()),
+                        connectionId);
+
+                    secureTunnel->SendStreamStart(eventData.connectionData->getServiceId1().value(), connectionId);
+                }
+                else
+                {
+                    fprintf(stdout, "Sending Stream Start request\n");
+                    secureTunnel->SendStreamStart();
+                }
+                clientConnectedPromise.set_value();
             }
-            clientConnectedPromise.set_value();
-        }
-    });
+        });
 
     builder.WithOnStreamStarted(
-        [&](SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &eventData) {
+        [&](SecureTunnel *secureTunnel, int errorCode, const StreamStartedEventData &eventData)
+        {
             (void)secureTunnel;
             if (!errorCode)
             {
@@ -303,33 +309,38 @@ int main(int argc, char *argv[])
             }
         });
 
-    builder.WithOnConnectionStarted([&](SecureTunnel *secureTunnel,
-                                        int errorCode,
-                                        const ConnectionStartedEventData &eventData) {
-        (void)secureTunnel;
-        if (!errorCode)
+    builder.WithOnConnectionStarted(
+        [&](SecureTunnel *secureTunnel, int errorCode, const ConnectionStartedEventData &eventData)
         {
-            logConnectionStartedData(eventData);
-        }
-        else
+            (void)secureTunnel;
+            if (!errorCode)
+            {
+                logConnectionStartedData(eventData);
+            }
+            else
+            {
+                fprintf(
+                    stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
+            }
+        });
+
+    builder.WithOnStreamStopped(
+        [&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData)
         {
-            fprintf(stdout, "Connection Start failed with error code %d(%s)\n", errorCode, ErrorDebugString(errorCode));
-        }
-    });
+            (void)secureTunnel;
 
-    builder.WithOnStreamStopped([&](SecureTunnel *secureTunnel, const StreamStoppedEventData &eventData) {
-        (void)secureTunnel;
-
-        logStreamStoppedData(eventData);
-    });
+            logStreamStoppedData(eventData);
+        });
 
     builder.WithOnConnectionShutdown([&]() { fprintf(stdout, "Connection Shutdown\n"); });
 
-    builder.WithOnStopped([&](SecureTunnel *secureTunnel) {
-        (void)secureTunnel;
-        fprintf(stdout, "Secure Tunnel has entered Stopped State\n");
-        clientStoppedPromise.set_value(true);
-    });
+    builder.WithOnStopped(
+        [&](SecureTunnel *secureTunnel)
+        {
+            (void)secureTunnel;
+            fprintf(stdout, "Secure Tunnel has entered Stopped State\n");
+            clientStoppedPromise.set_value(true);
+        });
 
     /* Create Secure Tunnel using the options set with the builder */
     std::shared_ptr<SecureTunnel> secureTunnel = builder.Build();

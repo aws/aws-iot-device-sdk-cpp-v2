@@ -75,21 +75,23 @@ int main(int argc, char *argv[])
 
     // Invoked when a MQTT connect has completed or failed
     auto onConnectionCompleted =
-        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool) {
-            if (errorCode)
-            {
-                fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
-                connectionCompletedPromise.set_value(false);
-            }
-            else
-            {
-                fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-                connectionCompletedPromise.set_value(true);
-            }
-        };
+        [&](Aws::Crt::Mqtt::MqttConnection &, int errorCode, Aws::Crt::Mqtt::ReturnCode returnCode, bool)
+    {
+        if (errorCode)
+        {
+            fprintf(stdout, "Connection failed with error %s\n", Aws::Crt::ErrorDebugString(errorCode));
+            connectionCompletedPromise.set_value(false);
+        }
+        else
+        {
+            fprintf(stdout, "Connection completed with return code %d\n", returnCode);
+            connectionCompletedPromise.set_value(true);
+        }
+    };
 
     // Invoked when a disconnect message has completed.
-    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &) {
+    auto onDisconnect = [&](Aws::Crt::Mqtt::MqttConnection &)
+    {
         fprintf(stdout, "Disconnect completed\n");
         connectionClosedPromise.set_value();
     };
@@ -109,7 +111,8 @@ int main(int argc, char *argv[])
     }
 
     auto onSubscribeToTunnelsNotifyResponse = [&](Aws::Iotsecuretunneling::SecureTunnelingNotifyResponse *response,
-                                                  int ioErr) -> void {
+                                                  int ioErr) -> void
+    {
         if (ioErr == 0)
         {
             fprintf(stdout, "Received MQTT Tunnel Notification\n");
@@ -145,7 +148,8 @@ int main(int argc, char *argv[])
                 endpoint.c_str());
 
             builder.WithOnConnectionSuccess(
-                [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData) {
+                [&](SecureTunnel *secureTunnel, const ConnectionSuccessEventData &eventData)
+                {
                     (void)secureTunnel;
                     (void)eventData;
                     fprintf(stdout, "Secure Tunnel connected to Secure Tunnel Service\n");
@@ -165,7 +169,8 @@ int main(int argc, char *argv[])
         }
     };
 
-    auto OnSubscribeComplete = [&](int ioErr) -> void {
+    auto OnSubscribeComplete = [&](int ioErr) -> void
+    {
         if (ioErr)
         {
             fprintf(stderr, "MQTT Connection failed with error %d\n", ioErr);
