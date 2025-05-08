@@ -41,6 +41,7 @@ namespace Aws
         class ClientOperation;
         class ClientConnection;
         class ClientContinuation;
+        class ClientContinuationHandler;
 
         using HeaderValueType = aws_event_stream_header_value_type;
         using MessageType = aws_event_stream_rpc_message_type;
@@ -212,10 +213,11 @@ namespace Aws
 
         struct AWS_EVENTSTREAMRPC_API RpcError
         {
+            explicit operator bool() const noexcept { return baseStatus == EVENT_STREAM_RPC_SUCCESS; }
+            Crt::String StatusToString();
+
             EventStreamRpcStatusCode baseStatus;
             int crtError;
-            operator bool() const noexcept { return baseStatus == EVENT_STREAM_RPC_SUCCESS; }
-            Crt::String StatusToString();
         };
 
         /**
@@ -232,20 +234,21 @@ namespace Aws
              * is invoked, the `ClientConnection` is ready to be used for sending messages.
              */
             virtual void OnConnectCallback();
+
             /**
              * Invoked upon connection shutdown.
              * @param status The status upon disconnection. It can be treated as a bool
              * with true implying a successful disconnection.
              */
             virtual void OnDisconnectCallback(RpcError status);
+
             /**
              * Invoked upon receiving an error. Use the return value to determine
-             * whether or not to force the connection to close. Keep in mind that once
-             * closed, the `ClientConnection` can no longer send messages.
-             * @param status The status upon disconnection. It can be treated as a bool
-             * with true implying a successful disconnection.
+             * whether or not to force the connection to close.
+             * @param status Details about the error encountered.
              */
             virtual bool OnErrorCallback(RpcError status);
+
             /**
              * Invoked upon receiving a ping from the server. The `headers` and `payload`
              * refer to what is contained in the ping message.
@@ -253,6 +256,61 @@ namespace Aws
             virtual void OnPingCallback(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload);
+        };
+
+
+        class ClientConnectionImpl;
+
+        /**
+         * Class representing a connection to an RPC server.
+         */
+        class AWS_EVENTSTREAMRPC_API ClientConnection final
+        {
+          public:
+
+            explicit ClientConnection(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+            ~ClientConnection() noexcept;
+
+            /**
+             * Initiates a new outgoing event-stream-rpc connection.
+             * @param connectionOptions Connection options.
+             * @param connectionLifecycleHandler Handler to process connection lifecycle events.
+             * @param clientBootstrap ClientBootstrap object to run the connection on.
+             * @return Future that will be resolved when connection either succeeds or fails.
+             */
+            std::future<RpcError> Connect(
+                const ConnectionConfig &connectionOptions,
+                ConnectionLifecycleHandler *connectionLifecycleHandler,
+                Crt::Io::ClientBootstrap &clientBootstrap) noexcept;
+
+            /**
+             * Create a new stream.
+             * @note Activate() must be called on the stream for it to actually initiate the new stream.
+             * @param clientContinuationHandler Handler to process continuation events.
+             * @return A newly created continuation.
+             */
+            ClientContinuation NewStream(ClientContinuationHandler &clientContinuationHandler) noexcept;
+
+            /**
+             * Close the connection.
+             */
+            void Close() noexcept;
+
+            /**
+             * Check if the connection is open.
+             * @return True if the connection is open, false otherwise.
+             */
+            bool IsOpen() const noexcept;
+
+            /**
+            * Returns the C connection object, if it exists.
+            * @return the C connection object, if it exists.
+            */
+            struct aws_event_stream_rpc_client_connection *GetUnderlyingHandle() const noexcept;
+
+          private:
+
+            std::shared_ptr<ClientConnectionImpl> m_impl;
         };
 
         /**
@@ -301,7 +359,7 @@ namespace Aws
 
           private:
             friend class ClientContinuation;
-            ContinuationCallbackData *m_callbackData;
+            std::shared_ptr<ContinuationCallbackData> m_callbackData;
         };
 
         /**
@@ -320,7 +378,7 @@ namespace Aws
              * @param allocator Allocator to use.
              */
             ClientContinuation(
-                ClientConnection *connection,
+                struct aws_event_stream_rpc_client_connection *connection,
                 ClientContinuationHandler &continuationHandler,
                 Crt::Allocator *allocator) noexcept;
             ~ClientContinuation() noexcept;
@@ -372,7 +430,9 @@ namespace Aws
             Crt::Allocator *m_allocator;
             ClientContinuationHandler &m_continuationHandler;
             struct aws_event_stream_rpc_client_continuation_token *m_continuationToken;
-            ContinuationCallbackData *m_callbackData;
+            std::shared_ptr<ContinuationCallbackData> m_callbackData;
+
+            void Release();
 
             static void s_onContinuationMessage(
                 struct aws_event_stream_rpc_client_continuation_token *continuationToken,
@@ -722,146 +782,6 @@ namespace Aws
             std::condition_variable m_closeReady;
         };
 
-        /**
-         * Class representing a connection to an RPC server.
-         */
-        class AWS_EVENTSTREAMRPC_API ClientConnection final
-        {
-          public:
-            ClientConnection(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            ~ClientConnection() noexcept;
-            ClientConnection(const ClientConnection &) noexcept = delete;
-            ClientConnection &operator=(const ClientConnection &) noexcept = delete;
-            ClientConnection(ClientConnection &&) noexcept;
-            ClientConnection &operator=(ClientConnection &&) noexcept;
 
-            /**
-             * Initiates a new outgoing event-stream-rpc connection.
-             * @param connectionOptions Connection options.
-             * @param connectionLifecycleHandler Handler to process connection lifecycle events.
-             * @param clientBootstrap ClientBootstrap object to run the connection on.
-             * @return Future that will be resolved when connection either succeeds or fails.
-             */
-            std::future<RpcError> Connect(
-                const ConnectionConfig &connectionOptions,
-                ConnectionLifecycleHandler *connectionLifecycleHandler,
-                Crt::Io::ClientBootstrap &clientBootstrap) noexcept;
-
-            std::future<RpcError> SendPing(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-            std::future<RpcError> SendPingResponse(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-            /**
-             * Create a new stream.
-             * @note Activate() must be called on the stream for it to actually initiate the new stream.
-             * @param clientContinuationHandler Handler to process continuation events.
-             * @return A newly created continuation.
-             */
-            ClientContinuation NewStream(ClientContinuationHandler &clientContinuationHandler) noexcept;
-
-            /**
-             * Close the connection.
-             */
-            void Close() noexcept;
-
-            /**
-             * Check if the connection is open.
-             * @return True if the connection is open, false otherwise.
-             */
-            bool IsOpen() const noexcept
-            {
-                if (this->m_underlyingConnection == nullptr)
-                {
-                    return false;
-                }
-                else
-                {
-                    return aws_event_stream_rpc_client_connection_is_open(this->m_underlyingConnection);
-                }
-            }
-
-            /**
-             * @return true if the connection is open, false otherwise.
-             */
-            operator bool() const noexcept { return IsOpen(); }
-
-          private:
-            friend class ClientContinuation;
-            friend std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept;
-            enum ClientState
-            {
-                DISCONNECTED = 1,
-                CONNECTING_SOCKET,
-                WAITING_FOR_CONNECT_ACK,
-                CONNECTED,
-                DISCONNECTING,
-            };
-            /* This recursive mutex protects m_clientState & m_connectionWillSetup */
-            std::recursive_mutex m_stateMutex;
-            Crt::Allocator *m_allocator;
-            struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
-            ClientState m_clientState;
-            ConnectionLifecycleHandler *m_lifecycleHandler;
-            ConnectMessageAmender m_connectMessageAmender;
-            std::promise<void> m_connectionSetupPromise;
-            bool m_connectionWillSetup;
-            std::promise<RpcError> m_connectAckedPromise;
-            std::promise<RpcError> m_closedPromise;
-            bool m_onConnectCalled;
-            RpcError m_closeReason;
-            OnMessageFlushCallback m_onConnectRequestCallback;
-            Crt::Io::SocketOptions m_socketOptions;
-            ConnectionConfig m_connectionConfig;
-            std::future<RpcError> SendProtocolMessage(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                MessageType messageType,
-                uint32_t messageFlags,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-            static void s_onConnectionShutdown(
-                struct aws_event_stream_rpc_client_connection *connection,
-                int errorCode,
-                void *userData) noexcept;
-            static void s_onConnectionSetup(
-                struct aws_event_stream_rpc_client_connection *connection,
-                int errorCode,
-                void *userData) noexcept;
-            static void s_onProtocolMessage(
-                struct aws_event_stream_rpc_client_connection *connection,
-                const struct aws_event_stream_rpc_message_args *messageArgs,
-                void *userData) noexcept;
-
-            static void s_protocolMessageCallback(int errorCode, void *userData) noexcept;
-
-            /**
-             * Sends a message on the connection. These must be connection level messages (not application messages).
-             */
-            static std::future<RpcError> s_sendProtocolMessage(
-                ClientConnection *connection,
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                MessageType messageType,
-                uint32_t messageFlags,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-            static std::future<RpcError> s_sendPing(
-                ClientConnection *connection,
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-            static std::future<RpcError> s_sendPingResponse(
-                ClientConnection *connection,
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-        };
     } // namespace Eventstreamrpc
 } // namespace Aws

@@ -291,22 +291,7 @@ static void s_onMessageFlush(int errorCode)
 }
 
 template <typename T>
-static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<T> expectedValue, Aws::Crt::Optional<T> actualValue)
-{
-    if (expectedValue.has_value() != actualValue.has_value())
-    {
-        return false;
-    }
-
-    if (expectedValue.has_value())
-    {
-        return expectedValue.value() == actualValue.value();
-    }
-
-    return true;
-}
-
-static bool s_messageDataMembersAreEqual(Aws::Crt::Optional<bool> expectedValue, Aws::Crt::Optional<bool> actualValue)
+static bool s_messageDataMembersAreEqual(const Aws::Crt::Optional<T> &expectedValue, const Aws::Crt::Optional<T> &actualValue)
 {
     if (expectedValue.has_value() != actualValue.has_value())
     {
