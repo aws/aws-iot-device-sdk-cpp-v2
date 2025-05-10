@@ -302,12 +302,6 @@ namespace Aws
              */
             bool IsOpen() const noexcept;
 
-            /**
-            * Returns the C connection object, if it exists.
-            * @return the C connection object, if it exists.
-            */
-            struct aws_event_stream_rpc_client_connection *GetUnderlyingHandle() const noexcept;
-
           private:
 
             std::shared_ptr<ClientConnectionImpl> m_impl;

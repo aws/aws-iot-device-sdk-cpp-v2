@@ -23,6 +23,93 @@ namespace Aws
 {
     namespace Eventstreamrpc
     {
+        EventStreamHeader::EventStreamHeader(
+            const struct aws_event_stream_header_value_pair &header,
+            Crt::Allocator *allocator)
+            : m_allocator(allocator), m_valueByteBuf({}), m_underlyingHandle(header)
+        {
+        }
+
+        EventStreamHeader::EventStreamHeader(
+            const Crt::String &name,
+            const Crt::String &value,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator),
+              m_valueByteBuf(Crt::ByteBufNewCopy(allocator, (uint8_t *)value.c_str(), value.length()))
+        {
+            m_underlyingHandle.header_name_len = static_cast<uint8_t>(name.length());
+            size_t length;
+            if (name.length() > INT8_MAX)
+            {
+                length = INT8_MAX;
+            }
+            else
+            {
+                length = static_cast<size_t>(name.length());
+            }
+            (void)memcpy(m_underlyingHandle.header_name, name.c_str(), length);
+            m_underlyingHandle.header_value_type = AWS_EVENT_STREAM_HEADER_STRING;
+            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
+            m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
+        }
+
+        EventStreamHeader::~EventStreamHeader() noexcept
+        {
+            if (aws_byte_buf_is_valid(&m_valueByteBuf))
+                Crt::ByteBufDelete(m_valueByteBuf);
+        }
+
+        EventStreamHeader::EventStreamHeader(const EventStreamHeader &lhs) noexcept
+            : m_allocator(lhs.m_allocator),
+              m_valueByteBuf(Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len)),
+              m_underlyingHandle(lhs.m_underlyingHandle)
+        {
+            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
+            m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
+        }
+
+        EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
+        {
+            m_allocator = lhs.m_allocator;
+            m_valueByteBuf = Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
+            m_underlyingHandle = lhs.m_underlyingHandle;
+            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
+            m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
+            return *this;
+        }
+
+        EventStreamHeader::EventStreamHeader(EventStreamHeader &&rhs) noexcept
+            : m_allocator(rhs.m_allocator), m_valueByteBuf(rhs.m_valueByteBuf),
+              m_underlyingHandle(rhs.m_underlyingHandle)
+        {
+            rhs.m_valueByteBuf.allocator = nullptr;
+            rhs.m_valueByteBuf.buffer = nullptr;
+        }
+
+        const struct aws_event_stream_header_value_pair *EventStreamHeader::GetUnderlyingHandle() const
+        {
+            return &m_underlyingHandle;
+        }
+
+        Crt::String EventStreamHeader::GetHeaderName() const noexcept
+        {
+            return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len, m_allocator);
+        }
+
+        bool EventStreamHeader::GetValueAsString(Crt::String &value) const noexcept
+        {
+            if (m_underlyingHandle.header_value_type != AWS_EVENT_STREAM_HEADER_STRING)
+            {
+                return false;
+            }
+            value = Crt::String(
+                reinterpret_cast<char *>(m_underlyingHandle.header_value.variable_len_val),
+                m_underlyingHandle.header_value_len,
+                m_allocator);
+
+            return true;
+        }
+
         /* Because `std::function` cannot be typecasted to void *, we must contain it in a struct. */
         struct OnMessageFlushCallbackContainer
         {
@@ -248,93 +335,6 @@ namespace Aws
             (void)error;
         }
 
-        EventStreamHeader::EventStreamHeader(
-            const struct aws_event_stream_header_value_pair &header,
-            Crt::Allocator *allocator)
-            : m_allocator(allocator), m_valueByteBuf({}), m_underlyingHandle(header)
-        {
-        }
-
-        EventStreamHeader::EventStreamHeader(
-            const Crt::String &name,
-            const Crt::String &value,
-            Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator),
-              m_valueByteBuf(Crt::ByteBufNewCopy(allocator, (uint8_t *)value.c_str(), value.length()))
-        {
-            m_underlyingHandle.header_name_len = static_cast<uint8_t>(name.length());
-            size_t length;
-            if (name.length() > INT8_MAX)
-            {
-                length = INT8_MAX;
-            }
-            else
-            {
-                length = static_cast<size_t>(name.length());
-            }
-            (void)memcpy(m_underlyingHandle.header_name, name.c_str(), length);
-            m_underlyingHandle.header_value_type = AWS_EVENT_STREAM_HEADER_STRING;
-            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
-            m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
-        }
-
-        EventStreamHeader::~EventStreamHeader() noexcept
-        {
-            if (aws_byte_buf_is_valid(&m_valueByteBuf))
-                Crt::ByteBufDelete(m_valueByteBuf);
-        }
-
-        EventStreamHeader::EventStreamHeader(const EventStreamHeader &lhs) noexcept
-            : m_allocator(lhs.m_allocator),
-              m_valueByteBuf(Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len)),
-              m_underlyingHandle(lhs.m_underlyingHandle)
-        {
-            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
-            m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
-        }
-
-        EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
-        {
-            m_allocator = lhs.m_allocator;
-            m_valueByteBuf = Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
-            m_underlyingHandle = lhs.m_underlyingHandle;
-            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
-            m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
-            return *this;
-        }
-
-        EventStreamHeader::EventStreamHeader(EventStreamHeader &&rhs) noexcept
-            : m_allocator(rhs.m_allocator), m_valueByteBuf(rhs.m_valueByteBuf),
-              m_underlyingHandle(rhs.m_underlyingHandle)
-        {
-            rhs.m_valueByteBuf.allocator = nullptr;
-            rhs.m_valueByteBuf.buffer = nullptr;
-        }
-
-        const struct aws_event_stream_header_value_pair *EventStreamHeader::GetUnderlyingHandle() const
-        {
-            return &m_underlyingHandle;
-        }
-
-        Crt::String EventStreamHeader::GetHeaderName() const noexcept
-        {
-            return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len, m_allocator);
-        }
-
-        bool EventStreamHeader::GetValueAsString(Crt::String &value) const noexcept
-        {
-            if (m_underlyingHandle.header_value_type != AWS_EVENT_STREAM_HEADER_STRING)
-            {
-                return false;
-            }
-            value = Crt::String(
-                reinterpret_cast<char *>(m_underlyingHandle.header_value.variable_len_val),
-                m_underlyingHandle.header_value_len,
-                m_allocator);
-
-            return true;
-        }
-
         class ClientConnectionImpl final
         {
           public:
@@ -352,8 +352,6 @@ namespace Aws
             void Close() noexcept;
 
             bool IsOpen() const noexcept;
-
-            struct aws_event_stream_rpc_client_connection *GetUnderlyingHandle() const noexcept;
 
             void Shutdown() noexcept;
 
@@ -681,17 +679,12 @@ namespace Aws
             return aws_event_stream_rpc_client_connection_is_open(this->m_underlyingConnection);
         }
 
-        struct aws_event_stream_rpc_client_connection *ClientConnectionImpl::GetUnderlyingHandle() const noexcept
-        {
-            return m_underlyingConnection;
-        }
-
         void ClientConnectionImpl::s_onConnectionSetup(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
             void *userData) noexcept
         {
-            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
+            /* The `userData` pointer is used to pass `this` of a `ClientConnectionImpl` object. */
             auto *thisConnection = static_cast<ClientConnectionImpl *>(userData);
 
             const std::lock_guard<std::recursive_mutex> lock(thisConnection->m_stateMutex);
@@ -752,7 +745,7 @@ namespace Aws
             void *userData) noexcept
         {
             (void)connection;
-            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
+            /* The `userData` pointer is used to pass `this` of a `ClientConnectionImpl` object. */
             auto *thisConnection = static_cast<ClientConnectionImpl *>(userData);
 
             const std::lock_guard<std::recursive_mutex> lock(thisConnection->m_stateMutex);
@@ -807,7 +800,7 @@ namespace Aws
             AWS_PRECONDITION(messageArgs != nullptr);
             (void)connection;
 
-            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
+            /* The `userData` pointer is used to pass `this` of a `ClientConnectionImpl` object. */
             auto *thisConnection = static_cast<ClientConnectionImpl *>(userData);
             Crt::List<EventStreamHeader> pingHeaders;
 
@@ -921,11 +914,6 @@ namespace Aws
         bool ClientConnection::IsOpen() const noexcept
         {
             return m_impl->IsOpen();
-        }
-
-        struct aws_event_stream_rpc_client_connection *ClientConnection::GetUnderlyingHandle() const noexcept
-        {
-            return m_impl->GetUnderlyingHandle();
         }
 
         void AbstractShapeBase::s_customDeleter(AbstractShapeBase *shape) noexcept
