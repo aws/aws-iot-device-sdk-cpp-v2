@@ -16,7 +16,7 @@ namespace Aws
         GreengrassCoreIpcClient::GreengrassCoreIpcClient(
             Aws::Crt::Io::ClientBootstrap &clientBootstrap,
             Aws::Crt::Allocator *allocator) noexcept
-            : m_connection(allocator), m_clientBootstrap(clientBootstrap), m_allocator(allocator),
+            : m_connection(allocator, clientBootstrap.GetUnderlyingHandle()), m_allocator(allocator),
               m_asyncLaunchMode(std::launch::deferred)
         {
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
@@ -55,7 +55,7 @@ namespace Aws
             ConnectionLifecycleHandler &lifecycleHandler,
             const ConnectionConfig &connectionConfig) noexcept
         {
-            return m_connection.Connect(connectionConfig, &lifecycleHandler, m_clientBootstrap);
+            return m_connection.Connect(connectionConfig, &lifecycleHandler);
         }
 
         void GreengrassCoreIpcClient::Close() noexcept

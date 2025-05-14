@@ -139,6 +139,23 @@ namespace Aws
             Crt::Allocator *m_allocator;
         };
 
+        enum EventStreamRpcStatusCode
+        {
+          EVENT_STREAM_RPC_SUCCESS = 0,
+          EVENT_STREAM_RPC_NULL_PARAMETER,
+          EVENT_STREAM_RPC_UNINITIALIZED,
+          EVENT_STREAM_RPC_ALLOCATION_ERROR,
+          EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED,
+          EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
+          EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED,
+          EVENT_STREAM_RPC_CONNECTION_CLOSED,
+          EVENT_STREAM_RPC_CONTINUATION_CLOSED,
+          EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
+          EVENT_STREAM_RPC_UNMAPPED_DATA,
+          EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
+          EVENT_STREAM_RPC_CRT_ERROR
+        };
+
         /**
          * Configuration structure holding all configurations relating to eventstream RPC connection establishment
          */
@@ -184,6 +201,8 @@ namespace Aws
                 m_connectRequestCallback = connectRequestCallback;
             }
 
+            EventStreamRpcStatusCode Validate() const noexcept;
+
           protected:
             Crt::Optional<Crt::String> m_hostName;
             Crt::Optional<uint32_t> m_port;
@@ -192,23 +211,6 @@ namespace Aws
             Crt::Io::ClientBootstrap *m_clientBootstrap;
             MessageAmendment m_connectAmendment;
             OnMessageFlushCallback m_connectRequestCallback;
-        };
-
-        enum EventStreamRpcStatusCode
-        {
-            EVENT_STREAM_RPC_SUCCESS = 0,
-            EVENT_STREAM_RPC_NULL_PARAMETER,
-            EVENT_STREAM_RPC_UNINITIALIZED,
-            EVENT_STREAM_RPC_ALLOCATION_ERROR,
-            EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED,
-            EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
-            EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED,
-            EVENT_STREAM_RPC_CONNECTION_CLOSED,
-            EVENT_STREAM_RPC_CONTINUATION_CLOSED,
-            EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
-            EVENT_STREAM_RPC_UNMAPPED_DATA,
-            EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
-            EVENT_STREAM_RPC_CRT_ERROR
         };
 
         struct AWS_EVENTSTREAMRPC_API RpcError
@@ -268,20 +270,18 @@ namespace Aws
         {
           public:
 
-            explicit ClientConnection(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+            explicit ClientConnection(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept;
             ~ClientConnection() noexcept;
 
             /**
              * Initiates a new outgoing event-stream-rpc connection.
              * @param connectionOptions Connection options.
              * @param connectionLifecycleHandler Handler to process connection lifecycle events.
-             * @param clientBootstrap ClientBootstrap object to run the connection on.
              * @return Future that will be resolved when connection either succeeds or fails.
              */
             std::future<RpcError> Connect(
                 const ConnectionConfig &connectionOptions,
-                ConnectionLifecycleHandler *connectionLifecycleHandler,
-                Crt::Io::ClientBootstrap &clientBootstrap) noexcept;
+                ConnectionLifecycleHandler *connectionLifecycleHandler) noexcept;
 
             /**
              * Create a new stream.
@@ -301,12 +301,6 @@ namespace Aws
              * @return True if the connection is open, false otherwise.
              */
             bool IsOpen() const noexcept;
-
-            /**
-            * Returns the C connection object, if it exists.
-            * @return the C connection object, if it exists.
-            */
-            struct aws_event_stream_rpc_client_connection *GetUnderlyingHandle() const noexcept;
 
           private:
 

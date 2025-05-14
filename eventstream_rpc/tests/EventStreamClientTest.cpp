@@ -131,8 +131,8 @@ static int s_TestEventStreamConnectSuccess(struct aws_allocator *allocator, void
         connectionConfig.SetConnectAmendment(connectionAmendment);
 
         TestLifecycleHandler lifecycleHandler;
-        ClientConnection connection(allocator);
-        auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
+        ClientConnection connection(allocator, testContext.clientBootstrap->GetUnderlyingHandle());
+        auto future = connection.Connect(connectionConfig, &lifecycleHandler);
         EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
 
         ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, clientStatus);
@@ -159,8 +159,8 @@ static int s_TestEventStreamConnectFailureNoAuthHeader(struct aws_allocator *all
         connectionConfig.SetPort(testContext.echoServerPort);
 
         TestLifecycleHandler lifecycleHandler;
-        ClientConnection connection(allocator);
-        auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
+        ClientConnection connection(allocator, testContext.clientBootstrap->GetUnderlyingHandle());
+        auto future = connection.Connect(connectionConfig, &lifecycleHandler);
         EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
 
         ASSERT_TRUE(
@@ -193,8 +193,8 @@ static int s_TestEventStreamConnectFailureBadAuthHeader(struct aws_allocator *al
         connectionConfig.SetConnectAmendment(connectionAmendment);
 
         TestLifecycleHandler lifecycleHandler;
-        ClientConnection connection(allocator);
-        auto future = connection.Connect(connectionConfig, &lifecycleHandler, *testContext.clientBootstrap);
+        ClientConnection connection(allocator, testContext.clientBootstrap->GetUnderlyingHandle());
+        auto future = connection.Connect(connectionConfig, &lifecycleHandler);
         EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
 
         ASSERT_TRUE(

@@ -236,7 +236,6 @@ namespace Aws
           private:
             GreengrassCoreIpcServiceModel m_greengrassCoreIpcServiceModel;
             ClientConnection m_connection;
-            Aws::Crt::Io::ClientBootstrap &m_clientBootstrap;
             Aws::Crt::Allocator *m_allocator;
             MessageAmendment m_connectAmendment;
             std::launch m_asyncLaunchMode;

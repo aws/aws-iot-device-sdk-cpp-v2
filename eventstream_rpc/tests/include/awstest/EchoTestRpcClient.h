@@ -77,7 +77,6 @@ namespace Awstest
       private:
         EchoTestRpcServiceModel m_echoTestRpcServiceModel;
         ClientConnection m_connection;
-        Aws::Crt::Io::ClientBootstrap &m_clientBootstrap;
         Aws::Crt::Allocator *m_allocator;
         MessageAmendment m_connectAmendment;
         std::launch m_asyncLaunchMode;
