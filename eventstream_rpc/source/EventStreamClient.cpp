@@ -456,7 +456,13 @@ namespace Aws
             }
 
             void SetAction(ConnectionCallbackActionType action) { m_action = action; }
-            void SetError(RpcError error) { m_error = error; }
+            void SetError(RpcError error)
+            {
+                if (m_error.baseStatus == EVENT_STREAM_RPC_SUCCESS)
+                {
+                    m_error = error;
+                }
+            }
 
             std::future<RpcError> GetConnectPromiseFuture() { return m_connectPromise.get_future(); }
 
@@ -873,6 +879,9 @@ namespace Aws
             {
                 std::lock_guard<std::mutex> lock(impl->m_sharedStateLock);
                 AWS_FATAL_ASSERT(impl->m_sharedState.m_currentState == ClientState::PendingConnect);
+
+                // the channel owns the initial ref; we have to take our own
+                aws_event_stream_rpc_client_connection_acquire(connection);
                 impl->m_sharedState.m_underlyingConnection = connection;
                 if (impl->m_sharedState.m_desiredState != ClientState::Connected)
                 {
