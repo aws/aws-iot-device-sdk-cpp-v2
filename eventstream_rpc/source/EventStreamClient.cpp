@@ -744,16 +744,15 @@ namespace Aws
                 socketOptions = m_connectionConfig.GetSocketOptions().value();
             }
 
-            struct aws_event_stream_rpc_client_connection_options connectOptions = {
-                .host_name = connectionConfig.GetHostName().value().c_str(),
-                .port = connectionConfig.GetPort().value(),
-                .bootstrap = m_bootstrap,
-                .socket_options = &socketOptions.GetImpl(),
-                .on_connection_setup = ClientConnectionImpl::s_onConnectionSetup,
-                .on_connection_protocol_message = ClientConnectionImpl::s_onProtocolMessage,
-                .on_connection_shutdown = ClientConnectionImpl::s_onConnectionShutdown,
-                .user_data = reinterpret_cast<void *>(this),
-            };
+            struct aws_event_stream_rpc_client_connection_options connectOptions = {};
+            connectOptions.host_name = connectionConfig.GetHostName().value().c_str();
+            connectOptions.port = connectionConfig.GetPort().value();
+            connectOptions.bootstrap = m_bootstrap;
+            connectOptions.socket_options = &socketOptions.GetImpl();
+            connectOptions.on_connection_setup = ClientConnectionImpl::s_onConnectionSetup;
+            connectOptions.on_connection_protocol_message = ClientConnectionImpl::s_onProtocolMessage;
+            connectOptions.on_connection_shutdown = ClientConnectionImpl::s_onConnectionShutdown;
+            connectOptions.user_data = reinterpret_cast<void *>(this);
 
             if (m_connectionConfig.GetTlsConnectionOptions().has_value())
             {
