@@ -30,13 +30,18 @@ file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
+add_test_case(EventStreamClientCreateFailureInvalidHost)
+add_test_case(EventStreamClientCreateFailureInvalidPort)
 add_test_case(EventStreamConnectSuccess)
 add_test_case(EventStreamConnectFailureNoAuthHeader)
 add_test_case(EventStreamConnectFailureBadAuthHeader)
-
 add_test_case(EchoClientConnectSuccess)
 add_test_case(EchoClientDoubleClose)
 add_test_case(EchoClientMultiConnectSuccessFail)
+add_test_case(EchoClientReconnect)
+add_test_case(EchoClientCloseWhileConnecting)
+add_test_case(EchoClientConnectWhileClosing)
+add_test_case(EchoClientOpenCloseStress)
 
 #add_test_case(EchoClientOperationEchoSuccessString)
 #add_test_case(EchoClientOperationEchoSuccessBoolean)

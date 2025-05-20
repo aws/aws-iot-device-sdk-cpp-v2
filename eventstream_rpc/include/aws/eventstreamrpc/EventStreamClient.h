@@ -141,19 +141,19 @@ namespace Aws
 
         enum EventStreamRpcStatusCode
         {
-          EVENT_STREAM_RPC_SUCCESS = 0,
-          EVENT_STREAM_RPC_NULL_PARAMETER,
-          EVENT_STREAM_RPC_UNINITIALIZED,
-          EVENT_STREAM_RPC_ALLOCATION_ERROR,
-          EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED,
-          EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
-          EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED,
-          EVENT_STREAM_RPC_CONNECTION_CLOSED,
-          EVENT_STREAM_RPC_CONTINUATION_CLOSED,
-          EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
-          EVENT_STREAM_RPC_UNMAPPED_DATA,
-          EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
-          EVENT_STREAM_RPC_CRT_ERROR
+            EVENT_STREAM_RPC_SUCCESS = 0,
+            EVENT_STREAM_RPC_NULL_PARAMETER,
+            EVENT_STREAM_RPC_UNINITIALIZED,
+            EVENT_STREAM_RPC_ALLOCATION_ERROR,
+            EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED,
+            EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
+            EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED,
+            EVENT_STREAM_RPC_CONNECTION_CLOSED,
+            EVENT_STREAM_RPC_CONTINUATION_CLOSED,
+            EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
+            EVENT_STREAM_RPC_UNMAPPED_DATA,
+            EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
+            EVENT_STREAM_RPC_CRT_ERROR
         };
 
         /**
@@ -260,7 +260,6 @@ namespace Aws
                 const Crt::Optional<Crt::ByteBuf> &payload);
         };
 
-
         class ClientConnectionImpl;
 
         /**
@@ -269,7 +268,6 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ClientConnection final
         {
           public:
-
             explicit ClientConnection(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept;
             ~ClientConnection() noexcept;
 
@@ -303,7 +301,6 @@ namespace Aws
             bool IsOpen() const noexcept;
 
           private:
-
             std::shared_ptr<ClientConnectionImpl> m_impl;
         };
 
@@ -775,7 +772,6 @@ namespace Aws
             bool m_streamClosedCalled;
             std::condition_variable m_closeReady;
         };
-
 
     } // namespace Eventstreamrpc
 } // namespace Aws
