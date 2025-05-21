@@ -16,8 +16,9 @@ namespace Aws
         GreengrassCoreIpcClient::GreengrassCoreIpcClient(
             Aws::Crt::Io::ClientBootstrap &clientBootstrap,
             Aws::Crt::Allocator *allocator) noexcept
-            : m_connection(allocator, clientBootstrap.GetUnderlyingHandle()), m_allocator(allocator),
-              m_asyncLaunchMode(std::launch::deferred)
+            : m_connection(
+                  Aws::Crt::MakeShared<ClientConnection>(allocator, allocator, clientBootstrap.GetUnderlyingHandle())),
+              m_allocator(allocator), m_asyncLaunchMode(std::launch::deferred)
         {
             m_greengrassCoreIpcServiceModel.AssignModelNameToErrorResponse(
                 Aws::Crt::String("aws.greengrass#InvalidArgumentsError"), InvalidArgumentsError::s_allocateFromPayload);
@@ -55,12 +56,12 @@ namespace Aws
             ConnectionLifecycleHandler &lifecycleHandler,
             const ConnectionConfig &connectionConfig) noexcept
         {
-            return m_connection.Connect(connectionConfig, &lifecycleHandler);
+            return m_connection->Connect(connectionConfig, &lifecycleHandler);
         }
 
         void GreengrassCoreIpcClient::Close() noexcept
         {
-            m_connection.Close();
+            m_connection->Close();
         }
 
         void GreengrassCoreIpcClient::WithLaunchMode(std::launch mode) noexcept
@@ -78,7 +79,7 @@ namespace Aws
         {
             return Aws::Crt::MakeShared<SubscribeToIoTCoreOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToIoTCoreOperationContext,
                 m_allocator);
@@ -88,7 +89,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<ResumeComponentOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_resumeComponentOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -99,7 +100,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<PublishToIoTCoreOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_publishToIoTCoreOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -112,7 +113,7 @@ namespace Aws
         {
             return Aws::Crt::MakeShared<SubscribeToConfigurationUpdateOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToConfigurationUpdateOperationContext,
                 m_allocator);
@@ -122,7 +123,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<DeleteThingShadowOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_deleteThingShadowOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -133,7 +134,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<PutComponentMetricOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_putComponentMetricOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -144,7 +145,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<DeferComponentUpdateOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_deferComponentUpdateOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -157,7 +158,7 @@ namespace Aws
         {
             return Aws::Crt::MakeShared<SubscribeToValidateConfigurationUpdatesOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToValidateConfigurationUpdatesOperationContext,
                 m_allocator);
@@ -167,7 +168,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<GetConfigurationOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_getConfigurationOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -179,7 +180,7 @@ namespace Aws
         {
             return Aws::Crt::MakeShared<SubscribeToTopicOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToTopicOperationContext,
                 m_allocator);
@@ -189,7 +190,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<GetComponentDetailsOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_getComponentDetailsOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -201,7 +202,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<GetClientDeviceAuthTokenOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_getClientDeviceAuthTokenOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -212,7 +213,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<PublishToTopicOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_publishToTopicOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -225,7 +226,7 @@ namespace Aws
         {
             return Aws::Crt::MakeShared<SubscribeToCertificateUpdatesOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToCertificateUpdatesOperationContext,
                 m_allocator);
@@ -236,7 +237,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<VerifyClientDeviceIdentityOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_verifyClientDeviceIdentityOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -248,7 +249,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<AuthorizeClientDeviceActionOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_authorizeClientDeviceActionOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -259,7 +260,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<ListComponentsOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_listComponentsOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -270,7 +271,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<CreateDebugPasswordOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_createDebugPasswordOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -281,7 +282,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<GetThingShadowOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_getThingShadowOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -293,7 +294,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<SendConfigurationValidityReportOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_sendConfigurationValidityReportOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -304,7 +305,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<UpdateThingShadowOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_updateThingShadowOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -315,7 +316,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<UpdateConfigurationOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_updateConfigurationOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -327,7 +328,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<ValidateAuthorizationTokenOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_validateAuthorizationTokenOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -338,7 +339,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<RestartComponentOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_restartComponentOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -350,7 +351,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<GetLocalDeploymentStatusOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_getLocalDeploymentStatusOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -361,7 +362,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<GetSecretValueOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_getSecretValueOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -371,7 +372,7 @@ namespace Aws
         std::shared_ptr<UpdateStateOperation> GreengrassCoreIpcClient::NewUpdateState() noexcept
         {
             auto operation = Aws::Crt::MakeShared<UpdateStateOperation>(
-                m_allocator, m_connection, m_greengrassCoreIpcServiceModel.m_updateStateOperationContext, m_allocator);
+                m_allocator, *m_connection, m_greengrassCoreIpcServiceModel.m_updateStateOperationContext, m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
             return operation;
         }
@@ -380,7 +381,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<CancelLocalDeploymentOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_cancelLocalDeploymentOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -392,7 +393,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<ListNamedShadowsForThingOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_listNamedShadowsForThingOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -404,7 +405,7 @@ namespace Aws
         {
             return Aws::Crt::MakeShared<SubscribeToComponentUpdatesOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 std::move(streamHandler),
                 m_greengrassCoreIpcServiceModel.m_subscribeToComponentUpdatesOperationContext,
                 m_allocator);
@@ -414,7 +415,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<ListLocalDeploymentsOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_listLocalDeploymentsOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -425,7 +426,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<StopComponentOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_stopComponentOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -436,7 +437,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<PauseComponentOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_pauseComponentOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);
@@ -447,7 +448,7 @@ namespace Aws
         {
             auto operation = Aws::Crt::MakeShared<CreateLocalDeploymentOperation>(
                 m_allocator,
-                m_connection,
+                *m_connection,
                 m_greengrassCoreIpcServiceModel.m_createLocalDeploymentOperationContext,
                 m_allocator);
             operation->WithLaunchMode(m_asyncLaunchMode);

@@ -268,7 +268,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ClientConnection final
         {
           public:
-            explicit ClientConnection(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept;
+            ClientConnection(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept;
             ~ClientConnection() noexcept;
 
             /**

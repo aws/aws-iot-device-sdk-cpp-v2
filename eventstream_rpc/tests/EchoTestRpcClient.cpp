@@ -14,8 +14,9 @@ namespace Awstest
     EchoTestRpcClient::EchoTestRpcClient(
         Aws::Crt::Io::ClientBootstrap &clientBootstrap,
         Aws::Crt::Allocator *allocator) noexcept
-        : m_connection(allocator, clientBootstrap.GetUnderlyingHandle()), m_allocator(allocator),
-          m_asyncLaunchMode(std::launch::deferred)
+        : m_connection(
+              Aws::Crt::MakeShared<ClientConnection>(allocator, allocator, clientBootstrap.GetUnderlyingHandle())),
+          m_allocator(allocator), m_asyncLaunchMode(std::launch::deferred)
     {
         m_echoTestRpcServiceModel.AssignModelNameToErrorResponse(
             Aws::Crt::String("awstest#ServiceError"), ServiceError::s_allocateFromPayload);
@@ -25,12 +26,12 @@ namespace Awstest
         ConnectionLifecycleHandler &lifecycleHandler,
         const ConnectionConfig &connectionConfig) noexcept
     {
-        return m_connection.Connect(connectionConfig, &lifecycleHandler);
+        return m_connection->Connect(connectionConfig, &lifecycleHandler);
     }
 
     void EchoTestRpcClient::Close() noexcept
     {
-        m_connection.Close();
+        m_connection->Close();
     }
 
     void EchoTestRpcClient::WithLaunchMode(std::launch mode) noexcept
@@ -46,7 +47,7 @@ namespace Awstest
     std::shared_ptr<GetAllProductsOperation> EchoTestRpcClient::NewGetAllProducts() noexcept
     {
         auto operation = Aws::Crt::MakeShared<GetAllProductsOperation>(
-            m_allocator, m_connection, m_echoTestRpcServiceModel.m_getAllProductsOperationContext, m_allocator);
+            m_allocator, *m_connection, m_echoTestRpcServiceModel.m_getAllProductsOperationContext, m_allocator);
         operation->WithLaunchMode(m_asyncLaunchMode);
         return operation;
     }
@@ -54,7 +55,7 @@ namespace Awstest
     std::shared_ptr<CauseServiceErrorOperation> EchoTestRpcClient::NewCauseServiceError() noexcept
     {
         auto operation = Aws::Crt::MakeShared<CauseServiceErrorOperation>(
-            m_allocator, m_connection, m_echoTestRpcServiceModel.m_causeServiceErrorOperationContext, m_allocator);
+            m_allocator, *m_connection, m_echoTestRpcServiceModel.m_causeServiceErrorOperationContext, m_allocator);
         operation->WithLaunchMode(m_asyncLaunchMode);
         return operation;
     }
@@ -64,7 +65,7 @@ namespace Awstest
     {
         return Aws::Crt::MakeShared<CauseStreamServiceToErrorOperation>(
             m_allocator,
-            m_connection,
+            *m_connection,
             std::move(streamHandler),
             m_echoTestRpcServiceModel.m_causeStreamServiceToErrorOperationContext,
             m_allocator);
@@ -75,7 +76,7 @@ namespace Awstest
     {
         return Aws::Crt::MakeShared<EchoStreamMessagesOperation>(
             m_allocator,
-            m_connection,
+            *m_connection,
             std::move(streamHandler),
             m_echoTestRpcServiceModel.m_echoStreamMessagesOperationContext,
             m_allocator);
@@ -84,7 +85,7 @@ namespace Awstest
     std::shared_ptr<EchoMessageOperation> EchoTestRpcClient::NewEchoMessage() noexcept
     {
         auto operation = Aws::Crt::MakeShared<EchoMessageOperation>(
-            m_allocator, m_connection, m_echoTestRpcServiceModel.m_echoMessageOperationContext, m_allocator);
+            m_allocator, *m_connection, m_echoTestRpcServiceModel.m_echoMessageOperationContext, m_allocator);
         operation->WithLaunchMode(m_asyncLaunchMode);
         return operation;
     }
@@ -92,7 +93,7 @@ namespace Awstest
     std::shared_ptr<GetAllCustomersOperation> EchoTestRpcClient::NewGetAllCustomers() noexcept
     {
         auto operation = Aws::Crt::MakeShared<GetAllCustomersOperation>(
-            m_allocator, m_connection, m_echoTestRpcServiceModel.m_getAllCustomersOperationContext, m_allocator);
+            m_allocator, *m_connection, m_echoTestRpcServiceModel.m_getAllCustomersOperationContext, m_allocator);
         operation->WithLaunchMode(m_asyncLaunchMode);
         return operation;
     }
