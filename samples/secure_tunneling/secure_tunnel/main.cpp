@@ -218,7 +218,8 @@ int main(int argc, char *argv[])
             /* Send an echo message back to the Source Device */
             if (localProxyMode == AWS_SECURE_TUNNELING_DESTINATION_MODE)
             {
-                std::shared_ptr<Message> echoMessage = std::make_shared<Message>(message->getPayload().value());
+                std::shared_ptr<Message> echoMessage =
+                    Aws::Crt::MakeShared<Message>(allocator, message->getPayload().value());
 
                 /* Echo message on same service id received message arrived on */
                 if (message->getServiceId().has_value())
@@ -366,7 +367,8 @@ int main(int argc, char *argv[])
             if (messagesSent <= messageCount)
             {
 
-                std::shared_ptr<Message> message = std::make_shared<Message>(ByteCursorFromCString(toSend.c_str()));
+                std::shared_ptr<Message> message =
+                    Aws::Crt::MakeShared<Message>(allocator, ByteCursorFromCString(toSend.c_str()));
 
                 /* If the secure tunnel has service ids, we will use one for our messages. */
                 if (m_serviceId.has_value())

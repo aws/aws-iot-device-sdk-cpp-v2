@@ -300,7 +300,7 @@ int main(int argc, char *argv[])
     promiseDestinationConnectionStarted.get_future().wait();
 
     std::shared_ptr<Message> message1 =
-        std::make_shared<Message>(ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
+        Aws::Crt::MakeShared<Message>(allocator, ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
     message1->WithServiceId(m_serviceId.value());
     message1->WithConnectionId(connectionId2);
     secureTunnelSource->SendMessage(message1);
@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
     promiseDestinationReceivedMessage.get_future().wait();
 
     std::shared_ptr<Message> message2 =
-        std::make_shared<Message>(ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
+        Aws::Crt::MakeShared<Message>(allocator, ByteCursorFromCString(aws_string_c_str(SECTUN_PAYLOAD_MESSAGE)));
     message2->WithServiceId(m_serviceId.value());
     message2->WithConnectionId(connectionId);
     secureTunnelDestination->SendMessage(message2);

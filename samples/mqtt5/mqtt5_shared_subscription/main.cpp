@@ -42,7 +42,8 @@ class sample_mqtt5_client
         String input_clientId,
         String input_clientName)
     {
-        std::shared_ptr<sample_mqtt5_client> result = std::make_shared<sample_mqtt5_client>();
+        std::shared_ptr<sample_mqtt5_client> result =
+            Aws::Crt::MakeShared<sample_mqtt5_client>(Aws::Crt::DefaultAllocatorImplementation());
         result->name = input_clientName;
 
         auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
@@ -57,7 +58,8 @@ class sample_mqtt5_client
         {
             builder->WithCertificateAuthority(input_ca.c_str());
         }
-        std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+        std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+            Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
         connectOptions->WithClientId(input_clientId);
         builder->WithConnectOptions(connectOptions);
 
@@ -260,7 +262,8 @@ int main(int argc, char *argv[])
     };
     Mqtt5::Subscription sub1(input_sharedTopic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
     sub1.WithNoLocal(false);
-    std::shared_ptr<Mqtt5::SubscribePacket> subPacket = std::make_shared<Mqtt5::SubscribePacket>();
+    std::shared_ptr<Mqtt5::SubscribePacket> subPacket =
+        Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
     subPacket->WithSubscription(std::move(sub1));
 
     if (subscriberOne->client->Subscribe(subPacket, onSubAck))
@@ -348,8 +351,11 @@ int main(int argc, char *argv[])
         // Add \" to 'JSON-ify' the message
         String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
         ByteCursor payload = ByteCursorFromString(message);
-        std::shared_ptr<Mqtt5::PublishPacket> publish = std::make_shared<Mqtt5::PublishPacket>(
-            cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+        std::shared_ptr<Mqtt5::PublishPacket> publish = Aws::Crt::MakeShared<Mqtt5::PublishPacket>(
+            Aws::Crt::DefaultAllocatorImplementation(),
+            cmdData.input_topic,
+            payload,
+            Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         if (publisher->client->Publish(publish, onPublishComplete))
         {
             ++publishedCount;
@@ -362,7 +368,8 @@ int main(int argc, char *argv[])
     /*********************** Unsubscribe the subscribers ***************************/
 
     std::promise<void> unsubscribeFinishedPromise;
-    std::shared_ptr<Mqtt5::UnsubscribePacket> unsub = std::make_shared<Mqtt5::UnsubscribePacket>();
+    std::shared_ptr<Mqtt5::UnsubscribePacket> unsub =
+        Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
     unsub->WithTopicFilter(input_sharedTopic);
     if (!subscriberOne->client->Unsubscribe(
             unsub, [&](int, std::shared_ptr<Mqtt5::UnSubAckPacket>) { unsubscribeFinishedPromise.set_value(); }))

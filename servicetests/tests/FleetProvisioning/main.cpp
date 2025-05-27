@@ -97,7 +97,8 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
     }
 
     // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectOptions->WithClientId(cmdData.input_clientId);
     builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)
@@ -541,7 +542,8 @@ int main(int argc, char *argv[])
             fprintf(stderr, "MQTT5 Connection failed to start");
             return -1;
         }
-        identityClient = std::make_shared<IotIdentityClient>(mqtt5Client);
+        identityClient =
+            Aws::Crt::MakeShared<IotIdentityClient>(Aws::Crt::DefaultAllocatorImplementation(), mqtt5Client);
     }
     else if (cmdData.input_mqtt_version == 3UL)
     {
@@ -551,7 +553,8 @@ int main(int argc, char *argv[])
             fprintf(stderr, "MQTT3 Connection failed to start");
             return -1;
         }
-        identityClient = std::make_shared<IotIdentityClient>(mqtt3Connection);
+        identityClient =
+            Aws::Crt::MakeShared<IotIdentityClient>(Aws::Crt::DefaultAllocatorImplementation(), mqtt3Connection);
     }
     else
     {

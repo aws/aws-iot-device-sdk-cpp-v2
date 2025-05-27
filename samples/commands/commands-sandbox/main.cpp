@@ -251,8 +251,8 @@ int main(int argc, char *argv[])
     requestResponseOptions.WithOperationTimeoutInSeconds(30);
 
     auto commandClient = Aws::Iotcommands::NewClientFrom5(*protocolClient, requestResponseOptions);
-    auto commandStreamHandler =
-        std::make_shared<Aws::IotcommandsSample::CommandStreamHandler>(std::move(commandClient));
+    auto commandStreamHandler = Aws::Crt::MakeShared<Aws::IotcommandsSample::CommandStreamHandler>(
+        Aws::Crt::DefaultAllocatorImplementation(), std::move(commandClient));
 
     protocolClient->Start();
     auto isConnected = connectedWaiter.get_future().get();
