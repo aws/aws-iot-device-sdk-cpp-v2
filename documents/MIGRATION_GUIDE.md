@@ -120,7 +120,8 @@ std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
                     clientEndpoint,
                     certificateFile,
                     privateKeyFile));
-std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
 util::String clientId = "client_id";
 connectOptions->WithClientId(clientId);
 builder->WithConnectOptions(connectOptions);
@@ -365,8 +366,8 @@ rc = client->PublishAsync(Utf8String::Create("my/topic"),
 #### Example of publishing in the v2 SDK
 
 ```cpp
-std::shared_ptr<Mqtt5::PublishPacket> publish =
-        std::make_shared<Mqtt5::PublishPacket>(
+std::shared_ptr<Mqtt5::PublishPacket> publish = Aws::Crt::MakeShared<Mqtt5::PublishPacket>(
+                Aws::Crt::DefaultAllocatorImplementation(),
                 "my topic",
                 "hello",
                 Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
@@ -458,7 +459,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 Mqtt5::Subscription sub1("my/own/topic",
                          Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
 std::shared_ptr<Mqtt5::SubscribePacket> subPacket =
-        std::make_shared<Mqtt5::SubscribePacket>();
+        Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
 subPacket->WithSubscription(std::move(sub1));
 
 auto onSubAck = [&](int error_code,
@@ -533,7 +534,7 @@ ResponseCode rc = client->UnsubscribeAsync(
 
 ```cpp
 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub =
-        std::make_shared<Mqtt5::UnsubscribePacket>();
+        Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
 unsub->WithTopicFilter("my/topic");
 auto unsubAck = [&](int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
     /* callback */

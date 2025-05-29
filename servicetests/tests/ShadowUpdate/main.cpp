@@ -136,7 +136,7 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
     }
-    return std::make_shared<IotShadowClient>(connection);
+    return Aws::Crt::MakeShared<IotShadowClient>(Aws::Crt::DefaultAllocatorImplementation(), connection);
 }
 
 std::shared_ptr<IotShadowClient> build_mqtt5_client(
@@ -158,7 +158,8 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
     }
     // Create the MQTT5 builder and populate it with data from cmdData.
     // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectOptions->WithClientId(cmdData.input_clientId);
     builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)
@@ -201,7 +202,7 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
         fprintf(stderr, "MQTT5 Connection failed to start");
         exit(-1);
     }
-    return std::make_shared<IotShadowClient>(client5);
+    return Aws::Crt::MakeShared<IotShadowClient>(Aws::Crt::DefaultAllocatorImplementation(), client5);
 }
 
 int main(int argc, char *argv[])

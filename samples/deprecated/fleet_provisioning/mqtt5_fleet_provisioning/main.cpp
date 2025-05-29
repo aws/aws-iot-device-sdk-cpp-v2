@@ -95,7 +95,8 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
     }
 
     // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectOptions->WithClientId(cmdData.input_clientId);
     builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)

@@ -47,7 +47,8 @@ int main(int argc, char *argv[])
     }
 
     // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectOptions->WithClientId(cmdData.input_clientId);
     builder->WithConnectOptions(connectOptions);
     if (cmdData.input_port != 0)
@@ -156,7 +157,8 @@ int main(int argc, char *argv[])
 
         Mqtt5::Subscription sub1(cmdData.input_topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         sub1.WithNoLocal(false);
-        std::shared_ptr<Mqtt5::SubscribePacket> subPacket = std::make_shared<Mqtt5::SubscribePacket>();
+        std::shared_ptr<Mqtt5::SubscribePacket> subPacket =
+            Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
         subPacket->WithSubscription(std::move(sub1));
 
         if (client->Subscribe(subPacket, onSubAck))
@@ -201,8 +203,11 @@ int main(int argc, char *argv[])
                     String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
                     ByteCursor payload = ByteCursorFromString(message);
 
-                    std::shared_ptr<Mqtt5::PublishPacket> publish = std::make_shared<Mqtt5::PublishPacket>(
-                        cmdData.input_topic, payload, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+                    std::shared_ptr<Mqtt5::PublishPacket> publish = Aws::Crt::MakeShared<Mqtt5::PublishPacket>(
+                        Aws::Crt::DefaultAllocatorImplementation(),
+                        cmdData.input_topic,
+                        payload,
+                        Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
                     if (client->Publish(publish, onPublishComplete))
                     {
                         ++publishedCount;
@@ -218,7 +223,8 @@ int main(int argc, char *argv[])
 
                 // Unsubscribe from the topic.
                 std::promise<void> unsubscribeFinishedPromise;
-                std::shared_ptr<Mqtt5::UnsubscribePacket> unsub = std::make_shared<Mqtt5::UnsubscribePacket>();
+                std::shared_ptr<Mqtt5::UnsubscribePacket> unsub =
+                    Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
                 unsub->WithTopicFilter(cmdData.input_topic);
                 if (!client->Unsubscribe(unsub, [&](int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
                         unsubscribeFinishedPromise.set_value();
