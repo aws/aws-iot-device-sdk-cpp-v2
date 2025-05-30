@@ -4469,6 +4469,7 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
@@ -4476,6 +4477,7 @@ namespace Aws
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
+
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreOperationContext : public OperationModelContext
         {
           public:
@@ -4501,6 +4503,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToIoTCoreResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4514,7 +4517,9 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SubscribeToIoTCoreOperation>
         {
           public:
             SubscribeToIoTCoreOperation(
@@ -4522,6 +4527,7 @@ namespace Aws
                 std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
                 const SubscribeToIoTCoreOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToIoTCoreOperation`
              * @param request The request used for the `SubscribeToIoTCoreOperation`
@@ -4531,13 +4537,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToIoTCoreRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToIoTCoreResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SubscribeToIoTCoreResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SubscribeToIoTCoreOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API ResumeComponentOperationContext : public OperationModelContext
@@ -4565,6 +4577,7 @@ namespace Aws
             {
                 return static_cast<ResumeComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4578,13 +4591,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ResumeComponentOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API ResumeComponentOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<ResumeComponentOperation>
         {
           public:
             ResumeComponentOperation(
                 ClientConnection &connection,
                 const ResumeComponentOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ResumeComponentOperation`
              * @param request The request used for the `ResumeComponentOperation`
@@ -4594,13 +4610,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ResumeComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ResumeComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<ResumeComponentResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<ResumeComponentOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperationContext : public OperationModelContext
@@ -4628,6 +4650,7 @@ namespace Aws
             {
                 return static_cast<PublishToIoTCoreResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4641,13 +4664,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<PublishToIoTCoreOperation>
         {
           public:
             PublishToIoTCoreOperation(
                 ClientConnection &connection,
                 const PublishToIoTCoreOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PublishToIoTCoreOperation`
              * @param request The request used for the `PublishToIoTCoreOperation`
@@ -4657,13 +4683,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PublishToIoTCoreRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PublishToIoTCoreResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<PublishToIoTCoreResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<PublishToIoTCoreOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateStreamHandler : public StreamResponseHandler
@@ -4716,6 +4748,7 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
@@ -4723,6 +4756,7 @@ namespace Aws
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
+
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateOperationContext : public OperationModelContext
         {
           public:
@@ -4751,6 +4785,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToConfigurationUpdateResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4764,7 +4799,9 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SubscribeToConfigurationUpdateOperation>
         {
           public:
             SubscribeToConfigurationUpdateOperation(
@@ -4772,6 +4809,7 @@ namespace Aws
                 std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
                 const SubscribeToConfigurationUpdateOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToConfigurationUpdateOperation`
              * @param request The request used for the `SubscribeToConfigurationUpdateOperation`
@@ -4781,13 +4819,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToConfigurationUpdateRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToConfigurationUpdateResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SubscribeToConfigurationUpdateResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SubscribeToConfigurationUpdateOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperationContext : public OperationModelContext
@@ -4815,6 +4859,7 @@ namespace Aws
             {
                 return static_cast<DeleteThingShadowResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4828,13 +4873,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<DeleteThingShadowOperation>
         {
           public:
             DeleteThingShadowOperation(
                 ClientConnection &connection,
                 const DeleteThingShadowOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `DeleteThingShadowOperation`
              * @param request The request used for the `DeleteThingShadowOperation`
@@ -4844,13 +4892,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const DeleteThingShadowRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<DeleteThingShadowResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<DeleteThingShadowResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<DeleteThingShadowOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperationContext : public OperationModelContext
@@ -4878,6 +4932,7 @@ namespace Aws
             {
                 return static_cast<PutComponentMetricResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4891,13 +4946,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<PutComponentMetricOperation>
         {
           public:
             PutComponentMetricOperation(
                 ClientConnection &connection,
                 const PutComponentMetricOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PutComponentMetricOperation`
              * @param request The request used for the `PutComponentMetricOperation`
@@ -4907,13 +4965,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PutComponentMetricRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PutComponentMetricResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<PutComponentMetricResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<PutComponentMetricOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperationContext : public OperationModelContext
@@ -4943,6 +5007,7 @@ namespace Aws
             {
                 return static_cast<DeferComponentUpdateResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4956,13 +5021,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<DeferComponentUpdateOperation>
         {
           public:
             DeferComponentUpdateOperation(
                 ClientConnection &connection,
                 const DeferComponentUpdateOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `DeferComponentUpdateOperation`
              * @param request The request used for the `DeferComponentUpdateOperation`
@@ -4972,13 +5040,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const DeferComponentUpdateRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<DeferComponentUpdateResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<DeferComponentUpdateResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<DeferComponentUpdateOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesStreamHandler
@@ -5022,6 +5096,7 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
@@ -5029,6 +5104,7 @@ namespace Aws
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
+
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesOperationContext
             : public OperationModelContext
         {
@@ -5060,6 +5136,7 @@ namespace Aws
                 return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(
                     m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5073,7 +5150,9 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SubscribeToValidateConfigurationUpdatesOperation>
         {
           public:
             SubscribeToValidateConfigurationUpdatesOperation(
@@ -5081,6 +5160,7 @@ namespace Aws
                 std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
                 const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToValidateConfigurationUpdatesOperation`
              * @param request The request used for the `SubscribeToValidateConfigurationUpdatesOperation`
@@ -5090,13 +5170,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToValidateConfigurationUpdatesRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToValidateConfigurationUpdatesResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SubscribeToValidateConfigurationUpdatesResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SubscribeToValidateConfigurationUpdatesOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetConfigurationOperationContext : public OperationModelContext
@@ -5124,6 +5210,7 @@ namespace Aws
             {
                 return static_cast<GetConfigurationResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5137,13 +5224,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetConfigurationOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API GetConfigurationOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<GetConfigurationOperation>
         {
           public:
             GetConfigurationOperation(
                 ClientConnection &connection,
                 const GetConfigurationOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetConfigurationOperation`
              * @param request The request used for the `GetConfigurationOperation`
@@ -5153,13 +5243,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetConfigurationRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetConfigurationResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<GetConfigurationResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<GetConfigurationOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicStreamHandler : public StreamResponseHandler
@@ -5222,6 +5318,7 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
@@ -5229,6 +5326,7 @@ namespace Aws
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
+
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicOperationContext : public OperationModelContext
         {
           public:
@@ -5254,6 +5352,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToTopicResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5267,7 +5366,9 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToTopicOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SubscribeToTopicOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SubscribeToTopicOperation>
         {
           public:
             SubscribeToTopicOperation(
@@ -5275,6 +5376,7 @@ namespace Aws
                 std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
                 const SubscribeToTopicOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToTopicOperation`
              * @param request The request used for the `SubscribeToTopicOperation`
@@ -5284,13 +5386,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToTopicRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToTopicResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SubscribeToTopicResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SubscribeToTopicOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperationContext : public OperationModelContext
@@ -5318,6 +5426,7 @@ namespace Aws
             {
                 return static_cast<GetComponentDetailsResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5331,13 +5440,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<GetComponentDetailsOperation>
         {
           public:
             GetComponentDetailsOperation(
                 ClientConnection &connection,
                 const GetComponentDetailsOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetComponentDetailsOperation`
              * @param request The request used for the `GetComponentDetailsOperation`
@@ -5347,13 +5459,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetComponentDetailsRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetComponentDetailsResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<GetComponentDetailsResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<GetComponentDetailsOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperationContext : public OperationModelContext
@@ -5384,6 +5502,7 @@ namespace Aws
             {
                 return static_cast<GetClientDeviceAuthTokenResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5397,13 +5516,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<GetClientDeviceAuthTokenOperation>
         {
           public:
             GetClientDeviceAuthTokenOperation(
                 ClientConnection &connection,
                 const GetClientDeviceAuthTokenOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetClientDeviceAuthTokenOperation`
              * @param request The request used for the `GetClientDeviceAuthTokenOperation`
@@ -5413,13 +5535,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetClientDeviceAuthTokenRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetClientDeviceAuthTokenResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<GetClientDeviceAuthTokenResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<GetClientDeviceAuthTokenOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToTopicOperationContext : public OperationModelContext
@@ -5447,6 +5575,7 @@ namespace Aws
             {
                 return static_cast<PublishToTopicResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5460,13 +5589,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API PublishToTopicOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API PublishToTopicOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<PublishToTopicOperation>
         {
           public:
             PublishToTopicOperation(
                 ClientConnection &connection,
                 const PublishToTopicOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PublishToTopicOperation`
              * @param request The request used for the `PublishToTopicOperation`
@@ -5476,13 +5608,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PublishToTopicRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PublishToTopicResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<PublishToTopicResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<PublishToTopicOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesStreamHandler : public StreamResponseHandler
@@ -5545,6 +5683,7 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
@@ -5552,6 +5691,7 @@ namespace Aws
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
+
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesOperationContext : public OperationModelContext
         {
           public:
@@ -5580,6 +5720,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToCertificateUpdatesResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5593,7 +5734,9 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SubscribeToCertificateUpdatesOperation>
         {
           public:
             SubscribeToCertificateUpdatesOperation(
@@ -5601,6 +5744,7 @@ namespace Aws
                 std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
                 const SubscribeToCertificateUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToCertificateUpdatesOperation`
              * @param request The request used for the `SubscribeToCertificateUpdatesOperation`
@@ -5610,13 +5754,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToCertificateUpdatesRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToCertificateUpdatesResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SubscribeToCertificateUpdatesResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SubscribeToCertificateUpdatesOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperationContext : public OperationModelContext
@@ -5647,6 +5797,7 @@ namespace Aws
             {
                 return static_cast<VerifyClientDeviceIdentityResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5660,13 +5811,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<VerifyClientDeviceIdentityOperation>
         {
           public:
             VerifyClientDeviceIdentityOperation(
                 ClientConnection &connection,
                 const VerifyClientDeviceIdentityOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `VerifyClientDeviceIdentityOperation`
              * @param request The request used for the `VerifyClientDeviceIdentityOperation`
@@ -5676,13 +5830,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const VerifyClientDeviceIdentityRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<VerifyClientDeviceIdentityResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<VerifyClientDeviceIdentityResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<VerifyClientDeviceIdentityOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperationContext : public OperationModelContext
@@ -5713,6 +5873,7 @@ namespace Aws
             {
                 return static_cast<AuthorizeClientDeviceActionResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5726,13 +5887,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<AuthorizeClientDeviceActionOperation>
         {
           public:
             AuthorizeClientDeviceActionOperation(
                 ClientConnection &connection,
                 const AuthorizeClientDeviceActionOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `AuthorizeClientDeviceActionOperation`
              * @param request The request used for the `AuthorizeClientDeviceActionOperation`
@@ -5742,13 +5906,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const AuthorizeClientDeviceActionRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<AuthorizeClientDeviceActionResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<AuthorizeClientDeviceActionResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<AuthorizeClientDeviceActionOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListComponentsOperationContext : public OperationModelContext
@@ -5776,6 +5946,7 @@ namespace Aws
             {
                 return static_cast<ListComponentsResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5789,13 +5960,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ListComponentsOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API ListComponentsOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<ListComponentsOperation>
         {
           public:
             ListComponentsOperation(
                 ClientConnection &connection,
                 const ListComponentsOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ListComponentsOperation`
              * @param request The request used for the `ListComponentsOperation`
@@ -5805,13 +5979,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ListComponentsRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ListComponentsResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<ListComponentsResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<ListComponentsOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperationContext : public OperationModelContext
@@ -5839,6 +6019,7 @@ namespace Aws
             {
                 return static_cast<CreateDebugPasswordResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5852,13 +6033,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<CreateDebugPasswordOperation>
         {
           public:
             CreateDebugPasswordOperation(
                 ClientConnection &connection,
                 const CreateDebugPasswordOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `CreateDebugPasswordOperation`
              * @param request The request used for the `CreateDebugPasswordOperation`
@@ -5868,13 +6052,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const CreateDebugPasswordRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<CreateDebugPasswordResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<CreateDebugPasswordResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<CreateDebugPasswordOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetThingShadowOperationContext : public OperationModelContext
@@ -5902,6 +6092,7 @@ namespace Aws
             {
                 return static_cast<GetThingShadowResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5915,13 +6106,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetThingShadowOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API GetThingShadowOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<GetThingShadowOperation>
         {
           public:
             GetThingShadowOperation(
                 ClientConnection &connection,
                 const GetThingShadowOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetThingShadowOperation`
              * @param request The request used for the `GetThingShadowOperation`
@@ -5931,13 +6125,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetThingShadowRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetThingShadowResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<GetThingShadowResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<GetThingShadowOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperationContext : public OperationModelContext
@@ -5968,6 +6168,7 @@ namespace Aws
             {
                 return static_cast<SendConfigurationValidityReportResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5981,13 +6182,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SendConfigurationValidityReportOperation>
         {
           public:
             SendConfigurationValidityReportOperation(
                 ClientConnection &connection,
                 const SendConfigurationValidityReportOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SendConfigurationValidityReportOperation`
              * @param request The request used for the `SendConfigurationValidityReportOperation`
@@ -5997,13 +6201,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SendConfigurationValidityReportRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SendConfigurationValidityReportResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SendConfigurationValidityReportResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SendConfigurationValidityReportOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperationContext : public OperationModelContext
@@ -6031,6 +6241,7 @@ namespace Aws
             {
                 return static_cast<UpdateThingShadowResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6044,13 +6255,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<UpdateThingShadowOperation>
         {
           public:
             UpdateThingShadowOperation(
                 ClientConnection &connection,
                 const UpdateThingShadowOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `UpdateThingShadowOperation`
              * @param request The request used for the `UpdateThingShadowOperation`
@@ -6060,13 +6274,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const UpdateThingShadowRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<UpdateThingShadowResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<UpdateThingShadowResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<UpdateThingShadowOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperationContext : public OperationModelContext
@@ -6094,6 +6314,7 @@ namespace Aws
             {
                 return static_cast<UpdateConfigurationResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6107,13 +6328,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<UpdateConfigurationOperation>
         {
           public:
             UpdateConfigurationOperation(
                 ClientConnection &connection,
                 const UpdateConfigurationOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `UpdateConfigurationOperation`
              * @param request The request used for the `UpdateConfigurationOperation`
@@ -6123,13 +6347,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const UpdateConfigurationRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<UpdateConfigurationResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<UpdateConfigurationResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<UpdateConfigurationOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperationContext : public OperationModelContext
@@ -6160,6 +6390,7 @@ namespace Aws
             {
                 return static_cast<ValidateAuthorizationTokenResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6173,13 +6404,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<ValidateAuthorizationTokenOperation>
         {
           public:
             ValidateAuthorizationTokenOperation(
                 ClientConnection &connection,
                 const ValidateAuthorizationTokenOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ValidateAuthorizationTokenOperation`
              * @param request The request used for the `ValidateAuthorizationTokenOperation`
@@ -6189,13 +6423,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ValidateAuthorizationTokenRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ValidateAuthorizationTokenResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<ValidateAuthorizationTokenResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<ValidateAuthorizationTokenOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API RestartComponentOperationContext : public OperationModelContext
@@ -6223,6 +6463,7 @@ namespace Aws
             {
                 return static_cast<RestartComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6236,13 +6477,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API RestartComponentOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API RestartComponentOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<RestartComponentOperation>
         {
           public:
             RestartComponentOperation(
                 ClientConnection &connection,
                 const RestartComponentOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `RestartComponentOperation`
              * @param request The request used for the `RestartComponentOperation`
@@ -6252,13 +6496,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const RestartComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<RestartComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<RestartComponentResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<RestartComponentOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperationContext : public OperationModelContext
@@ -6289,6 +6539,7 @@ namespace Aws
             {
                 return static_cast<GetLocalDeploymentStatusResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6302,13 +6553,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<GetLocalDeploymentStatusOperation>
         {
           public:
             GetLocalDeploymentStatusOperation(
                 ClientConnection &connection,
                 const GetLocalDeploymentStatusOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetLocalDeploymentStatusOperation`
              * @param request The request used for the `GetLocalDeploymentStatusOperation`
@@ -6318,13 +6572,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetLocalDeploymentStatusRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetLocalDeploymentStatusResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<GetLocalDeploymentStatusResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<GetLocalDeploymentStatusOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetSecretValueOperationContext : public OperationModelContext
@@ -6352,6 +6612,7 @@ namespace Aws
             {
                 return static_cast<GetSecretValueResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6365,13 +6626,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetSecretValueOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API GetSecretValueOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<GetSecretValueOperation>
         {
           public:
             GetSecretValueOperation(
                 ClientConnection &connection,
                 const GetSecretValueOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetSecretValueOperation`
              * @param request The request used for the `GetSecretValueOperation`
@@ -6381,13 +6645,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetSecretValueRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetSecretValueResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<GetSecretValueResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<GetSecretValueOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateStateOperationContext : public OperationModelContext
@@ -6415,6 +6685,7 @@ namespace Aws
             {
                 return static_cast<UpdateStateResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6428,13 +6699,15 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API UpdateStateOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API UpdateStateOperation : public ClientOperation,
+                                                               public std::enable_shared_from_this<UpdateStateOperation>
         {
           public:
             UpdateStateOperation(
                 ClientConnection &connection,
                 const UpdateStateOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `UpdateStateOperation`
              * @param request The request used for the `UpdateStateOperation`
@@ -6444,13 +6717,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const UpdateStateRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<UpdateStateResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<UpdateStateResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<UpdateStateOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperationContext : public OperationModelContext
@@ -6480,6 +6759,7 @@ namespace Aws
             {
                 return static_cast<CancelLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6493,13 +6773,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<CancelLocalDeploymentOperation>
         {
           public:
             CancelLocalDeploymentOperation(
                 ClientConnection &connection,
                 const CancelLocalDeploymentOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `CancelLocalDeploymentOperation`
              * @param request The request used for the `CancelLocalDeploymentOperation`
@@ -6509,13 +6792,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const CancelLocalDeploymentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<CancelLocalDeploymentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<CancelLocalDeploymentResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<CancelLocalDeploymentOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperationContext : public OperationModelContext
@@ -6546,6 +6835,7 @@ namespace Aws
             {
                 return static_cast<ListNamedShadowsForThingResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6559,13 +6849,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<ListNamedShadowsForThingOperation>
         {
           public:
             ListNamedShadowsForThingOperation(
                 ClientConnection &connection,
                 const ListNamedShadowsForThingOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ListNamedShadowsForThingOperation`
              * @param request The request used for the `ListNamedShadowsForThingOperation`
@@ -6575,13 +6868,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ListNamedShadowsForThingRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ListNamedShadowsForThingResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<ListNamedShadowsForThingResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<ListNamedShadowsForThingOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesStreamHandler : public StreamResponseHandler
@@ -6634,6 +6933,7 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
@@ -6641,6 +6941,7 @@ namespace Aws
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
+
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesOperationContext : public OperationModelContext
         {
           public:
@@ -6669,6 +6970,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToComponentUpdatesResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6682,7 +6984,9 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<SubscribeToComponentUpdatesOperation>
         {
           public:
             SubscribeToComponentUpdatesOperation(
@@ -6690,6 +6994,7 @@ namespace Aws
                 std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
                 const SubscribeToComponentUpdatesOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToComponentUpdatesOperation`
              * @param request The request used for the `SubscribeToComponentUpdatesOperation`
@@ -6699,13 +7004,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToComponentUpdatesRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToComponentUpdatesResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<SubscribeToComponentUpdatesResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<SubscribeToComponentUpdatesOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperationContext : public OperationModelContext
@@ -6735,6 +7046,7 @@ namespace Aws
             {
                 return static_cast<ListLocalDeploymentsResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6748,13 +7060,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<ListLocalDeploymentsOperation>
         {
           public:
             ListLocalDeploymentsOperation(
                 ClientConnection &connection,
                 const ListLocalDeploymentsOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ListLocalDeploymentsOperation`
              * @param request The request used for the `ListLocalDeploymentsOperation`
@@ -6764,13 +7079,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ListLocalDeploymentsRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ListLocalDeploymentsResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<ListLocalDeploymentsResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<ListLocalDeploymentsOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API StopComponentOperationContext : public OperationModelContext
@@ -6798,6 +7119,7 @@ namespace Aws
             {
                 return static_cast<StopComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6811,13 +7133,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API StopComponentOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API StopComponentOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<StopComponentOperation>
         {
           public:
             StopComponentOperation(
                 ClientConnection &connection,
                 const StopComponentOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `StopComponentOperation`
              * @param request The request used for the `StopComponentOperation`
@@ -6827,13 +7152,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const StopComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<StopComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<StopComponentResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<StopComponentOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API PauseComponentOperationContext : public OperationModelContext
@@ -6861,6 +7192,7 @@ namespace Aws
             {
                 return static_cast<PauseComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6874,13 +7206,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API PauseComponentOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API PauseComponentOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<PauseComponentOperation>
         {
           public:
             PauseComponentOperation(
                 ClientConnection &connection,
                 const PauseComponentOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PauseComponentOperation`
              * @param request The request used for the `PauseComponentOperation`
@@ -6890,13 +7225,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PauseComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PauseComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<PauseComponentResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<PauseComponentOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperationContext : public OperationModelContext
@@ -6926,6 +7267,7 @@ namespace Aws
             {
                 return static_cast<CreateLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6939,13 +7281,16 @@ namespace Aws
             TaggedResult m_taggedResult;
         };
 
-        class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperation : public ClientOperation
+        class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperation
+            : public ClientOperation,
+              public std::enable_shared_from_this<CreateLocalDeploymentOperation>
         {
           public:
             CreateLocalDeploymentOperation(
                 ClientConnection &connection,
                 const CreateLocalDeploymentOperationContext &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `CreateLocalDeploymentOperation`
              * @param request The request used for the `CreateLocalDeploymentOperation`
@@ -6955,13 +7300,19 @@ namespace Aws
             std::future<RpcError> Activate(
                 const CreateLocalDeploymentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<CreateLocalDeploymentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::promise<CreateLocalDeploymentResult> m_resultPromise;
+
+            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+             * before the future gets completed. */
+            std::shared_ptr<CreateLocalDeploymentOperation> m_selfReference;
         };
 
         class AWS_GREENGRASSCOREIPC_API GreengrassCoreIpcServiceModel : public ServiceModel

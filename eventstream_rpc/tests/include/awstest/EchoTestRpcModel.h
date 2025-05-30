@@ -704,6 +704,7 @@ namespace Awstest
         {
             return static_cast<GetAllProductsResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -717,13 +718,15 @@ namespace Awstest
         TaggedResult m_taggedResult;
     };
 
-    class AWS_ECHOTESTRPC_API GetAllProductsOperation : public ClientOperation
+    class AWS_ECHOTESTRPC_API GetAllProductsOperation : public ClientOperation,
+                                                        public std::enable_shared_from_this<GetAllProductsOperation>
     {
       public:
         GetAllProductsOperation(
             ClientConnection &connection,
             const GetAllProductsOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `GetAllProductsOperation`
          * @param request The request used for the `GetAllProductsOperation`
@@ -733,13 +736,19 @@ namespace Awstest
         std::future<RpcError> Activate(
             const GetAllProductsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<GetAllProductsResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::promise<GetAllProductsResult> m_resultPromise;
+
+        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+         * before the future gets completed. */
+        std::shared_ptr<GetAllProductsOperation> m_selfReference;
     };
 
     class AWS_ECHOTESTRPC_API CauseServiceErrorOperationContext : public OperationModelContext
@@ -767,6 +776,7 @@ namespace Awstest
         {
             return static_cast<CauseServiceErrorResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -780,13 +790,16 @@ namespace Awstest
         TaggedResult m_taggedResult;
     };
 
-    class AWS_ECHOTESTRPC_API CauseServiceErrorOperation : public ClientOperation
+    class AWS_ECHOTESTRPC_API CauseServiceErrorOperation
+        : public ClientOperation,
+          public std::enable_shared_from_this<CauseServiceErrorOperation>
     {
       public:
         CauseServiceErrorOperation(
             ClientConnection &connection,
             const CauseServiceErrorOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `CauseServiceErrorOperation`
          * @param request The request used for the `CauseServiceErrorOperation`
@@ -796,13 +809,19 @@ namespace Awstest
         std::future<RpcError> Activate(
             const CauseServiceErrorRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<CauseServiceErrorResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::promise<CauseServiceErrorResult> m_resultPromise;
+
+        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+         * before the future gets completed. */
+        std::shared_ptr<CauseServiceErrorOperation> m_selfReference;
     };
 
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorStreamHandler : public StreamResponseHandler
@@ -845,6 +864,7 @@ namespace Awstest
          * Invoked when a message is received on this continuation.
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
         /**
          * Invoked when a message is received on this continuation but results in an error.
          *
@@ -852,6 +872,7 @@ namespace Awstest
          */
         bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
     };
+
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorOperationContext : public OperationModelContext
     {
       public:
@@ -879,6 +900,7 @@ namespace Awstest
         {
             return static_cast<EchoStreamingResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -892,7 +914,9 @@ namespace Awstest
         TaggedResult m_taggedResult;
     };
 
-    class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorOperation : public ClientOperation
+    class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorOperation
+        : public ClientOperation,
+          public std::enable_shared_from_this<CauseStreamServiceToErrorOperation>
     {
       public:
         CauseStreamServiceToErrorOperation(
@@ -900,6 +924,7 @@ namespace Awstest
             std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
             const CauseStreamServiceToErrorOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `CauseStreamServiceToErrorOperation`
          * @param request The request used for the `CauseStreamServiceToErrorOperation`
@@ -909,13 +934,19 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<CauseStreamServiceToErrorResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::promise<CauseStreamServiceToErrorResult> m_resultPromise;
+
+        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+         * before the future gets completed. */
+        std::shared_ptr<CauseStreamServiceToErrorOperation> m_selfReference;
     };
 
     class AWS_ECHOTESTRPC_API EchoStreamMessagesStreamHandler : public StreamResponseHandler
@@ -948,6 +979,7 @@ namespace Awstest
          * Invoked when a message is received on this continuation.
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
         /**
          * Invoked when a message is received on this continuation but results in an error.
          *
@@ -955,6 +987,7 @@ namespace Awstest
          */
         bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
     };
+
     class AWS_ECHOTESTRPC_API EchoStreamMessagesOperationContext : public OperationModelContext
     {
       public:
@@ -980,6 +1013,7 @@ namespace Awstest
         {
             return static_cast<EchoStreamingResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -993,7 +1027,9 @@ namespace Awstest
         TaggedResult m_taggedResult;
     };
 
-    class AWS_ECHOTESTRPC_API EchoStreamMessagesOperation : public ClientOperation
+    class AWS_ECHOTESTRPC_API EchoStreamMessagesOperation
+        : public ClientOperation,
+          public std::enable_shared_from_this<EchoStreamMessagesOperation>
     {
       public:
         EchoStreamMessagesOperation(
@@ -1001,6 +1037,7 @@ namespace Awstest
             std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
             const EchoStreamMessagesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `EchoStreamMessagesOperation`
          * @param request The request used for the `EchoStreamMessagesOperation`
@@ -1010,13 +1047,19 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<EchoStreamMessagesResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::promise<EchoStreamMessagesResult> m_resultPromise;
+
+        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+         * before the future gets completed. */
+        std::shared_ptr<EchoStreamMessagesOperation> m_selfReference;
     };
 
     class AWS_ECHOTESTRPC_API EchoMessageOperationContext : public OperationModelContext
@@ -1044,6 +1087,7 @@ namespace Awstest
         {
             return static_cast<EchoMessageResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -1057,13 +1101,15 @@ namespace Awstest
         TaggedResult m_taggedResult;
     };
 
-    class AWS_ECHOTESTRPC_API EchoMessageOperation : public ClientOperation
+    class AWS_ECHOTESTRPC_API EchoMessageOperation : public ClientOperation,
+                                                     public std::enable_shared_from_this<EchoMessageOperation>
     {
       public:
         EchoMessageOperation(
             ClientConnection &connection,
             const EchoMessageOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `EchoMessageOperation`
          * @param request The request used for the `EchoMessageOperation`
@@ -1073,13 +1119,19 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoMessageRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<EchoMessageResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::promise<EchoMessageResult> m_resultPromise;
+
+        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+         * before the future gets completed. */
+        std::shared_ptr<EchoMessageOperation> m_selfReference;
     };
 
     class AWS_ECHOTESTRPC_API GetAllCustomersOperationContext : public OperationModelContext
@@ -1107,6 +1159,7 @@ namespace Awstest
         {
             return static_cast<GetAllCustomersResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -1120,13 +1173,15 @@ namespace Awstest
         TaggedResult m_taggedResult;
     };
 
-    class AWS_ECHOTESTRPC_API GetAllCustomersOperation : public ClientOperation
+    class AWS_ECHOTESTRPC_API GetAllCustomersOperation : public ClientOperation,
+                                                         public std::enable_shared_from_this<GetAllCustomersOperation>
     {
       public:
         GetAllCustomersOperation(
             ClientConnection &connection,
             const GetAllCustomersOperationContext &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `GetAllCustomersOperation`
          * @param request The request used for the `GetAllCustomersOperation`
@@ -1136,13 +1191,19 @@ namespace Awstest
         std::future<RpcError> Activate(
             const GetAllCustomersRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<GetAllCustomersResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::promise<GetAllCustomersResult> m_resultPromise;
+
+        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
+         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
+         * before the future gets completed. */
+        std::shared_ptr<GetAllCustomersOperation> m_selfReference;
     };
 
     class AWS_ECHOTESTRPC_API EchoTestRpcServiceModel : public ServiceModel

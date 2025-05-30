@@ -1018,7 +1018,7 @@ namespace Awstest
 
     std::future<GetAllProductsResult> GetAllProductsOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        return m_resultPromise.get_future();
     }
 
     GetAllProductsOperation::GetAllProductsOperation(
@@ -1033,12 +1033,22 @@ namespace Awstest
         const GetAllProductsRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
-
-    Aws::Crt::String GetAllProductsOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        bool synchronousSuccess = false;
+        m_selfReference = shared_from_this();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [this](TaggedResult &&unmodeledResult)
+            {
+                m_resultPromise.set_value(GetAllProductsResult(std::move(unmodeledResult)));
+                m_selfReference = nullptr;
+            },
+            synchronousSuccess);
+        if (!synchronousSuccess)
+        {
+            m_selfReference = nullptr;
+        }
+        return activateFuture;
     }
 
     CauseServiceErrorOperationContext::CauseServiceErrorOperationContext(
@@ -1086,7 +1096,7 @@ namespace Awstest
 
     std::future<CauseServiceErrorResult> CauseServiceErrorOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        return m_resultPromise.get_future();
     }
 
     CauseServiceErrorOperation::CauseServiceErrorOperation(
@@ -1101,12 +1111,22 @@ namespace Awstest
         const CauseServiceErrorRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
-
-    Aws::Crt::String CauseServiceErrorOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        bool synchronousSuccess = false;
+        m_selfReference = shared_from_this();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [this](TaggedResult &&unmodeledResult)
+            {
+                m_resultPromise.set_value(CauseServiceErrorResult(std::move(unmodeledResult)));
+                m_selfReference = nullptr;
+            },
+            synchronousSuccess);
+        if (!synchronousSuccess)
+        {
+            m_selfReference = nullptr;
+        }
+        return activateFuture;
     }
 
     void CauseStreamServiceToErrorStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
@@ -1176,8 +1196,7 @@ namespace Awstest
 
     std::future<CauseStreamServiceToErrorResult> CauseStreamServiceToErrorOperation::GetResult() noexcept
     {
-        return std::async(
-            m_asyncLaunchMode, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+        return m_resultPromise.get_future();
     }
 
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
@@ -1193,12 +1212,22 @@ namespace Awstest
         const EchoStreamingRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
-
-    Aws::Crt::String CauseStreamServiceToErrorOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        bool synchronousSuccess = false;
+        m_selfReference = shared_from_this();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [this](TaggedResult &&unmodeledResult)
+            {
+                m_resultPromise.set_value(CauseStreamServiceToErrorResult(std::move(unmodeledResult)));
+                m_selfReference = nullptr;
+            },
+            synchronousSuccess);
+        if (!synchronousSuccess)
+        {
+            m_selfReference = nullptr;
+        }
+        return activateFuture;
     }
 
     void EchoStreamMessagesStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
@@ -1263,7 +1292,7 @@ namespace Awstest
 
     std::future<EchoStreamMessagesResult> EchoStreamMessagesOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+        return m_resultPromise.get_future();
     }
 
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
@@ -1279,12 +1308,22 @@ namespace Awstest
         const EchoStreamingRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
-
-    Aws::Crt::String EchoStreamMessagesOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        bool synchronousSuccess = false;
+        m_selfReference = shared_from_this();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [this](TaggedResult &&unmodeledResult)
+            {
+                m_resultPromise.set_value(EchoStreamMessagesResult(std::move(unmodeledResult)));
+                m_selfReference = nullptr;
+            },
+            synchronousSuccess);
+        if (!synchronousSuccess)
+        {
+            m_selfReference = nullptr;
+        }
+        return activateFuture;
     }
 
     EchoMessageOperationContext::EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1330,7 +1369,7 @@ namespace Awstest
 
     std::future<EchoMessageResult> EchoMessageOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        return m_resultPromise.get_future();
     }
 
     EchoMessageOperation::EchoMessageOperation(
@@ -1345,12 +1384,22 @@ namespace Awstest
         const EchoMessageRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
-
-    Aws::Crt::String EchoMessageOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        bool synchronousSuccess = false;
+        m_selfReference = shared_from_this();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [this](TaggedResult &&unmodeledResult)
+            {
+                m_resultPromise.set_value(EchoMessageResult(std::move(unmodeledResult)));
+                m_selfReference = nullptr;
+            },
+            synchronousSuccess);
+        if (!synchronousSuccess)
+        {
+            m_selfReference = nullptr;
+        }
+        return activateFuture;
     }
 
     GetAllCustomersOperationContext::GetAllCustomersOperationContext(
@@ -1397,7 +1446,7 @@ namespace Awstest
 
     std::future<GetAllCustomersResult> GetAllCustomersOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        return m_resultPromise.get_future();
     }
 
     GetAllCustomersOperation::GetAllCustomersOperation(
@@ -1412,12 +1461,22 @@ namespace Awstest
         const GetAllCustomersRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
-
-    Aws::Crt::String GetAllCustomersOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        bool synchronousSuccess = false;
+        m_selfReference = shared_from_this();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [this](TaggedResult &&unmodeledResult)
+            {
+                m_resultPromise.set_value(GetAllCustomersResult(std::move(unmodeledResult)));
+                m_selfReference = nullptr;
+            },
+            synchronousSuccess);
+        if (!synchronousSuccess)
+        {
+            m_selfReference = nullptr;
+        }
+        return activateFuture;
     }
 
     EchoTestRpcServiceModel::EchoTestRpcServiceModel() noexcept

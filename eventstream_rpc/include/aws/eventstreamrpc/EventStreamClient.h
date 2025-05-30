@@ -153,7 +153,9 @@ namespace Aws
             EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
             EVENT_STREAM_RPC_UNMAPPED_DATA,
             EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
-            EVENT_STREAM_RPC_CRT_ERROR
+            EVENT_STREAM_RPC_CRT_ERROR,
+            EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED,
+            EVENT_STREAM_RPC_CONTINUATION_CLOSE_IN_PROGRESS,
         };
 
         /**
@@ -261,6 +263,7 @@ namespace Aws
         };
 
         class ClientConnectionImpl;
+        class ClientContinuationImpl;
 
         /**
          * Class representing a connection to an RPC server.
@@ -282,12 +285,10 @@ namespace Aws
                 ConnectionLifecycleHandler *connectionLifecycleHandler) noexcept;
 
             /**
-             * Create a new stream.
-             * @note Activate() must be called on the stream for it to actually initiate the new stream.
-             * @param clientContinuationHandler Handler to process continuation events.
+             * Create a new stream (continuation).
              * @return A newly created continuation.
              */
-            ClientContinuation NewStream(ClientContinuationHandler &clientContinuationHandler) noexcept;
+            std::shared_ptr<ClientContinuationImpl> NewStream() noexcept;
 
             /**
              * Close the connection.
@@ -304,6 +305,7 @@ namespace Aws
             std::shared_ptr<ClientConnectionImpl> m_impl;
         };
 
+#ifdef NEVER
         /**
          * User data passed to callbacks for a new stream.
          */
@@ -323,13 +325,16 @@ namespace Aws
             ClientContinuation *clientContinuation;
             Crt::Allocator *allocator;
         };
+#endif
 
         /**
-         * Handler interface for continuation events.
+         * Vestigial, do-nothing class that remains for backwards compatibility with the
+         * original, publicly-visible class hierarchy.
          */
         class AWS_EVENTSTREAMRPC_API ClientContinuationHandler
         {
           public:
+#ifdef NEVER
             /**
              * Invoked when a message is received on this continuation.
              */
@@ -346,13 +351,16 @@ namespace Aws
              * the TERMINATE_STREAM flag, or when the connection shuts down.
              */
             virtual void OnContinuationClosed() = 0;
+#endif
             virtual ~ClientContinuationHandler() noexcept = default;
-
+#ifdef NEVER
           private:
             friend class ClientContinuation;
             std::shared_ptr<ContinuationCallbackData> m_callbackData;
+#endif
         };
 
+#ifdef NEVER
         /**
          * A wrapper for event-stream-rpc client continuation.
          */
@@ -433,7 +441,7 @@ namespace Aws
                 struct aws_event_stream_rpc_client_continuation_token *continuationToken,
                 void *userData) noexcept;
         };
-
+#endif
         /**
          * Base class for types used by operations.
          */
@@ -478,7 +486,7 @@ namespace Aws
             virtual void OnStreamClosed();
 
           protected:
-            friend class ClientOperation;
+            friend class ClientContinuationImpl;
             /**
              * Invoked when a message is received on this continuation.
              */
@@ -597,7 +605,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API OperationModelContext
         {
           public:
-            OperationModelContext(const ServiceModel &serviceModel) noexcept;
+            explicit OperationModelContext(const ServiceModel &serviceModel) noexcept;
 
             virtual ~OperationModelContext() noexcept = default;
 
@@ -677,7 +685,7 @@ namespace Aws
                 std::shared_ptr<StreamResponseHandler> streamHandler,
                 const OperationModelContext &operationModelContext,
                 Crt::Allocator *allocator) noexcept;
-            ~ClientOperation() noexcept;
+            ~ClientOperation() noexcept override;
 
             ClientOperation(const ClientOperation &clientOperation) noexcept = delete;
             ClientOperation(ClientOperation &&clientOperation) noexcept = delete;
@@ -694,12 +702,9 @@ namespace Aws
             std::future<RpcError> Close(OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
 
             /**
-             * Get an operation result.
-             * @return Future which will be resolved when the corresponding RPC request completes.
-             */
-            std::future<TaggedResult> GetOperationResult() noexcept;
-
-            /**
+             * @deprecated This no longer does anything useful.  Launch policy was added because of a
+             * mistake in the implementation that was attempting to chain two promises together.
+             *
              * Set the launch mode for executing operations. The mode is set to std::launch::deferred by default.
              * @param mode The launch mode to use.
              */
@@ -710,67 +715,26 @@ namespace Aws
              * Initiate a new client stream. Send the shape for the new stream.
              * @param shape A parameter for RPC operation.
              * @param onMessageFlushCallback Callback to invoke when the shape is flushed to the underlying transport.
+             * @param onResultCallback Callback to invoke with the untransformed activation result
              * @return Future which will be resolved once the message is sent.
              */
             std::future<RpcError> Activate(
                 const AbstractShapeBase *shape,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback &&onMessageFlushCallback,
+                std::function<void(TaggedResult &&)> &&onResultCallback,
+                bool &synchronousSuccess) noexcept;
 
             /**
              * Returns the canonical model name associated with this operation across any client language.
              * Namespace included.
              * @return The model name.
              */
-            virtual Crt::String GetModelName() const noexcept = 0;
-
-            const OperationModelContext &m_operationModelContext;
-            std::launch m_asyncLaunchMode;
+            virtual Crt::String GetModelName() const noexcept;
 
           private:
-            EventStreamRpcStatusCode HandleData(const Crt::Optional<Crt::ByteBuf> &payload);
-            EventStreamRpcStatusCode HandleError(
-                const Crt::String &modelName,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                uint32_t messageFlags);
-            /**
-             * Invoked when a message is received on this continuation.
-             */
-            void OnContinuationMessage(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                MessageType messageType,
-                uint32_t messageFlags) override;
-            /**
-             * Invoked when the continuation is closed.
-             *
-             * Once the continuation is closed, no more messages may be sent or received.
-             * The continuation is closed when a message is sent or received with
-             * the TERMINATE_STREAM flag, or when the connection shuts down.
-             */
-            void OnContinuationClosed() override;
+            Aws::Crt::Allocator *m_allocator;
 
-            const EventStreamHeader *GetHeaderByName(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::String &name) noexcept;
-
-            enum CloseState
-            {
-                WONT_CLOSE = 0,
-                WILL_CLOSE,
-                ALREADY_CLOSED
-            };
-
-            uint32_t m_messageCount;
-            Crt::Allocator *m_allocator;
-            std::shared_ptr<StreamResponseHandler> m_streamHandler;
-            ClientContinuation m_clientContinuation;
-            /* This mutex protects m_resultReceived & m_closeState. */
-            std::mutex m_continuationMutex;
-            bool m_resultReceived;
-            std::promise<TaggedResult> m_initialResponsePromise;
-            bool m_expectingClose;
-            bool m_streamClosedCalled;
-            std::condition_variable m_closeReady;
+            std::shared_ptr<ClientContinuationImpl> m_impl;
         };
 
     } // namespace Eventstreamrpc

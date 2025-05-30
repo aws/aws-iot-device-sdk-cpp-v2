@@ -479,8 +479,6 @@ static int s_TestEchoClientOpenCloseStress(struct aws_allocator *allocator, void
 
 AWS_TEST_CASE(EchoClientOpenCloseStress, s_TestEchoClientOpenCloseStress);
 
-#ifdef NEVER
-
 static void s_onMessageFlush(int errorCode)
 {
     (void)errorCode;
@@ -777,6 +775,8 @@ static int s_TestEchoClientOperationEchoSuccessProductMap(struct aws_allocator *
 }
 
 AWS_TEST_CASE(EchoClientOperationEchoSuccessProductMap, s_TestEchoClientOperationEchoSuccessProductMap);
+
+#ifdef NEVER
 
 static int s_TestEchoClientOperationEchoSuccessMultiple(struct aws_allocator *allocator, void *ctx)
 {

@@ -7041,8 +7041,7 @@ namespace Aws
 
         std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
@@ -7058,12 +7057,22 @@ namespace Aws
             const SubscribeToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SubscribeToIoTCoreOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(SubscribeToIoTCoreResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         ResumeComponentOperationContext::ResumeComponentOperationContext(
@@ -7111,8 +7120,7 @@ namespace Aws
 
         std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         ResumeComponentOperation::ResumeComponentOperation(
@@ -7127,12 +7135,22 @@ namespace Aws
             const ResumeComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String ResumeComponentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(ResumeComponentResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         PublishToIoTCoreOperationContext::PublishToIoTCoreOperationContext(
@@ -7180,8 +7198,7 @@ namespace Aws
 
         std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
@@ -7196,12 +7213,22 @@ namespace Aws
             const PublishToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String PublishToIoTCoreOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(PublishToIoTCoreResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         void SubscribeToConfigurationUpdateStreamHandler::OnStreamEvent(
@@ -7279,9 +7306,7 @@ namespace Aws
 
         std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
@@ -7297,12 +7322,22 @@ namespace Aws
             const SubscribeToConfigurationUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SubscribeToConfigurationUpdateOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(SubscribeToConfigurationUpdateResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         DeleteThingShadowOperationContext::DeleteThingShadowOperationContext(
@@ -7350,8 +7385,7 @@ namespace Aws
 
         std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
@@ -7366,12 +7400,22 @@ namespace Aws
             const DeleteThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String DeleteThingShadowOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(DeleteThingShadowResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         PutComponentMetricOperationContext::PutComponentMetricOperationContext(
@@ -7419,8 +7463,7 @@ namespace Aws
 
         std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         PutComponentMetricOperation::PutComponentMetricOperation(
@@ -7435,12 +7478,22 @@ namespace Aws
             const PutComponentMetricRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String PutComponentMetricOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(PutComponentMetricResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         DeferComponentUpdateOperationContext::DeferComponentUpdateOperationContext(
@@ -7488,8 +7541,7 @@ namespace Aws
 
         std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
@@ -7504,12 +7556,22 @@ namespace Aws
             const DeferComponentUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String DeferComponentUpdateOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(DeferComponentUpdateResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         void SubscribeToValidateConfigurationUpdatesStreamHandler::OnStreamEvent(
@@ -7584,9 +7646,7 @@ namespace Aws
         std::future<SubscribeToValidateConfigurationUpdatesResult> SubscribeToValidateConfigurationUpdatesOperation::
             GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
@@ -7602,12 +7662,23 @@ namespace Aws
             const SubscribeToValidateConfigurationUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SubscribeToValidateConfigurationUpdatesOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(
+                        SubscribeToValidateConfigurationUpdatesResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GetConfigurationOperationContext::GetConfigurationOperationContext(
@@ -7655,8 +7726,7 @@ namespace Aws
 
         std::future<GetConfigurationResult> GetConfigurationOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         GetConfigurationOperation::GetConfigurationOperation(
@@ -7671,12 +7741,22 @@ namespace Aws
             const GetConfigurationRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String GetConfigurationOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(GetConfigurationResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         void SubscribeToTopicStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
@@ -7759,8 +7839,7 @@ namespace Aws
 
         std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
@@ -7776,12 +7855,22 @@ namespace Aws
             const SubscribeToTopicRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SubscribeToTopicOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(SubscribeToTopicResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GetComponentDetailsOperationContext::GetComponentDetailsOperationContext(
@@ -7829,8 +7918,7 @@ namespace Aws
 
         std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
@@ -7845,12 +7933,22 @@ namespace Aws
             const GetComponentDetailsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String GetComponentDetailsOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(GetComponentDetailsResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GetClientDeviceAuthTokenOperationContext::GetClientDeviceAuthTokenOperationContext(
@@ -7898,8 +7996,7 @@ namespace Aws
 
         std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
@@ -7914,12 +8011,22 @@ namespace Aws
             const GetClientDeviceAuthTokenRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String GetClientDeviceAuthTokenOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(GetClientDeviceAuthTokenResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         PublishToTopicOperationContext::PublishToTopicOperationContext(
@@ -7967,7 +8074,7 @@ namespace Aws
 
         std::future<PublishToTopicResult> PublishToTopicOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         PublishToTopicOperation::PublishToTopicOperation(
@@ -7982,12 +8089,22 @@ namespace Aws
             const PublishToTopicRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String PublishToTopicOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(PublishToTopicResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         void SubscribeToCertificateUpdatesStreamHandler::OnStreamEvent(
@@ -8071,9 +8188,7 @@ namespace Aws
 
         std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SubscribeToCertificateUpdatesOperation::SubscribeToCertificateUpdatesOperation(
@@ -8089,12 +8204,22 @@ namespace Aws
             const SubscribeToCertificateUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SubscribeToCertificateUpdatesOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(SubscribeToCertificateUpdatesResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         VerifyClientDeviceIdentityOperationContext::VerifyClientDeviceIdentityOperationContext(
@@ -8142,8 +8267,7 @@ namespace Aws
 
         std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
@@ -8158,12 +8282,22 @@ namespace Aws
             const VerifyClientDeviceIdentityRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String VerifyClientDeviceIdentityOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(VerifyClientDeviceIdentityResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         AuthorizeClientDeviceActionOperationContext::AuthorizeClientDeviceActionOperationContext(
@@ -8211,8 +8345,7 @@ namespace Aws
 
         std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
@@ -8227,12 +8360,22 @@ namespace Aws
             const AuthorizeClientDeviceActionRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String AuthorizeClientDeviceActionOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(AuthorizeClientDeviceActionResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         ListComponentsOperationContext::ListComponentsOperationContext(
@@ -8280,7 +8423,7 @@ namespace Aws
 
         std::future<ListComponentsResult> ListComponentsOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         ListComponentsOperation::ListComponentsOperation(
@@ -8295,12 +8438,22 @@ namespace Aws
             const ListComponentsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String ListComponentsOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(ListComponentsResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         CreateDebugPasswordOperationContext::CreateDebugPasswordOperationContext(
@@ -8348,8 +8501,7 @@ namespace Aws
 
         std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
@@ -8364,12 +8516,22 @@ namespace Aws
             const CreateDebugPasswordRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String CreateDebugPasswordOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(CreateDebugPasswordResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GetThingShadowOperationContext::GetThingShadowOperationContext(
@@ -8417,7 +8579,7 @@ namespace Aws
 
         std::future<GetThingShadowResult> GetThingShadowOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         GetThingShadowOperation::GetThingShadowOperation(
@@ -8432,12 +8594,22 @@ namespace Aws
             const GetThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String GetThingShadowOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(GetThingShadowResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         SendConfigurationValidityReportOperationContext::SendConfigurationValidityReportOperationContext(
@@ -8486,9 +8658,7 @@ namespace Aws
         std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::
             GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SendConfigurationValidityReportOperation::SendConfigurationValidityReportOperation(
@@ -8503,12 +8673,22 @@ namespace Aws
             const SendConfigurationValidityReportRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SendConfigurationValidityReportOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(SendConfigurationValidityReportResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         UpdateThingShadowOperationContext::UpdateThingShadowOperationContext(
@@ -8556,8 +8736,7 @@ namespace Aws
 
         std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
@@ -8572,12 +8751,22 @@ namespace Aws
             const UpdateThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String UpdateThingShadowOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(UpdateThingShadowResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         UpdateConfigurationOperationContext::UpdateConfigurationOperationContext(
@@ -8625,8 +8814,7 @@ namespace Aws
 
         std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
@@ -8641,12 +8829,22 @@ namespace Aws
             const UpdateConfigurationRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String UpdateConfigurationOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(UpdateConfigurationResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         ValidateAuthorizationTokenOperationContext::ValidateAuthorizationTokenOperationContext(
@@ -8694,8 +8892,7 @@ namespace Aws
 
         std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
@@ -8710,12 +8907,22 @@ namespace Aws
             const ValidateAuthorizationTokenRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String ValidateAuthorizationTokenOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(ValidateAuthorizationTokenResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         RestartComponentOperationContext::RestartComponentOperationContext(
@@ -8763,8 +8970,7 @@ namespace Aws
 
         std::future<RestartComponentResult> RestartComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         RestartComponentOperation::RestartComponentOperation(
@@ -8779,12 +8985,22 @@ namespace Aws
             const RestartComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String RestartComponentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(RestartComponentResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GetLocalDeploymentStatusOperationContext::GetLocalDeploymentStatusOperationContext(
@@ -8832,8 +9048,7 @@ namespace Aws
 
         std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
@@ -8848,12 +9063,22 @@ namespace Aws
             const GetLocalDeploymentStatusRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String GetLocalDeploymentStatusOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(GetLocalDeploymentStatusResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GetSecretValueOperationContext::GetSecretValueOperationContext(
@@ -8901,7 +9126,7 @@ namespace Aws
 
         std::future<GetSecretValueResult> GetSecretValueOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         GetSecretValueOperation::GetSecretValueOperation(
@@ -8916,12 +9141,22 @@ namespace Aws
             const GetSecretValueRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String GetSecretValueOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(GetSecretValueResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         UpdateStateOperationContext::UpdateStateOperationContext(
@@ -8968,7 +9203,7 @@ namespace Aws
 
         std::future<UpdateStateResult> UpdateStateOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         UpdateStateOperation::UpdateStateOperation(
@@ -8983,12 +9218,22 @@ namespace Aws
             const UpdateStateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String UpdateStateOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(UpdateStateResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         CancelLocalDeploymentOperationContext::CancelLocalDeploymentOperationContext(
@@ -9036,8 +9281,7 @@ namespace Aws
 
         std::future<CancelLocalDeploymentResult> CancelLocalDeploymentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return CancelLocalDeploymentResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         CancelLocalDeploymentOperation::CancelLocalDeploymentOperation(
@@ -9052,12 +9296,22 @@ namespace Aws
             const CancelLocalDeploymentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String CancelLocalDeploymentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(CancelLocalDeploymentResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         ListNamedShadowsForThingOperationContext::ListNamedShadowsForThingOperationContext(
@@ -9105,8 +9359,7 @@ namespace Aws
 
         std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
@@ -9121,12 +9374,22 @@ namespace Aws
             const ListNamedShadowsForThingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String ListNamedShadowsForThingOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(ListNamedShadowsForThingResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         void SubscribeToComponentUpdatesStreamHandler::OnStreamEvent(
@@ -9204,8 +9467,7 @@ namespace Aws
 
         std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
@@ -9221,12 +9483,22 @@ namespace Aws
             const SubscribeToComponentUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String SubscribeToComponentUpdatesOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(SubscribeToComponentUpdatesResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         ListLocalDeploymentsOperationContext::ListLocalDeploymentsOperationContext(
@@ -9274,8 +9546,7 @@ namespace Aws
 
         std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
@@ -9290,12 +9561,22 @@ namespace Aws
             const ListLocalDeploymentsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String ListLocalDeploymentsOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(ListLocalDeploymentsResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         StopComponentOperationContext::StopComponentOperationContext(
@@ -9343,7 +9624,7 @@ namespace Aws
 
         std::future<StopComponentResult> StopComponentOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         StopComponentOperation::StopComponentOperation(
@@ -9358,12 +9639,22 @@ namespace Aws
             const StopComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String StopComponentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(StopComponentResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         PauseComponentOperationContext::PauseComponentOperationContext(
@@ -9411,7 +9702,7 @@ namespace Aws
 
         std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         PauseComponentOperation::PauseComponentOperation(
@@ -9426,12 +9717,22 @@ namespace Aws
             const PauseComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String PauseComponentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(PauseComponentResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         CreateLocalDeploymentOperationContext::CreateLocalDeploymentOperationContext(
@@ -9479,8 +9780,7 @@ namespace Aws
 
         std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+            return m_resultPromise.get_future();
         }
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(
@@ -9495,12 +9795,22 @@ namespace Aws
             const CreateLocalDeploymentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
-
-        Aws::Crt::String CreateLocalDeploymentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            bool synchronousSuccess = false;
+            m_selfReference = shared_from_this();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [this](TaggedResult &&unmodeledResult)
+                {
+                    m_resultPromise.set_value(CreateLocalDeploymentResult(std::move(unmodeledResult)));
+                    m_selfReference = nullptr;
+                },
+                synchronousSuccess);
+            if (!synchronousSuccess)
+            {
+                m_selfReference = nullptr;
+            }
+            return activateFuture;
         }
 
         GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel() noexcept
