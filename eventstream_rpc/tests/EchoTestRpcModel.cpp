@@ -1230,6 +1230,14 @@ namespace Awstest
         return activateFuture;
     }
 
+    std::future<RpcError> CauseStreamServiceToErrorOperation::SendStreamMessage(
+        const EchoStreamingMessage &message,
+        OnMessageFlushCallback onMessageFlushCallback)
+    {
+        return ClientOperation::SendStreamMessage(
+            static_cast<const AbstractShapeBase *>(&message), std::move(onMessageFlushCallback));
+    }
+
     void EchoStreamMessagesStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
     {
         OnStreamEvent(static_cast<EchoStreamingMessage *>(response.get()));
@@ -1324,6 +1332,14 @@ namespace Awstest
             m_selfReference = nullptr;
         }
         return activateFuture;
+    }
+
+    std::future<RpcError> EchoStreamMessagesOperation::SendStreamMessage(
+        const EchoStreamingMessage &message,
+        OnMessageFlushCallback onMessageFlushCallback)
+    {
+        return ClientOperation::SendStreamMessage(
+            static_cast<const AbstractShapeBase *>(&message), std::move(onMessageFlushCallback));
     }
 
     EchoMessageOperationContext::EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept

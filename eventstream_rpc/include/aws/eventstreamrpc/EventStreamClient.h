@@ -156,6 +156,7 @@ namespace Aws
             EVENT_STREAM_RPC_CRT_ERROR,
             EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED,
             EVENT_STREAM_RPC_CONTINUATION_CLOSE_IN_PROGRESS,
+            EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED,
         };
 
         /**
@@ -723,6 +724,18 @@ namespace Aws
                 OnMessageFlushCallback &&onMessageFlushCallback,
                 std::function<void(TaggedResult &&)> &&onResultCallback,
                 bool &synchronousSuccess) noexcept;
+
+            /**
+             * Sends a message on the stream
+             *
+             * @param shape Modeled representation of the message to send
+             * @param onMessageFlushCallback Optional callback to invoke when the message is written or fails to send
+             *
+             * @return Future which will be resolved once the message is sent.
+             */
+            std::future<RpcError> SendStreamMessage(
+                const AbstractShapeBase *shape,
+                OnMessageFlushCallback &&onMessageFlushCallback) noexcept;
 
             /**
              * Returns the canonical model name associated with this operation across any client language.

@@ -936,6 +936,18 @@ namespace Awstest
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
 
         /**
+         * Send a EchoStreamingMessage stream event.
+         *
+         * Activate() must have completed before calling SendMessage().
+         *
+         * Returns a Future which completes with a value indicating message
+         * flush success or what went wrong.
+         **/
+        std::future<RpcError> SendStreamMessage(
+            const EchoStreamingMessage &event,
+            OnMessageFlushCallback onMessageFlushCallback = nullptr);
+
+        /**
          * Retrieve the result from activating the stream.
          */
         std::future<CauseStreamServiceToErrorResult> GetResult() noexcept;
@@ -1047,6 +1059,18 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
+        /**
+         * Send a EchoStreamingMessage stream event.
+         *
+         * Activate() must have completed before calling SendMessage().
+         *
+         * Returns a Future which completes with a value indicating message
+         * flush success or what went wrong.
+         **/
+        std::future<RpcError> SendStreamMessage(
+            const EchoStreamingMessage &event,
+            OnMessageFlushCallback onMessageFlushCallback = nullptr);
 
         /**
          * Retrieve the result from activating the stream.
