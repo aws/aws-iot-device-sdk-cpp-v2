@@ -7058,19 +7058,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(SubscribeToIoTCoreResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7136,19 +7138,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(ResumeComponentResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7214,19 +7218,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(PublishToIoTCoreResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7323,19 +7329,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(SubscribeToConfigurationUpdateResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7401,19 +7409,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(DeleteThingShadowResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7479,19 +7489,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(PutComponentMetricResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7557,19 +7569,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(DeferComponentUpdateResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7663,20 +7677,22 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(
                         SubscribeToValidateConfigurationUpdatesResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7742,19 +7758,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(GetConfigurationResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7856,19 +7874,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(SubscribeToTopicResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -7934,19 +7954,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(GetComponentDetailsResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8012,19 +8034,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(GetClientDeviceAuthTokenResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8090,19 +8114,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(PublishToTopicResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8205,19 +8231,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(SubscribeToCertificateUpdatesResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8283,19 +8311,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(VerifyClientDeviceIdentityResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8361,19 +8391,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(AuthorizeClientDeviceActionResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8439,19 +8471,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(ListComponentsResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8517,19 +8551,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(CreateDebugPasswordResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8595,19 +8631,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(GetThingShadowResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8674,19 +8712,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(SendConfigurationValidityReportResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8752,19 +8792,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(UpdateThingShadowResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8830,19 +8872,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(UpdateConfigurationResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8908,19 +8952,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(ValidateAuthorizationTokenResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -8986,19 +9032,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(RestartComponentResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9064,19 +9112,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(GetLocalDeploymentStatusResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9142,19 +9192,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(GetSecretValueResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9219,19 +9271,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(UpdateStateResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9297,19 +9351,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(CancelLocalDeploymentResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9375,19 +9431,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(ListNamedShadowsForThingResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9484,19 +9542,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(SubscribeToComponentUpdatesResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9562,19 +9622,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(ListLocalDeploymentsResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9640,19 +9702,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(StopComponentResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9718,19 +9782,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(PauseComponentResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }
@@ -9796,19 +9862,21 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             bool synchronousSuccess = false;
-            m_selfReference = shared_from_this();
+            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
                 [this](TaggedResult &&unmodeledResult)
                 {
+                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                     m_resultPromise.set_value(CreateLocalDeploymentResult(std::move(unmodeledResult)));
                     m_selfReference = nullptr;
                 },
                 synchronousSuccess);
-            if (!synchronousSuccess)
+            if (synchronousSuccess)
             {
-                m_selfReference = nullptr;
+                m_selfReference = shared_from_this();
+                ;
             }
             return activateFuture;
         }

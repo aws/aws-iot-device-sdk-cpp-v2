@@ -745,6 +745,9 @@ namespace Awstest
       private:
         std::promise<GetAllProductsResult> m_resultPromise;
 
+        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+        std::mutex m_selfReferenceLock;
+
         /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
          * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
          * before the future gets completed. */
@@ -817,6 +820,9 @@ namespace Awstest
 
       private:
         std::promise<CauseServiceErrorResult> m_resultPromise;
+
+        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+        std::mutex m_selfReferenceLock;
 
         /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
          * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -955,6 +961,9 @@ namespace Awstest
       private:
         std::promise<CauseStreamServiceToErrorResult> m_resultPromise;
 
+        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+        std::mutex m_selfReferenceLock;
+
         /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
          * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
          * before the future gets completed. */
@@ -1080,6 +1089,9 @@ namespace Awstest
       private:
         std::promise<EchoStreamMessagesResult> m_resultPromise;
 
+        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+        std::mutex m_selfReferenceLock;
+
         /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
          * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
          * before the future gets completed. */
@@ -1152,6 +1164,9 @@ namespace Awstest
       private:
         std::promise<EchoMessageResult> m_resultPromise;
 
+        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+        std::mutex m_selfReferenceLock;
+
         /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
          * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
          * before the future gets completed. */
@@ -1223,6 +1238,9 @@ namespace Awstest
 
       private:
         std::promise<GetAllCustomersResult> m_resultPromise;
+
+        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+        std::mutex m_selfReferenceLock;
 
         /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
          * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference

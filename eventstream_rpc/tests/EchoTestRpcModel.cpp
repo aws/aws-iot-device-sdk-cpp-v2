@@ -1034,19 +1034,21 @@ namespace Awstest
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
         bool synchronousSuccess = false;
-        m_selfReference = shared_from_this();
+        std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
             [this](TaggedResult &&unmodeledResult)
             {
+                std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                 m_resultPromise.set_value(GetAllProductsResult(std::move(unmodeledResult)));
                 m_selfReference = nullptr;
             },
             synchronousSuccess);
-        if (!synchronousSuccess)
+        if (synchronousSuccess)
         {
-            m_selfReference = nullptr;
+            m_selfReference = shared_from_this();
+            ;
         }
         return activateFuture;
     }
@@ -1112,19 +1114,21 @@ namespace Awstest
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
         bool synchronousSuccess = false;
-        m_selfReference = shared_from_this();
+        std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
             [this](TaggedResult &&unmodeledResult)
             {
+                std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                 m_resultPromise.set_value(CauseServiceErrorResult(std::move(unmodeledResult)));
                 m_selfReference = nullptr;
             },
             synchronousSuccess);
-        if (!synchronousSuccess)
+        if (synchronousSuccess)
         {
-            m_selfReference = nullptr;
+            m_selfReference = shared_from_this();
+            ;
         }
         return activateFuture;
     }
@@ -1213,19 +1217,21 @@ namespace Awstest
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
         bool synchronousSuccess = false;
-        m_selfReference = shared_from_this();
+        std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
             [this](TaggedResult &&unmodeledResult)
             {
+                std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                 m_resultPromise.set_value(CauseStreamServiceToErrorResult(std::move(unmodeledResult)));
                 m_selfReference = nullptr;
             },
             synchronousSuccess);
-        if (!synchronousSuccess)
+        if (synchronousSuccess)
         {
-            m_selfReference = nullptr;
+            m_selfReference = shared_from_this();
+            ;
         }
         return activateFuture;
     }
@@ -1317,19 +1323,21 @@ namespace Awstest
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
         bool synchronousSuccess = false;
-        m_selfReference = shared_from_this();
+        std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
             [this](TaggedResult &&unmodeledResult)
             {
+                std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                 m_resultPromise.set_value(EchoStreamMessagesResult(std::move(unmodeledResult)));
                 m_selfReference = nullptr;
             },
             synchronousSuccess);
-        if (!synchronousSuccess)
+        if (synchronousSuccess)
         {
-            m_selfReference = nullptr;
+            m_selfReference = shared_from_this();
+            ;
         }
         return activateFuture;
     }
@@ -1401,19 +1409,21 @@ namespace Awstest
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
         bool synchronousSuccess = false;
-        m_selfReference = shared_from_this();
+        std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
             [this](TaggedResult &&unmodeledResult)
             {
+                std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                 m_resultPromise.set_value(EchoMessageResult(std::move(unmodeledResult)));
                 m_selfReference = nullptr;
             },
             synchronousSuccess);
-        if (!synchronousSuccess)
+        if (synchronousSuccess)
         {
-            m_selfReference = nullptr;
+            m_selfReference = shared_from_this();
+            ;
         }
         return activateFuture;
     }
@@ -1478,19 +1488,21 @@ namespace Awstest
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
         bool synchronousSuccess = false;
-        m_selfReference = shared_from_this();
+        std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
             [this](TaggedResult &&unmodeledResult)
             {
+                std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
                 m_resultPromise.set_value(GetAllCustomersResult(std::move(unmodeledResult)));
                 m_selfReference = nullptr;
             },
             synchronousSuccess);
-        if (!synchronousSuccess)
+        if (synchronousSuccess)
         {
-            m_selfReference = nullptr;
+            m_selfReference = shared_from_this();
+            ;
         }
         return activateFuture;
     }

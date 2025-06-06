@@ -4546,6 +4546,9 @@ namespace Aws
           private:
             std::promise<SubscribeToIoTCoreResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -4619,6 +4622,9 @@ namespace Aws
           private:
             std::promise<ResumeComponentResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -4691,6 +4697,9 @@ namespace Aws
 
           private:
             std::promise<PublishToIoTCoreResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -4828,6 +4837,9 @@ namespace Aws
           private:
             std::promise<SubscribeToConfigurationUpdateResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -4901,6 +4913,9 @@ namespace Aws
           private:
             std::promise<DeleteThingShadowResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -4973,6 +4988,9 @@ namespace Aws
 
           private:
             std::promise<PutComponentMetricResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -5048,6 +5066,9 @@ namespace Aws
 
           private:
             std::promise<DeferComponentUpdateResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -5179,6 +5200,9 @@ namespace Aws
           private:
             std::promise<SubscribeToValidateConfigurationUpdatesResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -5251,6 +5275,9 @@ namespace Aws
 
           private:
             std::promise<GetConfigurationResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -5395,6 +5422,9 @@ namespace Aws
           private:
             std::promise<SubscribeToTopicResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -5467,6 +5497,9 @@ namespace Aws
 
           private:
             std::promise<GetComponentDetailsResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -5544,6 +5577,9 @@ namespace Aws
           private:
             std::promise<GetClientDeviceAuthTokenResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -5616,6 +5652,9 @@ namespace Aws
 
           private:
             std::promise<PublishToTopicResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -5763,6 +5802,9 @@ namespace Aws
           private:
             std::promise<SubscribeToCertificateUpdatesResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -5838,6 +5880,9 @@ namespace Aws
 
           private:
             std::promise<VerifyClientDeviceIdentityResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -5915,6 +5960,9 @@ namespace Aws
           private:
             std::promise<AuthorizeClientDeviceActionResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -5987,6 +6035,9 @@ namespace Aws
 
           private:
             std::promise<ListComponentsResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -6061,6 +6112,9 @@ namespace Aws
           private:
             std::promise<CreateDebugPasswordResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6133,6 +6187,9 @@ namespace Aws
 
           private:
             std::promise<GetThingShadowResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -6210,6 +6267,9 @@ namespace Aws
           private:
             std::promise<SendConfigurationValidityReportResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6283,6 +6343,9 @@ namespace Aws
           private:
             std::promise<UpdateThingShadowResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6355,6 +6418,9 @@ namespace Aws
 
           private:
             std::promise<UpdateConfigurationResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -6432,6 +6498,9 @@ namespace Aws
           private:
             std::promise<ValidateAuthorizationTokenResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6504,6 +6573,9 @@ namespace Aws
 
           private:
             std::promise<RestartComponentResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -6581,6 +6653,9 @@ namespace Aws
           private:
             std::promise<GetLocalDeploymentStatusResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6654,6 +6729,9 @@ namespace Aws
           private:
             std::promise<GetSecretValueResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6725,6 +6803,9 @@ namespace Aws
 
           private:
             std::promise<UpdateStateResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -6801,6 +6882,9 @@ namespace Aws
           private:
             std::promise<CancelLocalDeploymentResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -6876,6 +6960,9 @@ namespace Aws
 
           private:
             std::promise<ListNamedShadowsForThingResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -7013,6 +7100,9 @@ namespace Aws
           private:
             std::promise<SubscribeToComponentUpdatesResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -7088,6 +7178,9 @@ namespace Aws
           private:
             std::promise<ListLocalDeploymentsResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -7161,6 +7254,9 @@ namespace Aws
           private:
             std::promise<StopComponentResult> m_resultPromise;
 
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
+
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
              * before the future gets completed. */
@@ -7233,6 +7329,9 @@ namespace Aws
 
           private:
             std::promise<PauseComponentResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
@@ -7308,6 +7407,9 @@ namespace Aws
 
           private:
             std::promise<CreateLocalDeploymentResult> m_resultPromise;
+
+            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
+            std::mutex m_selfReferenceLock;
 
             /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
              * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference

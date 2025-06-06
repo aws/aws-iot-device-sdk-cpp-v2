@@ -30,6 +30,7 @@ file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
+# Connectivity tests
 add_test_case(EventStreamClientCreateFailureInvalidHost)
 add_test_case(EventStreamClientCreateFailureInvalidPort)
 add_test_case(EventStreamConnectSuccess)
@@ -43,6 +44,7 @@ add_test_case(EchoClientCloseWhileConnecting)
 add_test_case(EchoClientConnectWhileClosing)
 add_test_case(EchoClientOpenCloseStress)
 
+# Basic non-streaming operation tests
 add_test_case(EchoClientOperationEchoSuccessString)
 add_test_case(EchoClientOperationEchoSuccessBoolean)
 add_test_case(EchoClientOperationEchoSuccessTime)
@@ -52,14 +54,37 @@ add_test_case(EchoClientOperationEchoSuccessBlob)
 add_test_case(EchoClientOperationEchoSuccessStringList)
 add_test_case(EchoClientOperationEchoSuccessPairList)
 add_test_case(EchoClientOperationEchoSuccessProductMap)
+add_test_case(EchoClientOperationEchoSuccessMultiple)
+add_test_case(EchoClientOperationGetAllProductsSuccess)
+add_test_case(EchoClientOperationGetAllCustomersSuccess)
+add_test_case(EchoClientOperationCauseServiceErrorSuccess)
+add_test_case(EchoClientOperationEchoFailureNeverConnected)
+add_test_case(EchoClientOperationEchoFailureDisconnected)
 
-#add_test_case(EchoClientOperationEchoSuccessMultiple)
-#add_test_case(EchoClientOperationEchoFailureNeverConnected)
-#add_test_case(EchoClientOperationEchoFailureDisconnected)
+# Non-streaming race condition tests
+add_test_case(EchoClientOperationUnactivatedShutdown)
+add_test_case(EchoClientOperationUnactivatedClose)
+add_test_case(EchoClientOperationUnactivatedCloseDropFuture)
+add_test_case(EchoClientOperationActivateActivate)
+#add_test_case(EchoClientOperationActivateWaitActivate)
+#add_test_case(EchoClientOperationActivateCloseActivate)
+#add_test_case(EchoClientOperationActivateClosedActivate)
+#add_test_case(EchoClientOperationActivateCloseConnection)
+#add_test_case(EchoClientOperationActivateCloseContinuation)
+#add_test_case(EchoClientOperationActivateDoubleCloseContinuation)
+#add_test_case(EchoClientOperationActivateWaitDoubleCloseContinuation)
+#add_test_case(EchoClientOperationActivateWaitCloseContinuationWaitCloseContinuation)
+#add_test_case(EchoClientOperationActivateShutdown)
+#add_test_case(EchoClientOperationActivateShutdownDropFuture)
+#add_test_case(EchoClientOperationActivateWaitCloseShutdown)
+#add_test_case(EchoClientOperationActivateWaitCloseShutdownDropFuture)
 
+# streaming echo messages tests
 
+# streaming failure/error tests
 
-#add_test_case(StressTestClient)
+# streaming race condition tests
+
 generate_cpp_test_driver(${TEST_BINARY_NAME})
 aws_add_sanitizers(${TEST_BINARY_NAME})
 target_include_directories(${TEST_BINARY_NAME} PUBLIC
