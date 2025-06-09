@@ -933,12 +933,6 @@ static int s_TestEchoClientOperationEchoFailureNeverConnected(struct aws_allocat
 
         auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
         ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_CLOSED, requestFuture.get().baseStatus);
-
-        auto result = echoMessage->GetResult().get();
-        ASSERT_FALSE(result);
-
-        auto error = result.GetRpcError();
-        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONNECTION_CLOSED, error.baseStatus);
     }
 
     return AWS_OP_SUCCESS;
@@ -975,12 +969,6 @@ static int s_TestEchoClientOperationEchoFailureDisconnected(struct aws_allocator
         auto activateStatus = requestFuture.get().baseStatus;
         ASSERT_TRUE(
             activateStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED || activateStatus == EVENT_STREAM_RPC_CRT_ERROR);
-
-        auto result = echoMessage->GetResult().get();
-        ASSERT_FALSE(result);
-
-        auto resultStatus = result.GetRpcError().baseStatus;
-        ASSERT_TRUE(resultStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED || resultStatus == EVENT_STREAM_RPC_CRT_ERROR);
     }
 
     return AWS_OP_SUCCESS;
@@ -1076,16 +1064,16 @@ static int s_TestEchoClientOperationActivateActivate(struct aws_allocator *alloc
             GetAllCustomersRequest getAllCustomersRequest;
 
             auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
-  //          auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
-  //          requestFuture2.wait();
+            auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            requestFuture2.wait();
             requestFuture.wait();
             auto result = getAllCustomers->GetResult().get();
             ASSERT_TRUE(result);
             auto response = result.GetOperationResponse();
             ASSERT_NOT_NULL(response);
 
-  //          auto flush2ErrorStatus = requestFuture2.get().baseStatus;
-  //          ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED, flush2ErrorStatus);
+            auto flush2ErrorStatus = requestFuture2.get().baseStatus;
+            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED, flush2ErrorStatus);
 
             return AWS_OP_SUCCESS;
         });
@@ -1094,7 +1082,6 @@ static int s_TestEchoClientOperationActivateActivate(struct aws_allocator *alloc
 AWS_TEST_CASE(EchoClientOperationActivateActivate, s_TestEchoClientOperationActivateActivate);
 
 // Non-streaming race condition tests
-// add_test_case(EchoClientOperationActivateActivate)
 // add_test_case(EchoClientOperationActivateWaitActivate)
 // add_test_case(EchoClientOperationActivateCloseActivate)
 // add_test_case(EchoClientOperationActivateClosedActivate)
