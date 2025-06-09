@@ -1297,6 +1297,8 @@ namespace Aws
 
             void OnMessage(const struct aws_event_stream_rpc_message_args *messageArgs) noexcept;
 
+            EventStreamRpcStatusCode GetEmptyContinuationStatusCode() const;
+
             static void s_OnContinuationClosed(
                 struct aws_event_stream_rpc_client_continuation_token *token,
                 void *user_data) noexcept;
@@ -1326,6 +1328,18 @@ namespace Aws
             std::shared_ptr<StreamResponseHandler> m_streamHandler;
 
             std::promise<void> m_terminationPromise;
+
+            /*
+             * An unfortunate bit of state needed to differentiate between two cases:
+             *  (1) Failure to create the original continuation for any reason
+             *  (2) A fully-closed continuation
+             *
+             * We want to differentiate these cases in order to communicate clear error codes when attempting
+             * to operate on the continuation.
+             *
+             * This is always true in case (2) and false in case (1)
+             */
+            bool m_continuationValid;
         };
 
         ClientOperation::ClientOperation(
@@ -1412,7 +1426,7 @@ namespace Aws
             struct aws_client_bootstrap *bootstrap,
             struct aws_event_stream_rpc_client_connection *connection) noexcept
             : m_allocator(allocator), m_clientBootstrap(aws_client_bootstrap_acquire(bootstrap)), m_sharedState(),
-              m_operationModelContext(nullptr)
+              m_operationModelContext(nullptr), m_continuationValid(true)
         {
             if (connection != nullptr)
             {
@@ -1430,6 +1444,7 @@ namespace Aws
             {
                 m_sharedState.m_currentState = ContinuationStateType::Closed;
                 m_sharedState.m_desiredState = ContinuationStateType::Closed;
+                m_continuationValid = false;
             }
         }
 
@@ -1520,6 +1535,18 @@ namespace Aws
             return m_terminationPromise.get_future();
         }
 
+        EventStreamRpcStatusCode ClientContinuationImpl::GetEmptyContinuationStatusCode() const
+        {
+            if (m_continuationValid)
+            {
+                return EVENT_STREAM_RPC_CONTINUATION_CLOSED;
+            }
+            else
+            {
+                return EVENT_STREAM_RPC_CONNECTION_CLOSED;
+            }
+        }
+
         std::future<RpcError> ClientContinuationImpl::Activate(
             const Crt::String &operation,
             const Crt::List<EventStreamHeader> &headers,
@@ -1599,8 +1626,7 @@ namespace Aws
                 }
                 else
                 {
-                    // null continuation is only if the connection didn't exist at creation time
-                    activationError = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                    activationError = {GetEmptyContinuationStatusCode(), 0};
                 }
             }
 
@@ -1682,8 +1708,7 @@ namespace Aws
                 }
                 else
                 {
-                    // null continuation is only if the connection didn't exist at creation time
-                    sendError = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                    sendError = {GetEmptyContinuationStatusCode(), 0};
                 }
             }
 
@@ -1752,8 +1777,7 @@ namespace Aws
                 }
                 else
                 {
-                    // null continuation is only if the connection didn't exist at creation time
-                    closeError = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                    closeError = {GetEmptyContinuationStatusCode(), 0};
                 }
             }
 
@@ -1928,12 +1952,15 @@ namespace Aws
             bool isResponse = false;
             {
                 std::lock_guard<std::mutex> lock(m_sharedStateLock);
-                isResponse = static_cast<bool>(m_sharedState.m_currentState == ContinuationStateType::PendingActivate);
+                isResponse = static_cast<bool>(m_sharedState.m_activationResponseCallback);
                 if (isResponse)
                 {
                     activationResultCallback = std::move(m_sharedState.m_activationResponseCallback);
                     m_sharedState.m_activationResponseCallback = nullptr;
-                    m_sharedState.m_currentState = ContinuationStateType::Activated;
+                    if (m_sharedState.m_currentState == ContinuationStateType::PendingActivate)
+                    {
+                        m_sharedState.m_currentState = ContinuationStateType::Activated;
+                    }
                 }
             }
 
@@ -1969,14 +1996,20 @@ namespace Aws
                 {
                     AWS_FATAL_ASSERT(result.m_message.value().m_route == EventStreamMessageRoutingType::Stream);
                     auto shape = std::move(result.m_message.value().m_shape);
-                    m_streamHandler->OnStreamEvent(std::move(shape));
+                    if (m_streamHandler)
+                    {
+                        m_streamHandler->OnStreamEvent(std::move(shape));
+                    }
                 }
                 else
                 {
-                    bool shouldClose = m_streamHandler->OnStreamError(nullptr, {result.m_statusCode, 0});
-                    if (shouldClose)
+                    if (m_streamHandler)
                     {
-                        Close();
+                        bool shouldClose = m_streamHandler->OnStreamError(nullptr, {result.m_statusCode, 0});
+                        if (shouldClose)
+                        {
+                            Close();
+                        }
                     }
                 }
             }
