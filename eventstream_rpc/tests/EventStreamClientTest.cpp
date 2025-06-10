@@ -1148,10 +1148,101 @@ static int s_TestEchoClientOperationActivateCloseActivate(struct aws_allocator *
 
 AWS_TEST_CASE(EchoClientOperationActivateCloseActivate, s_TestEchoClientOperationActivateCloseActivate);
 
+static int s_TestEchoClientOperationActivateClosedActivate(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+
+            auto closeFuture = getAllCustomers->Close();
+            closeFuture.wait();
+
+            requestFuture.wait();
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_TRUE(
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            requestFuture2.wait();
+
+            auto flush2ErrorStatus = requestFuture2.get().baseStatus;
+            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONTINUATION_CLOSED, flush2ErrorStatus);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationActivateClosedActivate, s_TestEchoClientOperationActivateClosedActivate);
+
+static int s_DoClientScopedRaceCheckTest(
+    struct aws_allocator *allocator,
+    std::function<int(EventStreamClientTestContext &, EchoTestRpcClient &)> testFunction)
+{
+    ApiHandle apiHandle(allocator);
+    for (size_t i = 0; i < 100; ++i)
+    {
+
+        EventStreamClientTestContext testContext(allocator);
+        if (!testContext.isValidEnvironment())
+        {
+            printf("Environment Variables are not set for the test, skipping...");
+            return AWS_OP_SKIP;
+        }
+
+        {
+            ConnectionLifecycleHandler lifecycleHandler;
+            Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+            auto connectedStatus = client.Connect(lifecycleHandler);
+            ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
+
+            ASSERT_SUCCESS(testFunction(testContext, client));
+        }
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+static int s_TestEchoClientOperationActivateCloseConnection(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoClientScopedRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+
+            client.Close();
+
+            requestFuture.wait();
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_TRUE(
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS || flushErrorStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
+
+            auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            requestFuture2.wait();
+
+            auto flush2ErrorStatus = requestFuture2.get().baseStatus;
+            ASSERT_TRUE(
+                flush2ErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED ||
+                flush2ErrorStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED ||
+                flush2ErrorStatus == EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationActivateCloseConnection, s_TestEchoClientOperationActivateCloseConnection);
+
 // Non-streaming race condition tests
-// add_test_case(EchoClientOperationActivateClosedActivate)
 // add_test_case(EchoClientOperationActivateCloseConnection)
-// add_test_case(EchoClientOperationActivateCloseContinuation)
 // add_test_case(EchoClientOperationActivateDoubleCloseContinuation)
 // add_test_case(EchoClientOperationActivateWaitDoubleCloseContinuation)
 // add_test_case(EchoClientOperationActivateWaitCloseContinuationWaitCloseContinuation)

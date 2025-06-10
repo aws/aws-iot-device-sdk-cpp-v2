@@ -743,15 +743,7 @@ namespace Awstest
         std::future<GetAllProductsResult> GetResult() noexcept;
 
       private:
-        std::promise<GetAllProductsResult> m_resultPromise;
-
-        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-        std::mutex m_selfReferenceLock;
-
-        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-         * before the future gets completed. */
-        std::shared_ptr<GetAllProductsOperation> m_selfReference;
+        std::shared_ptr<std::promise<GetAllProductsResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API CauseServiceErrorOperationContext : public OperationModelContext
@@ -819,15 +811,7 @@ namespace Awstest
         std::future<CauseServiceErrorResult> GetResult() noexcept;
 
       private:
-        std::promise<CauseServiceErrorResult> m_resultPromise;
-
-        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-        std::mutex m_selfReferenceLock;
-
-        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-         * before the future gets completed. */
-        std::shared_ptr<CauseServiceErrorOperation> m_selfReference;
+        std::shared_ptr<std::promise<CauseServiceErrorResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorStreamHandler : public StreamResponseHandler
@@ -959,15 +943,7 @@ namespace Awstest
         std::future<CauseStreamServiceToErrorResult> GetResult() noexcept;
 
       private:
-        std::promise<CauseStreamServiceToErrorResult> m_resultPromise;
-
-        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-        std::mutex m_selfReferenceLock;
-
-        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-         * before the future gets completed. */
-        std::shared_ptr<CauseStreamServiceToErrorOperation> m_selfReference;
+        std::shared_ptr<std::promise<CauseStreamServiceToErrorResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API EchoStreamMessagesStreamHandler : public StreamResponseHandler
@@ -1087,15 +1063,7 @@ namespace Awstest
         std::future<EchoStreamMessagesResult> GetResult() noexcept;
 
       private:
-        std::promise<EchoStreamMessagesResult> m_resultPromise;
-
-        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-        std::mutex m_selfReferenceLock;
-
-        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-         * before the future gets completed. */
-        std::shared_ptr<EchoStreamMessagesOperation> m_selfReference;
+        std::shared_ptr<std::promise<EchoStreamMessagesResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API EchoMessageOperationContext : public OperationModelContext
@@ -1162,15 +1130,7 @@ namespace Awstest
         std::future<EchoMessageResult> GetResult() noexcept;
 
       private:
-        std::promise<EchoMessageResult> m_resultPromise;
-
-        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-        std::mutex m_selfReferenceLock;
-
-        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-         * before the future gets completed. */
-        std::shared_ptr<EchoMessageOperation> m_selfReference;
+        std::shared_ptr<std::promise<EchoMessageResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API GetAllCustomersOperationContext : public OperationModelContext
@@ -1237,15 +1197,7 @@ namespace Awstest
         std::future<GetAllCustomersResult> GetResult() noexcept;
 
       private:
-        std::promise<GetAllCustomersResult> m_resultPromise;
-
-        /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-        std::mutex m_selfReferenceLock;
-
-        /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-         * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-         * before the future gets completed. */
-        std::shared_ptr<GetAllCustomersOperation> m_selfReference;
+        std::shared_ptr<std::promise<GetAllCustomersResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API EchoTestRpcServiceModel : public ServiceModel

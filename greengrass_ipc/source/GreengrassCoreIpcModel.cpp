@@ -7041,7 +7041,7 @@ namespace Aws
 
         std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
@@ -7049,7 +7049,8 @@ namespace Aws
             std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
             const SubscribeToIoTCoreOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToIoTCoreResult>>(allocator))
         {
         }
 
@@ -7057,23 +7058,14 @@ namespace Aws
             const SubscribeToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(SubscribeToIoTCoreResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToIoTCoreResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7122,14 +7114,15 @@ namespace Aws
 
         std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         ResumeComponentOperation::ResumeComponentOperation(
             ClientConnection &connection,
             const ResumeComponentOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ResumeComponentResult>>(allocator))
         {
         }
 
@@ -7137,23 +7130,14 @@ namespace Aws
             const ResumeComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(ResumeComponentResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(ResumeComponentResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7202,14 +7186,15 @@ namespace Aws
 
         std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
             ClientConnection &connection,
             const PublishToIoTCoreOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PublishToIoTCoreResult>>(allocator))
         {
         }
 
@@ -7217,23 +7202,14 @@ namespace Aws
             const PublishToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(PublishToIoTCoreResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(PublishToIoTCoreResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7312,7 +7288,7 @@ namespace Aws
 
         std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
@@ -7320,7 +7296,8 @@ namespace Aws
             std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
             const SubscribeToConfigurationUpdateOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToConfigurationUpdateResult>>(allocator))
         {
         }
 
@@ -7328,23 +7305,14 @@ namespace Aws
             const SubscribeToConfigurationUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(SubscribeToConfigurationUpdateResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToConfigurationUpdateResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7393,14 +7361,15 @@ namespace Aws
 
         std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
             ClientConnection &connection,
             const DeleteThingShadowOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<DeleteThingShadowResult>>(allocator))
         {
         }
 
@@ -7408,23 +7377,14 @@ namespace Aws
             const DeleteThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(DeleteThingShadowResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(DeleteThingShadowResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7473,14 +7433,15 @@ namespace Aws
 
         std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         PutComponentMetricOperation::PutComponentMetricOperation(
             ClientConnection &connection,
             const PutComponentMetricOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PutComponentMetricResult>>(allocator))
         {
         }
 
@@ -7488,23 +7449,14 @@ namespace Aws
             const PutComponentMetricRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(PutComponentMetricResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(PutComponentMetricResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7553,14 +7505,15 @@ namespace Aws
 
         std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
             ClientConnection &connection,
             const DeferComponentUpdateOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<DeferComponentUpdateResult>>(allocator))
         {
         }
 
@@ -7568,23 +7521,14 @@ namespace Aws
             const DeferComponentUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(DeferComponentUpdateResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(DeferComponentUpdateResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7660,7 +7604,7 @@ namespace Aws
         std::future<SubscribeToValidateConfigurationUpdatesResult> SubscribeToValidateConfigurationUpdatesOperation::
             GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
@@ -7668,7 +7612,9 @@ namespace Aws
             std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
             const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(
+                  Aws::Crt::MakeShared<std::promise<SubscribeToValidateConfigurationUpdatesResult>>(allocator))
         {
         }
 
@@ -7676,24 +7622,16 @@ namespace Aws
             const SubscribeToValidateConfigurationUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(
+                [promiseReference](TaggedResult &&unmodeledResult) {
+                    promiseReference->set_value(
                         SubscribeToValidateConfigurationUpdatesResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                });
+
             return activateFuture;
         }
 
@@ -7742,14 +7680,15 @@ namespace Aws
 
         std::future<GetConfigurationResult> GetConfigurationOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         GetConfigurationOperation::GetConfigurationOperation(
             ClientConnection &connection,
             const GetConfigurationOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetConfigurationResult>>(allocator))
         {
         }
 
@@ -7757,23 +7696,14 @@ namespace Aws
             const GetConfigurationRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(GetConfigurationResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(GetConfigurationResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7857,7 +7787,7 @@ namespace Aws
 
         std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
@@ -7865,7 +7795,8 @@ namespace Aws
             std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
             const SubscribeToTopicOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToTopicResult>>(allocator))
         {
         }
 
@@ -7873,23 +7804,14 @@ namespace Aws
             const SubscribeToTopicRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(SubscribeToTopicResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToTopicResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -7938,14 +7860,15 @@ namespace Aws
 
         std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
             ClientConnection &connection,
             const GetComponentDetailsOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetComponentDetailsResult>>(allocator))
         {
         }
 
@@ -7953,23 +7876,14 @@ namespace Aws
             const GetComponentDetailsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(GetComponentDetailsResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(GetComponentDetailsResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8018,14 +7932,15 @@ namespace Aws
 
         std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
             ClientConnection &connection,
             const GetClientDeviceAuthTokenOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetClientDeviceAuthTokenResult>>(allocator))
         {
         }
 
@@ -8033,23 +7948,14 @@ namespace Aws
             const GetClientDeviceAuthTokenRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(GetClientDeviceAuthTokenResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(GetClientDeviceAuthTokenResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8098,14 +8004,15 @@ namespace Aws
 
         std::future<PublishToTopicResult> PublishToTopicOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         PublishToTopicOperation::PublishToTopicOperation(
             ClientConnection &connection,
             const PublishToTopicOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PublishToTopicResult>>(allocator))
         {
         }
 
@@ -8113,23 +8020,14 @@ namespace Aws
             const PublishToTopicRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(PublishToTopicResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(PublishToTopicResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8214,7 +8112,7 @@ namespace Aws
 
         std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SubscribeToCertificateUpdatesOperation::SubscribeToCertificateUpdatesOperation(
@@ -8222,7 +8120,8 @@ namespace Aws
             std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
             const SubscribeToCertificateUpdatesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToCertificateUpdatesResult>>(allocator))
         {
         }
 
@@ -8230,23 +8129,14 @@ namespace Aws
             const SubscribeToCertificateUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(SubscribeToCertificateUpdatesResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToCertificateUpdatesResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8295,14 +8185,15 @@ namespace Aws
 
         std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
             ClientConnection &connection,
             const VerifyClientDeviceIdentityOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<VerifyClientDeviceIdentityResult>>(allocator))
         {
         }
 
@@ -8310,23 +8201,14 @@ namespace Aws
             const VerifyClientDeviceIdentityRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(VerifyClientDeviceIdentityResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(VerifyClientDeviceIdentityResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8375,14 +8257,15 @@ namespace Aws
 
         std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
             ClientConnection &connection,
             const AuthorizeClientDeviceActionOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<AuthorizeClientDeviceActionResult>>(allocator))
         {
         }
 
@@ -8390,23 +8273,14 @@ namespace Aws
             const AuthorizeClientDeviceActionRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(AuthorizeClientDeviceActionResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(AuthorizeClientDeviceActionResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8455,14 +8329,15 @@ namespace Aws
 
         std::future<ListComponentsResult> ListComponentsOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         ListComponentsOperation::ListComponentsOperation(
             ClientConnection &connection,
             const ListComponentsOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ListComponentsResult>>(allocator))
         {
         }
 
@@ -8470,23 +8345,14 @@ namespace Aws
             const ListComponentsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(ListComponentsResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(ListComponentsResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8535,14 +8401,15 @@ namespace Aws
 
         std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
             ClientConnection &connection,
             const CreateDebugPasswordOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<CreateDebugPasswordResult>>(allocator))
         {
         }
 
@@ -8550,23 +8417,14 @@ namespace Aws
             const CreateDebugPasswordRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(CreateDebugPasswordResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(CreateDebugPasswordResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8615,14 +8473,15 @@ namespace Aws
 
         std::future<GetThingShadowResult> GetThingShadowOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         GetThingShadowOperation::GetThingShadowOperation(
             ClientConnection &connection,
             const GetThingShadowOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetThingShadowResult>>(allocator))
         {
         }
 
@@ -8630,23 +8489,14 @@ namespace Aws
             const GetThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(GetThingShadowResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(GetThingShadowResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8696,14 +8546,15 @@ namespace Aws
         std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::
             GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SendConfigurationValidityReportOperation::SendConfigurationValidityReportOperation(
             ClientConnection &connection,
             const SendConfigurationValidityReportOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SendConfigurationValidityReportResult>>(allocator))
         {
         }
 
@@ -8711,23 +8562,14 @@ namespace Aws
             const SendConfigurationValidityReportRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(SendConfigurationValidityReportResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(SendConfigurationValidityReportResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8776,14 +8618,15 @@ namespace Aws
 
         std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
             ClientConnection &connection,
             const UpdateThingShadowOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateThingShadowResult>>(allocator))
         {
         }
 
@@ -8791,23 +8634,14 @@ namespace Aws
             const UpdateThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(UpdateThingShadowResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(UpdateThingShadowResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8856,14 +8690,15 @@ namespace Aws
 
         std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
             ClientConnection &connection,
             const UpdateConfigurationOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateConfigurationResult>>(allocator))
         {
         }
 
@@ -8871,23 +8706,14 @@ namespace Aws
             const UpdateConfigurationRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(UpdateConfigurationResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(UpdateConfigurationResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -8936,14 +8762,15 @@ namespace Aws
 
         std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
             ClientConnection &connection,
             const ValidateAuthorizationTokenOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ValidateAuthorizationTokenResult>>(allocator))
         {
         }
 
@@ -8951,23 +8778,14 @@ namespace Aws
             const ValidateAuthorizationTokenRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(ValidateAuthorizationTokenResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(ValidateAuthorizationTokenResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9016,14 +8834,15 @@ namespace Aws
 
         std::future<RestartComponentResult> RestartComponentOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         RestartComponentOperation::RestartComponentOperation(
             ClientConnection &connection,
             const RestartComponentOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<RestartComponentResult>>(allocator))
         {
         }
 
@@ -9031,23 +8850,14 @@ namespace Aws
             const RestartComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(RestartComponentResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(RestartComponentResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9096,14 +8906,15 @@ namespace Aws
 
         std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
             ClientConnection &connection,
             const GetLocalDeploymentStatusOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetLocalDeploymentStatusResult>>(allocator))
         {
         }
 
@@ -9111,23 +8922,14 @@ namespace Aws
             const GetLocalDeploymentStatusRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(GetLocalDeploymentStatusResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(GetLocalDeploymentStatusResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9176,14 +8978,15 @@ namespace Aws
 
         std::future<GetSecretValueResult> GetSecretValueOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         GetSecretValueOperation::GetSecretValueOperation(
             ClientConnection &connection,
             const GetSecretValueOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetSecretValueResult>>(allocator))
         {
         }
 
@@ -9191,23 +8994,14 @@ namespace Aws
             const GetSecretValueRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(GetSecretValueResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(GetSecretValueResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9255,14 +9049,15 @@ namespace Aws
 
         std::future<UpdateStateResult> UpdateStateOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         UpdateStateOperation::UpdateStateOperation(
             ClientConnection &connection,
             const UpdateStateOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateStateResult>>(allocator))
         {
         }
 
@@ -9270,23 +9065,14 @@ namespace Aws
             const UpdateStateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(UpdateStateResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(UpdateStateResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9335,14 +9121,15 @@ namespace Aws
 
         std::future<CancelLocalDeploymentResult> CancelLocalDeploymentOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         CancelLocalDeploymentOperation::CancelLocalDeploymentOperation(
             ClientConnection &connection,
             const CancelLocalDeploymentOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<CancelLocalDeploymentResult>>(allocator))
         {
         }
 
@@ -9350,23 +9137,14 @@ namespace Aws
             const CancelLocalDeploymentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(CancelLocalDeploymentResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(CancelLocalDeploymentResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9415,14 +9193,15 @@ namespace Aws
 
         std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
             ClientConnection &connection,
             const ListNamedShadowsForThingOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ListNamedShadowsForThingResult>>(allocator))
         {
         }
 
@@ -9430,23 +9209,14 @@ namespace Aws
             const ListNamedShadowsForThingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(ListNamedShadowsForThingResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(ListNamedShadowsForThingResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9525,7 +9295,7 @@ namespace Aws
 
         std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
@@ -9533,7 +9303,8 @@ namespace Aws
             std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
             const SubscribeToComponentUpdatesOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToComponentUpdatesResult>>(allocator))
         {
         }
 
@@ -9541,23 +9312,14 @@ namespace Aws
             const SubscribeToComponentUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(SubscribeToComponentUpdatesResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToComponentUpdatesResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9606,14 +9368,15 @@ namespace Aws
 
         std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
             ClientConnection &connection,
             const ListLocalDeploymentsOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ListLocalDeploymentsResult>>(allocator))
         {
         }
 
@@ -9621,23 +9384,14 @@ namespace Aws
             const ListLocalDeploymentsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(ListLocalDeploymentsResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(ListLocalDeploymentsResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9686,14 +9440,15 @@ namespace Aws
 
         std::future<StopComponentResult> StopComponentOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         StopComponentOperation::StopComponentOperation(
             ClientConnection &connection,
             const StopComponentOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<StopComponentResult>>(allocator))
         {
         }
 
@@ -9701,23 +9456,14 @@ namespace Aws
             const StopComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(StopComponentResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(StopComponentResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9766,14 +9512,15 @@ namespace Aws
 
         std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         PauseComponentOperation::PauseComponentOperation(
             ClientConnection &connection,
             const PauseComponentOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PauseComponentResult>>(allocator))
         {
         }
 
@@ -9781,23 +9528,14 @@ namespace Aws
             const PauseComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(PauseComponentResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(PauseComponentResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 
@@ -9846,14 +9584,15 @@ namespace Aws
 
         std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult() noexcept
         {
-            return m_resultPromise.get_future();
+            return m_resultPromise->get_future();
         }
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(
             ClientConnection &connection,
             const CreateLocalDeploymentOperationContext &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<CreateLocalDeploymentResult>>(allocator))
         {
         }
 
@@ -9861,23 +9600,14 @@ namespace Aws
             const CreateLocalDeploymentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            bool synchronousSuccess = false;
-            std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
+            auto promiseReference = m_resultPromise;
+
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [this](TaggedResult &&unmodeledResult)
-                {
-                    std::lock_guard<std::mutex> selfReferenceLock(m_selfReferenceLock);
-                    m_resultPromise.set_value(CreateLocalDeploymentResult(std::move(unmodeledResult)));
-                    m_selfReference = nullptr;
-                },
-                synchronousSuccess);
-            if (synchronousSuccess)
-            {
-                m_selfReference = shared_from_this();
-                ;
-            }
+                [promiseReference](TaggedResult &&unmodeledResult)
+                { promiseReference->set_value(CreateLocalDeploymentResult(std::move(unmodeledResult))); });
+
             return activateFuture;
         }
 

@@ -4544,15 +4544,7 @@ namespace Aws
             std::future<SubscribeToIoTCoreResult> GetResult() noexcept;
 
           private:
-            std::promise<SubscribeToIoTCoreResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SubscribeToIoTCoreOperation> m_selfReference;
+            std::shared_ptr<std::promise<SubscribeToIoTCoreResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ResumeComponentOperationContext : public OperationModelContext
@@ -4620,15 +4612,7 @@ namespace Aws
             std::future<ResumeComponentResult> GetResult() noexcept;
 
           private:
-            std::promise<ResumeComponentResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<ResumeComponentOperation> m_selfReference;
+            std::shared_ptr<std::promise<ResumeComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperationContext : public OperationModelContext
@@ -4696,15 +4680,7 @@ namespace Aws
             std::future<PublishToIoTCoreResult> GetResult() noexcept;
 
           private:
-            std::promise<PublishToIoTCoreResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<PublishToIoTCoreOperation> m_selfReference;
+            std::shared_ptr<std::promise<PublishToIoTCoreResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateStreamHandler : public StreamResponseHandler
@@ -4835,15 +4811,7 @@ namespace Aws
             std::future<SubscribeToConfigurationUpdateResult> GetResult() noexcept;
 
           private:
-            std::promise<SubscribeToConfigurationUpdateResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SubscribeToConfigurationUpdateOperation> m_selfReference;
+            std::shared_ptr<std::promise<SubscribeToConfigurationUpdateResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperationContext : public OperationModelContext
@@ -4911,15 +4879,7 @@ namespace Aws
             std::future<DeleteThingShadowResult> GetResult() noexcept;
 
           private:
-            std::promise<DeleteThingShadowResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<DeleteThingShadowOperation> m_selfReference;
+            std::shared_ptr<std::promise<DeleteThingShadowResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperationContext : public OperationModelContext
@@ -4987,15 +4947,7 @@ namespace Aws
             std::future<PutComponentMetricResult> GetResult() noexcept;
 
           private:
-            std::promise<PutComponentMetricResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<PutComponentMetricOperation> m_selfReference;
+            std::shared_ptr<std::promise<PutComponentMetricResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperationContext : public OperationModelContext
@@ -5065,15 +5017,7 @@ namespace Aws
             std::future<DeferComponentUpdateResult> GetResult() noexcept;
 
           private:
-            std::promise<DeferComponentUpdateResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<DeferComponentUpdateOperation> m_selfReference;
+            std::shared_ptr<std::promise<DeferComponentUpdateResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesStreamHandler
@@ -5198,15 +5142,7 @@ namespace Aws
             std::future<SubscribeToValidateConfigurationUpdatesResult> GetResult() noexcept;
 
           private:
-            std::promise<SubscribeToValidateConfigurationUpdatesResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SubscribeToValidateConfigurationUpdatesOperation> m_selfReference;
+            std::shared_ptr<std::promise<SubscribeToValidateConfigurationUpdatesResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetConfigurationOperationContext : public OperationModelContext
@@ -5274,15 +5210,7 @@ namespace Aws
             std::future<GetConfigurationResult> GetResult() noexcept;
 
           private:
-            std::promise<GetConfigurationResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<GetConfigurationOperation> m_selfReference;
+            std::shared_ptr<std::promise<GetConfigurationResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicStreamHandler : public StreamResponseHandler
@@ -5420,15 +5348,7 @@ namespace Aws
             std::future<SubscribeToTopicResult> GetResult() noexcept;
 
           private:
-            std::promise<SubscribeToTopicResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SubscribeToTopicOperation> m_selfReference;
+            std::shared_ptr<std::promise<SubscribeToTopicResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperationContext : public OperationModelContext
@@ -5496,15 +5416,7 @@ namespace Aws
             std::future<GetComponentDetailsResult> GetResult() noexcept;
 
           private:
-            std::promise<GetComponentDetailsResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<GetComponentDetailsOperation> m_selfReference;
+            std::shared_ptr<std::promise<GetComponentDetailsResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperationContext : public OperationModelContext
@@ -5575,15 +5487,7 @@ namespace Aws
             std::future<GetClientDeviceAuthTokenResult> GetResult() noexcept;
 
           private:
-            std::promise<GetClientDeviceAuthTokenResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<GetClientDeviceAuthTokenOperation> m_selfReference;
+            std::shared_ptr<std::promise<GetClientDeviceAuthTokenResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToTopicOperationContext : public OperationModelContext
@@ -5651,15 +5555,7 @@ namespace Aws
             std::future<PublishToTopicResult> GetResult() noexcept;
 
           private:
-            std::promise<PublishToTopicResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<PublishToTopicOperation> m_selfReference;
+            std::shared_ptr<std::promise<PublishToTopicResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesStreamHandler : public StreamResponseHandler
@@ -5800,15 +5696,7 @@ namespace Aws
             std::future<SubscribeToCertificateUpdatesResult> GetResult() noexcept;
 
           private:
-            std::promise<SubscribeToCertificateUpdatesResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SubscribeToCertificateUpdatesOperation> m_selfReference;
+            std::shared_ptr<std::promise<SubscribeToCertificateUpdatesResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperationContext : public OperationModelContext
@@ -5879,15 +5767,7 @@ namespace Aws
             std::future<VerifyClientDeviceIdentityResult> GetResult() noexcept;
 
           private:
-            std::promise<VerifyClientDeviceIdentityResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<VerifyClientDeviceIdentityOperation> m_selfReference;
+            std::shared_ptr<std::promise<VerifyClientDeviceIdentityResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperationContext : public OperationModelContext
@@ -5958,15 +5838,7 @@ namespace Aws
             std::future<AuthorizeClientDeviceActionResult> GetResult() noexcept;
 
           private:
-            std::promise<AuthorizeClientDeviceActionResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<AuthorizeClientDeviceActionOperation> m_selfReference;
+            std::shared_ptr<std::promise<AuthorizeClientDeviceActionResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListComponentsOperationContext : public OperationModelContext
@@ -6034,15 +5906,7 @@ namespace Aws
             std::future<ListComponentsResult> GetResult() noexcept;
 
           private:
-            std::promise<ListComponentsResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<ListComponentsOperation> m_selfReference;
+            std::shared_ptr<std::promise<ListComponentsResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperationContext : public OperationModelContext
@@ -6110,15 +5974,7 @@ namespace Aws
             std::future<CreateDebugPasswordResult> GetResult() noexcept;
 
           private:
-            std::promise<CreateDebugPasswordResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<CreateDebugPasswordOperation> m_selfReference;
+            std::shared_ptr<std::promise<CreateDebugPasswordResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetThingShadowOperationContext : public OperationModelContext
@@ -6186,15 +6042,7 @@ namespace Aws
             std::future<GetThingShadowResult> GetResult() noexcept;
 
           private:
-            std::promise<GetThingShadowResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<GetThingShadowOperation> m_selfReference;
+            std::shared_ptr<std::promise<GetThingShadowResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperationContext : public OperationModelContext
@@ -6265,15 +6113,7 @@ namespace Aws
             std::future<SendConfigurationValidityReportResult> GetResult() noexcept;
 
           private:
-            std::promise<SendConfigurationValidityReportResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SendConfigurationValidityReportOperation> m_selfReference;
+            std::shared_ptr<std::promise<SendConfigurationValidityReportResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperationContext : public OperationModelContext
@@ -6341,15 +6181,7 @@ namespace Aws
             std::future<UpdateThingShadowResult> GetResult() noexcept;
 
           private:
-            std::promise<UpdateThingShadowResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<UpdateThingShadowOperation> m_selfReference;
+            std::shared_ptr<std::promise<UpdateThingShadowResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperationContext : public OperationModelContext
@@ -6417,15 +6249,7 @@ namespace Aws
             std::future<UpdateConfigurationResult> GetResult() noexcept;
 
           private:
-            std::promise<UpdateConfigurationResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<UpdateConfigurationOperation> m_selfReference;
+            std::shared_ptr<std::promise<UpdateConfigurationResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperationContext : public OperationModelContext
@@ -6496,15 +6320,7 @@ namespace Aws
             std::future<ValidateAuthorizationTokenResult> GetResult() noexcept;
 
           private:
-            std::promise<ValidateAuthorizationTokenResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<ValidateAuthorizationTokenOperation> m_selfReference;
+            std::shared_ptr<std::promise<ValidateAuthorizationTokenResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API RestartComponentOperationContext : public OperationModelContext
@@ -6572,15 +6388,7 @@ namespace Aws
             std::future<RestartComponentResult> GetResult() noexcept;
 
           private:
-            std::promise<RestartComponentResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<RestartComponentOperation> m_selfReference;
+            std::shared_ptr<std::promise<RestartComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperationContext : public OperationModelContext
@@ -6651,15 +6459,7 @@ namespace Aws
             std::future<GetLocalDeploymentStatusResult> GetResult() noexcept;
 
           private:
-            std::promise<GetLocalDeploymentStatusResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<GetLocalDeploymentStatusOperation> m_selfReference;
+            std::shared_ptr<std::promise<GetLocalDeploymentStatusResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetSecretValueOperationContext : public OperationModelContext
@@ -6727,15 +6527,7 @@ namespace Aws
             std::future<GetSecretValueResult> GetResult() noexcept;
 
           private:
-            std::promise<GetSecretValueResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<GetSecretValueOperation> m_selfReference;
+            std::shared_ptr<std::promise<GetSecretValueResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateStateOperationContext : public OperationModelContext
@@ -6802,15 +6594,7 @@ namespace Aws
             std::future<UpdateStateResult> GetResult() noexcept;
 
           private:
-            std::promise<UpdateStateResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<UpdateStateOperation> m_selfReference;
+            std::shared_ptr<std::promise<UpdateStateResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperationContext : public OperationModelContext
@@ -6880,15 +6664,7 @@ namespace Aws
             std::future<CancelLocalDeploymentResult> GetResult() noexcept;
 
           private:
-            std::promise<CancelLocalDeploymentResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<CancelLocalDeploymentOperation> m_selfReference;
+            std::shared_ptr<std::promise<CancelLocalDeploymentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperationContext : public OperationModelContext
@@ -6959,15 +6735,7 @@ namespace Aws
             std::future<ListNamedShadowsForThingResult> GetResult() noexcept;
 
           private:
-            std::promise<ListNamedShadowsForThingResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<ListNamedShadowsForThingOperation> m_selfReference;
+            std::shared_ptr<std::promise<ListNamedShadowsForThingResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesStreamHandler : public StreamResponseHandler
@@ -7098,15 +6866,7 @@ namespace Aws
             std::future<SubscribeToComponentUpdatesResult> GetResult() noexcept;
 
           private:
-            std::promise<SubscribeToComponentUpdatesResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<SubscribeToComponentUpdatesOperation> m_selfReference;
+            std::shared_ptr<std::promise<SubscribeToComponentUpdatesResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperationContext : public OperationModelContext
@@ -7176,15 +6936,7 @@ namespace Aws
             std::future<ListLocalDeploymentsResult> GetResult() noexcept;
 
           private:
-            std::promise<ListLocalDeploymentsResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<ListLocalDeploymentsOperation> m_selfReference;
+            std::shared_ptr<std::promise<ListLocalDeploymentsResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API StopComponentOperationContext : public OperationModelContext
@@ -7252,15 +7004,7 @@ namespace Aws
             std::future<StopComponentResult> GetResult() noexcept;
 
           private:
-            std::promise<StopComponentResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<StopComponentOperation> m_selfReference;
+            std::shared_ptr<std::promise<StopComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PauseComponentOperationContext : public OperationModelContext
@@ -7328,15 +7072,7 @@ namespace Aws
             std::future<PauseComponentResult> GetResult() noexcept;
 
           private:
-            std::promise<PauseComponentResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<PauseComponentOperation> m_selfReference;
+            std::shared_ptr<std::promise<PauseComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperationContext : public OperationModelContext
@@ -7406,15 +7142,7 @@ namespace Aws
             std::future<CreateLocalDeploymentResult> GetResult() noexcept;
 
           private:
-            std::promise<CreateLocalDeploymentResult> m_resultPromise;
-
-            /* Enforces a happens-before relationship between setting the self-reference and clearing it. */
-            std::mutex m_selfReferenceLock;
-
-            /* Keeps the operation alive while activation is in-progress.  Internally, we capture `this` in the function
-             * object that handles the result.  If we did not do this, we risk a crash if the user drops their reference
-             * before the future gets completed. */
-            std::shared_ptr<CreateLocalDeploymentOperation> m_selfReference;
+            std::shared_ptr<std::promise<CreateLocalDeploymentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GreengrassCoreIpcServiceModel : public ServiceModel

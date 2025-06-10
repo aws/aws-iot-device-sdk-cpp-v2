@@ -1262,8 +1262,7 @@ namespace Aws
                 MessageType messageType,
                 uint32_t messageFlags,
                 std::function<void(TaggedResult &&)> &&onResultCallback,
-                OnMessageFlushCallback &&onMessageFlushCallback,
-                bool &synchronousSuccess) noexcept;
+                OnMessageFlushCallback &&onMessageFlushCallback) noexcept;
 
             std::future<RpcError> SendStreamMessage(
                 const Crt::List<EventStreamHeader> &headers,
@@ -1377,8 +1376,7 @@ namespace Aws
         std::future<RpcError> ClientOperation::Activate(
             const AbstractShapeBase *shape,
             OnMessageFlushCallback &&onMessageFlushCallback,
-            std::function<void(TaggedResult &&)> &&onResultCallback,
-            bool &synchronousSuccess) noexcept
+            std::function<void(TaggedResult &&)> &&onResultCallback) noexcept
         {
             Crt::List<EventStreamHeader> headers;
             headers.emplace_back(EventStreamHeader(
@@ -1396,8 +1394,7 @@ namespace Aws
                 AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
                 0,
                 std::move(onResultCallback),
-                std::move(onMessageFlushCallback),
-                synchronousSuccess);
+                std::move(onMessageFlushCallback));
         }
 
         std::future<RpcError> ClientOperation::SendStreamMessage(
@@ -1554,13 +1551,12 @@ namespace Aws
             MessageType messageType,
             uint32_t messageFlags,
             std::function<void(TaggedResult &&)> &&onResultCallback,
-            OnMessageFlushCallback &&onMessageFlushCallback,
-            bool &synchronousSuccess) noexcept
+            OnMessageFlushCallback &&onMessageFlushCallback) noexcept
         {
             AWS_FATAL_ASSERT(static_cast<bool>(onResultCallback));
 
             int result = AWS_OP_SUCCESS;
-            synchronousSuccess = false;
+            bool synchronousSuccess = false;
             struct aws_array_list headersArray; // guaranteed to be zeroed or valid if we reach the end of the function
             std::promise<RpcError> activationPromise;
             std::future<RpcError> activationFuture = activationPromise.get_future();
