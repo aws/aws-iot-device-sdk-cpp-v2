@@ -10,20 +10,13 @@
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
-#include <aws/crt/UUID.h>
-#include <aws/crt/io/EventLoopGroup.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/crt/io/TlsOptions.h>
 
-#include <aws/crt/io/HostResolver.h>
-
 #include <aws/event-stream/event_stream_rpc_client.h>
-#include <aws/io/host_resolver.h>
 
-#include <atomic>
 #include <functional>
 #include <future>
-#include <memory>
 
 namespace Aws
 {
@@ -306,28 +299,6 @@ namespace Aws
             std::shared_ptr<ClientConnectionImpl> m_impl;
         };
 
-#ifdef NEVER
-        /**
-         * User data passed to callbacks for a new stream.
-         */
-        class AWS_EVENTSTREAMRPC_API ContinuationCallbackData
-        {
-          public:
-            ContinuationCallbackData(
-                ClientContinuation *clientContinuation,
-                Crt::Allocator *allocator = Crt::g_allocator) noexcept
-                : clientContinuation(clientContinuation), allocator(allocator)
-            {
-                continuationDestroyed = false;
-            }
-            ContinuationCallbackData(const ContinuationCallbackData &lhs) noexcept = delete;
-            bool continuationDestroyed;
-            std::mutex callbackMutex;
-            ClientContinuation *clientContinuation;
-            Crt::Allocator *allocator;
-        };
-#endif
-
         /**
          * Vestigial, do-nothing class that remains for backwards compatibility with the
          * original, publicly-visible class hierarchy.
@@ -335,114 +306,9 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ClientContinuationHandler
         {
           public:
-#ifdef NEVER
-            /**
-             * Invoked when a message is received on this continuation.
-             */
-            virtual void OnContinuationMessage(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                MessageType messageType,
-                uint32_t messageFlags) = 0;
-            /**
-             * Invoked when the continuation is closed.
-             *
-             * Once the continuation is closed, no more messages may be sent or received.
-             * The continuation is closed when a message is sent or received with
-             * the TERMINATE_STREAM flag, or when the connection shuts down.
-             */
-            virtual void OnContinuationClosed() = 0;
-#endif
             virtual ~ClientContinuationHandler() noexcept = default;
-#ifdef NEVER
-          private:
-            friend class ClientContinuation;
-            std::shared_ptr<ContinuationCallbackData> m_callbackData;
-#endif
         };
 
-#ifdef NEVER
-        /**
-         * A wrapper for event-stream-rpc client continuation.
-         */
-        class AWS_EVENTSTREAMRPC_API ClientContinuation final
-        {
-          public:
-            /**
-             * Create a new continuation.
-             *
-             * @note continuation_option's callbacks will not be invoked, and nothing will be sent across
-             * the wire until Activate() is invoked.
-             * @param connection Connection on which open a new stream.
-             * @param continuationHandler A set of callbacks that will be invoked for continuation events.
-             * @param allocator Allocator to use.
-             */
-            ClientContinuation(
-                struct aws_event_stream_rpc_client_connection *connection,
-                ClientContinuationHandler &continuationHandler,
-                Crt::Allocator *allocator) noexcept;
-            ~ClientContinuation() noexcept;
-
-            /**
-             * Initiate a new client stream. Send new message for the new stream.
-             * @param operation Name for the operation to be invoked by the peer endpoint.
-             * @param headers Headers for the eventstream message.
-             * @param payload Payload for the eventstream message.
-             * @param messageType Message type for the message.
-             * @param messageFlags Bitmask of aws_event_stream_rpc_message_flag values.
-             * @param onMessageFlushCallback Callback to be invoked upon the message being flushed to the underlying
-             * transport.
-             * @return Future that will be resolved when the message has either been written to the wire or it fails.
-             */
-            std::future<RpcError> Activate(
-                const Crt::String &operation,
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                MessageType messageType,
-                uint32_t messageFlags,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-            /**
-             * Check if the continuation has been closed.
-             * @return True if the continuation has been closed, false otherwise.
-             */
-            bool IsClosed() noexcept;
-
-            /**
-             * Send message on the continuation.
-             * @param headers List of additional event stream headers to include on the message.
-             * @param payload Message payload.
-             * @param messageType Message type for the message.
-             * @param messageFlags Bitmask of aws_event_stream_rpc_message_flag values.
-             * @param onMessageFlushCallback Callback to be invoked upon the message being flushed to the underlying
-             * transport.
-             * @return Future that will be resolved when the message has either been written to the wire or it fails.
-             */
-            std::future<RpcError> SendMessage(
-                const Crt::List<EventStreamHeader> &headers,
-                const Crt::Optional<Crt::ByteBuf> &payload,
-                MessageType messageType,
-                uint32_t messageFlags,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
-
-          private:
-            friend class ClientOperation;
-            Crt::Allocator *m_allocator;
-            ClientContinuationHandler &m_continuationHandler;
-            struct aws_event_stream_rpc_client_continuation_token *m_continuationToken;
-            std::shared_ptr<ContinuationCallbackData> m_callbackData;
-
-            void Release();
-
-            static void s_onContinuationMessage(
-                struct aws_event_stream_rpc_client_continuation_token *continuationToken,
-                const struct aws_event_stream_rpc_message_args *messageArgs,
-                void *userData) noexcept;
-            static void s_onContinuationClosed(
-                struct aws_event_stream_rpc_client_continuation_token *continuationToken,
-                void *userData) noexcept;
-        };
-#endif
         /**
          * Base class for types used by operations.
          */
@@ -722,8 +588,7 @@ namespace Aws
             std::future<RpcError> Activate(
                 const AbstractShapeBase *shape,
                 OnMessageFlushCallback &&onMessageFlushCallback,
-                std::function<void(TaggedResult &&)> &&onResultCallback,
-                bool &synchronousSuccess) noexcept;
+                std::function<void(TaggedResult &&)> &&onResultCallback) noexcept;
 
             /**
              * Sends a message on the stream
