@@ -1241,15 +1241,439 @@ static int s_TestEchoClientOperationActivateCloseConnection(struct aws_allocator
 
 AWS_TEST_CASE(EchoClientOperationActivateCloseConnection, s_TestEchoClientOperationActivateCloseConnection);
 
-// Non-streaming race condition tests
-// add_test_case(EchoClientOperationActivateCloseConnection)
-// add_test_case(EchoClientOperationActivateDoubleCloseContinuation)
-// add_test_case(EchoClientOperationActivateWaitDoubleCloseContinuation)
-// add_test_case(EchoClientOperationActivateWaitCloseContinuationWaitCloseContinuation)
-// add_test_case(EchoClientOperationActivateShutdown)
-// add_test_case(EchoClientOperationActivateShutdownDropFuture)
-// add_test_case(EchoClientOperationActivateWaitCloseShutdown)
-// add_test_case(EchoClientOperationActivateWaitCloseShutdownDropFuture)
+static int s_TestEchoClientOperationActivateDoubleCloseContinuation(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+
+            auto closeFuture = getAllCustomers->Close();
+            auto closeFuture2 = getAllCustomers->Close();
+
+            requestFuture.wait();
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_TRUE(
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            closeFuture.wait();
+            closeFuture2.wait();
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(
+    EchoClientOperationActivateDoubleCloseContinuation,
+    s_TestEchoClientOperationActivateDoubleCloseContinuation);
+
+static int s_TestEchoClientOperationActivateWaitDoubleCloseContinuation(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            requestFuture.wait();
+
+            auto closeFuture = getAllCustomers->Close();
+            auto closeFuture2 = getAllCustomers->Close();
+
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_TRUE(
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            closeFuture.wait();
+            closeFuture2.wait();
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(
+    EchoClientOperationActivateWaitDoubleCloseContinuation,
+    s_TestEchoClientOperationActivateWaitDoubleCloseContinuation);
+
+static int s_TestEchoClientOperationActivateWaitCloseContinuationWaitCloseContinuation(
+    struct aws_allocator *allocator,
+    void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_TRUE(
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            auto closeFuture = getAllCustomers->Close();
+            closeFuture.wait();
+
+            auto closeFuture2 = getAllCustomers->Close();
+            closeFuture2.wait();
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(
+    EchoClientOperationActivateWaitCloseContinuationWaitCloseContinuation,
+    s_TestEchoClientOperationActivateWaitCloseContinuationWaitCloseContinuation);
+
+static int s_TestEchoClientOperationActivateShutdown(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            getAllCustomers = nullptr;
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_TRUE(
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationActivateShutdown, s_TestEchoClientOperationActivateShutdown);
+
+static int s_TestEchoClientOperationActivateShutdownDropFuture(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+
+            GetAllCustomersRequest getAllCustomersRequest;
+            getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationActivateShutdownDropFuture, s_TestEchoClientOperationActivateShutdownDropFuture);
+
+static int s_TestEchoClientOperationActivateWaitCloseShutdown(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, flushErrorStatus);
+
+            auto closeFuture = getAllCustomers->Close();
+            getAllCustomers = nullptr;
+
+            closeFuture.wait();
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientOperationActivateWaitCloseShutdown, s_TestEchoClientOperationActivateWaitCloseShutdown);
+
+static int s_TestEchoClientOperationActivateWaitCloseShutdownDropFuture(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto getAllCustomers = client.NewGetAllCustomers();
+            GetAllCustomersRequest getAllCustomersRequest;
+
+            auto requestFuture = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
+            auto flushErrorStatus = requestFuture.get().baseStatus;
+            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, flushErrorStatus);
+
+            getAllCustomers->Close();
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(
+    EchoClientOperationActivateWaitCloseShutdownDropFuture,
+    s_TestEchoClientOperationActivateWaitCloseShutdownDropFuture);
+
+class EchoStreamMessagesTestHandler : public EchoStreamMessagesStreamHandler
+{
+  public:
+    EchoStreamMessagesTestHandler(
+        Aws::Crt::Allocator *allocator,
+        EventStreamClientTestContext *context,
+        bool closeOnError)
+        : m_allocator(allocator), m_context(context), m_closeOnError(closeOnError)
+    {
+    }
+
+    void OnStreamEvent(EchoStreamingMessage *response) override
+    {
+        std::lock_guard<std::mutex> lock(m_lock);
+
+        m_messages.push_back(Aws::Crt::MakeShared<EchoStreamingMessage>(m_allocator, *response));
+        m_signal.notify_all();
+    }
+
+    bool OnStreamError(RpcError rpcError) override
+    {
+        std::lock_guard<std::mutex> lock(m_lock);
+
+        m_rpcErrors.push_back(rpcError);
+        m_signal.notify_all();
+
+        return m_closeOnError;
+    }
+
+    bool OnStreamError(OperationError *operationError) override
+    {
+        (void)operationError;
+
+        return m_closeOnError;
+    }
+
+    void WaitForMessages(size_t count)
+    {
+        std::unique_lock<std::mutex> lock(m_lock);
+        m_signal.wait(lock, [this, count]() { return m_messages.size() == count; });
+    }
+
+    int ValidateMessages(MessageData &expectedData)
+    {
+        std::lock_guard<std::mutex> lock(m_lock);
+        for (size_t i = 0; i < m_messages.size(); i++)
+        {
+            const auto &message = m_messages[i];
+            ASSERT_SUCCESS(s_checkMessageDataEquality(expectedData, message->GetStreamMessage().value()));
+        }
+
+        return AWS_OP_SUCCESS;
+    }
+
+  private:
+    Aws::Crt::Allocator *m_allocator;
+    EventStreamClientTestContext *m_context;
+    bool m_closeOnError;
+
+    std::mutex m_lock;
+    std::condition_variable m_signal;
+
+    Aws::Crt::Vector<std::shared_ptr<EchoStreamingMessage>> m_messages;
+    Vector<RpcError> m_rpcErrors;
+};
+
+constexpr size_t STREAM_MESSAGE_COUNT = 10;
+
+static int s_DoTestEchoClientStreamingOperationEchoSuccess(
+    struct aws_allocator *allocator,
+    std::function<void(MessageData &)> messageDataBuilder)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    MessageData expecectedMessageData;
+    messageDataBuilder(expecectedMessageData);
+
+    {
+        auto handler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(allocator, allocator, &testContext, false);
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
+
+        auto echoStreamMessages = client.NewEchoStreamMessages(handler);
+        EchoStreamingRequest echoStreamingMessageRequest;
+        auto activateFuture = echoStreamMessages->Activate(echoStreamingMessageRequest, s_onMessageFlush);
+        activateFuture.wait();
+
+        auto result = echoStreamMessages->GetResult().get();
+        ASSERT_TRUE(result);
+
+        Aws::Crt::Vector<std::future<RpcError>> streamMessageFutures;
+        for (size_t i = 0; i < STREAM_MESSAGE_COUNT; ++i)
+        {
+            EchoStreamingMessage streamMessage;
+            MessageData messageData;
+            messageDataBuilder(messageData);
+            streamMessage.SetStreamMessage(messageData);
+
+            auto streamFuture = echoStreamMessages->SendStreamMessage(streamMessage, s_onMessageFlush);
+            streamMessageFutures.emplace_back(std::move(streamFuture));
+        }
+
+        handler->WaitForMessages(STREAM_MESSAGE_COUNT);
+        ASSERT_INT_EQUALS(STREAM_MESSAGE_COUNT, streamMessageFutures.size());
+
+        for (size_t i = 0; i < streamMessageFutures.size(); i++)
+        {
+            auto streamResult = streamMessageFutures[i].get();
+            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, streamResult.baseStatus);
+        }
+
+        ASSERT_SUCCESS(handler->ValidateMessages(expecectedMessageData));
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+static int s_TestEchoClientStreamingOperationEchoSuccessString(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::String value = "Hello World";
+            messageData.SetStringMessage(value);
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessString, s_TestEchoClientStreamingOperationEchoSuccessString);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessBoolean(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetBooleanMessage(true); });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessBoolean, s_TestEchoClientStreamingOperationEchoSuccessBoolean);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessTime(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetTimeMessage(Aws::Crt::DateTime::Now()); });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessTime, s_TestEchoClientStreamingOperationEchoSuccessTime);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessDocument(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::JsonObject subobject;
+            subobject.WithString("Hello", "There");
+            Aws::Crt::JsonObject document;
+            document.WithInt64("Derp", 21);
+            document.WithObject("DailyAffirmations", subobject);
+
+            messageData.SetDocumentMessage(document);
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessDocument, s_TestEchoClientStreamingOperationEchoSuccessDocument);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessEnum(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator, [](MessageData &messageData) { messageData.SetEnumMessage(FruitEnum::FRUIT_ENUM_PINEAPPLE); });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessEnum, s_TestEchoClientStreamingOperationEchoSuccessEnum);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessBlob(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Vector<uint8_t> blob = {1, 2, 3, 4, 5};
+            messageData.SetBlobMessage(blob);
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessBlob, s_TestEchoClientStreamingOperationEchoSuccessBlob);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessStringList(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Vector<Aws::Crt::String> stringList = {"1", "2", "Toasty", "Mctoaster"};
+            messageData.SetStringListMessage(stringList);
+        });
+}
+
+AWS_TEST_CASE(
+    EchoClientStreamingOperationEchoSuccessStringList,
+    s_TestEchoClientStreamingOperationEchoSuccessStringList);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessPairList(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Pair pair1;
+            pair1.SetKey("Uff");
+            pair1.SetValue("Dah");
+
+            Pair pair2;
+            pair2.SetKey("Hello");
+            pair2.SetValue("World");
+
+            Aws::Crt::Vector<Pair> pairList = {pair1, pair2};
+            messageData.SetKeyValuePairList(pairList);
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessPairList, s_TestEchoClientStreamingOperationEchoSuccessPairList);
+
+static int s_TestEchoClientStreamingOperationEchoSuccessProductMap(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoTestEchoClientStreamingOperationEchoSuccess(
+        allocator,
+        [](MessageData &messageData)
+        {
+            Aws::Crt::Map<String, Product> productMap = {};
+            Product product1;
+            product1.SetName("Derp");
+            product1.SetPrice(4.0);
+
+            Product product2;
+            product2.SetName("Can Of Derp");
+            product2.SetPrice(7.5);
+
+            productMap[product1.GetName().value()] = product1;
+            productMap[product2.GetName().value()] = product2;
+
+            messageData.SetStringToValue(productMap);
+        });
+}
+
+AWS_TEST_CASE(
+    EchoClientStreamingOperationEchoSuccessProductMap,
+    s_TestEchoClientStreamingOperationEchoSuccessProductMap);
 
 #ifdef NEVER
 
