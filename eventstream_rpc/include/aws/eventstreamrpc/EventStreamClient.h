@@ -550,7 +550,7 @@ namespace Aws
             ClientOperation(
                 ClientConnection &connection,
                 std::shared_ptr<StreamResponseHandler> streamHandler,
-                const OperationModelContext &operationModelContext,
+                const std::shared_ptr<OperationModelContext> &operationModelContext,
                 Crt::Allocator *allocator) noexcept;
             ~ClientOperation() noexcept override;
 

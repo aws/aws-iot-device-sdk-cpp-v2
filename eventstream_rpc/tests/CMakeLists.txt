@@ -90,8 +90,13 @@ add_test_case(EchoClientStreamingOperationEchoSuccessPairList)
 add_test_case(EchoClientStreamingOperationEchoSuccessProductMap)
 
 # streaming failure/error tests
+add_test_case(EchoClientStreamingOperationCauseServiceError)
 
 # streaming race condition tests
+add_test_case(EchoClientStreamingOperationSendCloseOperation)
+add_test_case(EchoClientStreamingOperationSendDropOperation)
+add_test_case(EchoClientStreamingOperationSendCloseConnection)
+add_test_case(EchoClientOperationStress)
 
 generate_cpp_test_driver(${TEST_BINARY_NAME})
 aws_add_sanitizers(${TEST_BINARY_NAME})

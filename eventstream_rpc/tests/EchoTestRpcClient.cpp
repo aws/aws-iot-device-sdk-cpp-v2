@@ -14,7 +14,8 @@ namespace Awstest
     EchoTestRpcClient::EchoTestRpcClient(
         Aws::Crt::Io::ClientBootstrap &clientBootstrap,
         Aws::Crt::Allocator *allocator) noexcept
-        : m_connection(
+        : m_echoTestRpcServiceModel(allocator),
+          m_connection(
               Aws::Crt::MakeShared<ClientConnection>(allocator, allocator, clientBootstrap.GetUnderlyingHandle())),
           m_allocator(allocator), m_asyncLaunchMode(std::launch::deferred)
     {

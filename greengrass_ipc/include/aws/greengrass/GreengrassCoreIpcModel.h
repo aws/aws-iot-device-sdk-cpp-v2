@@ -4523,7 +4523,7 @@ namespace Aws
             SubscribeToIoTCoreOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
-                const SubscribeToIoTCoreOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -4589,7 +4589,7 @@ namespace Aws
           public:
             ResumeComponentOperation(
                 ClientConnection &connection,
-                const ResumeComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -4655,7 +4655,7 @@ namespace Aws
           public:
             PublishToIoTCoreOperation(
                 ClientConnection &connection,
-                const PublishToIoTCoreOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -4784,7 +4784,7 @@ namespace Aws
             SubscribeToConfigurationUpdateOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
-                const SubscribeToConfigurationUpdateOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -4850,7 +4850,7 @@ namespace Aws
           public:
             DeleteThingShadowOperation(
                 ClientConnection &connection,
-                const DeleteThingShadowOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -4916,7 +4916,7 @@ namespace Aws
           public:
             PutComponentMetricOperation(
                 ClientConnection &connection,
-                const PutComponentMetricOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -4984,7 +4984,7 @@ namespace Aws
           public:
             DeferComponentUpdateOperation(
                 ClientConnection &connection,
-                const DeferComponentUpdateOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5107,7 +5107,7 @@ namespace Aws
             SubscribeToValidateConfigurationUpdatesOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
-                const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5173,7 +5173,7 @@ namespace Aws
           public:
             GetConfigurationOperation(
                 ClientConnection &connection,
-                const GetConfigurationOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5309,7 +5309,7 @@ namespace Aws
             SubscribeToTopicOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
-                const SubscribeToTopicOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5375,7 +5375,7 @@ namespace Aws
           public:
             GetComponentDetailsOperation(
                 ClientConnection &connection,
-                const GetComponentDetailsOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5444,7 +5444,7 @@ namespace Aws
           public:
             GetClientDeviceAuthTokenOperation(
                 ClientConnection &connection,
-                const GetClientDeviceAuthTokenOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5510,7 +5510,7 @@ namespace Aws
           public:
             PublishToTopicOperation(
                 ClientConnection &connection,
-                const PublishToTopicOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5649,7 +5649,7 @@ namespace Aws
             SubscribeToCertificateUpdatesOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
-                const SubscribeToCertificateUpdatesOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5718,7 +5718,7 @@ namespace Aws
           public:
             VerifyClientDeviceIdentityOperation(
                 ClientConnection &connection,
-                const VerifyClientDeviceIdentityOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5787,7 +5787,7 @@ namespace Aws
           public:
             AuthorizeClientDeviceActionOperation(
                 ClientConnection &connection,
-                const AuthorizeClientDeviceActionOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5853,7 +5853,7 @@ namespace Aws
           public:
             ListComponentsOperation(
                 ClientConnection &connection,
-                const ListComponentsOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5919,7 +5919,7 @@ namespace Aws
           public:
             CreateDebugPasswordOperation(
                 ClientConnection &connection,
-                const CreateDebugPasswordOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -5985,7 +5985,7 @@ namespace Aws
           public:
             GetThingShadowOperation(
                 ClientConnection &connection,
-                const GetThingShadowOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6054,7 +6054,7 @@ namespace Aws
           public:
             SendConfigurationValidityReportOperation(
                 ClientConnection &connection,
-                const SendConfigurationValidityReportOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6120,7 +6120,7 @@ namespace Aws
           public:
             UpdateThingShadowOperation(
                 ClientConnection &connection,
-                const UpdateThingShadowOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6186,7 +6186,7 @@ namespace Aws
           public:
             UpdateConfigurationOperation(
                 ClientConnection &connection,
-                const UpdateConfigurationOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6255,7 +6255,7 @@ namespace Aws
           public:
             ValidateAuthorizationTokenOperation(
                 ClientConnection &connection,
-                const ValidateAuthorizationTokenOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6321,7 +6321,7 @@ namespace Aws
           public:
             RestartComponentOperation(
                 ClientConnection &connection,
-                const RestartComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6390,7 +6390,7 @@ namespace Aws
           public:
             GetLocalDeploymentStatusOperation(
                 ClientConnection &connection,
-                const GetLocalDeploymentStatusOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6456,7 +6456,7 @@ namespace Aws
           public:
             GetSecretValueOperation(
                 ClientConnection &connection,
-                const GetSecretValueOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6522,7 +6522,7 @@ namespace Aws
           public:
             UpdateStateOperation(
                 ClientConnection &connection,
-                const UpdateStateOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6590,7 +6590,7 @@ namespace Aws
           public:
             CancelLocalDeploymentOperation(
                 ClientConnection &connection,
-                const CancelLocalDeploymentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6659,7 +6659,7 @@ namespace Aws
           public:
             ListNamedShadowsForThingOperation(
                 ClientConnection &connection,
-                const ListNamedShadowsForThingOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6788,7 +6788,7 @@ namespace Aws
             SubscribeToComponentUpdatesOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
-                const SubscribeToComponentUpdatesOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6856,7 +6856,7 @@ namespace Aws
           public:
             ListLocalDeploymentsOperation(
                 ClientConnection &connection,
-                const ListLocalDeploymentsOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6922,7 +6922,7 @@ namespace Aws
           public:
             StopComponentOperation(
                 ClientConnection &connection,
-                const StopComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -6988,7 +6988,7 @@ namespace Aws
           public:
             PauseComponentOperation(
                 ClientConnection &connection,
-                const PauseComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -7056,7 +7056,7 @@ namespace Aws
           public:
             CreateLocalDeploymentOperation(
                 ClientConnection &connection,
-                const CreateLocalDeploymentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
             /**
@@ -7081,7 +7081,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GreengrassCoreIpcServiceModel : public ServiceModel
         {
           public:
-            GreengrassCoreIpcServiceModel() noexcept;
+            GreengrassCoreIpcServiceModel(Aws::Crt::Allocator *allocator) noexcept;
             Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
                 const Aws::Crt::String &errorModelName,
                 Aws::Crt::StringView stringView,
@@ -7090,41 +7090,40 @@ namespace Aws
 
           private:
             friend class GreengrassCoreIpcClient;
-            SubscribeToIoTCoreOperationContext m_subscribeToIoTCoreOperationContext;
-            ResumeComponentOperationContext m_resumeComponentOperationContext;
-            PublishToIoTCoreOperationContext m_publishToIoTCoreOperationContext;
-            SubscribeToConfigurationUpdateOperationContext m_subscribeToConfigurationUpdateOperationContext;
-            DeleteThingShadowOperationContext m_deleteThingShadowOperationContext;
-            PutComponentMetricOperationContext m_putComponentMetricOperationContext;
-            DeferComponentUpdateOperationContext m_deferComponentUpdateOperationContext;
-            SubscribeToValidateConfigurationUpdatesOperationContext
-                m_subscribeToValidateConfigurationUpdatesOperationContext;
-            GetConfigurationOperationContext m_getConfigurationOperationContext;
-            SubscribeToTopicOperationContext m_subscribeToTopicOperationContext;
-            GetComponentDetailsOperationContext m_getComponentDetailsOperationContext;
-            GetClientDeviceAuthTokenOperationContext m_getClientDeviceAuthTokenOperationContext;
-            PublishToTopicOperationContext m_publishToTopicOperationContext;
-            SubscribeToCertificateUpdatesOperationContext m_subscribeToCertificateUpdatesOperationContext;
-            VerifyClientDeviceIdentityOperationContext m_verifyClientDeviceIdentityOperationContext;
-            AuthorizeClientDeviceActionOperationContext m_authorizeClientDeviceActionOperationContext;
-            ListComponentsOperationContext m_listComponentsOperationContext;
-            CreateDebugPasswordOperationContext m_createDebugPasswordOperationContext;
-            GetThingShadowOperationContext m_getThingShadowOperationContext;
-            SendConfigurationValidityReportOperationContext m_sendConfigurationValidityReportOperationContext;
-            UpdateThingShadowOperationContext m_updateThingShadowOperationContext;
-            UpdateConfigurationOperationContext m_updateConfigurationOperationContext;
-            ValidateAuthorizationTokenOperationContext m_validateAuthorizationTokenOperationContext;
-            RestartComponentOperationContext m_restartComponentOperationContext;
-            GetLocalDeploymentStatusOperationContext m_getLocalDeploymentStatusOperationContext;
-            GetSecretValueOperationContext m_getSecretValueOperationContext;
-            UpdateStateOperationContext m_updateStateOperationContext;
-            CancelLocalDeploymentOperationContext m_cancelLocalDeploymentOperationContext;
-            ListNamedShadowsForThingOperationContext m_listNamedShadowsForThingOperationContext;
-            SubscribeToComponentUpdatesOperationContext m_subscribeToComponentUpdatesOperationContext;
-            ListLocalDeploymentsOperationContext m_listLocalDeploymentsOperationContext;
-            StopComponentOperationContext m_stopComponentOperationContext;
-            PauseComponentOperationContext m_pauseComponentOperationContext;
-            CreateLocalDeploymentOperationContext m_createLocalDeploymentOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToIoTCoreOperationContext;
+            std::shared_ptr<OperationModelContext> m_resumeComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_publishToIoTCoreOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToConfigurationUpdateOperationContext;
+            std::shared_ptr<OperationModelContext> m_deleteThingShadowOperationContext;
+            std::shared_ptr<OperationModelContext> m_putComponentMetricOperationContext;
+            std::shared_ptr<OperationModelContext> m_deferComponentUpdateOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToValidateConfigurationUpdatesOperationContext;
+            std::shared_ptr<OperationModelContext> m_getConfigurationOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToTopicOperationContext;
+            std::shared_ptr<OperationModelContext> m_getComponentDetailsOperationContext;
+            std::shared_ptr<OperationModelContext> m_getClientDeviceAuthTokenOperationContext;
+            std::shared_ptr<OperationModelContext> m_publishToTopicOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToCertificateUpdatesOperationContext;
+            std::shared_ptr<OperationModelContext> m_verifyClientDeviceIdentityOperationContext;
+            std::shared_ptr<OperationModelContext> m_authorizeClientDeviceActionOperationContext;
+            std::shared_ptr<OperationModelContext> m_listComponentsOperationContext;
+            std::shared_ptr<OperationModelContext> m_createDebugPasswordOperationContext;
+            std::shared_ptr<OperationModelContext> m_getThingShadowOperationContext;
+            std::shared_ptr<OperationModelContext> m_sendConfigurationValidityReportOperationContext;
+            std::shared_ptr<OperationModelContext> m_updateThingShadowOperationContext;
+            std::shared_ptr<OperationModelContext> m_updateConfigurationOperationContext;
+            std::shared_ptr<OperationModelContext> m_validateAuthorizationTokenOperationContext;
+            std::shared_ptr<OperationModelContext> m_restartComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_getLocalDeploymentStatusOperationContext;
+            std::shared_ptr<OperationModelContext> m_getSecretValueOperationContext;
+            std::shared_ptr<OperationModelContext> m_updateStateOperationContext;
+            std::shared_ptr<OperationModelContext> m_cancelLocalDeploymentOperationContext;
+            std::shared_ptr<OperationModelContext> m_listNamedShadowsForThingOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToComponentUpdatesOperationContext;
+            std::shared_ptr<OperationModelContext> m_listLocalDeploymentsOperationContext;
+            std::shared_ptr<OperationModelContext> m_stopComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_pauseComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_createLocalDeploymentOperationContext;
             Aws::Crt::Map<Aws::Crt::String, ErrorResponseFactory> m_modelNameToErrorResponse;
         };
     } // namespace Greengrass

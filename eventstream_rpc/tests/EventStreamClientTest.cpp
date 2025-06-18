@@ -1423,11 +1423,8 @@ AWS_TEST_CASE(
 class EchoStreamMessagesTestHandler : public EchoStreamMessagesStreamHandler
 {
   public:
-    EchoStreamMessagesTestHandler(
-        Aws::Crt::Allocator *allocator,
-        EventStreamClientTestContext *context,
-        bool closeOnError)
-        : m_allocator(allocator), m_context(context), m_closeOnError(closeOnError)
+    EchoStreamMessagesTestHandler(Aws::Crt::Allocator *allocator, bool closeOnError)
+        : m_allocator(allocator), m_closeOnError(closeOnError)
     {
     }
 
@@ -1476,7 +1473,6 @@ class EchoStreamMessagesTestHandler : public EchoStreamMessagesStreamHandler
 
   private:
     Aws::Crt::Allocator *m_allocator;
-    EventStreamClientTestContext *m_context;
     bool m_closeOnError;
 
     std::mutex m_lock;
@@ -1504,7 +1500,7 @@ static int s_DoTestEchoClientStreamingOperationEchoSuccess(
     messageDataBuilder(expecectedMessageData);
 
     {
-        auto handler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(allocator, allocator, &testContext, false);
+        auto handler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(allocator, allocator, false);
         ConnectionLifecycleHandler lifecycleHandler;
         Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
         auto connectedStatus = client.Connect(lifecycleHandler);
@@ -1674,6 +1670,529 @@ static int s_TestEchoClientStreamingOperationEchoSuccessProductMap(struct aws_al
 AWS_TEST_CASE(
     EchoClientStreamingOperationEchoSuccessProductMap,
     s_TestEchoClientStreamingOperationEchoSuccessProductMap);
+
+class CauseServiceErrorTestHandler : public CauseStreamServiceToErrorStreamHandler
+{
+  public:
+    CauseServiceErrorTestHandler(Aws::Crt::Allocator *allocator, bool closeOnError)
+        : m_allocator(allocator), m_closeOnError(closeOnError)
+    {
+    }
+
+    void OnStreamEvent(EchoStreamingMessage *response) override { (void)response; }
+
+    bool OnStreamError(RpcError rpcError) override
+    {
+        (void)rpcError;
+
+        return m_closeOnError;
+    }
+
+    bool OnStreamError(ServiceError *serviceError) override
+    {
+        std::lock_guard<std::mutex> lock(m_lock);
+
+        m_serviceErrors.push_back(Aws::Crt::MakeShared<ServiceError>(m_allocator, *serviceError));
+        m_signal.notify_all();
+
+        return m_closeOnError;
+    }
+
+    bool OnStreamError(OperationError *operationError) override
+    {
+        (void)operationError;
+
+        return m_closeOnError;
+    }
+
+    void WaitForErrors(size_t count)
+    {
+        std::unique_lock<std::mutex> lock(m_lock);
+        m_signal.wait(lock, [this, count]() { return m_serviceErrors.size() == count; });
+    }
+
+    int ValidateErrors(ServiceError &expectedError)
+    {
+        std::lock_guard<std::mutex> lock(m_lock);
+        for (size_t i = 0; i < m_serviceErrors.size(); i++)
+        {
+            const auto &error = m_serviceErrors[i];
+
+            ASSERT_TRUE(error->GetMessage().has_value() == expectedError.GetMessage().has_value());
+            ASSERT_TRUE(error->GetValue().has_value() == expectedError.GetValue().has_value());
+
+            if (expectedError.GetMessage().has_value())
+            {
+                ASSERT_TRUE(expectedError.GetMessage().value() == error->GetMessage().value());
+            }
+
+            if (expectedError.GetValue().has_value())
+            {
+                ASSERT_TRUE(expectedError.GetValue().value() == error->GetValue().value());
+            }
+        }
+
+        return AWS_OP_SUCCESS;
+    }
+
+  private:
+    Aws::Crt::Allocator *m_allocator;
+    bool m_closeOnError;
+
+    std::mutex m_lock;
+    std::condition_variable m_signal;
+
+    Aws::Crt::Vector<std::shared_ptr<ServiceError>> m_serviceErrors;
+};
+
+static int s_TestEchoClientStreamingOperationCauseServiceError(struct aws_allocator *allocator, void *ctx)
+{
+    ApiHandle apiHandle(allocator);
+    EventStreamClientTestContext testContext(allocator);
+    if (!testContext.isValidEnvironment())
+    {
+        printf("Environment Variables are not set for the test, skipping...");
+        return AWS_OP_SKIP;
+    }
+
+    {
+        auto handler = Aws::Crt::MakeShared<CauseServiceErrorTestHandler>(allocator, allocator, false);
+        ConnectionLifecycleHandler lifecycleHandler;
+        Awstest::EchoTestRpcClient client(*testContext.clientBootstrap, allocator);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
+
+        auto causeStreamServiceError = client.NewCauseStreamServiceToError(handler);
+        EchoStreamingRequest request;
+        auto activateFuture = causeStreamServiceError->Activate(request, s_onMessageFlush);
+        activateFuture.wait();
+
+        auto result = causeStreamServiceError->GetResult().get();
+        ASSERT_TRUE(result);
+
+        EchoStreamingMessage streamMessage;
+        MessageData messageData;
+        Aws::Crt::String value = "Hello World";
+        messageData.SetStringMessage(value);
+        streamMessage.SetStreamMessage(messageData);
+
+        auto streamFuture = causeStreamServiceError->SendStreamMessage(streamMessage, s_onMessageFlush);
+
+        handler->WaitForErrors(1);
+
+        auto streamResult = streamFuture.get();
+        ASSERT_INT_EQUALS(EVENT_STREAM_RPC_SUCCESS, streamResult.baseStatus);
+
+        ServiceError expectedError;
+        expectedError.SetMessage("Intentionally caused ServiceError on stream");
+
+        ASSERT_SUCCESS(handler->ValidateErrors(expectedError));
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationCauseServiceError, s_TestEchoClientStreamingOperationCauseServiceError);
+
+static int s_TestEchoClientStreamingOperationSendCloseOperation(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [allocator](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto handler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(allocator, allocator, false);
+            auto echoStreamMessages = client.NewEchoStreamMessages(handler);
+            EchoStreamingRequest echoStreamingMessageRequest;
+            auto activateFuture = echoStreamMessages->Activate(echoStreamingMessageRequest, s_onMessageFlush);
+            activateFuture.wait();
+
+            auto result = echoStreamMessages->GetResult().get();
+            ASSERT_TRUE(result);
+
+            EchoStreamingMessage streamMessage;
+            MessageData messageData;
+            Aws::Crt::String value = "Hello World";
+            messageData.SetStringMessage(value);
+
+            streamMessage.SetStreamMessage(messageData);
+
+            auto streamFuture = echoStreamMessages->SendStreamMessage(streamMessage, s_onMessageFlush);
+
+            auto closeFuture = echoStreamMessages->Close();
+            closeFuture.wait();
+
+            auto streamResultStatus = streamFuture.get().baseStatus;
+            ASSERT_TRUE(
+                streamResultStatus == EVENT_STREAM_RPC_SUCCESS ||
+                streamResultStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationSendCloseOperation, s_TestEchoClientStreamingOperationSendCloseOperation);
+
+static int s_TestEchoClientStreamingOperationSendDropOperation(struct aws_allocator *allocator, void *ctx)
+{
+
+    return s_DoSimpleRequestRaceCheckTest(
+        allocator,
+        [allocator](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto handler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(allocator, allocator, false);
+            auto echoStreamMessages = client.NewEchoStreamMessages(handler);
+            EchoStreamingRequest echoStreamingMessageRequest;
+            auto activateFuture = echoStreamMessages->Activate(echoStreamingMessageRequest, s_onMessageFlush);
+            activateFuture.wait();
+
+            auto result = echoStreamMessages->GetResult().get();
+            ASSERT_TRUE(result);
+
+            EchoStreamingMessage streamMessage;
+            MessageData messageData;
+            Aws::Crt::String value = "Hello World";
+            messageData.SetStringMessage(value);
+
+            streamMessage.SetStreamMessage(messageData);
+
+            auto streamFuture = echoStreamMessages->SendStreamMessage(streamMessage, s_onMessageFlush);
+
+            echoStreamMessages = nullptr;
+
+            auto streamResultStatus = streamFuture.get().baseStatus;
+            ASSERT_TRUE(
+                streamResultStatus == EVENT_STREAM_RPC_SUCCESS ||
+                streamResultStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationSendDropOperation, s_TestEchoClientStreamingOperationSendDropOperation);
+
+static int s_TestEchoClientStreamingOperationSendCloseConnection(struct aws_allocator *allocator, void *ctx)
+{
+    return s_DoClientScopedRaceCheckTest(
+        allocator,
+        [allocator](EventStreamClientTestContext &testContext, EchoTestRpcClient &client)
+        {
+            auto handler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(allocator, allocator, false);
+            auto echoStreamMessages = client.NewEchoStreamMessages(handler);
+            EchoStreamingRequest echoStreamingMessageRequest;
+            auto activateFuture = echoStreamMessages->Activate(echoStreamingMessageRequest, s_onMessageFlush);
+            activateFuture.wait();
+
+            auto result = echoStreamMessages->GetResult().get();
+            ASSERT_TRUE(result);
+
+            EchoStreamingMessage streamMessage;
+            MessageData messageData;
+            Aws::Crt::String value = "Hello World";
+            messageData.SetStringMessage(value);
+
+            streamMessage.SetStreamMessage(messageData);
+
+            auto streamFuture = echoStreamMessages->SendStreamMessage(streamMessage, s_onMessageFlush);
+
+            client.Close();
+
+            auto streamResultStatus = streamFuture.get().baseStatus;
+            ASSERT_TRUE(
+                streamResultStatus == EVENT_STREAM_RPC_SUCCESS ||
+                streamResultStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
+
+            return AWS_OP_SUCCESS;
+        });
+}
+
+AWS_TEST_CASE(EchoClientStreamingOperationSendCloseConnection, s_TestEchoClientStreamingOperationSendCloseConnection);
+
+class EchoStressContext
+{
+  public:
+    ~EchoStressContext()
+    {
+        m_client = nullptr;
+        m_stream = nullptr;
+    }
+
+    std::shared_ptr<EchoTestRpcClient> m_client;
+    std::shared_ptr<TestLifecycleHandler> m_lifecycleHandler;
+    std::shared_ptr<EchoStreamMessagesOperation> m_stream;
+    std::shared_ptr<EchoStreamMessagesTestHandler> m_streamHandler;
+    Aws::Crt::Vector<std::shared_ptr<TestLifecycleHandler>> m_oldLifecycleHandlers;
+
+    Aws::Crt::Allocator *m_allocator;
+};
+
+using StressAction = std::function<void(const EventStreamClientTestContext &, EchoStressContext &)>;
+
+struct WeightedAction
+{
+    StressAction m_action;
+    size_t m_weight;
+};
+
+class EchoStressActionDistribution
+{
+  public:
+    EchoStressActionDistribution();
+
+    void AddAction(StressAction &&action, size_t weight);
+
+    void ApplyRandomAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext);
+
+  private:
+    Aws::Crt::Vector<WeightedAction> m_actions;
+
+    size_t m_totalWeight;
+};
+
+EchoStressActionDistribution::EchoStressActionDistribution() : m_actions(), m_totalWeight(0) {}
+
+void EchoStressActionDistribution::AddAction(StressAction &&action, size_t weight)
+{
+    if (weight == 0)
+    {
+        return;
+    }
+
+    m_actions.emplace_back(std::move(WeightedAction{std::move(action), weight}));
+    m_totalWeight += weight;
+}
+
+void EchoStressActionDistribution::ApplyRandomAction(
+    const EventStreamClientTestContext &testContext,
+    EchoStressContext &stressContext)
+{
+    if (m_totalWeight == 0 || m_actions.empty())
+    {
+        return;
+    }
+
+    size_t accumulator = std::rand() % m_totalWeight;
+    for (size_t i = 0; i < m_actions.size(); ++i)
+    {
+        const auto &action = m_actions[i];
+
+        if (accumulator < action.m_weight)
+        {
+            action.m_action(testContext, stressContext);
+            break;
+        }
+
+        accumulator -= action.m_weight;
+    }
+}
+
+static void s_CreateClientIfNeeded(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    if (stressContext.m_client != nullptr)
+    {
+        return;
+    }
+
+    stressContext.m_lifecycleHandler = Aws::Crt::MakeShared<TestLifecycleHandler>(stressContext.m_allocator);
+    stressContext.m_client = Aws::Crt::MakeShared<EchoTestRpcClient>(
+        stressContext.m_allocator, *testContext.clientBootstrap, stressContext.m_allocator);
+}
+
+static void s_BeginClientAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - BeginClient");
+    s_CreateClientIfNeeded(testContext, stressContext);
+
+    auto connectFuture = stressContext.m_client->Connect(*stressContext.m_lifecycleHandler);
+
+    if (std::rand() % 2)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - BeginClient - waiting on connect future");
+        connectFuture.wait();
+    }
+}
+
+static void s_EndClientAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    (void)testContext;
+
+    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndClient");
+    if (stressContext.m_client == nullptr)
+    {
+        return;
+    }
+
+    if (std::rand() % 2)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndClient - Closing");
+        stressContext.m_client->Close();
+        if (std::rand() % 2)
+        {
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndClient - Waiting On Close Completion");
+            stressContext.m_lifecycleHandler->WaitOnDisconnected();
+        }
+    }
+    else
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndClient - Dropping");
+        stressContext.m_oldLifecycleHandlers.push_back(stressContext.m_lifecycleHandler);
+        stressContext.m_lifecycleHandler = nullptr;
+        stressContext.m_client = nullptr;
+    }
+}
+
+static void s_RequestResponseAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    (void)testContext;
+
+    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - RequestResponse");
+    s_CreateClientIfNeeded(testContext, stressContext);
+
+    auto echoMessage = stressContext.m_client->NewEchoMessage();
+
+    EchoMessageRequest echoMessageRequest;
+    MessageData messageData;
+    messageData.SetStringMessage("HelloWorld");
+    echoMessageRequest.SetMessage(messageData);
+
+    auto requestFuture = echoMessage->Activate(echoMessageRequest, s_onMessageFlush);
+
+    if (std::rand() % 2)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - RequestResponse - waiting on flush future");
+        auto flushResult = requestFuture.get();
+
+        if (flushResult.baseStatus == EVENT_STREAM_RPC_SUCCESS)
+        {
+            if (std::rand() % 2)
+            {
+                AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - RequestResponse - waiting on result");
+                auto result = echoMessage->GetResult().get();
+            }
+        }
+    }
+}
+
+static void s_BeginStreamAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - BeginStream");
+    s_CreateClientIfNeeded(testContext, stressContext);
+
+    stressContext.m_stream = nullptr;
+    stressContext.m_streamHandler = nullptr;
+
+    stressContext.m_streamHandler = Aws::Crt::MakeShared<EchoStreamMessagesTestHandler>(
+        stressContext.m_allocator, stressContext.m_allocator, false);
+    auto echoStreamMessages = stressContext.m_client->NewEchoStreamMessages(stressContext.m_streamHandler);
+
+    EchoStreamingRequest echoStreamingMessageRequest;
+    auto activateFuture = echoStreamMessages->Activate(echoStreamingMessageRequest, s_onMessageFlush);
+
+    if (std::rand() % 2)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - BeginStream - waiting on Activate flush future");
+        auto flushResult = activateFuture.get();
+        if (flushResult.baseStatus == EVENT_STREAM_RPC_SUCCESS)
+        {
+            if (std::rand() % 2)
+            {
+                AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - BeginStream - waiting on Activate result");
+                auto result = echoStreamMessages->GetResult().get();
+            }
+        }
+    }
+}
+
+static void s_SendStreamAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    (void)testContext;
+
+    if (stressContext.m_stream == nullptr)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - SendStream - nothing to do");
+        return;
+    }
+
+    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - SendStream");
+    EchoStreamingMessage streamMessage;
+    MessageData messageData;
+    Aws::Crt::String value = "Hello World";
+    messageData.SetStringMessage(value);
+
+    streamMessage.SetStreamMessage(messageData);
+
+    auto streamFuture = stressContext.m_stream->SendStreamMessage(streamMessage, s_onMessageFlush);
+    if (std::rand() % 2)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - SendStream - waiting on flush future");
+        streamFuture.get();
+    }
+}
+
+static void s_EndStreamAction(const EventStreamClientTestContext &testContext, EchoStressContext &stressContext)
+{
+    (void)testContext;
+
+    if (stressContext.m_stream == nullptr)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndStream - nothing to do");
+        return;
+    }
+
+    if (std::rand() % 2)
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndStream - Closing");
+        auto closeFuture = stressContext.m_stream->Close();
+        if (std::rand() % 2)
+        {
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndStream - Waiting on Close future");
+            closeFuture.wait();
+        }
+    }
+    else
+    {
+        AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EchoStressTest - EndStream - Dropping");
+        stressContext.m_stream = nullptr;
+        stressContext.m_streamHandler = nullptr;
+    }
+}
+
+constexpr size_t STRESS_TEST_STEP_COUNT = 50000;
+
+static int s_TestEchoClientOperationStress(struct aws_allocator *allocator, void *ctx)
+{
+    (void)ctx;
+
+    ApiHandle apiHandle(allocator);
+
+    {
+        EchoStressContext stressContext;
+        stressContext.m_allocator = allocator;
+
+        EventStreamClientTestContext testContext(allocator);
+        if (!testContext.isValidEnvironment())
+        {
+            printf("Environment Variables are not set for the test, skipping...");
+            return AWS_OP_SKIP;
+        }
+
+        EchoStressActionDistribution actionDistribution;
+        actionDistribution.AddAction(s_BeginClientAction, 3);
+        actionDistribution.AddAction(s_EndClientAction, 1);
+        actionDistribution.AddAction(s_RequestResponseAction, 4);
+        actionDistribution.AddAction(s_BeginStreamAction, 2);
+        actionDistribution.AddAction(s_SendStreamAction, 4);
+        actionDistribution.AddAction(s_EndStreamAction, 1);
+
+        for (size_t i = 0; i < STRESS_TEST_STEP_COUNT; ++i)
+        {
+            actionDistribution.ApplyRandomAction(testContext, stressContext);
+        }
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
+AWS_TEST_CASE(EchoClientOperationStress, s_TestEchoClientOperationStress);
 
 #ifdef NEVER
 

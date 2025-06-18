@@ -723,7 +723,7 @@ namespace Awstest
       public:
         GetAllProductsOperation(
             ClientConnection &connection,
-            const GetAllProductsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
         /**
@@ -789,7 +789,7 @@ namespace Awstest
       public:
         CauseServiceErrorOperation(
             ClientConnection &connection,
-            const CauseServiceErrorOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
         /**
@@ -907,7 +907,7 @@ namespace Awstest
         CauseStreamServiceToErrorOperation(
             ClientConnection &connection,
             std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
-            const CauseStreamServiceToErrorOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
         /**
@@ -1025,7 +1025,7 @@ namespace Awstest
         EchoStreamMessagesOperation(
             ClientConnection &connection,
             std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
-            const EchoStreamMessagesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
         /**
@@ -1103,7 +1103,7 @@ namespace Awstest
       public:
         EchoMessageOperation(
             ClientConnection &connection,
-            const EchoMessageOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
         /**
@@ -1169,7 +1169,7 @@ namespace Awstest
       public:
         GetAllCustomersOperation(
             ClientConnection &connection,
-            const GetAllCustomersOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
 
         /**
@@ -1194,7 +1194,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoTestRpcServiceModel : public ServiceModel
     {
       public:
-        EchoTestRpcServiceModel() noexcept;
+        EchoTestRpcServiceModel(Aws::Crt::Allocator *allocator) noexcept;
         Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
             const Aws::Crt::String &errorModelName,
             Aws::Crt::StringView stringView,
@@ -1203,12 +1203,12 @@ namespace Awstest
 
       private:
         friend class EchoTestRpcClient;
-        GetAllProductsOperationContext m_getAllProductsOperationContext;
-        CauseServiceErrorOperationContext m_causeServiceErrorOperationContext;
-        CauseStreamServiceToErrorOperationContext m_causeStreamServiceToErrorOperationContext;
-        EchoStreamMessagesOperationContext m_echoStreamMessagesOperationContext;
-        EchoMessageOperationContext m_echoMessageOperationContext;
-        GetAllCustomersOperationContext m_getAllCustomersOperationContext;
+        std::shared_ptr<OperationModelContext> m_getAllProductsOperationContext;
+        std::shared_ptr<OperationModelContext> m_causeServiceErrorOperationContext;
+        std::shared_ptr<OperationModelContext> m_causeStreamServiceToErrorOperationContext;
+        std::shared_ptr<OperationModelContext> m_echoStreamMessagesOperationContext;
+        std::shared_ptr<OperationModelContext> m_echoMessageOperationContext;
+        std::shared_ptr<OperationModelContext> m_getAllCustomersOperationContext;
         Aws::Crt::Map<Aws::Crt::String, ErrorResponseFactory> m_modelNameToErrorResponse;
     };
 } // namespace Awstest

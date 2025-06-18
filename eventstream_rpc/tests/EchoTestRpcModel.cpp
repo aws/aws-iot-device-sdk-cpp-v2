@@ -1023,7 +1023,7 @@ namespace Awstest
 
     GetAllProductsOperation::GetAllProductsOperation(
         ClientConnection &connection,
-        const GetAllProductsOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, nullptr, operationContext, allocator),
           m_resultPromise(Aws::Crt::MakeShared<std::promise<GetAllProductsResult>>(allocator))
@@ -1095,7 +1095,7 @@ namespace Awstest
 
     CauseServiceErrorOperation::CauseServiceErrorOperation(
         ClientConnection &connection,
-        const CauseServiceErrorOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, nullptr, operationContext, allocator),
           m_resultPromise(Aws::Crt::MakeShared<std::promise<CauseServiceErrorResult>>(allocator))
@@ -1190,7 +1190,7 @@ namespace Awstest
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
         ClientConnection &connection,
         std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
-        const CauseStreamServiceToErrorOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, streamHandler, operationContext, allocator),
           m_resultPromise(Aws::Crt::MakeShared<std::promise<CauseStreamServiceToErrorResult>>(allocator))
@@ -1288,7 +1288,7 @@ namespace Awstest
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
         ClientConnection &connection,
         std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
-        const EchoStreamMessagesOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, streamHandler, operationContext, allocator),
           m_resultPromise(Aws::Crt::MakeShared<std::promise<EchoStreamMessagesResult>>(allocator))
@@ -1366,7 +1366,7 @@ namespace Awstest
 
     EchoMessageOperation::EchoMessageOperation(
         ClientConnection &connection,
-        const EchoMessageOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, nullptr, operationContext, allocator),
           m_resultPromise(Aws::Crt::MakeShared<std::promise<EchoMessageResult>>(allocator))
@@ -1437,7 +1437,7 @@ namespace Awstest
 
     GetAllCustomersOperation::GetAllCustomersOperation(
         ClientConnection &connection,
-        const GetAllCustomersOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
         : ClientOperation(connection, nullptr, operationContext, allocator),
           m_resultPromise(Aws::Crt::MakeShared<std::promise<GetAllCustomersResult>>(allocator))
@@ -1459,10 +1459,16 @@ namespace Awstest
         return activateFuture;
     }
 
-    EchoTestRpcServiceModel::EchoTestRpcServiceModel() noexcept
-        : m_getAllProductsOperationContext(*this), m_causeServiceErrorOperationContext(*this),
-          m_causeStreamServiceToErrorOperationContext(*this), m_echoStreamMessagesOperationContext(*this),
-          m_echoMessageOperationContext(*this), m_getAllCustomersOperationContext(*this)
+    EchoTestRpcServiceModel::EchoTestRpcServiceModel(Aws::Crt::Allocator *allocator) noexcept
+        : m_getAllProductsOperationContext(Aws::Crt::MakeShared<GetAllProductsOperationContext>(allocator, *this)),
+          m_causeServiceErrorOperationContext(
+              Aws::Crt::MakeShared<CauseServiceErrorOperationContext>(allocator, *this)),
+          m_causeStreamServiceToErrorOperationContext(
+              Aws::Crt::MakeShared<CauseStreamServiceToErrorOperationContext>(allocator, *this)),
+          m_echoStreamMessagesOperationContext(
+              Aws::Crt::MakeShared<EchoStreamMessagesOperationContext>(allocator, *this)),
+          m_echoMessageOperationContext(Aws::Crt::MakeShared<EchoMessageOperationContext>(allocator, *this)),
+          m_getAllCustomersOperationContext(Aws::Crt::MakeShared<GetAllCustomersOperationContext>(allocator, *this))
     {
     }
 

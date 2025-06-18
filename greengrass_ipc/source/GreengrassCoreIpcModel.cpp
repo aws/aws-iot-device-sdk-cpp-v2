@@ -7047,7 +7047,7 @@ namespace Aws
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
-            const SubscribeToIoTCoreOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToIoTCoreResult>>(allocator))
@@ -7119,7 +7119,7 @@ namespace Aws
 
         ResumeComponentOperation::ResumeComponentOperation(
             ClientConnection &connection,
-            const ResumeComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<ResumeComponentResult>>(allocator))
@@ -7191,7 +7191,7 @@ namespace Aws
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
             ClientConnection &connection,
-            const PublishToIoTCoreOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<PublishToIoTCoreResult>>(allocator))
@@ -7294,7 +7294,7 @@ namespace Aws
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
-            const SubscribeToConfigurationUpdateOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToConfigurationUpdateResult>>(allocator))
@@ -7366,7 +7366,7 @@ namespace Aws
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
             ClientConnection &connection,
-            const DeleteThingShadowOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<DeleteThingShadowResult>>(allocator))
@@ -7438,7 +7438,7 @@ namespace Aws
 
         PutComponentMetricOperation::PutComponentMetricOperation(
             ClientConnection &connection,
-            const PutComponentMetricOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<PutComponentMetricResult>>(allocator))
@@ -7510,7 +7510,7 @@ namespace Aws
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
             ClientConnection &connection,
-            const DeferComponentUpdateOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<DeferComponentUpdateResult>>(allocator))
@@ -7610,7 +7610,7 @@ namespace Aws
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
-            const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator),
               m_resultPromise(
@@ -7685,7 +7685,7 @@ namespace Aws
 
         GetConfigurationOperation::GetConfigurationOperation(
             ClientConnection &connection,
-            const GetConfigurationOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<GetConfigurationResult>>(allocator))
@@ -7793,7 +7793,7 @@ namespace Aws
         SubscribeToTopicOperation::SubscribeToTopicOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
-            const SubscribeToTopicOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToTopicResult>>(allocator))
@@ -7865,7 +7865,7 @@ namespace Aws
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
             ClientConnection &connection,
-            const GetComponentDetailsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<GetComponentDetailsResult>>(allocator))
@@ -7937,7 +7937,7 @@ namespace Aws
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
             ClientConnection &connection,
-            const GetClientDeviceAuthTokenOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<GetClientDeviceAuthTokenResult>>(allocator))
@@ -8009,7 +8009,7 @@ namespace Aws
 
         PublishToTopicOperation::PublishToTopicOperation(
             ClientConnection &connection,
-            const PublishToTopicOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<PublishToTopicResult>>(allocator))
@@ -8118,7 +8118,7 @@ namespace Aws
         SubscribeToCertificateUpdatesOperation::SubscribeToCertificateUpdatesOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
-            const SubscribeToCertificateUpdatesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToCertificateUpdatesResult>>(allocator))
@@ -8190,7 +8190,7 @@ namespace Aws
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
             ClientConnection &connection,
-            const VerifyClientDeviceIdentityOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<VerifyClientDeviceIdentityResult>>(allocator))
@@ -8262,7 +8262,7 @@ namespace Aws
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
             ClientConnection &connection,
-            const AuthorizeClientDeviceActionOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<AuthorizeClientDeviceActionResult>>(allocator))
@@ -8334,7 +8334,7 @@ namespace Aws
 
         ListComponentsOperation::ListComponentsOperation(
             ClientConnection &connection,
-            const ListComponentsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<ListComponentsResult>>(allocator))
@@ -8406,7 +8406,7 @@ namespace Aws
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
             ClientConnection &connection,
-            const CreateDebugPasswordOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<CreateDebugPasswordResult>>(allocator))
@@ -8478,7 +8478,7 @@ namespace Aws
 
         GetThingShadowOperation::GetThingShadowOperation(
             ClientConnection &connection,
-            const GetThingShadowOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<GetThingShadowResult>>(allocator))
@@ -8551,7 +8551,7 @@ namespace Aws
 
         SendConfigurationValidityReportOperation::SendConfigurationValidityReportOperation(
             ClientConnection &connection,
-            const SendConfigurationValidityReportOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<SendConfigurationValidityReportResult>>(allocator))
@@ -8623,7 +8623,7 @@ namespace Aws
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
             ClientConnection &connection,
-            const UpdateThingShadowOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateThingShadowResult>>(allocator))
@@ -8695,7 +8695,7 @@ namespace Aws
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
             ClientConnection &connection,
-            const UpdateConfigurationOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateConfigurationResult>>(allocator))
@@ -8767,7 +8767,7 @@ namespace Aws
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
             ClientConnection &connection,
-            const ValidateAuthorizationTokenOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<ValidateAuthorizationTokenResult>>(allocator))
@@ -8839,7 +8839,7 @@ namespace Aws
 
         RestartComponentOperation::RestartComponentOperation(
             ClientConnection &connection,
-            const RestartComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<RestartComponentResult>>(allocator))
@@ -8911,7 +8911,7 @@ namespace Aws
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
             ClientConnection &connection,
-            const GetLocalDeploymentStatusOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<GetLocalDeploymentStatusResult>>(allocator))
@@ -8983,7 +8983,7 @@ namespace Aws
 
         GetSecretValueOperation::GetSecretValueOperation(
             ClientConnection &connection,
-            const GetSecretValueOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<GetSecretValueResult>>(allocator))
@@ -9054,7 +9054,7 @@ namespace Aws
 
         UpdateStateOperation::UpdateStateOperation(
             ClientConnection &connection,
-            const UpdateStateOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateStateResult>>(allocator))
@@ -9126,7 +9126,7 @@ namespace Aws
 
         CancelLocalDeploymentOperation::CancelLocalDeploymentOperation(
             ClientConnection &connection,
-            const CancelLocalDeploymentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<CancelLocalDeploymentResult>>(allocator))
@@ -9198,7 +9198,7 @@ namespace Aws
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
             ClientConnection &connection,
-            const ListNamedShadowsForThingOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<ListNamedShadowsForThingResult>>(allocator))
@@ -9301,7 +9301,7 @@ namespace Aws
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
-            const SubscribeToComponentUpdatesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, streamHandler, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToComponentUpdatesResult>>(allocator))
@@ -9373,7 +9373,7 @@ namespace Aws
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
             ClientConnection &connection,
-            const ListLocalDeploymentsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<ListLocalDeploymentsResult>>(allocator))
@@ -9445,7 +9445,7 @@ namespace Aws
 
         StopComponentOperation::StopComponentOperation(
             ClientConnection &connection,
-            const StopComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<StopComponentResult>>(allocator))
@@ -9517,7 +9517,7 @@ namespace Aws
 
         PauseComponentOperation::PauseComponentOperation(
             ClientConnection &connection,
-            const PauseComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<PauseComponentResult>>(allocator))
@@ -9589,7 +9589,7 @@ namespace Aws
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(
             ClientConnection &connection,
-            const CreateLocalDeploymentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
             : ClientOperation(connection, nullptr, operationContext, allocator),
               m_resultPromise(Aws::Crt::MakeShared<std::promise<CreateLocalDeploymentResult>>(allocator))
@@ -9611,25 +9611,68 @@ namespace Aws
             return activateFuture;
         }
 
-        GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel() noexcept
-            : m_subscribeToIoTCoreOperationContext(*this), m_resumeComponentOperationContext(*this),
-              m_publishToIoTCoreOperationContext(*this), m_subscribeToConfigurationUpdateOperationContext(*this),
-              m_deleteThingShadowOperationContext(*this), m_putComponentMetricOperationContext(*this),
-              m_deferComponentUpdateOperationContext(*this),
-              m_subscribeToValidateConfigurationUpdatesOperationContext(*this),
-              m_getConfigurationOperationContext(*this), m_subscribeToTopicOperationContext(*this),
-              m_getComponentDetailsOperationContext(*this), m_getClientDeviceAuthTokenOperationContext(*this),
-              m_publishToTopicOperationContext(*this), m_subscribeToCertificateUpdatesOperationContext(*this),
-              m_verifyClientDeviceIdentityOperationContext(*this), m_authorizeClientDeviceActionOperationContext(*this),
-              m_listComponentsOperationContext(*this), m_createDebugPasswordOperationContext(*this),
-              m_getThingShadowOperationContext(*this), m_sendConfigurationValidityReportOperationContext(*this),
-              m_updateThingShadowOperationContext(*this), m_updateConfigurationOperationContext(*this),
-              m_validateAuthorizationTokenOperationContext(*this), m_restartComponentOperationContext(*this),
-              m_getLocalDeploymentStatusOperationContext(*this), m_getSecretValueOperationContext(*this),
-              m_updateStateOperationContext(*this), m_cancelLocalDeploymentOperationContext(*this),
-              m_listNamedShadowsForThingOperationContext(*this), m_subscribeToComponentUpdatesOperationContext(*this),
-              m_listLocalDeploymentsOperationContext(*this), m_stopComponentOperationContext(*this),
-              m_pauseComponentOperationContext(*this), m_createLocalDeploymentOperationContext(*this)
+        GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel(Aws::Crt::Allocator *allocator) noexcept
+            : m_subscribeToIoTCoreOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToIoTCoreOperationContext>(allocator, *this)),
+              m_resumeComponentOperationContext(
+                  Aws::Crt::MakeShared<ResumeComponentOperationContext>(allocator, *this)),
+              m_publishToIoTCoreOperationContext(
+                  Aws::Crt::MakeShared<PublishToIoTCoreOperationContext>(allocator, *this)),
+              m_subscribeToConfigurationUpdateOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToConfigurationUpdateOperationContext>(allocator, *this)),
+              m_deleteThingShadowOperationContext(
+                  Aws::Crt::MakeShared<DeleteThingShadowOperationContext>(allocator, *this)),
+              m_putComponentMetricOperationContext(
+                  Aws::Crt::MakeShared<PutComponentMetricOperationContext>(allocator, *this)),
+              m_deferComponentUpdateOperationContext(
+                  Aws::Crt::MakeShared<DeferComponentUpdateOperationContext>(allocator, *this)),
+              m_subscribeToValidateConfigurationUpdatesOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToValidateConfigurationUpdatesOperationContext>(allocator, *this)),
+              m_getConfigurationOperationContext(
+                  Aws::Crt::MakeShared<GetConfigurationOperationContext>(allocator, *this)),
+              m_subscribeToTopicOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToTopicOperationContext>(allocator, *this)),
+              m_getComponentDetailsOperationContext(
+                  Aws::Crt::MakeShared<GetComponentDetailsOperationContext>(allocator, *this)),
+              m_getClientDeviceAuthTokenOperationContext(
+                  Aws::Crt::MakeShared<GetClientDeviceAuthTokenOperationContext>(allocator, *this)),
+              m_publishToTopicOperationContext(Aws::Crt::MakeShared<PublishToTopicOperationContext>(allocator, *this)),
+              m_subscribeToCertificateUpdatesOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToCertificateUpdatesOperationContext>(allocator, *this)),
+              m_verifyClientDeviceIdentityOperationContext(
+                  Aws::Crt::MakeShared<VerifyClientDeviceIdentityOperationContext>(allocator, *this)),
+              m_authorizeClientDeviceActionOperationContext(
+                  Aws::Crt::MakeShared<AuthorizeClientDeviceActionOperationContext>(allocator, *this)),
+              m_listComponentsOperationContext(Aws::Crt::MakeShared<ListComponentsOperationContext>(allocator, *this)),
+              m_createDebugPasswordOperationContext(
+                  Aws::Crt::MakeShared<CreateDebugPasswordOperationContext>(allocator, *this)),
+              m_getThingShadowOperationContext(Aws::Crt::MakeShared<GetThingShadowOperationContext>(allocator, *this)),
+              m_sendConfigurationValidityReportOperationContext(
+                  Aws::Crt::MakeShared<SendConfigurationValidityReportOperationContext>(allocator, *this)),
+              m_updateThingShadowOperationContext(
+                  Aws::Crt::MakeShared<UpdateThingShadowOperationContext>(allocator, *this)),
+              m_updateConfigurationOperationContext(
+                  Aws::Crt::MakeShared<UpdateConfigurationOperationContext>(allocator, *this)),
+              m_validateAuthorizationTokenOperationContext(
+                  Aws::Crt::MakeShared<ValidateAuthorizationTokenOperationContext>(allocator, *this)),
+              m_restartComponentOperationContext(
+                  Aws::Crt::MakeShared<RestartComponentOperationContext>(allocator, *this)),
+              m_getLocalDeploymentStatusOperationContext(
+                  Aws::Crt::MakeShared<GetLocalDeploymentStatusOperationContext>(allocator, *this)),
+              m_getSecretValueOperationContext(Aws::Crt::MakeShared<GetSecretValueOperationContext>(allocator, *this)),
+              m_updateStateOperationContext(Aws::Crt::MakeShared<UpdateStateOperationContext>(allocator, *this)),
+              m_cancelLocalDeploymentOperationContext(
+                  Aws::Crt::MakeShared<CancelLocalDeploymentOperationContext>(allocator, *this)),
+              m_listNamedShadowsForThingOperationContext(
+                  Aws::Crt::MakeShared<ListNamedShadowsForThingOperationContext>(allocator, *this)),
+              m_subscribeToComponentUpdatesOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToComponentUpdatesOperationContext>(allocator, *this)),
+              m_listLocalDeploymentsOperationContext(
+                  Aws::Crt::MakeShared<ListLocalDeploymentsOperationContext>(allocator, *this)),
+              m_stopComponentOperationContext(Aws::Crt::MakeShared<StopComponentOperationContext>(allocator, *this)),
+              m_pauseComponentOperationContext(Aws::Crt::MakeShared<PauseComponentOperationContext>(allocator, *this)),
+              m_createLocalDeploymentOperationContext(
+                  Aws::Crt::MakeShared<CreateLocalDeploymentOperationContext>(allocator, *this))
         {
         }
 

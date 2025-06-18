@@ -1412,7 +1412,7 @@ namespace Aws
             Crt::String GetModelName() const noexcept;
 
             void Initialize(
-                const OperationModelContext *operationModelContext,
+                const std::shared_ptr<OperationModelContext> &operationModelContext,
                 std::shared_ptr<StreamResponseHandler> streamHandler) noexcept
             {
                 m_operationModelContext = operationModelContext;
@@ -1453,13 +1453,16 @@ namespace Aws
             Aws::Crt::Allocator *m_allocator;
 
             struct aws_client_bootstrap *m_clientBootstrap;
+            struct aws_event_loop *m_connectionEventLoop;
 
             std::shared_ptr<ClientContinuationImpl> m_selfReference;
 
             std::mutex m_sharedStateLock;
             ContinuationSharedState m_sharedState;
 
-            const OperationModelContext *m_operationModelContext;
+            std::shared_ptr<OperationModelContext> m_operationModelContext;
+
+            std::mutex m_streamHandlerLock;
             std::shared_ptr<StreamResponseHandler> m_streamHandler;
 
             /*
@@ -1478,11 +1481,11 @@ namespace Aws
         ClientOperation::ClientOperation(
             ClientConnection &connection,
             std::shared_ptr<StreamResponseHandler> streamHandler,
-            const OperationModelContext &operationModelContext,
+            const std::shared_ptr<OperationModelContext> &operationModelContext,
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator), m_impl(connection.NewStream())
         {
-            m_impl->Initialize(&operationModelContext, std::move(streamHandler));
+            m_impl->Initialize(operationModelContext, std::move(streamHandler));
         }
 
         ClientOperation::~ClientOperation() noexcept
@@ -1555,7 +1558,8 @@ namespace Aws
             Aws::Crt::Allocator *allocator,
             struct aws_client_bootstrap *bootstrap,
             struct aws_event_stream_rpc_client_connection *connection) noexcept
-            : m_allocator(allocator), m_clientBootstrap(aws_client_bootstrap_acquire(bootstrap)), m_sharedState(),
+            : m_allocator(allocator), m_clientBootstrap(aws_client_bootstrap_acquire(bootstrap)),
+              m_connectionEventLoop(aws_event_stream_rpc_client_connection_get_event_loop(connection)), m_sharedState(),
               m_operationModelContext(nullptr), m_continuationValid(true)
         {
             if (connection != nullptr)
@@ -1642,6 +1646,24 @@ namespace Aws
             std::shared_ptr<OnMessageFlushCallbackContainer> closeCallbackContainer = nullptr;
             std::shared_ptr<OnMessageFlushCallbackContainer> activationCallbackContainer = nullptr;
             std::function<void(TaggedResult &&)> activationResponseCallback = nullptr;
+
+            {
+                if (m_connectionEventLoop != nullptr)
+                {
+                    bool useHandlerLock = !aws_event_loop_thread_is_callers_thread(m_connectionEventLoop);
+                    if (useHandlerLock)
+                    {
+                        m_streamHandlerLock.lock();
+                    }
+
+                    m_streamHandler = nullptr;
+
+                    if (useHandlerLock)
+                    {
+                        m_streamHandlerLock.unlock();
+                    }
+                }
+            }
 
             {
                 std::lock_guard<std::mutex> lock(m_sharedStateLock);
@@ -2212,19 +2234,43 @@ namespace Aws
 
             if (!isResponse)
             {
+                std::lock_guard<std::mutex> handlerLock(m_streamHandlerLock);
+
                 auto streamHandler = m_streamHandler;
                 if (streamHandler)
                 {
                     if (result.m_message.has_value())
                     {
-                        AWS_FATAL_ASSERT(result.m_message.value().m_route == EventStreamMessageRoutingType::Stream);
                         auto shape = std::move(result.m_message.value().m_shape);
+                        auto route = result.m_message.value().m_route;
+                        switch (route)
+                        {
+                            case EventStreamMessageRoutingType::Stream:
+                            {
 
-                        streamHandler->OnStreamEvent(std::move(shape));
+                                streamHandler->OnStreamEvent(std::move(shape));
+                                break;
+                            }
+
+                            case EventStreamMessageRoutingType::Error:
+                            {
+                                Crt::Allocator *allocator = m_allocator;
+                                auto errorResponse = Crt::ScopedResource<OperationError>(
+                                    static_cast<OperationError *>(shape.release()),
+                                    [allocator](OperationError *shape) { Crt::Delete(shape, allocator); });
+
+                                shouldClose = streamHandler->OnStreamError(
+                                    std::move(errorResponse), {EVENT_STREAM_RPC_SUCCESS, 0});
+                                break;
+                            }
+
+                            default:
+                                AWS_FATAL_ASSERT(false);
+                        }
                     }
                     else
                     {
-                        shouldClose = m_streamHandler->OnStreamError(nullptr, {result.m_statusCode, 0});
+                        shouldClose = streamHandler->OnStreamError(nullptr, {result.m_statusCode, 0});
                     }
                 }
             }
