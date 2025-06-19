@@ -123,7 +123,8 @@ int main(int argc, char *argv[])
     });
 
     // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectOptions->WithClientId(cmdData.input_clientId);
     clientConfigBuilder->WithConnectOptions(connectOptions);
 

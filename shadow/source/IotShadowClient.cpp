@@ -89,17 +89,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "delete"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/delete/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -144,17 +135,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "delete"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/delete/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -199,15 +181,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "delete"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/delete/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -252,15 +226,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "delete"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/delete/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -305,17 +271,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "get"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/get/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -360,17 +317,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "get"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/get/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -415,15 +363,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "get"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/get/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -468,15 +408,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "get"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/get/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -521,17 +453,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "update"
-                               << "/"
-                               << "delta";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/update/delta";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -576,17 +499,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "update"
-                               << "/"
-                               << "documents";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/update/documents";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -631,15 +545,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "update"
-                               << "/"
-                               << "delta";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/update/delta";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -684,15 +590,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "update"
-                               << "/"
-                               << "documents";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/update/documents";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -737,17 +635,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "update"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/update/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -792,17 +681,8 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "name"
-                               << "/" << *request.ShadowName << "/"
-                               << "update"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                               << "/update/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -847,15 +727,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "update"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/update/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -900,15 +772,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "things"
-                               << "/" << *request.ThingName << "/"
-                               << "shadow"
-                               << "/"
-                               << "update"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/update/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -923,15 +787,8 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "things"
-                             << "/" << *request.ThingName << "/"
-                             << "shadow"
-                             << "/"
-                             << "name"
-                             << "/" << *request.ShadowName << "/"
-                             << "delete";
+            publishTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                             << "/delete";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -955,13 +812,7 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "things"
-                             << "/" << *request.ThingName << "/"
-                             << "shadow"
-                             << "/"
-                             << "delete";
+            publishTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/delete";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -985,15 +836,8 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "things"
-                             << "/" << *request.ThingName << "/"
-                             << "shadow"
-                             << "/"
-                             << "name"
-                             << "/" << *request.ShadowName << "/"
-                             << "get";
+            publishTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                             << "/get";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -1017,13 +861,7 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "things"
-                             << "/" << *request.ThingName << "/"
-                             << "shadow"
-                             << "/"
-                             << "get";
+            publishTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/get";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -1047,15 +885,8 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "things"
-                             << "/" << *request.ThingName << "/"
-                             << "shadow"
-                             << "/"
-                             << "name"
-                             << "/" << *request.ShadowName << "/"
-                             << "update";
+            publishTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/name/" << *request.ShadowName
+                             << "/update";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -1079,13 +910,7 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "things"
-                             << "/" << *request.ThingName << "/"
-                             << "shadow"
-                             << "/"
-                             << "update";
+            publishTopicSStr << "$aws/things/" << *request.ThingName << "/shadow/update";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);

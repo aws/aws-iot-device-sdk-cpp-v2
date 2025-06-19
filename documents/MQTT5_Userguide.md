@@ -657,8 +657,10 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
     subscriptionList.push_back(data2);
     subscriptionList.push_back(data3);
 
-    // Creaet a SubscribePacket with the subscription list. You can also use packet->WithSubscription(subscription) to push_back a single subscription data.
-    std::shared_ptr<Mqtt5::SubscribePacket> packet = std::make_shared<SubscribePacket>();
+    // Create a SubscribePacket with the subscription list. You can also use packet->WithSubscription(subscription)
+    // to push_back a single subscription data.
+    std::shared_ptr<Mqtt5::SubscribePacket> packet =
+            Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
     packet->WithSubscriptions(subscriptionList);
 
     bool subSuccess = mqtt5Client->Subscribe(
@@ -692,7 +694,8 @@ The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish
     Vector<String> topics;
     topics.push_back(topic1);
     topics.push_back(topic2);
-    std::shared_ptr<UnsubscribePacket> unsub = std::make_shared<UnsubscribePacket>();
+    std::shared_ptr<UnsubscribePacket> unsub =
+            Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
     unsub->WithTopicFilters(topics);
     bool unsubSuccess = mqtt5Client->Unsubscribe(
         packet,
@@ -727,7 +730,11 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     ByteCursor payload = ByteCursorFromString(message_string);
 
     // Create PublishPacket.
-    std::shared_ptr<PublishPacket> publish = std::make_shared<PublishPacket>(testTopic, payload, QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+    std::shared_ptr<PublishPacket> publish = Aws::Crt::MakeShared<PublishPacket>(
+            Aws::Crt::DefaultAllocatorImplementation(),
+            testTopic,
+            payload,
+            QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
 
     // Setup publish completion callback. The callback will get triggered when the pulbish completes and publish result returned from the server
     OnPublishCompletionHandler callback = [](int, std::shared_ptr<PublishResult> result){

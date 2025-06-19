@@ -28,6 +28,7 @@
   ],
   "test_steps": [
     "setup-eventstream-server",
+    "sdk-ci-prep",
     "test"
   ],
   "variants" : {
@@ -53,6 +54,13 @@
           "build",
           "build-gg-samples"
         ]
+    }
+  },
+  "targets" : {
+    "macos" : {
+      "!test_steps": [
+        "test"
+      ]
     }
   }
 }

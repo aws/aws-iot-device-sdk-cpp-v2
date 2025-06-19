@@ -875,7 +875,7 @@ namespace Aws
         int SecureTunnel::SendData(const Crt::ByteCursor &data)
         {
             // return SendData("", data);
-            std::shared_ptr<Message> message = std::make_shared<Message>(data);
+            std::shared_ptr<Message> message = Aws::Crt::MakeShared<Message>(m_allocator, data);
             return SendMessage(message);
         }
 
@@ -973,8 +973,8 @@ namespace Aws
                 /* Check for full callback */
                 if (secureTunnel->m_OnConnectionSuccess)
                 {
-                    std::shared_ptr<ConnectionData> packet =
-                        std::make_shared<ConnectionData>(*connection, secureTunnel->m_allocator);
+                    std::shared_ptr<ConnectionData> packet = Aws::Crt::MakeShared<ConnectionData>(
+                        secureTunnel->m_allocator, *connection, secureTunnel->m_allocator);
                     ConnectionSuccessEventData eventData;
                     eventData.connectionData = packet;
                     secureTunnel->m_OnConnectionSuccess(secureTunnel, eventData);
@@ -1015,8 +1015,8 @@ namespace Aws
 
             if (secureTunnel->m_OnSendMessageComplete)
             {
-                std::shared_ptr<SendMessageCompleteData> packet =
-                    std::make_shared<SendMessageCompleteData>(type, secureTunnel->m_allocator);
+                std::shared_ptr<SendMessageCompleteData> packet = Aws::Crt::MakeShared<SendMessageCompleteData>(
+                    secureTunnel->m_allocator, type, secureTunnel->m_allocator);
                 SendMessageCompleteEventData eventData;
                 eventData.sendMessageCompleteData = packet;
                 secureTunnel->m_OnSendMessageComplete(secureTunnel, error_code, eventData);
@@ -1040,8 +1040,8 @@ namespace Aws
                     /* V2 Protocol API */
                     if (secureTunnel->m_OnMessageReceived != nullptr)
                     {
-                        std::shared_ptr<Message> packet =
-                            std::make_shared<Message>(*message, secureTunnel->m_allocator);
+                        std::shared_ptr<Message> packet = Aws::Crt::MakeShared<Message>(
+                            secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                         MessageReceivedEventData eventData;
                         eventData.message = packet;
                         secureTunnel->m_OnMessageReceived(secureTunnel, eventData);
@@ -1082,8 +1082,8 @@ namespace Aws
             {
                 if (secureTunnel->m_OnStreamStarted)
                 {
-                    std::shared_ptr<StreamStartedData> packet =
-                        std::make_shared<StreamStartedData>(*message, secureTunnel->m_allocator);
+                    std::shared_ptr<StreamStartedData> packet = Aws::Crt::MakeShared<StreamStartedData>(
+                        secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                     StreamStartedEventData eventData;
                     eventData.streamStartedData = packet;
                     secureTunnel->m_OnStreamStarted(secureTunnel, error_code, eventData);
@@ -1109,8 +1109,8 @@ namespace Aws
 
             if (secureTunnel->m_OnStreamStopped)
             {
-                std::shared_ptr<StreamStoppedData> packet =
-                    std::make_shared<StreamStoppedData>(*message, secureTunnel->m_allocator);
+                std::shared_ptr<StreamStoppedData> packet = Aws::Crt::MakeShared<StreamStoppedData>(
+                    secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                 StreamStoppedEventData eventData;
                 eventData.streamStoppedData = packet;
                 secureTunnel->m_OnStreamStopped(secureTunnel, eventData);
@@ -1134,8 +1134,8 @@ namespace Aws
             {
                 if (secureTunnel->m_OnConnectionStarted)
                 {
-                    std::shared_ptr<ConnectionStartedData> packet =
-                        std::make_shared<ConnectionStartedData>(*message, secureTunnel->m_allocator);
+                    std::shared_ptr<ConnectionStartedData> packet = Aws::Crt::MakeShared<ConnectionStartedData>(
+                        secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                     ConnectionStartedEventData eventData;
                     eventData.connectionStartedData = packet;
                     secureTunnel->m_OnConnectionStarted(secureTunnel, error_code, eventData);
@@ -1153,8 +1153,8 @@ namespace Aws
 
             if (secureTunnel->m_OnConnectionReset)
             {
-                std::shared_ptr<ConnectionResetData> packet =
-                    std::make_shared<ConnectionResetData>(*message, secureTunnel->m_allocator);
+                std::shared_ptr<ConnectionResetData> packet = Aws::Crt::MakeShared<ConnectionResetData>(
+                    secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                 ConnectionResetEventData eventData;
                 eventData.connectionResetData = packet;
                 secureTunnel->m_OnConnectionReset(secureTunnel, error_code, eventData);

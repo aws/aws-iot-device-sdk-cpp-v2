@@ -77,15 +77,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "certificates"
-                               << "/"
-                               << "create-from-csr"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/certificates/create-from-csr/json/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -130,15 +122,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "certificates"
-                               << "/"
-                               << "create-from-csr"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/certificates/create-from-csr/json/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -183,15 +167,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "certificates"
-                               << "/"
-                               << "create"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/certificates/create/json/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -236,15 +212,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "certificates"
-                               << "/"
-                               << "create"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/certificates/create/json/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -289,15 +257,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "provisioning-templates"
-                               << "/" << *request.TemplateName << "/"
-                               << "provision"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "accepted";
+            subscribeTopicSStr << "$aws/provisioning-templates/" << *request.TemplateName << "/provision/json/accepted";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -342,15 +302,7 @@ namespace Aws
             };
 
             Aws::Crt::StringStream subscribeTopicSStr;
-            subscribeTopicSStr << "$aws"
-                               << "/"
-                               << "provisioning-templates"
-                               << "/" << *request.TemplateName << "/"
-                               << "provision"
-                               << "/"
-                               << "json"
-                               << "/"
-                               << "rejected";
+            subscribeTopicSStr << "$aws/provisioning-templates/" << *request.TemplateName << "/provision/json/rejected";
 
             return m_connection->Subscribe(
                        subscribeTopicSStr.str().c_str(),
@@ -365,13 +317,7 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "certificates"
-                             << "/"
-                             << "create-from-csr"
-                             << "/"
-                             << "json";
+            publishTopicSStr << "$aws/certificates/create-from-csr/json";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -395,13 +341,7 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "certificates"
-                             << "/"
-                             << "create"
-                             << "/"
-                             << "json";
+            publishTopicSStr << "$aws/certificates/create/json";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
@@ -425,13 +365,7 @@ namespace Aws
             const OnPublishComplete &onPubAck)
         {
             Aws::Crt::StringStream publishTopicSStr;
-            publishTopicSStr << "$aws"
-                             << "/"
-                             << "provisioning-templates"
-                             << "/" << *request.TemplateName << "/"
-                             << "provision"
-                             << "/"
-                             << "json";
+            publishTopicSStr << "$aws/provisioning-templates/" << *request.TemplateName << "/provision/json";
 
             Aws::Crt::JsonObject jsonObject;
             request.SerializeToObject(jsonObject);
