@@ -4478,22 +4478,6 @@ namespace Aws
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreResult
         {
           public:
@@ -4545,22 +4529,6 @@ namespace Aws
             std::shared_ptr<std::promise<SubscribeToIoTCoreResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ResumeComponentOperationContext : public OperationModelContext
-        {
-          public:
-            ResumeComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API ResumeComponentResult
         {
           public:
@@ -4609,22 +4577,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<ResumeComponentResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperationContext : public OperationModelContext
-        {
-          public:
-            PublishToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreResult
@@ -4736,22 +4688,6 @@ namespace Aws
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToConfigurationUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateResult
         {
           public:
@@ -4806,22 +4742,6 @@ namespace Aws
             std::shared_ptr<std::promise<SubscribeToConfigurationUpdateResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperationContext : public OperationModelContext
-        {
-          public:
-            DeleteThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowResult
         {
           public:
@@ -4872,22 +4792,6 @@ namespace Aws
             std::shared_ptr<std::promise<DeleteThingShadowResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperationContext : public OperationModelContext
-        {
-          public:
-            PutComponentMetricOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricResult
         {
           public:
@@ -4936,22 +4840,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<PutComponentMetricResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperationContext : public OperationModelContext
-        {
-          public:
-            DeferComponentUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateResult
@@ -5056,24 +4944,6 @@ namespace Aws
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesOperationContext
-            : public OperationModelContext
-        {
-          public:
-            SubscribeToValidateConfigurationUpdatesOperationContext(
-                const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesResult
         {
           public:
@@ -5127,22 +4997,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<SubscribeToValidateConfigurationUpdatesResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetConfigurationOperationContext : public OperationModelContext
-        {
-          public:
-            GetConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetConfigurationResult
@@ -5264,22 +5118,6 @@ namespace Aws
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToTopicOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicResult
         {
           public:
@@ -5331,22 +5169,6 @@ namespace Aws
             std::shared_ptr<std::promise<SubscribeToTopicResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperationContext : public OperationModelContext
-        {
-          public:
-            GetComponentDetailsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsResult
         {
           public:
@@ -5395,22 +5217,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<GetComponentDetailsResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperationContext : public OperationModelContext
-        {
-          public:
-            GetClientDeviceAuthTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenResult
@@ -5464,22 +5270,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<GetClientDeviceAuthTokenResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API PublishToTopicOperationContext : public OperationModelContext
-        {
-          public:
-            PublishToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToTopicResult
@@ -5601,22 +5391,6 @@ namespace Aws
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToCertificateUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesResult
         {
           public:
@@ -5669,22 +5443,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<SubscribeToCertificateUpdatesResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperationContext : public OperationModelContext
-        {
-          public:
-            VerifyClientDeviceIdentityOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityResult
@@ -5740,22 +5498,6 @@ namespace Aws
             std::shared_ptr<std::promise<VerifyClientDeviceIdentityResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperationContext : public OperationModelContext
-        {
-          public:
-            AuthorizeClientDeviceActionOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionResult
         {
           public:
@@ -5809,22 +5551,6 @@ namespace Aws
             std::shared_ptr<std::promise<AuthorizeClientDeviceActionResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ListComponentsOperationContext : public OperationModelContext
-        {
-          public:
-            ListComponentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API ListComponentsResult
         {
           public:
@@ -5873,22 +5599,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<ListComponentsResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperationContext : public OperationModelContext
-        {
-          public:
-            CreateDebugPasswordOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordResult
@@ -5941,22 +5651,6 @@ namespace Aws
             std::shared_ptr<std::promise<CreateDebugPasswordResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetThingShadowOperationContext : public OperationModelContext
-        {
-          public:
-            GetThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API GetThingShadowResult
         {
           public:
@@ -6005,22 +5699,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<GetThingShadowResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperationContext : public OperationModelContext
-        {
-          public:
-            SendConfigurationValidityReportOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportResult
@@ -6076,22 +5754,6 @@ namespace Aws
             std::shared_ptr<std::promise<SendConfigurationValidityReportResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperationContext : public OperationModelContext
-        {
-          public:
-            UpdateThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowResult
         {
           public:
@@ -6142,22 +5804,6 @@ namespace Aws
             std::shared_ptr<std::promise<UpdateThingShadowResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperationContext : public OperationModelContext
-        {
-          public:
-            UpdateConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationResult
         {
           public:
@@ -6206,22 +5852,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<UpdateConfigurationResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperationContext : public OperationModelContext
-        {
-          public:
-            ValidateAuthorizationTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenResult
@@ -6277,22 +5907,6 @@ namespace Aws
             std::shared_ptr<std::promise<ValidateAuthorizationTokenResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API RestartComponentOperationContext : public OperationModelContext
-        {
-          public:
-            RestartComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API RestartComponentResult
         {
           public:
@@ -6341,22 +5955,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<RestartComponentResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperationContext : public OperationModelContext
-        {
-          public:
-            GetLocalDeploymentStatusOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusResult
@@ -6412,22 +6010,6 @@ namespace Aws
             std::shared_ptr<std::promise<GetLocalDeploymentStatusResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetSecretValueOperationContext : public OperationModelContext
-        {
-          public:
-            GetSecretValueOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API GetSecretValueResult
         {
           public:
@@ -6476,22 +6058,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<GetSecretValueResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API UpdateStateOperationContext : public OperationModelContext
-        {
-          public:
-            UpdateStateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateStateResult
@@ -6544,22 +6110,6 @@ namespace Aws
             std::shared_ptr<std::promise<UpdateStateResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperationContext : public OperationModelContext
-        {
-          public:
-            CancelLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentResult
         {
           public:
@@ -6610,22 +6160,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<CancelLocalDeploymentResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperationContext : public OperationModelContext
-        {
-          public:
-            ListNamedShadowsForThingOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingResult
@@ -6740,22 +6274,6 @@ namespace Aws
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
         };
 
-        class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToComponentUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesResult
         {
           public:
@@ -6810,22 +6328,6 @@ namespace Aws
             std::shared_ptr<std::promise<SubscribeToComponentUpdatesResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperationContext : public OperationModelContext
-        {
-          public:
-            ListLocalDeploymentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsResult
         {
           public:
@@ -6878,22 +6380,6 @@ namespace Aws
             std::shared_ptr<std::promise<ListLocalDeploymentsResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API StopComponentOperationContext : public OperationModelContext
-        {
-          public:
-            StopComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API StopComponentResult
         {
           public:
@@ -6944,22 +6430,6 @@ namespace Aws
             std::shared_ptr<std::promise<StopComponentResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API PauseComponentOperationContext : public OperationModelContext
-        {
-          public:
-            PauseComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
-        };
-
         class AWS_GREENGRASSCOREIPC_API PauseComponentResult
         {
           public:
@@ -7008,22 +6478,6 @@ namespace Aws
 
           private:
             std::shared_ptr<std::promise<PauseComponentResult>> m_resultPromise;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperationContext : public OperationModelContext
-        {
-          public:
-            CreateLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentResult

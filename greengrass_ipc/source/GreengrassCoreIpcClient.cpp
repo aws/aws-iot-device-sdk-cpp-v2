@@ -13,6 +13,7 @@ namespace Aws
 {
     namespace Greengrass
     {
+
         GreengrassCoreIpcClient::GreengrassCoreIpcClient(
             Aws::Crt::Io::ClientBootstrap &clientBootstrap,
             Aws::Crt::Allocator *allocator) noexcept

@@ -679,22 +679,6 @@ namespace Awstest
       private:
     };
 
-    class AWS_ECHOTESTRPC_API GetAllProductsOperationContext : public OperationModelContext
-    {
-      public:
-        GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
-    };
-
     class AWS_ECHOTESTRPC_API GetAllProductsResult
     {
       public:
@@ -743,22 +727,6 @@ namespace Awstest
 
       private:
         std::shared_ptr<std::promise<GetAllProductsResult>> m_resultPromise;
-    };
-
-    class AWS_ECHOTESTRPC_API CauseServiceErrorOperationContext : public OperationModelContext
-    {
-      public:
-        CauseServiceErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
     };
 
     class AWS_ECHOTESTRPC_API CauseServiceErrorResult
@@ -858,22 +826,6 @@ namespace Awstest
          * This callback can return true so that the stream is closed afterwards.
          */
         bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-    };
-
-    class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorOperationContext : public OperationModelContext
-    {
-      public:
-        CauseStreamServiceToErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
     };
 
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorResult
@@ -980,22 +932,6 @@ namespace Awstest
         bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
     };
 
-    class AWS_ECHOTESTRPC_API EchoStreamMessagesOperationContext : public OperationModelContext
-    {
-      public:
-        EchoStreamMessagesOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
-    };
-
     class AWS_ECHOTESTRPC_API EchoStreamMessagesResult
     {
       public:
@@ -1059,22 +995,6 @@ namespace Awstest
         std::shared_ptr<std::promise<EchoStreamMessagesResult>> m_resultPromise;
     };
 
-    class AWS_ECHOTESTRPC_API EchoMessageOperationContext : public OperationModelContext
-    {
-      public:
-        EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
-    };
-
     class AWS_ECHOTESTRPC_API EchoMessageResult
     {
       public:
@@ -1123,22 +1043,6 @@ namespace Awstest
 
       private:
         std::shared_ptr<std::promise<EchoMessageResult>> m_resultPromise;
-    };
-
-    class AWS_ECHOTESTRPC_API GetAllCustomersOperationContext : public OperationModelContext
-    {
-      public:
-        GetAllCustomersOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
     };
 
     class AWS_ECHOTESTRPC_API GetAllCustomersResult

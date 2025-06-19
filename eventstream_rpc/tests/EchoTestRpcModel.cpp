@@ -975,6 +975,22 @@ namespace Awstest
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
     }
 
+    class GetAllProductsOperationContext : public OperationModelContext
+    {
+      public:
+        GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
+
     GetAllProductsOperationContext::GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept
         : OperationModelContext(serviceModel)
     {
@@ -1044,6 +1060,22 @@ namespace Awstest
 
         return activateFuture;
     }
+
+    class CauseServiceErrorOperationContext : public OperationModelContext
+    {
+      public:
+        CauseServiceErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     CauseServiceErrorOperationContext::CauseServiceErrorOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1140,6 +1172,22 @@ namespace Awstest
             streamShouldTerminate = OnStreamError(operationError.get());
         return streamShouldTerminate;
     }
+
+    class CauseStreamServiceToErrorOperationContext : public OperationModelContext
+    {
+      public:
+        CauseStreamServiceToErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     CauseStreamServiceToErrorOperationContext::CauseStreamServiceToErrorOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1239,6 +1287,22 @@ namespace Awstest
         return streamShouldTerminate;
     }
 
+    class EchoStreamMessagesOperationContext : public OperationModelContext
+    {
+      public:
+        EchoStreamMessagesOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
+
     EchoStreamMessagesOperationContext::EchoStreamMessagesOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
         : OperationModelContext(serviceModel)
@@ -1318,6 +1382,22 @@ namespace Awstest
             static_cast<const AbstractShapeBase *>(&message), std::move(onMessageFlushCallback));
     }
 
+    class EchoMessageOperationContext : public OperationModelContext
+    {
+      public:
+        EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
+
     EchoMessageOperationContext::EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept
         : OperationModelContext(serviceModel)
     {
@@ -1387,6 +1467,22 @@ namespace Awstest
 
         return activateFuture;
     }
+
+    class GetAllCustomersOperationContext : public OperationModelContext
+    {
+      public:
+        GetAllCustomersOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     GetAllCustomersOperationContext::GetAllCustomersOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept

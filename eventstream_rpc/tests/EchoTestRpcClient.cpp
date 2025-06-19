@@ -11,6 +11,7 @@
 
 namespace Awstest
 {
+
     EchoTestRpcClient::EchoTestRpcClient(
         Aws::Crt::Io::ClientBootstrap &clientBootstrap,
         Aws::Crt::Allocator *allocator) noexcept
