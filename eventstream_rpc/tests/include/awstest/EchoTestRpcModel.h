@@ -34,7 +34,7 @@ namespace Awstest
         /**
          * The product's name
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetName() noexcept { return m_name; }
+        Aws::Crt::Optional<Aws::Crt::String> GetName() const noexcept { return m_name; }
         /**
          * How much the product costs
          */
@@ -42,7 +42,7 @@ namespace Awstest
         /**
          * How much the product costs
          */
-        Aws::Crt::Optional<float> GetPrice() noexcept { return m_price; }
+        Aws::Crt::Optional<float> GetPrice() const noexcept { return m_price; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Product &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -76,7 +76,7 @@ namespace Awstest
         /**
          * Pair.key as a string
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetKey() noexcept { return m_key; }
+        Aws::Crt::Optional<Aws::Crt::String> GetKey() const noexcept { return m_key; }
         /**
          * Pair.value also a string!
          */
@@ -84,7 +84,7 @@ namespace Awstest
         /**
          * Pair.value also a string!
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
+        Aws::Crt::Optional<Aws::Crt::String> GetValue() const noexcept { return m_value; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Pair &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -126,7 +126,7 @@ namespace Awstest
         /**
          * Opaque customer identifier
          */
-        Aws::Crt::Optional<int64_t> GetId() noexcept { return m_id; }
+        Aws::Crt::Optional<int64_t> GetId() const noexcept { return m_id; }
         /**
          * First name of the customer
          */
@@ -134,7 +134,7 @@ namespace Awstest
         /**
          * First name of the customer
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetFirstName() noexcept { return m_firstName; }
+        Aws::Crt::Optional<Aws::Crt::String> GetFirstName() const noexcept { return m_firstName; }
         /**
          * Last name of the customer
          */
@@ -142,7 +142,7 @@ namespace Awstest
         /**
          * Last name of the customer
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetLastName() noexcept { return m_lastName; }
+        Aws::Crt::Optional<Aws::Crt::String> GetLastName() const noexcept { return m_lastName; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(Customer &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -177,7 +177,7 @@ namespace Awstest
         /**
          * Some string data
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetStringMessage() noexcept { return m_stringMessage; }
+        Aws::Crt::Optional<Aws::Crt::String> GetStringMessage() const noexcept { return m_stringMessage; }
         /**
          * Some boolean data
          */
@@ -185,7 +185,7 @@ namespace Awstest
         /**
          * Some boolean data
          */
-        Aws::Crt::Optional<bool> GetBooleanMessage() noexcept { return m_booleanMessage; }
+        Aws::Crt::Optional<bool> GetBooleanMessage() const noexcept { return m_booleanMessage; }
         /**
          * Some timestamp data
          */
@@ -193,7 +193,7 @@ namespace Awstest
         /**
          * Some timestamp data
          */
-        Aws::Crt::Optional<Aws::Crt::DateTime> GetTimeMessage() noexcept { return m_timeMessage; }
+        Aws::Crt::Optional<Aws::Crt::DateTime> GetTimeMessage() const noexcept { return m_timeMessage; }
         /**
          * Some document data
          */
@@ -204,7 +204,7 @@ namespace Awstest
         /**
          * Some document data
          */
-        Aws::Crt::Optional<Aws::Crt::JsonObject> GetDocumentMessage() noexcept { return m_documentMessage; }
+        Aws::Crt::Optional<Aws::Crt::JsonObject> GetDocumentMessage() const noexcept { return m_documentMessage; }
         /**
          * Some FruitEnum data
          */
@@ -212,7 +212,7 @@ namespace Awstest
         /**
          * Some FruitEnum data
          */
-        Aws::Crt::Optional<FruitEnum> GetEnumMessage() noexcept;
+        Aws::Crt::Optional<FruitEnum> GetEnumMessage() const noexcept;
         /**
          * Some blob data
          */
@@ -220,7 +220,7 @@ namespace Awstest
         /**
          * Some blob data
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetBlobMessage() noexcept { return m_blobMessage; }
+        Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetBlobMessage() const noexcept { return m_blobMessage; }
         /**
          * Some list of strings data
          */
@@ -231,7 +231,7 @@ namespace Awstest
         /**
          * Some list of strings data
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetStringListMessage() noexcept
+        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetStringListMessage() const noexcept
         {
             return m_stringListMessage;
         }
@@ -245,7 +245,7 @@ namespace Awstest
         /**
          * A list of key-value pairs
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Pair>> GetKeyValuePairList() noexcept { return m_keyValuePairList; }
+        Aws::Crt::Optional<Aws::Crt::Vector<Pair>> GetKeyValuePairList() const noexcept { return m_keyValuePairList; }
         /**
          * A map from strings to Product shapes
          */
@@ -256,7 +256,7 @@ namespace Awstest
         /**
          * A map from strings to Product shapes
          */
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetStringToValue() noexcept
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetStringToValue() const noexcept
         {
             return m_stringToValue;
         }
@@ -305,7 +305,7 @@ namespace Awstest
         /**
          * A message data record
          */
-        Aws::Crt::Optional<MessageData> GetStreamMessage() noexcept
+        Aws::Crt::Optional<MessageData> GetStreamMessage() const noexcept
         {
             if (m_chosenMember == TAG_STREAM_MESSAGE)
             {
@@ -327,7 +327,7 @@ namespace Awstest
         /**
          * A key value pair
          */
-        Aws::Crt::Optional<Pair> GetKeyValuePair() noexcept
+        Aws::Crt::Optional<Pair> GetKeyValuePair() const noexcept
         {
             if (m_chosenMember == TAG_KEY_VALUE_PAIR)
             {
@@ -376,7 +376,7 @@ namespace Awstest
         /**
          * An error message
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+        Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
         /**
          * Some auxiliary value
          */
@@ -384,7 +384,7 @@ namespace Awstest
         /**
          * Some auxiliary value
          */
-        Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
+        Aws::Crt::Optional<Aws::Crt::String> GetValue() const noexcept { return m_value; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(ServiceError &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -418,7 +418,7 @@ namespace Awstest
         /**
          * A map from strings to products
          */
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetProducts() noexcept { return m_products; }
+        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> GetProducts() const noexcept { return m_products; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllProductsResponse &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -475,7 +475,7 @@ namespace Awstest
         /**
          * A list of all known customers
          */
-        Aws::Crt::Optional<Aws::Crt::Vector<Customer>> GetCustomers() noexcept { return m_customers; }
+        Aws::Crt::Optional<Aws::Crt::Vector<Customer>> GetCustomers() const noexcept { return m_customers; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllCustomersResponse &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -580,7 +580,7 @@ namespace Awstest
         /**
          * Some message data
          */
-        Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
+        Aws::Crt::Optional<MessageData> GetMessage() const noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageResponse &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -613,7 +613,7 @@ namespace Awstest
         /**
          * Some message data
          */
-        Aws::Crt::Optional<MessageData> GetMessage() noexcept { return m_message; }
+        Aws::Crt::Optional<MessageData> GetMessage() const noexcept { return m_message; }
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoMessageRequest &, const Aws::Crt::JsonView &) noexcept;
         static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -679,22 +679,6 @@ namespace Awstest
       private:
     };
 
-    class AWS_ECHOTESTRPC_API GetAllProductsOperationContext : public OperationModelContext
-    {
-      public:
-        GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
-    };
-
     class AWS_ECHOTESTRPC_API GetAllProductsResult
     {
       public:
@@ -704,6 +688,7 @@ namespace Awstest
         {
             return static_cast<GetAllProductsResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -722,8 +707,9 @@ namespace Awstest
       public:
         GetAllProductsOperation(
             ClientConnection &connection,
-            const GetAllProductsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `GetAllProductsOperation`
          * @param request The request used for the `GetAllProductsOperation`
@@ -733,29 +719,14 @@ namespace Awstest
         std::future<RpcError> Activate(
             const GetAllProductsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<GetAllProductsResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
-    };
-
-    class AWS_ECHOTESTRPC_API CauseServiceErrorOperationContext : public OperationModelContext
-    {
-      public:
-        CauseServiceErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
+      private:
+        std::shared_ptr<std::promise<GetAllProductsResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API CauseServiceErrorResult
@@ -767,6 +738,7 @@ namespace Awstest
         {
             return static_cast<CauseServiceErrorResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -785,8 +757,9 @@ namespace Awstest
       public:
         CauseServiceErrorOperation(
             ClientConnection &connection,
-            const CauseServiceErrorOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `CauseServiceErrorOperation`
          * @param request The request used for the `CauseServiceErrorOperation`
@@ -796,13 +769,14 @@ namespace Awstest
         std::future<RpcError> Activate(
             const CauseServiceErrorRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<CauseServiceErrorResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::shared_ptr<std::promise<CauseServiceErrorResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorStreamHandler : public StreamResponseHandler
@@ -845,27 +819,13 @@ namespace Awstest
          * Invoked when a message is received on this continuation.
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
         /**
          * Invoked when a message is received on this continuation but results in an error.
          *
          * This callback can return true so that the stream is closed afterwards.
          */
         bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-    };
-    class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorOperationContext : public OperationModelContext
-    {
-      public:
-        CauseStreamServiceToErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
     };
 
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorResult
@@ -879,6 +839,7 @@ namespace Awstest
         {
             return static_cast<EchoStreamingResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -898,8 +859,9 @@ namespace Awstest
         CauseStreamServiceToErrorOperation(
             ClientConnection &connection,
             std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
-            const CauseStreamServiceToErrorOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `CauseStreamServiceToErrorOperation`
          * @param request The request used for the `CauseStreamServiceToErrorOperation`
@@ -909,13 +871,26 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
+        /**
+         * Send a EchoStreamingMessage stream event.
+         *
+         * Activate() must have completed before calling SendMessage().
+         *
+         * Returns a Future which completes with a value indicating message
+         * flush success or what went wrong.
+         **/
+        std::future<RpcError> SendStreamMessage(
+            const EchoStreamingMessage &event,
+            OnMessageFlushCallback onMessageFlushCallback = nullptr);
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<CauseStreamServiceToErrorResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::shared_ptr<std::promise<CauseStreamServiceToErrorResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API EchoStreamMessagesStreamHandler : public StreamResponseHandler
@@ -948,27 +923,13 @@ namespace Awstest
          * Invoked when a message is received on this continuation.
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
         /**
          * Invoked when a message is received on this continuation but results in an error.
          *
          * This callback can return true so that the stream is closed afterwards.
          */
         bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-    };
-    class AWS_ECHOTESTRPC_API EchoStreamMessagesOperationContext : public OperationModelContext
-    {
-      public:
-        EchoStreamMessagesOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
     };
 
     class AWS_ECHOTESTRPC_API EchoStreamMessagesResult
@@ -980,6 +941,7 @@ namespace Awstest
         {
             return static_cast<EchoStreamingResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -999,8 +961,9 @@ namespace Awstest
         EchoStreamMessagesOperation(
             ClientConnection &connection,
             std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
-            const EchoStreamMessagesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `EchoStreamMessagesOperation`
          * @param request The request used for the `EchoStreamMessagesOperation`
@@ -1010,29 +973,26 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
+        /**
+         * Send a EchoStreamingMessage stream event.
+         *
+         * Activate() must have completed before calling SendMessage().
+         *
+         * Returns a Future which completes with a value indicating message
+         * flush success or what went wrong.
+         **/
+        std::future<RpcError> SendStreamMessage(
+            const EchoStreamingMessage &event,
+            OnMessageFlushCallback onMessageFlushCallback = nullptr);
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<EchoStreamMessagesResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
-    };
-
-    class AWS_ECHOTESTRPC_API EchoMessageOperationContext : public OperationModelContext
-    {
-      public:
-        EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
+      private:
+        std::shared_ptr<std::promise<EchoStreamMessagesResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API EchoMessageResult
@@ -1044,6 +1004,7 @@ namespace Awstest
         {
             return static_cast<EchoMessageResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -1062,8 +1023,9 @@ namespace Awstest
       public:
         EchoMessageOperation(
             ClientConnection &connection,
-            const EchoMessageOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `EchoMessageOperation`
          * @param request The request used for the `EchoMessageOperation`
@@ -1073,29 +1035,14 @@ namespace Awstest
         std::future<RpcError> Activate(
             const EchoMessageRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<EchoMessageResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
-    };
-
-    class AWS_ECHOTESTRPC_API GetAllCustomersOperationContext : public OperationModelContext
-    {
-      public:
-        GetAllCustomersOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-            Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-        Aws::Crt::String GetRequestModelName() const noexcept override;
-        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-        Aws::Crt::String GetOperationName() const noexcept override;
+      private:
+        std::shared_ptr<std::promise<EchoMessageResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API GetAllCustomersResult
@@ -1107,6 +1054,7 @@ namespace Awstest
         {
             return static_cast<GetAllCustomersResponse *>(m_taggedResult.GetOperationResponse());
         }
+
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
@@ -1125,8 +1073,9 @@ namespace Awstest
       public:
         GetAllCustomersOperation(
             ClientConnection &connection,
-            const GetAllCustomersOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
         /**
          * Used to activate a stream for the `GetAllCustomersOperation`
          * @param request The request used for the `GetAllCustomersOperation`
@@ -1136,19 +1085,20 @@ namespace Awstest
         std::future<RpcError> Activate(
             const GetAllCustomersRequest &request,
             OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
         /**
          * Retrieve the result from activating the stream.
          */
         std::future<GetAllCustomersResult> GetResult() noexcept;
 
-      protected:
-        Aws::Crt::String GetModelName() const noexcept override;
+      private:
+        std::shared_ptr<std::promise<GetAllCustomersResult>> m_resultPromise;
     };
 
     class AWS_ECHOTESTRPC_API EchoTestRpcServiceModel : public ServiceModel
     {
       public:
-        EchoTestRpcServiceModel() noexcept;
+        EchoTestRpcServiceModel(Aws::Crt::Allocator *allocator) noexcept;
         Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
             const Aws::Crt::String &errorModelName,
             Aws::Crt::StringView stringView,
@@ -1157,12 +1107,12 @@ namespace Awstest
 
       private:
         friend class EchoTestRpcClient;
-        GetAllProductsOperationContext m_getAllProductsOperationContext;
-        CauseServiceErrorOperationContext m_causeServiceErrorOperationContext;
-        CauseStreamServiceToErrorOperationContext m_causeStreamServiceToErrorOperationContext;
-        EchoStreamMessagesOperationContext m_echoStreamMessagesOperationContext;
-        EchoMessageOperationContext m_echoMessageOperationContext;
-        GetAllCustomersOperationContext m_getAllCustomersOperationContext;
+        std::shared_ptr<OperationModelContext> m_getAllProductsOperationContext;
+        std::shared_ptr<OperationModelContext> m_causeServiceErrorOperationContext;
+        std::shared_ptr<OperationModelContext> m_causeStreamServiceToErrorOperationContext;
+        std::shared_ptr<OperationModelContext> m_echoStreamMessagesOperationContext;
+        std::shared_ptr<OperationModelContext> m_echoMessageOperationContext;
+        std::shared_ptr<OperationModelContext> m_getAllCustomersOperationContext;
         Aws::Crt::Map<Aws::Crt::String, ErrorResponseFactory> m_modelNameToErrorResponse;
     };
 } // namespace Awstest

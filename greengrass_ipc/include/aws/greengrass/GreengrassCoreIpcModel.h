@@ -29,11 +29,11 @@ namespace Aws
 
             void SetKey(const Aws::Crt::String &key) noexcept { m_key = key; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetKey() noexcept { return m_key; }
+            Aws::Crt::Optional<Aws::Crt::String> GetKey() const noexcept { return m_key; }
 
             void SetValue(const Aws::Crt::String &value) noexcept { m_value = value; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetValue() noexcept { return m_value; }
+            Aws::Crt::Optional<Aws::Crt::String> GetValue() const noexcept { return m_value; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UserProperty &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -77,7 +77,7 @@ namespace Aws
             /**
              * The topic where the message was published.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopic() noexcept { return m_topic; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopic() const noexcept { return m_topic; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(MessageContext &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -123,7 +123,7 @@ namespace Aws
             /**
              * The detailed deployment status of the local deployment.
              */
-            Aws::Crt::Optional<DetailedDeploymentStatus> GetDetailedDeploymentStatus() noexcept;
+            Aws::Crt::Optional<DetailedDeploymentStatus> GetDetailedDeploymentStatus() const noexcept;
             /**
              * (Optional) The list of local deployment errors
              */
@@ -134,7 +134,7 @@ namespace Aws
             /**
              * (Optional) The list of local deployment errors
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetDeploymentErrorStack() noexcept
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetDeploymentErrorStack() const noexcept
             {
                 return m_deploymentErrorStack;
             }
@@ -148,7 +148,7 @@ namespace Aws
             /**
              * (Optional) The list of local deployment error types
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetDeploymentErrorTypes() noexcept
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetDeploymentErrorTypes() const noexcept
             {
                 return m_deploymentErrorTypes;
             }
@@ -162,7 +162,7 @@ namespace Aws
             /**
              * (Optional) The cause of local deployment failure
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentFailureCause() noexcept
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentFailureCause() const noexcept
             {
                 return m_deploymentFailureCause;
             }
@@ -221,7 +221,7 @@ namespace Aws
              * (Optional) The maximum amount of RAM (in kilobytes) that this component's processes can use on the core
              * device.
              */
-            Aws::Crt::Optional<int64_t> GetMemory() noexcept { return m_memory; }
+            Aws::Crt::Optional<int64_t> GetMemory() const noexcept { return m_memory; }
             /**
              * (Optional) The maximum amount of CPU time that this component's processes can use on the core device.
              */
@@ -229,7 +229,7 @@ namespace Aws
             /**
              * (Optional) The maximum amount of CPU time that this component's processes can use on the core device.
              */
-            Aws::Crt::Optional<double> GetCpus() noexcept { return m_cpus; }
+            Aws::Crt::Optional<double> GetCpus() const noexcept { return m_cpus; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SystemResourceLimits &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -263,7 +263,7 @@ namespace Aws
             /**
              * The object that contains the new configuration.
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> GetConfiguration() noexcept { return m_configuration; }
+            Aws::Crt::Optional<Aws::Crt::JsonObject> GetConfiguration() const noexcept { return m_configuration; }
             /**
              * The ID of the AWS IoT Greengrass deployment that updates the component.
              */
@@ -271,7 +271,7 @@ namespace Aws
             /**
              * The ID of the AWS IoT Greengrass deployment that updates the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ValidateConfigurationUpdateEvent &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -302,7 +302,7 @@ namespace Aws
             /**
              * The binary message as a blob.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetMessage() const noexcept { return m_message; }
             /**
              * The context of the message, such as the topic where the message was published.
              */
@@ -310,7 +310,7 @@ namespace Aws
             /**
              * The context of the message, such as the topic where the message was published.
              */
-            Aws::Crt::Optional<MessageContext> GetContext() noexcept { return m_context; }
+            Aws::Crt::Optional<MessageContext> GetContext() const noexcept { return m_context; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(BinaryMessage &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -341,7 +341,7 @@ namespace Aws
             /**
              * The JSON message as an object.
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::JsonObject> GetMessage() const noexcept { return m_message; }
             /**
              * The context of the message, such as the topic where the message was published.
              */
@@ -349,7 +349,7 @@ namespace Aws
             /**
              * The context of the message, such as the topic where the message was published.
              */
-            Aws::Crt::Optional<MessageContext> GetContext() noexcept { return m_context; }
+            Aws::Crt::Optional<MessageContext> GetContext() const noexcept { return m_context; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(JsonMessage &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -380,7 +380,7 @@ namespace Aws
             /**
              * The topic to which the message was published.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() noexcept { return m_topicName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() const noexcept { return m_topicName; }
             /**
              * (Optional) The message payload as a blob.
              */
@@ -388,7 +388,7 @@ namespace Aws
             /**
              * (Optional) The message payload as a blob.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() noexcept { return m_payload; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() const noexcept { return m_payload; }
             /**
              * (Optional) The value of the retain flag.
              */
@@ -396,7 +396,7 @@ namespace Aws
             /**
              * (Optional) The value of the retain flag.
              */
-            Aws::Crt::Optional<bool> GetRetain() noexcept { return m_retain; }
+            Aws::Crt::Optional<bool> GetRetain() const noexcept { return m_retain; }
             /**
              * (Optional) MQTT user properties associated with the message.
              */
@@ -407,7 +407,10 @@ namespace Aws
             /**
              * (Optional) MQTT user properties associated with the message.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<UserProperty>> GetUserProperties() noexcept { return m_userProperties; }
+            Aws::Crt::Optional<Aws::Crt::Vector<UserProperty>> GetUserProperties() const noexcept
+            {
+                return m_userProperties;
+            }
             /**
              * (Optional) Message expiry interval in seconds.
              */
@@ -418,7 +421,7 @@ namespace Aws
             /**
              * (Optional) Message expiry interval in seconds.
              */
-            Aws::Crt::Optional<int64_t> GetMessageExpiryIntervalSeconds() noexcept
+            Aws::Crt::Optional<int64_t> GetMessageExpiryIntervalSeconds() const noexcept
             {
                 return m_messageExpiryIntervalSeconds;
             }
@@ -432,7 +435,10 @@ namespace Aws
             /**
              * (Optional) Correlation data blob for request/response.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetCorrelationData() noexcept { return m_correlationData; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetCorrelationData() const noexcept
+            {
+                return m_correlationData;
+            }
             /**
              * (Optional) Response topic for request/response.
              */
@@ -440,7 +446,7 @@ namespace Aws
             /**
              * (Optional) Response topic for request/response.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetResponseTopic() noexcept { return m_responseTopic; }
+            Aws::Crt::Optional<Aws::Crt::String> GetResponseTopic() const noexcept { return m_responseTopic; }
             /**
              * (Optional) Message payload format.
              */
@@ -448,7 +454,7 @@ namespace Aws
             /**
              * (Optional) Message payload format.
              */
-            Aws::Crt::Optional<PayloadFormat> GetPayloadFormat() noexcept;
+            Aws::Crt::Optional<PayloadFormat> GetPayloadFormat() const noexcept;
             /**
              * (Optional) Message content type.
              */
@@ -456,7 +462,7 @@ namespace Aws
             /**
              * (Optional) Message content type.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetContentType() noexcept { return m_contentType; }
+            Aws::Crt::Optional<Aws::Crt::String> GetContentType() const noexcept { return m_contentType; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(MQTTMessage &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -494,7 +500,7 @@ namespace Aws
             /**
              * The name of the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             /**
              * The key path to the configuration value that updated.
              */
@@ -502,7 +508,7 @@ namespace Aws
             /**
              * The key path to the configuration value that updated.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() noexcept { return m_keyPath; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() const noexcept { return m_keyPath; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ConfigurationUpdateEvent &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -533,7 +539,7 @@ namespace Aws
             /**
              * The ID of the AWS IoT Greengrass deployment that updated the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PostComponentUpdateEvent &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -563,7 +569,7 @@ namespace Aws
             /**
              * The ID of the AWS IoT Greengrass deployment that updates the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             /**
              * Whether or not Greengrass needs to restart to apply the update.
              */
@@ -571,7 +577,7 @@ namespace Aws
             /**
              * Whether or not Greengrass needs to restart to apply the update.
              */
-            Aws::Crt::Optional<bool> GetIsGgcRestarting() noexcept { return m_isGgcRestarting; }
+            Aws::Crt::Optional<bool> GetIsGgcRestarting() const noexcept { return m_isGgcRestarting; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PreComponentUpdateEvent &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -602,7 +608,7 @@ namespace Aws
             /**
              * The private key in pem format.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetPrivateKey() noexcept { return m_privateKey; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPrivateKey() const noexcept { return m_privateKey; }
             /**
              * The public key in pem format.
              */
@@ -610,7 +616,7 @@ namespace Aws
             /**
              * The public key in pem format.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetPublicKey() noexcept { return m_publicKey; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPublicKey() const noexcept { return m_publicKey; }
             /**
              * The certificate in pem format.
              */
@@ -618,7 +624,7 @@ namespace Aws
             /**
              * The certificate in pem format.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetCertificate() noexcept { return m_certificate; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCertificate() const noexcept { return m_certificate; }
             /**
              * List of CA certificates in pem format.
              */
@@ -629,7 +635,7 @@ namespace Aws
             /**
              * List of CA certificates in pem format.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetCaCertificates() noexcept
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetCaCertificates() const noexcept
             {
                 return m_caCertificates;
             }
@@ -672,15 +678,15 @@ namespace Aws
 
             void SetName(const Aws::Crt::String &name) noexcept { m_name = name; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetName() noexcept { return m_name; }
+            Aws::Crt::Optional<Aws::Crt::String> GetName() const noexcept { return m_name; }
 
             void SetUnit(MetricUnitType unit) noexcept;
 
-            Aws::Crt::Optional<MetricUnitType> GetUnit() noexcept;
+            Aws::Crt::Optional<MetricUnitType> GetUnit() const noexcept;
 
             void SetValue(const double &value) noexcept { m_value = value; }
 
-            Aws::Crt::Optional<double> GetValue() noexcept { return m_value; }
+            Aws::Crt::Optional<double> GetValue() const noexcept { return m_value; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(Metric &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -712,7 +718,7 @@ namespace Aws
             /**
              * The ID of the local deployment.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             /**
              * The status of the local deployment.
              */
@@ -720,7 +726,7 @@ namespace Aws
             /**
              * The status of the local deployment.
              */
-            Aws::Crt::Optional<DeploymentStatus> GetStatus() noexcept;
+            Aws::Crt::Optional<DeploymentStatus> GetStatus() const noexcept;
             /**
              * (Optional) The timestamp at which the local deployment was created in MM/dd/yyyy hh:mm:ss format
              */
@@ -728,7 +734,7 @@ namespace Aws
             /**
              * (Optional) The timestamp at which the local deployment was created in MM/dd/yyyy hh:mm:ss format
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetCreatedOn() noexcept { return m_createdOn; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCreatedOn() const noexcept { return m_createdOn; }
             /**
              * (Optional) The status details of the local deployment.
              */
@@ -739,7 +745,7 @@ namespace Aws
             /**
              * (Optional) The status details of the local deployment.
              */
-            Aws::Crt::Optional<DeploymentStatusDetails> GetDeploymentStatusDetails() noexcept
+            Aws::Crt::Optional<DeploymentStatusDetails> GetDeploymentStatusDetails() const noexcept
             {
                 return m_deploymentStatusDetails;
             }
@@ -775,7 +781,7 @@ namespace Aws
             /**
              * The name of the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             /**
              * The version of the component.
              */
@@ -783,7 +789,7 @@ namespace Aws
             /**
              * The version of the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetVersion() noexcept { return m_version; }
+            Aws::Crt::Optional<Aws::Crt::String> GetVersion() const noexcept { return m_version; }
             /**
              * The state of the component.
              */
@@ -791,7 +797,7 @@ namespace Aws
             /**
              * The state of the component.
              */
-            Aws::Crt::Optional<LifecycleState> GetState() noexcept;
+            Aws::Crt::Optional<LifecycleState> GetState() const noexcept;
             /**
              * The component's configuration as a JSON object.
              */
@@ -802,7 +808,7 @@ namespace Aws
             /**
              * The component's configuration as a JSON object.
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> GetConfiguration() noexcept { return m_configuration; }
+            Aws::Crt::Optional<Aws::Crt::JsonObject> GetConfiguration() const noexcept { return m_configuration; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ComponentDetails &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -835,7 +841,7 @@ namespace Aws
             /**
              * The client ID to used to connect.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetClientId() noexcept { return m_clientId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientId() const noexcept { return m_clientId; }
             /**
              * The client certificate in pem format.
              */
@@ -846,7 +852,7 @@ namespace Aws
             /**
              * The client certificate in pem format.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetCertificatePem() noexcept { return m_certificatePem; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCertificatePem() const noexcept { return m_certificatePem; }
             /**
              * The username. (unused).
              */
@@ -854,7 +860,7 @@ namespace Aws
             /**
              * The username. (unused).
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetUsername() noexcept { return m_username; }
+            Aws::Crt::Optional<Aws::Crt::String> GetUsername() const noexcept { return m_username; }
             /**
              * The password. (unused).
              */
@@ -862,7 +868,7 @@ namespace Aws
             /**
              * The password. (unused).
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetPassword() noexcept { return m_password; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPassword() const noexcept { return m_password; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(MQTTCredential &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -897,7 +903,7 @@ namespace Aws
              * (Optional) The POSIX system user and, optionally, group to use to run this component on Linux core
              * devices.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetPosixUser() noexcept { return m_posixUser; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPosixUser() const noexcept { return m_posixUser; }
             /**
              * (Optional) The Windows user to use to run this component on Windows core devices.
              */
@@ -905,7 +911,7 @@ namespace Aws
             /**
              * (Optional) The Windows user to use to run this component on Windows core devices.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetWindowsUser() noexcept { return m_windowsUser; }
+            Aws::Crt::Optional<Aws::Crt::String> GetWindowsUser() const noexcept { return m_windowsUser; }
             /**
              * (Optional) The system resource limits to apply to this component's processes.
              */
@@ -916,7 +922,7 @@ namespace Aws
             /**
              * (Optional) The system resource limits to apply to this component's processes.
              */
-            Aws::Crt::Optional<SystemResourceLimits> GetSystemResourceLimits() noexcept
+            Aws::Crt::Optional<SystemResourceLimits> GetSystemResourceLimits() const noexcept
             {
                 return m_systemResourceLimits;
             }
@@ -956,7 +962,7 @@ namespace Aws
             /**
              * The client device's X.509 device certificate.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceCertificate() noexcept
+            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceCertificate() const noexcept
             {
                 if (m_chosenMember == TAG_CLIENT_DEVICE_CERTIFICATE)
                 {
@@ -1015,7 +1021,7 @@ namespace Aws
             /**
              * The configuration update event.
              */
-            Aws::Crt::Optional<ValidateConfigurationUpdateEvent> GetValidateConfigurationUpdateEvent() noexcept
+            Aws::Crt::Optional<ValidateConfigurationUpdateEvent> GetValidateConfigurationUpdateEvent() const noexcept
             {
                 if (m_chosenMember == TAG_VALIDATE_CONFIGURATION_UPDATE_EVENT)
                 {
@@ -1064,7 +1070,7 @@ namespace Aws
             /**
              * (Optional) A JSON message.
              */
-            Aws::Crt::Optional<JsonMessage> GetJsonMessage() noexcept
+            Aws::Crt::Optional<JsonMessage> GetJsonMessage() const noexcept
             {
                 if (m_chosenMember == TAG_JSON_MESSAGE)
                 {
@@ -1086,7 +1092,7 @@ namespace Aws
             /**
              * (Optional) A binary message.
              */
-            Aws::Crt::Optional<BinaryMessage> GetBinaryMessage() noexcept
+            Aws::Crt::Optional<BinaryMessage> GetBinaryMessage() const noexcept
             {
                 if (m_chosenMember == TAG_BINARY_MESSAGE)
                 {
@@ -1143,7 +1149,7 @@ namespace Aws
             /**
              * The MQTT message.
              */
-            Aws::Crt::Optional<MQTTMessage> GetMessage() noexcept
+            Aws::Crt::Optional<MQTTMessage> GetMessage() const noexcept
             {
                 if (m_chosenMember == TAG_MESSAGE)
                 {
@@ -1198,7 +1204,7 @@ namespace Aws
             /**
              * The configuration update event.
              */
-            Aws::Crt::Optional<ConfigurationUpdateEvent> GetConfigurationUpdateEvent() noexcept
+            Aws::Crt::Optional<ConfigurationUpdateEvent> GetConfigurationUpdateEvent() const noexcept
             {
                 if (m_chosenMember == TAG_CONFIGURATION_UPDATE_EVENT)
                 {
@@ -1247,7 +1253,7 @@ namespace Aws
             /**
              * An event that indicates that the Greengrass wants to update a component.
              */
-            Aws::Crt::Optional<PreComponentUpdateEvent> GetPreUpdateEvent() noexcept
+            Aws::Crt::Optional<PreComponentUpdateEvent> GetPreUpdateEvent() const noexcept
             {
                 if (m_chosenMember == TAG_PRE_UPDATE_EVENT)
                 {
@@ -1269,7 +1275,7 @@ namespace Aws
             /**
              * An event that indicates that the nucleus updated a component.
              */
-            Aws::Crt::Optional<PostComponentUpdateEvent> GetPostUpdateEvent() noexcept
+            Aws::Crt::Optional<PostComponentUpdateEvent> GetPostUpdateEvent() const noexcept
             {
                 if (m_chosenMember == TAG_POST_UPDATE_EVENT)
                 {
@@ -1320,7 +1326,7 @@ namespace Aws
             /**
              * The information about the new certificate.
              */
-            Aws::Crt::Optional<CertificateUpdate> GetCertificateUpdate() noexcept
+            Aws::Crt::Optional<CertificateUpdate> GetCertificateUpdate() const noexcept
             {
                 if (m_chosenMember == TAG_CERTIFICATE_UPDATE)
                 {
@@ -1364,7 +1370,7 @@ namespace Aws
             /**
              * The types of certificate updates to subscribe to.
              */
-            Aws::Crt::Optional<CertificateType> GetCertificateType() noexcept;
+            Aws::Crt::Optional<CertificateType> GetCertificateType() const noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CertificateOptions &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1400,7 +1406,7 @@ namespace Aws
             /**
              * The validity status.
              */
-            Aws::Crt::Optional<ConfigurationValidityStatus> GetStatus() noexcept;
+            Aws::Crt::Optional<ConfigurationValidityStatus> GetStatus() const noexcept;
             /**
              * The ID of the AWS IoT Greengrass deployment that requested the configuration update.
              */
@@ -1408,7 +1414,7 @@ namespace Aws
             /**
              * The ID of the AWS IoT Greengrass deployment that requested the configuration update.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             /**
              * (Optional) A message that reports why the configuration isn't valid.
              */
@@ -1416,7 +1422,7 @@ namespace Aws
             /**
              * (Optional) A message that reports why the configuration isn't valid.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ConfigurationValidityReport &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1453,7 +1459,7 @@ namespace Aws
             /**
              * (Optional) A JSON message.
              */
-            Aws::Crt::Optional<JsonMessage> GetJsonMessage() noexcept
+            Aws::Crt::Optional<JsonMessage> GetJsonMessage() const noexcept
             {
                 if (m_chosenMember == TAG_JSON_MESSAGE)
                 {
@@ -1475,7 +1481,7 @@ namespace Aws
             /**
              * (Optional) A binary message.
              */
-            Aws::Crt::Optional<BinaryMessage> GetBinaryMessage() noexcept
+            Aws::Crt::Optional<BinaryMessage> GetBinaryMessage() const noexcept
             {
                 if (m_chosenMember == TAG_BINARY_MESSAGE)
                 {
@@ -1526,7 +1532,7 @@ namespace Aws
             /**
              * The decrypted part of the protected secret information that you provided to Secrets Manager as a string.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetSecretString() noexcept
+            Aws::Crt::Optional<Aws::Crt::String> GetSecretString() const noexcept
             {
                 if (m_chosenMember == TAG_SECRET_STRING)
                 {
@@ -1550,7 +1556,7 @@ namespace Aws
              * (Optional) The decrypted part of the protected secret information that you provided to Secrets Manager as
              * binary data in the form of a byte array.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetSecretBinary() noexcept
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetSecretBinary() const noexcept
             {
                 if (m_chosenMember == TAG_SECRET_BINARY)
                 {
@@ -1603,7 +1609,7 @@ namespace Aws
              * The client device's MQTT credentials. Specify the client ID and certificate that the client device uses
              * to connect.
              */
-            Aws::Crt::Optional<MQTTCredential> GetMqttCredential() noexcept
+            Aws::Crt::Optional<MQTTCredential> GetMqttCredential() const noexcept
             {
                 if (m_chosenMember == TAG_MQTT_CREDENTIAL)
                 {
@@ -1649,7 +1655,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(InvalidArgumentsError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -1675,11 +1681,11 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
 
             void SetContext(const Aws::Crt::JsonObject &context) noexcept { m_context = context; }
 
-            Aws::Crt::Optional<Aws::Crt::JsonObject> GetContext() noexcept { return m_context; }
+            Aws::Crt::Optional<Aws::Crt::JsonObject> GetContext() const noexcept { return m_context; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ServiceError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -1706,7 +1712,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UnauthorizedError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -1739,7 +1745,7 @@ namespace Aws
             /**
              * Whether the client device's identity is valid.
              */
-            Aws::Crt::Optional<bool> GetIsValidClientDevice() noexcept { return m_isValidClientDevice; }
+            Aws::Crt::Optional<bool> GetIsValidClientDevice() const noexcept { return m_isValidClientDevice; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(VerifyClientDeviceIdentityResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1769,7 +1775,7 @@ namespace Aws
             /**
              * The client device's credentials.
              */
-            Aws::Crt::Optional<ClientDeviceCredential> GetCredential() noexcept { return m_credential; }
+            Aws::Crt::Optional<ClientDeviceCredential> GetCredential() const noexcept { return m_credential; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(VerifyClientDeviceIdentityRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1795,7 +1801,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(InvalidTokenError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -1821,7 +1827,7 @@ namespace Aws
 
             void SetIsValid(const bool &isValid) noexcept { m_isValid = isValid; }
 
-            Aws::Crt::Optional<bool> GetIsValid() noexcept { return m_isValid; }
+            Aws::Crt::Optional<bool> GetIsValid() const noexcept { return m_isValid; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ValidateAuthorizationTokenResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1847,7 +1853,7 @@ namespace Aws
 
             void SetToken(const Aws::Crt::String &token) noexcept { m_token = token; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetToken() noexcept { return m_token; }
+            Aws::Crt::Optional<Aws::Crt::String> GetToken() const noexcept { return m_token; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ValidateAuthorizationTokenRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1873,7 +1879,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ConflictError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -1903,7 +1909,7 @@ namespace Aws
             /**
              * The response state document as a JSON encoded blob.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() noexcept { return m_payload; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() const noexcept { return m_payload; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UpdateThingShadowResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1933,7 +1939,7 @@ namespace Aws
             /**
              * The name of the thing.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetThingName() noexcept { return m_thingName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetThingName() const noexcept { return m_thingName; }
             /**
              * The name of the shadow. To specify the thing's classic shadow, set this parameter to an empty string
              * ("").
@@ -1943,7 +1949,7 @@ namespace Aws
              * The name of the shadow. To specify the thing's classic shadow, set this parameter to an empty string
              * ("").
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetShadowName() noexcept { return m_shadowName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetShadowName() const noexcept { return m_shadowName; }
             /**
              * The request state document as a JSON encoded blob.
              */
@@ -1951,7 +1957,7 @@ namespace Aws
             /**
              * The request state document as a JSON encoded blob.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() noexcept { return m_payload; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() const noexcept { return m_payload; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UpdateThingShadowRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -1979,15 +1985,15 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
 
             void SetResourceType(const Aws::Crt::String &resourceType) noexcept { m_resourceType = resourceType; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetResourceType() noexcept { return m_resourceType; }
+            Aws::Crt::Optional<Aws::Crt::String> GetResourceType() const noexcept { return m_resourceType; }
 
             void SetResourceName(const Aws::Crt::String &resourceName) noexcept { m_resourceName = resourceName; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetResourceName() noexcept { return m_resourceName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetResourceName() const noexcept { return m_resourceName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ResourceNotFoundError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -2040,7 +2046,7 @@ namespace Aws
             /**
              * The state to set this component to.
              */
-            Aws::Crt::Optional<ReportedLifecycleState> GetState() noexcept;
+            Aws::Crt::Optional<ReportedLifecycleState> GetState() const noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UpdateStateRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2066,7 +2072,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(FailedUpdateConditionCheckError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -2119,7 +2125,7 @@ namespace Aws
              * (Optional) The key path to the container node (the object) to update. Specify a list where each entry is
              * the key for a single level in the configuration object. Defaults to the root of the configuration object.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() noexcept { return m_keyPath; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() const noexcept { return m_keyPath; }
             /**
              * The current Unix epoch time in milliseconds. This operation uses this timestamp to resolve concurrent
              * updates to the key. If the key in the component configuration has a greater timestamp than the timestamp
@@ -2131,7 +2137,7 @@ namespace Aws
              * updates to the key. If the key in the component configuration has a greater timestamp than the timestamp
              * in the request, then the request fails.
              */
-            Aws::Crt::Optional<Aws::Crt::DateTime> GetTimestamp() noexcept { return m_timestamp; }
+            Aws::Crt::Optional<Aws::Crt::DateTime> GetTimestamp() const noexcept { return m_timestamp; }
             /**
              * The configuration object to merge at the location that you specify in keyPath.
              */
@@ -2139,7 +2145,7 @@ namespace Aws
             /**
              * The configuration object to merge at the location that you specify in keyPath.
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> GetValueToMerge() noexcept { return m_valueToMerge; }
+            Aws::Crt::Optional<Aws::Crt::JsonObject> GetValueToMerge() const noexcept { return m_valueToMerge; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UpdateConfigurationRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2221,7 +2227,7 @@ namespace Aws
             /**
              * @deprecated No longer used
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() noexcept { return m_topicName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() const noexcept { return m_topicName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToTopicResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2251,7 +2257,7 @@ namespace Aws
             /**
              * The topic to subscribe to. Supports MQTT-style wildcards.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopic() noexcept { return m_topic; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopic() const noexcept { return m_topic; }
             /**
              * (Optional) The behavior that specifies whether the component receives messages from itself.
              */
@@ -2259,7 +2265,7 @@ namespace Aws
             /**
              * (Optional) The behavior that specifies whether the component receives messages from itself.
              */
-            Aws::Crt::Optional<ReceiveMode> GetReceiveMode() noexcept;
+            Aws::Crt::Optional<ReceiveMode> GetReceiveMode() const noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToTopicRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2311,7 +2317,7 @@ namespace Aws
             /**
              * The topic to which to subscribe. Supports MQTT wildcards.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() noexcept { return m_topicName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() const noexcept { return m_topicName; }
             /**
              * The MQTT QoS to use.
              */
@@ -2319,7 +2325,7 @@ namespace Aws
             /**
              * The MQTT QoS to use.
              */
-            Aws::Crt::Optional<QOS> GetQos() noexcept;
+            Aws::Crt::Optional<QOS> GetQos() const noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToIoTCoreRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2374,7 +2380,7 @@ namespace Aws
             /**
              * (Optional) The name of the component. Defaults to the name of the component that makes the request.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             /**
              * The key path to the configuration value for which to subscribe. Specify a list where each entry is the
              * key for a single level in the configuration object.
@@ -2384,7 +2390,7 @@ namespace Aws
              * The key path to the configuration value for which to subscribe. Specify a list where each entry is the
              * key for a single level in the configuration object.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() noexcept { return m_keyPath; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() const noexcept { return m_keyPath; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(
                 SubscribeToConfigurationUpdateRequest &,
@@ -2481,7 +2487,10 @@ namespace Aws
                 m_certificateOptions = certificateOptions;
             }
 
-            Aws::Crt::Optional<CertificateOptions> GetCertificateOptions() noexcept { return m_certificateOptions; }
+            Aws::Crt::Optional<CertificateOptions> GetCertificateOptions() const noexcept
+            {
+                return m_certificateOptions;
+            }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToCertificateUpdatesRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2507,7 +2516,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ComponentNotFoundError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -2537,7 +2546,7 @@ namespace Aws
             /**
              * The status of the stop request.
              */
-            Aws::Crt::Optional<RequestStatus> GetStopStatus() noexcept;
+            Aws::Crt::Optional<RequestStatus> GetStopStatus() const noexcept;
             /**
              * A message about why the component failed to stop, if the request failed.
              */
@@ -2545,7 +2554,7 @@ namespace Aws
             /**
              * A message about why the component failed to stop, if the request failed.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(StopComponentResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2576,7 +2585,7 @@ namespace Aws
             /**
              * The name of the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(StopComponentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2633,7 +2642,7 @@ namespace Aws
             /**
              * The report that tells Greengrass whether or not the configuration update is valid.
              */
-            Aws::Crt::Optional<ConfigurationValidityReport> GetConfigurationValidityReport() noexcept
+            Aws::Crt::Optional<ConfigurationValidityReport> GetConfigurationValidityReport() const noexcept
             {
                 return m_configurationValidityReport;
             }
@@ -2690,7 +2699,7 @@ namespace Aws
             /**
              * The name of the component to resume.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ResumeComponentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2720,7 +2729,7 @@ namespace Aws
             /**
              * The status of the restart request.
              */
-            Aws::Crt::Optional<RequestStatus> GetRestartStatus() noexcept;
+            Aws::Crt::Optional<RequestStatus> GetRestartStatus() const noexcept;
             /**
              * A message about why the component failed to restart, if the request failed.
              */
@@ -2728,7 +2737,7 @@ namespace Aws
             /**
              * A message about why the component failed to restart, if the request failed.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(RestartComponentResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2759,7 +2768,7 @@ namespace Aws
             /**
              * The name of the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(RestartComponentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2806,7 +2815,7 @@ namespace Aws
 
             void SetMetrics(const Aws::Crt::Vector<Metric> &metrics) noexcept { m_metrics = metrics; }
 
-            Aws::Crt::Optional<Aws::Crt::Vector<Metric>> GetMetrics() noexcept { return m_metrics; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Metric>> GetMetrics() const noexcept { return m_metrics; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PutComponentMetricRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2857,7 +2866,7 @@ namespace Aws
             /**
              * The topic to publish the message.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopic() noexcept { return m_topic; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopic() const noexcept { return m_topic; }
             /**
              * The message to publish.
              */
@@ -2865,7 +2874,7 @@ namespace Aws
             /**
              * The message to publish.
              */
-            Aws::Crt::Optional<PublishMessage> GetPublishMessage() noexcept { return m_publishMessage; }
+            Aws::Crt::Optional<PublishMessage> GetPublishMessage() const noexcept { return m_publishMessage; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PublishToTopicRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -2917,7 +2926,7 @@ namespace Aws
             /**
              * The topic to which to publish the message.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() noexcept { return m_topicName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetTopicName() const noexcept { return m_topicName; }
             /**
              * The MQTT QoS to use.
              */
@@ -2925,7 +2934,7 @@ namespace Aws
             /**
              * The MQTT QoS to use.
              */
-            Aws::Crt::Optional<QOS> GetQos() noexcept;
+            Aws::Crt::Optional<QOS> GetQos() const noexcept;
             /**
              * (Optional) The message payload as a blob.
              */
@@ -2933,7 +2942,7 @@ namespace Aws
             /**
              * (Optional) The message payload as a blob.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() noexcept { return m_payload; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() const noexcept { return m_payload; }
             /**
              * (Optional) Whether to set MQTT retain option to true when publishing.
              */
@@ -2941,7 +2950,7 @@ namespace Aws
             /**
              * (Optional) Whether to set MQTT retain option to true when publishing.
              */
-            Aws::Crt::Optional<bool> GetRetain() noexcept { return m_retain; }
+            Aws::Crt::Optional<bool> GetRetain() const noexcept { return m_retain; }
             /**
              * (Optional) MQTT user properties associated with the message.
              */
@@ -2952,7 +2961,10 @@ namespace Aws
             /**
              * (Optional) MQTT user properties associated with the message.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<UserProperty>> GetUserProperties() noexcept { return m_userProperties; }
+            Aws::Crt::Optional<Aws::Crt::Vector<UserProperty>> GetUserProperties() const noexcept
+            {
+                return m_userProperties;
+            }
             /**
              * (Optional) Message expiry interval in seconds.
              */
@@ -2963,7 +2975,7 @@ namespace Aws
             /**
              * (Optional) Message expiry interval in seconds.
              */
-            Aws::Crt::Optional<int64_t> GetMessageExpiryIntervalSeconds() noexcept
+            Aws::Crt::Optional<int64_t> GetMessageExpiryIntervalSeconds() const noexcept
             {
                 return m_messageExpiryIntervalSeconds;
             }
@@ -2977,7 +2989,10 @@ namespace Aws
             /**
              * (Optional) Correlation data blob for request/response.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetCorrelationData() noexcept { return m_correlationData; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetCorrelationData() const noexcept
+            {
+                return m_correlationData;
+            }
             /**
              * (Optional) Response topic for request/response.
              */
@@ -2985,7 +3000,7 @@ namespace Aws
             /**
              * (Optional) Response topic for request/response.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetResponseTopic() noexcept { return m_responseTopic; }
+            Aws::Crt::Optional<Aws::Crt::String> GetResponseTopic() const noexcept { return m_responseTopic; }
             /**
              * (Optional) Message payload format.
              */
@@ -2993,7 +3008,7 @@ namespace Aws
             /**
              * (Optional) Message payload format.
              */
-            Aws::Crt::Optional<PayloadFormat> GetPayloadFormat() noexcept;
+            Aws::Crt::Optional<PayloadFormat> GetPayloadFormat() const noexcept;
             /**
              * (Optional) Message content type.
              */
@@ -3001,7 +3016,7 @@ namespace Aws
             /**
              * (Optional) Message content type.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetContentType() noexcept { return m_contentType; }
+            Aws::Crt::Optional<Aws::Crt::String> GetContentType() const noexcept { return m_contentType; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PublishToIoTCoreRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3061,7 +3076,7 @@ namespace Aws
             /**
              * The name of the component to pause, which must be a generic component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PauseComponentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3091,7 +3106,7 @@ namespace Aws
             /**
              * The list of shadow names.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetResults() noexcept { return m_results; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetResults() const noexcept { return m_results; }
             /**
              * (Optional) The date and time that the response was generated.
              */
@@ -3099,7 +3114,7 @@ namespace Aws
             /**
              * (Optional) The date and time that the response was generated.
              */
-            Aws::Crt::Optional<Aws::Crt::DateTime> GetTimestamp() noexcept { return m_timestamp; }
+            Aws::Crt::Optional<Aws::Crt::DateTime> GetTimestamp() const noexcept { return m_timestamp; }
             /**
              * (Optional) The token value to use in paged requests to retrieve the next page in the sequence. This token
              * isn't present when there are no more shadow names to return.
@@ -3109,7 +3124,7 @@ namespace Aws
              * (Optional) The token value to use in paged requests to retrieve the next page in the sequence. This token
              * isn't present when there are no more shadow names to return.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetNextToken() noexcept { return m_nextToken; }
+            Aws::Crt::Optional<Aws::Crt::String> GetNextToken() const noexcept { return m_nextToken; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ListNamedShadowsForThingResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3141,7 +3156,7 @@ namespace Aws
             /**
              * The name of the thing.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetThingName() noexcept { return m_thingName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetThingName() const noexcept { return m_thingName; }
             /**
              * (Optional) The token to retrieve the next set of results. This value is returned on paged results and is
              * used in the call that returns the next page.
@@ -3151,7 +3166,7 @@ namespace Aws
              * (Optional) The token to retrieve the next set of results. This value is returned on paged results and is
              * used in the call that returns the next page.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetNextToken() noexcept { return m_nextToken; }
+            Aws::Crt::Optional<Aws::Crt::String> GetNextToken() const noexcept { return m_nextToken; }
             /**
              * (Optional) The number of shadow names to return in each call. Value must be between 1 and 100. Default
              * is 25.
@@ -3161,7 +3176,7 @@ namespace Aws
              * (Optional) The number of shadow names to return in each call. Value must be between 1 and 100. Default
              * is 25.
              */
-            Aws::Crt::Optional<int> GetPageSize() noexcept { return m_pageSize; }
+            Aws::Crt::Optional<int> GetPageSize() const noexcept { return m_pageSize; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ListNamedShadowsForThingRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3196,7 +3211,7 @@ namespace Aws
             /**
              * The list of local deployments.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<LocalDeployment>> GetLocalDeployments() noexcept
+            Aws::Crt::Optional<Aws::Crt::Vector<LocalDeployment>> GetLocalDeployments() const noexcept
             {
                 return m_localDeployments;
             }
@@ -3253,7 +3268,10 @@ namespace Aws
             /**
              * The list of components.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<ComponentDetails>> GetComponents() noexcept { return m_components; }
+            Aws::Crt::Optional<Aws::Crt::Vector<ComponentDetails>> GetComponents() const noexcept
+            {
+                return m_components;
+            }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ListComponentsResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3304,7 +3322,7 @@ namespace Aws
             /**
              * The response state document as a JSON encoded blob.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() noexcept { return m_payload; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() const noexcept { return m_payload; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetThingShadowResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3334,7 +3352,7 @@ namespace Aws
             /**
              * The name of the thing.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetThingName() noexcept { return m_thingName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetThingName() const noexcept { return m_thingName; }
             /**
              * The name of the shadow. To specify the thing's classic shadow, set this parameter to an empty string
              * ("").
@@ -3344,7 +3362,7 @@ namespace Aws
              * The name of the shadow. To specify the thing's classic shadow, set this parameter to an empty string
              * ("").
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetShadowName() noexcept { return m_shadowName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetShadowName() const noexcept { return m_shadowName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetThingShadowRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3375,7 +3393,7 @@ namespace Aws
             /**
              * The ID of the secret.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetSecretId() noexcept { return m_secretId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetSecretId() const noexcept { return m_secretId; }
             /**
              * The ID of this version of the secret.
              */
@@ -3383,7 +3401,7 @@ namespace Aws
             /**
              * The ID of this version of the secret.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetVersionId() noexcept { return m_versionId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetVersionId() const noexcept { return m_versionId; }
             /**
              * The list of staging labels attached to this version of the secret.
              */
@@ -3394,7 +3412,10 @@ namespace Aws
             /**
              * The list of staging labels attached to this version of the secret.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetVersionStage() noexcept { return m_versionStage; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetVersionStage() const noexcept
+            {
+                return m_versionStage;
+            }
             /**
              * The value of this version of the secret.
              */
@@ -3402,7 +3423,7 @@ namespace Aws
             /**
              * The value of this version of the secret.
              */
-            Aws::Crt::Optional<SecretValue> GetSecretValue() noexcept { return m_secretValue; }
+            Aws::Crt::Optional<SecretValue> GetSecretValue() const noexcept { return m_secretValue; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetSecretValueResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3437,7 +3458,7 @@ namespace Aws
              * The name of the secret to get. You can specify either the Amazon Resource Name (ARN) or the friendly name
              * of the secret.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetSecretId() noexcept { return m_secretId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetSecretId() const noexcept { return m_secretId; }
             /**
              * (Optional) The ID of the version to get. If you don't specify versionId or versionStage, this operation
              * defaults to the version with the AWSCURRENT label.
@@ -3447,7 +3468,7 @@ namespace Aws
              * (Optional) The ID of the version to get. If you don't specify versionId or versionStage, this operation
              * defaults to the version with the AWSCURRENT label.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetVersionId() noexcept { return m_versionId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetVersionId() const noexcept { return m_versionId; }
             /**
              * (Optional) The staging label of the version to get. If you don't specify versionId or versionStage, this
              * operation defaults to the version with the AWSCURRENT label.
@@ -3457,7 +3478,7 @@ namespace Aws
              * (Optional) The staging label of the version to get. If you don't specify versionId or versionStage, this
              * operation defaults to the version with the AWSCURRENT label.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetVersionStage() noexcept { return m_versionStage; }
+            Aws::Crt::Optional<Aws::Crt::String> GetVersionStage() const noexcept { return m_versionStage; }
             /**
              * (Optional) Whether to fetch the latest secret from cloud when the request is handled. Defaults to false.
              */
@@ -3465,7 +3486,7 @@ namespace Aws
             /**
              * (Optional) Whether to fetch the latest secret from cloud when the request is handled. Defaults to false.
              */
-            Aws::Crt::Optional<bool> GetRefresh() noexcept { return m_refresh; }
+            Aws::Crt::Optional<bool> GetRefresh() const noexcept { return m_refresh; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetSecretValueRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3498,7 +3519,7 @@ namespace Aws
             /**
              * The local deployment.
              */
-            Aws::Crt::Optional<LocalDeployment> GetDeployment() noexcept { return m_deployment; }
+            Aws::Crt::Optional<LocalDeployment> GetDeployment() const noexcept { return m_deployment; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetLocalDeploymentStatusResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3528,7 +3549,7 @@ namespace Aws
             /**
              * The ID of the local deployment to get.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetLocalDeploymentStatusRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3558,7 +3579,7 @@ namespace Aws
             /**
              * The name of the component.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             /**
              * The requested configuration as an object.
              */
@@ -3566,7 +3587,7 @@ namespace Aws
             /**
              * The requested configuration as an object.
              */
-            Aws::Crt::Optional<Aws::Crt::JsonObject> GetValue() noexcept { return m_value; }
+            Aws::Crt::Optional<Aws::Crt::JsonObject> GetValue() const noexcept { return m_value; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetConfigurationResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3597,7 +3618,7 @@ namespace Aws
             /**
              * (Optional) The name of the component. Defaults to the name of the component that makes the request.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             /**
              * The key path to the configuration value. Specify a list where each entry is the key for a single level in
              * the configuration object.
@@ -3607,7 +3628,7 @@ namespace Aws
              * The key path to the configuration value. Specify a list where each entry is the key for a single level in
              * the configuration object.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() noexcept { return m_keyPath; }
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetKeyPath() const noexcept { return m_keyPath; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetConfigurationRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3641,7 +3662,7 @@ namespace Aws
             /**
              * The component's details.
              */
-            Aws::Crt::Optional<ComponentDetails> GetComponentDetails() noexcept { return m_componentDetails; }
+            Aws::Crt::Optional<ComponentDetails> GetComponentDetails() const noexcept { return m_componentDetails; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetComponentDetailsResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3671,7 +3692,7 @@ namespace Aws
             /**
              * The name of the component to get.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() noexcept { return m_componentName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetComponentName() const noexcept { return m_componentName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetComponentDetailsRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3697,7 +3718,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(InvalidCredentialError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -3732,7 +3753,10 @@ namespace Aws
              * The session token for the client device. You can use this session token in subsequent requests to
              * authorize this client device's actions.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceAuthToken() noexcept { return m_clientDeviceAuthToken; }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceAuthToken() const noexcept
+            {
+                return m_clientDeviceAuthToken;
+            }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetClientDeviceAuthTokenResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3762,7 +3786,7 @@ namespace Aws
             /**
              * The client device's credentials.
              */
-            Aws::Crt::Optional<CredentialDocument> GetCredential() noexcept { return m_credential; }
+            Aws::Crt::Optional<CredentialDocument> GetCredential() const noexcept { return m_credential; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(GetClientDeviceAuthTokenRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3792,7 +3816,7 @@ namespace Aws
             /**
              * An empty response state document.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() noexcept { return m_payload; }
+            Aws::Crt::Optional<Aws::Crt::Vector<uint8_t>> GetPayload() const noexcept { return m_payload; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(DeleteThingShadowResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3822,7 +3846,7 @@ namespace Aws
             /**
              * The name of the thing.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetThingName() noexcept { return m_thingName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetThingName() const noexcept { return m_thingName; }
             /**
              * The name of the shadow. To specify the thing's classic shadow, set this parameter to an empty string
              * ("").
@@ -3832,7 +3856,7 @@ namespace Aws
              * The name of the shadow. To specify the thing's classic shadow, set this parameter to an empty string
              * ("").
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetShadowName() noexcept { return m_shadowName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetShadowName() const noexcept { return m_shadowName; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(DeleteThingShadowRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3884,7 +3908,7 @@ namespace Aws
             /**
              * The ID of the AWS IoT Greengrass deployment to defer.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             /**
              * (Optional) The name of the component for which to defer updates. Defaults to the name of the component
              * that makes the request.
@@ -3894,7 +3918,7 @@ namespace Aws
              * (Optional) The name of the component for which to defer updates. Defaults to the name of the component
              * that makes the request.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept { return m_message; }
             /**
              * The amount of time in milliseconds for which to defer the update. Greengrass waits for this amount of
              * time and then sends another PreComponentUpdateEvent
@@ -3904,7 +3928,7 @@ namespace Aws
              * The amount of time in milliseconds for which to defer the update. Greengrass waits for this amount of
              * time and then sends another PreComponentUpdateEvent
              */
-            Aws::Crt::Optional<int64_t> GetRecheckAfterMs() noexcept { return m_recheckAfterMs; }
+            Aws::Crt::Optional<int64_t> GetRecheckAfterMs() const noexcept { return m_recheckAfterMs; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(DeferComponentUpdateRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -3932,7 +3956,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(InvalidArtifactsDirectoryPathError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -3958,7 +3982,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(InvalidRecipeDirectoryPathError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -3988,7 +4012,7 @@ namespace Aws
             /**
              * The ID of the local deployment that the request created.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CreateLocalDeploymentResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4020,7 +4044,7 @@ namespace Aws
              * The thing group name the deployment is targeting. If the group name is not specified, "LOCAL_DEPLOYMENT"
              * will be used.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetGroupName() noexcept { return m_groupName; }
+            Aws::Crt::Optional<Aws::Crt::String> GetGroupName() const noexcept { return m_groupName; }
             /**
              * Map of component name to version. Components will be added to the group's existing root components.
              */
@@ -4032,8 +4056,8 @@ namespace Aws
             /**
              * Map of component name to version. Components will be added to the group's existing root components.
              */
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>>
-                GetRootComponentVersionsToAdd() noexcept
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> GetRootComponentVersionsToAdd()
+                const noexcept
             {
                 return m_rootComponentVersionsToAdd;
             }
@@ -4049,7 +4073,7 @@ namespace Aws
              * List of components that need to be removed from the group, for example if new artifacts were loaded in
              * this request but recipe version did not change.
              */
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetRootComponentsToRemove() noexcept
+            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> GetRootComponentsToRemove() const noexcept
             {
                 return m_rootComponentsToRemove;
             }
@@ -4064,8 +4088,8 @@ namespace Aws
             /**
              * Map of component names to configuration.
              */
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::JsonObject>>
-                GetComponentToConfiguration() noexcept
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::JsonObject>> GetComponentToConfiguration()
+                const noexcept
             {
                 return m_componentToConfiguration;
             }
@@ -4080,7 +4104,7 @@ namespace Aws
             /**
              * Map of component names to component run as info.
              */
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, RunWithInfo>> GetComponentToRunWithInfo() noexcept
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, RunWithInfo>> GetComponentToRunWithInfo() const noexcept
             {
                 return m_componentToRunWithInfo;
             }
@@ -4094,7 +4118,10 @@ namespace Aws
             /**
              * All recipes files in this directory will be copied over to the Greengrass package store.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetRecipeDirectoryPath() noexcept { return m_recipeDirectoryPath; }
+            Aws::Crt::Optional<Aws::Crt::String> GetRecipeDirectoryPath() const noexcept
+            {
+                return m_recipeDirectoryPath;
+            }
             /**
              * All artifact files in this directory will be copied over to the Greengrass package store.
              */
@@ -4105,7 +4132,7 @@ namespace Aws
             /**
              * All artifact files in this directory will be copied over to the Greengrass package store.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetArtifactsDirectoryPath() noexcept
+            Aws::Crt::Optional<Aws::Crt::String> GetArtifactsDirectoryPath() const noexcept
             {
                 return m_artifactsDirectoryPath;
             }
@@ -4116,7 +4143,7 @@ namespace Aws
             /**
              * Deployment failure handling policy.
              */
-            Aws::Crt::Optional<FailureHandlingPolicy> GetFailureHandlingPolicy() noexcept;
+            Aws::Crt::Optional<FailureHandlingPolicy> GetFailureHandlingPolicy() const noexcept;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CreateLocalDeploymentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4149,32 +4176,41 @@ namespace Aws
 
             void SetPassword(const Aws::Crt::String &password) noexcept { m_password = password; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetPassword() noexcept { return m_password; }
+            Aws::Crt::Optional<Aws::Crt::String> GetPassword() const noexcept { return m_password; }
 
             void SetUsername(const Aws::Crt::String &username) noexcept { m_username = username; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetUsername() noexcept { return m_username; }
+            Aws::Crt::Optional<Aws::Crt::String> GetUsername() const noexcept { return m_username; }
 
             void SetPasswordExpiration(const Aws::Crt::DateTime &passwordExpiration) noexcept
             {
                 m_passwordExpiration = passwordExpiration;
             }
 
-            Aws::Crt::Optional<Aws::Crt::DateTime> GetPasswordExpiration() noexcept { return m_passwordExpiration; }
+            Aws::Crt::Optional<Aws::Crt::DateTime> GetPasswordExpiration() const noexcept
+            {
+                return m_passwordExpiration;
+            }
 
             void SetCertificateSHA256Hash(const Aws::Crt::String &certificateSHA256Hash) noexcept
             {
                 m_certificateSHA256Hash = certificateSHA256Hash;
             }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetCertificateSHA256Hash() noexcept { return m_certificateSHA256Hash; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCertificateSHA256Hash() const noexcept
+            {
+                return m_certificateSHA256Hash;
+            }
 
             void SetCertificateSHA1Hash(const Aws::Crt::String &certificateSHA1Hash) noexcept
             {
                 m_certificateSHA1Hash = certificateSHA1Hash;
             }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetCertificateSHA1Hash() noexcept { return m_certificateSHA1Hash; }
+            Aws::Crt::Optional<Aws::Crt::String> GetCertificateSHA1Hash() const noexcept
+            {
+                return m_certificateSHA1Hash;
+            }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CreateDebugPasswordResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4225,7 +4261,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CancelLocalDeploymentResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4255,7 +4291,7 @@ namespace Aws
             /**
              * (Optional) The ID of the local deployment to cancel.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() noexcept { return m_deploymentId; }
+            Aws::Crt::Optional<Aws::Crt::String> GetDeploymentId() const noexcept { return m_deploymentId; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CancelLocalDeploymentRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4281,7 +4317,7 @@ namespace Aws
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
 
-            Aws::Crt::Optional<Aws::Crt::String> GetMessage() noexcept override { return m_message; }
+            Aws::Crt::Optional<Aws::Crt::String> GetMessage() const noexcept override { return m_message; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(InvalidClientDeviceAuthTokenError &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<OperationError> s_allocateFromPayload(
@@ -4311,7 +4347,7 @@ namespace Aws
             /**
              * Whether the client device is authorized to perform the operation on the resource.
              */
-            Aws::Crt::Optional<bool> GetIsAuthorized() noexcept { return m_isAuthorized; }
+            Aws::Crt::Optional<bool> GetIsAuthorized() const noexcept { return m_isAuthorized; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(AuthorizeClientDeviceActionResponse &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4344,7 +4380,10 @@ namespace Aws
             /**
              * The session token for the client device from GetClientDeviceAuthToken.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceAuthToken() noexcept { return m_clientDeviceAuthToken; }
+            Aws::Crt::Optional<Aws::Crt::String> GetClientDeviceAuthToken() const noexcept
+            {
+                return m_clientDeviceAuthToken;
+            }
             /**
              * The operation to authorize.
              */
@@ -4352,7 +4391,7 @@ namespace Aws
             /**
              * The operation to authorize.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetOperation() noexcept { return m_operation; }
+            Aws::Crt::Optional<Aws::Crt::String> GetOperation() const noexcept { return m_operation; }
             /**
              * The resource the client device performs the operation on.
              */
@@ -4360,7 +4399,7 @@ namespace Aws
             /**
              * The resource the client device performs the operation on.
              */
-            Aws::Crt::Optional<Aws::Crt::String> GetResource() noexcept { return m_resource; }
+            Aws::Crt::Optional<Aws::Crt::String> GetResource() const noexcept { return m_resource; }
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(AuthorizeClientDeviceActionRequest &, const Aws::Crt::JsonView &) noexcept;
             static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
@@ -4430,27 +4469,13 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-        };
-        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreResult
@@ -4462,6 +4487,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToIoTCoreResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4481,8 +4507,9 @@ namespace Aws
             SubscribeToIoTCoreOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
-                const SubscribeToIoTCoreOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToIoTCoreOperation`
              * @param request The request used for the `SubscribeToIoTCoreOperation`
@@ -4492,29 +4519,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToIoTCoreRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToIoTCoreResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ResumeComponentOperationContext : public OperationModelContext
-        {
-          public:
-            ResumeComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SubscribeToIoTCoreResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ResumeComponentResult
@@ -4526,6 +4538,7 @@ namespace Aws
             {
                 return static_cast<ResumeComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4544,8 +4557,9 @@ namespace Aws
           public:
             ResumeComponentOperation(
                 ClientConnection &connection,
-                const ResumeComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ResumeComponentOperation`
              * @param request The request used for the `ResumeComponentOperation`
@@ -4555,29 +4569,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ResumeComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ResumeComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperationContext : public OperationModelContext
-        {
-          public:
-            PublishToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<ResumeComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreResult
@@ -4589,6 +4588,7 @@ namespace Aws
             {
                 return static_cast<PublishToIoTCoreResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4607,8 +4607,9 @@ namespace Aws
           public:
             PublishToIoTCoreOperation(
                 ClientConnection &connection,
-                const PublishToIoTCoreOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PublishToIoTCoreOperation`
              * @param request The request used for the `PublishToIoTCoreOperation`
@@ -4618,13 +4619,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PublishToIoTCoreRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PublishToIoTCoreResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<PublishToIoTCoreResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateStreamHandler : public StreamResponseHandler
@@ -4677,27 +4679,13 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-        };
-        class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToConfigurationUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateResult
@@ -4712,6 +4700,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToConfigurationUpdateResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4731,8 +4720,9 @@ namespace Aws
             SubscribeToConfigurationUpdateOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
-                const SubscribeToConfigurationUpdateOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToConfigurationUpdateOperation`
              * @param request The request used for the `SubscribeToConfigurationUpdateOperation`
@@ -4742,29 +4732,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToConfigurationUpdateRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToConfigurationUpdateResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperationContext : public OperationModelContext
-        {
-          public:
-            DeleteThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SubscribeToConfigurationUpdateResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowResult
@@ -4776,6 +4751,7 @@ namespace Aws
             {
                 return static_cast<DeleteThingShadowResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4794,8 +4770,9 @@ namespace Aws
           public:
             DeleteThingShadowOperation(
                 ClientConnection &connection,
-                const DeleteThingShadowOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `DeleteThingShadowOperation`
              * @param request The request used for the `DeleteThingShadowOperation`
@@ -4805,29 +4782,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const DeleteThingShadowRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<DeleteThingShadowResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperationContext : public OperationModelContext
-        {
-          public:
-            PutComponentMetricOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<DeleteThingShadowResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricResult
@@ -4839,6 +4801,7 @@ namespace Aws
             {
                 return static_cast<PutComponentMetricResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4857,8 +4820,9 @@ namespace Aws
           public:
             PutComponentMetricOperation(
                 ClientConnection &connection,
-                const PutComponentMetricOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PutComponentMetricOperation`
              * @param request The request used for the `PutComponentMetricOperation`
@@ -4868,29 +4832,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PutComponentMetricRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PutComponentMetricResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperationContext : public OperationModelContext
-        {
-          public:
-            DeferComponentUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<PutComponentMetricResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateResult
@@ -4904,6 +4853,7 @@ namespace Aws
             {
                 return static_cast<DeferComponentUpdateResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -4922,8 +4872,9 @@ namespace Aws
           public:
             DeferComponentUpdateOperation(
                 ClientConnection &connection,
-                const DeferComponentUpdateOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `DeferComponentUpdateOperation`
              * @param request The request used for the `DeferComponentUpdateOperation`
@@ -4933,13 +4884,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const DeferComponentUpdateRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<DeferComponentUpdateResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<DeferComponentUpdateResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesStreamHandler
@@ -4983,29 +4935,13 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-        };
-        class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesOperationContext
-            : public OperationModelContext
-        {
-          public:
-            SubscribeToValidateConfigurationUpdatesOperationContext(
-                const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesResult
@@ -5021,6 +4957,7 @@ namespace Aws
                 return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(
                     m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5040,8 +4977,9 @@ namespace Aws
             SubscribeToValidateConfigurationUpdatesOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
-                const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToValidateConfigurationUpdatesOperation`
              * @param request The request used for the `SubscribeToValidateConfigurationUpdatesOperation`
@@ -5051,29 +4989,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToValidateConfigurationUpdatesRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToValidateConfigurationUpdatesResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetConfigurationOperationContext : public OperationModelContext
-        {
-          public:
-            GetConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SubscribeToValidateConfigurationUpdatesResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetConfigurationResult
@@ -5085,6 +5008,7 @@ namespace Aws
             {
                 return static_cast<GetConfigurationResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5103,8 +5027,9 @@ namespace Aws
           public:
             GetConfigurationOperation(
                 ClientConnection &connection,
-                const GetConfigurationOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetConfigurationOperation`
              * @param request The request used for the `GetConfigurationOperation`
@@ -5114,13 +5039,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetConfigurationRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetConfigurationResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<GetConfigurationResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicStreamHandler : public StreamResponseHandler
@@ -5183,27 +5109,13 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-        };
-        class AWS_GREENGRASSCOREIPC_API SubscribeToTopicOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicResult
@@ -5215,6 +5127,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToTopicResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5234,8 +5147,9 @@ namespace Aws
             SubscribeToTopicOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
-                const SubscribeToTopicOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToTopicOperation`
              * @param request The request used for the `SubscribeToTopicOperation`
@@ -5245,29 +5159,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToTopicRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToTopicResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperationContext : public OperationModelContext
-        {
-          public:
-            GetComponentDetailsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SubscribeToTopicResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsResult
@@ -5279,6 +5178,7 @@ namespace Aws
             {
                 return static_cast<GetComponentDetailsResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5297,8 +5197,9 @@ namespace Aws
           public:
             GetComponentDetailsOperation(
                 ClientConnection &connection,
-                const GetComponentDetailsOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetComponentDetailsOperation`
              * @param request The request used for the `GetComponentDetailsOperation`
@@ -5308,29 +5209,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetComponentDetailsRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetComponentDetailsResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperationContext : public OperationModelContext
-        {
-          public:
-            GetClientDeviceAuthTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<GetComponentDetailsResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenResult
@@ -5345,6 +5231,7 @@ namespace Aws
             {
                 return static_cast<GetClientDeviceAuthTokenResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5363,8 +5250,9 @@ namespace Aws
           public:
             GetClientDeviceAuthTokenOperation(
                 ClientConnection &connection,
-                const GetClientDeviceAuthTokenOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetClientDeviceAuthTokenOperation`
              * @param request The request used for the `GetClientDeviceAuthTokenOperation`
@@ -5374,29 +5262,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetClientDeviceAuthTokenRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetClientDeviceAuthTokenResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API PublishToTopicOperationContext : public OperationModelContext
-        {
-          public:
-            PublishToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<GetClientDeviceAuthTokenResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToTopicResult
@@ -5408,6 +5281,7 @@ namespace Aws
             {
                 return static_cast<PublishToTopicResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5426,8 +5300,9 @@ namespace Aws
           public:
             PublishToTopicOperation(
                 ClientConnection &connection,
-                const PublishToTopicOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PublishToTopicOperation`
              * @param request The request used for the `PublishToTopicOperation`
@@ -5437,13 +5312,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PublishToTopicRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PublishToTopicResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<PublishToTopicResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesStreamHandler : public StreamResponseHandler
@@ -5506,27 +5382,13 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-        };
-        class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToCertificateUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesResult
@@ -5541,6 +5403,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToCertificateUpdatesResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5560,8 +5423,9 @@ namespace Aws
             SubscribeToCertificateUpdatesOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
-                const SubscribeToCertificateUpdatesOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToCertificateUpdatesOperation`
              * @param request The request used for the `SubscribeToCertificateUpdatesOperation`
@@ -5571,29 +5435,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToCertificateUpdatesRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToCertificateUpdatesResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperationContext : public OperationModelContext
-        {
-          public:
-            VerifyClientDeviceIdentityOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SubscribeToCertificateUpdatesResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityResult
@@ -5608,6 +5457,7 @@ namespace Aws
             {
                 return static_cast<VerifyClientDeviceIdentityResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5626,8 +5476,9 @@ namespace Aws
           public:
             VerifyClientDeviceIdentityOperation(
                 ClientConnection &connection,
-                const VerifyClientDeviceIdentityOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `VerifyClientDeviceIdentityOperation`
              * @param request The request used for the `VerifyClientDeviceIdentityOperation`
@@ -5637,29 +5488,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const VerifyClientDeviceIdentityRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<VerifyClientDeviceIdentityResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperationContext : public OperationModelContext
-        {
-          public:
-            AuthorizeClientDeviceActionOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<VerifyClientDeviceIdentityResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionResult
@@ -5674,6 +5510,7 @@ namespace Aws
             {
                 return static_cast<AuthorizeClientDeviceActionResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5692,8 +5529,9 @@ namespace Aws
           public:
             AuthorizeClientDeviceActionOperation(
                 ClientConnection &connection,
-                const AuthorizeClientDeviceActionOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `AuthorizeClientDeviceActionOperation`
              * @param request The request used for the `AuthorizeClientDeviceActionOperation`
@@ -5703,29 +5541,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const AuthorizeClientDeviceActionRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<AuthorizeClientDeviceActionResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ListComponentsOperationContext : public OperationModelContext
-        {
-          public:
-            ListComponentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<AuthorizeClientDeviceActionResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListComponentsResult
@@ -5737,6 +5560,7 @@ namespace Aws
             {
                 return static_cast<ListComponentsResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5755,8 +5579,9 @@ namespace Aws
           public:
             ListComponentsOperation(
                 ClientConnection &connection,
-                const ListComponentsOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ListComponentsOperation`
              * @param request The request used for the `ListComponentsOperation`
@@ -5766,29 +5591,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ListComponentsRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ListComponentsResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperationContext : public OperationModelContext
-        {
-          public:
-            CreateDebugPasswordOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<ListComponentsResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordResult
@@ -5800,6 +5610,7 @@ namespace Aws
             {
                 return static_cast<CreateDebugPasswordResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5818,8 +5629,9 @@ namespace Aws
           public:
             CreateDebugPasswordOperation(
                 ClientConnection &connection,
-                const CreateDebugPasswordOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `CreateDebugPasswordOperation`
              * @param request The request used for the `CreateDebugPasswordOperation`
@@ -5829,29 +5641,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const CreateDebugPasswordRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<CreateDebugPasswordResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetThingShadowOperationContext : public OperationModelContext
-        {
-          public:
-            GetThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<CreateDebugPasswordResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetThingShadowResult
@@ -5863,6 +5660,7 @@ namespace Aws
             {
                 return static_cast<GetThingShadowResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5881,8 +5679,9 @@ namespace Aws
           public:
             GetThingShadowOperation(
                 ClientConnection &connection,
-                const GetThingShadowOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetThingShadowOperation`
              * @param request The request used for the `GetThingShadowOperation`
@@ -5892,29 +5691,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetThingShadowRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetThingShadowResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperationContext : public OperationModelContext
-        {
-          public:
-            SendConfigurationValidityReportOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<GetThingShadowResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportResult
@@ -5929,6 +5713,7 @@ namespace Aws
             {
                 return static_cast<SendConfigurationValidityReportResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -5947,8 +5732,9 @@ namespace Aws
           public:
             SendConfigurationValidityReportOperation(
                 ClientConnection &connection,
-                const SendConfigurationValidityReportOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SendConfigurationValidityReportOperation`
              * @param request The request used for the `SendConfigurationValidityReportOperation`
@@ -5958,29 +5744,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SendConfigurationValidityReportRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SendConfigurationValidityReportResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperationContext : public OperationModelContext
-        {
-          public:
-            UpdateThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SendConfigurationValidityReportResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowResult
@@ -5992,6 +5763,7 @@ namespace Aws
             {
                 return static_cast<UpdateThingShadowResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6010,8 +5782,9 @@ namespace Aws
           public:
             UpdateThingShadowOperation(
                 ClientConnection &connection,
-                const UpdateThingShadowOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `UpdateThingShadowOperation`
              * @param request The request used for the `UpdateThingShadowOperation`
@@ -6021,29 +5794,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const UpdateThingShadowRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<UpdateThingShadowResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperationContext : public OperationModelContext
-        {
-          public:
-            UpdateConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<UpdateThingShadowResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationResult
@@ -6055,6 +5813,7 @@ namespace Aws
             {
                 return static_cast<UpdateConfigurationResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6073,8 +5832,9 @@ namespace Aws
           public:
             UpdateConfigurationOperation(
                 ClientConnection &connection,
-                const UpdateConfigurationOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `UpdateConfigurationOperation`
              * @param request The request used for the `UpdateConfigurationOperation`
@@ -6084,29 +5844,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const UpdateConfigurationRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<UpdateConfigurationResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperationContext : public OperationModelContext
-        {
-          public:
-            ValidateAuthorizationTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<UpdateConfigurationResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenResult
@@ -6121,6 +5866,7 @@ namespace Aws
             {
                 return static_cast<ValidateAuthorizationTokenResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6139,8 +5885,9 @@ namespace Aws
           public:
             ValidateAuthorizationTokenOperation(
                 ClientConnection &connection,
-                const ValidateAuthorizationTokenOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ValidateAuthorizationTokenOperation`
              * @param request The request used for the `ValidateAuthorizationTokenOperation`
@@ -6150,29 +5897,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ValidateAuthorizationTokenRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ValidateAuthorizationTokenResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API RestartComponentOperationContext : public OperationModelContext
-        {
-          public:
-            RestartComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<ValidateAuthorizationTokenResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API RestartComponentResult
@@ -6184,6 +5916,7 @@ namespace Aws
             {
                 return static_cast<RestartComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6202,8 +5935,9 @@ namespace Aws
           public:
             RestartComponentOperation(
                 ClientConnection &connection,
-                const RestartComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `RestartComponentOperation`
              * @param request The request used for the `RestartComponentOperation`
@@ -6213,29 +5947,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const RestartComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<RestartComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperationContext : public OperationModelContext
-        {
-          public:
-            GetLocalDeploymentStatusOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<RestartComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusResult
@@ -6250,6 +5969,7 @@ namespace Aws
             {
                 return static_cast<GetLocalDeploymentStatusResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6268,8 +5988,9 @@ namespace Aws
           public:
             GetLocalDeploymentStatusOperation(
                 ClientConnection &connection,
-                const GetLocalDeploymentStatusOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetLocalDeploymentStatusOperation`
              * @param request The request used for the `GetLocalDeploymentStatusOperation`
@@ -6279,29 +6000,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetLocalDeploymentStatusRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetLocalDeploymentStatusResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API GetSecretValueOperationContext : public OperationModelContext
-        {
-          public:
-            GetSecretValueOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<GetLocalDeploymentStatusResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetSecretValueResult
@@ -6313,6 +6019,7 @@ namespace Aws
             {
                 return static_cast<GetSecretValueResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6331,8 +6038,9 @@ namespace Aws
           public:
             GetSecretValueOperation(
                 ClientConnection &connection,
-                const GetSecretValueOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `GetSecretValueOperation`
              * @param request The request used for the `GetSecretValueOperation`
@@ -6342,29 +6050,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const GetSecretValueRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<GetSecretValueResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API UpdateStateOperationContext : public OperationModelContext
-        {
-          public:
-            UpdateStateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<GetSecretValueResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateStateResult
@@ -6376,6 +6069,7 @@ namespace Aws
             {
                 return static_cast<UpdateStateResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6394,8 +6088,9 @@ namespace Aws
           public:
             UpdateStateOperation(
                 ClientConnection &connection,
-                const UpdateStateOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `UpdateStateOperation`
              * @param request The request used for the `UpdateStateOperation`
@@ -6405,29 +6100,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const UpdateStateRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<UpdateStateResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperationContext : public OperationModelContext
-        {
-          public:
-            CancelLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<UpdateStateResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentResult
@@ -6441,6 +6121,7 @@ namespace Aws
             {
                 return static_cast<CancelLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6459,8 +6140,9 @@ namespace Aws
           public:
             CancelLocalDeploymentOperation(
                 ClientConnection &connection,
-                const CancelLocalDeploymentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `CancelLocalDeploymentOperation`
              * @param request The request used for the `CancelLocalDeploymentOperation`
@@ -6470,29 +6152,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const CancelLocalDeploymentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<CancelLocalDeploymentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperationContext : public OperationModelContext
-        {
-          public:
-            ListNamedShadowsForThingOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<CancelLocalDeploymentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingResult
@@ -6507,6 +6174,7 @@ namespace Aws
             {
                 return static_cast<ListNamedShadowsForThingResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6525,8 +6193,9 @@ namespace Aws
           public:
             ListNamedShadowsForThingOperation(
                 ClientConnection &connection,
-                const ListNamedShadowsForThingOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ListNamedShadowsForThingOperation`
              * @param request The request used for the `ListNamedShadowsForThingOperation`
@@ -6536,13 +6205,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ListNamedShadowsForThingRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ListNamedShadowsForThingResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<ListNamedShadowsForThingResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesStreamHandler : public StreamResponseHandler
@@ -6595,27 +6265,13 @@ namespace Aws
              * Invoked when a message is received on this continuation.
              */
             void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
             /**
              * Invoked when a message is received on this continuation but results in an error.
              *
              * This callback can return true so that the stream is closed afterwards.
              */
             bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
-        };
-        class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesOperationContext : public OperationModelContext
-        {
-          public:
-            SubscribeToComponentUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesResult
@@ -6630,6 +6286,7 @@ namespace Aws
             {
                 return static_cast<SubscribeToComponentUpdatesResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6649,8 +6306,9 @@ namespace Aws
             SubscribeToComponentUpdatesOperation(
                 ClientConnection &connection,
                 std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
-                const SubscribeToComponentUpdatesOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `SubscribeToComponentUpdatesOperation`
              * @param request The request used for the `SubscribeToComponentUpdatesOperation`
@@ -6660,29 +6318,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const SubscribeToComponentUpdatesRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<SubscribeToComponentUpdatesResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperationContext : public OperationModelContext
-        {
-          public:
-            ListLocalDeploymentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<SubscribeToComponentUpdatesResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsResult
@@ -6696,6 +6339,7 @@ namespace Aws
             {
                 return static_cast<ListLocalDeploymentsResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6714,8 +6358,9 @@ namespace Aws
           public:
             ListLocalDeploymentsOperation(
                 ClientConnection &connection,
-                const ListLocalDeploymentsOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `ListLocalDeploymentsOperation`
              * @param request The request used for the `ListLocalDeploymentsOperation`
@@ -6725,29 +6370,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const ListLocalDeploymentsRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<ListLocalDeploymentsResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API StopComponentOperationContext : public OperationModelContext
-        {
-          public:
-            StopComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<ListLocalDeploymentsResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API StopComponentResult
@@ -6759,6 +6389,7 @@ namespace Aws
             {
                 return static_cast<StopComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6777,8 +6408,9 @@ namespace Aws
           public:
             StopComponentOperation(
                 ClientConnection &connection,
-                const StopComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `StopComponentOperation`
              * @param request The request used for the `StopComponentOperation`
@@ -6788,29 +6420,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const StopComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<StopComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API PauseComponentOperationContext : public OperationModelContext
-        {
-          public:
-            PauseComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<StopComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API PauseComponentResult
@@ -6822,6 +6439,7 @@ namespace Aws
             {
                 return static_cast<PauseComponentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6840,8 +6458,9 @@ namespace Aws
           public:
             PauseComponentOperation(
                 ClientConnection &connection,
-                const PauseComponentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `PauseComponentOperation`
              * @param request The request used for the `PauseComponentOperation`
@@ -6851,29 +6470,14 @@ namespace Aws
             std::future<RpcError> Activate(
                 const PauseComponentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<PauseComponentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
-        };
-
-        class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperationContext : public OperationModelContext
-        {
-          public:
-            CreateLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
-                Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
-            Aws::Crt::String GetRequestModelName() const noexcept override;
-            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
-            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
-            Aws::Crt::String GetOperationName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<PauseComponentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentResult
@@ -6887,6 +6491,7 @@ namespace Aws
             {
                 return static_cast<CreateLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
             }
+
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
@@ -6905,8 +6510,9 @@ namespace Aws
           public:
             CreateLocalDeploymentOperation(
                 ClientConnection &connection,
-                const CreateLocalDeploymentOperationContext &operationContext,
+                const std::shared_ptr<OperationModelContext> &operationContext,
                 Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
             /**
              * Used to activate a stream for the `CreateLocalDeploymentOperation`
              * @param request The request used for the `CreateLocalDeploymentOperation`
@@ -6916,19 +6522,20 @@ namespace Aws
             std::future<RpcError> Activate(
                 const CreateLocalDeploymentRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
             /**
              * Retrieve the result from activating the stream.
              */
             std::future<CreateLocalDeploymentResult> GetResult() noexcept;
 
-          protected:
-            Aws::Crt::String GetModelName() const noexcept override;
+          private:
+            std::shared_ptr<std::promise<CreateLocalDeploymentResult>> m_resultPromise;
         };
 
         class AWS_GREENGRASSCOREIPC_API GreengrassCoreIpcServiceModel : public ServiceModel
         {
           public:
-            GreengrassCoreIpcServiceModel() noexcept;
+            GreengrassCoreIpcServiceModel(Aws::Crt::Allocator *allocator) noexcept;
             Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
                 const Aws::Crt::String &errorModelName,
                 Aws::Crt::StringView stringView,
@@ -6937,41 +6544,40 @@ namespace Aws
 
           private:
             friend class GreengrassCoreIpcClient;
-            SubscribeToIoTCoreOperationContext m_subscribeToIoTCoreOperationContext;
-            ResumeComponentOperationContext m_resumeComponentOperationContext;
-            PublishToIoTCoreOperationContext m_publishToIoTCoreOperationContext;
-            SubscribeToConfigurationUpdateOperationContext m_subscribeToConfigurationUpdateOperationContext;
-            DeleteThingShadowOperationContext m_deleteThingShadowOperationContext;
-            PutComponentMetricOperationContext m_putComponentMetricOperationContext;
-            DeferComponentUpdateOperationContext m_deferComponentUpdateOperationContext;
-            SubscribeToValidateConfigurationUpdatesOperationContext
-                m_subscribeToValidateConfigurationUpdatesOperationContext;
-            GetConfigurationOperationContext m_getConfigurationOperationContext;
-            SubscribeToTopicOperationContext m_subscribeToTopicOperationContext;
-            GetComponentDetailsOperationContext m_getComponentDetailsOperationContext;
-            GetClientDeviceAuthTokenOperationContext m_getClientDeviceAuthTokenOperationContext;
-            PublishToTopicOperationContext m_publishToTopicOperationContext;
-            SubscribeToCertificateUpdatesOperationContext m_subscribeToCertificateUpdatesOperationContext;
-            VerifyClientDeviceIdentityOperationContext m_verifyClientDeviceIdentityOperationContext;
-            AuthorizeClientDeviceActionOperationContext m_authorizeClientDeviceActionOperationContext;
-            ListComponentsOperationContext m_listComponentsOperationContext;
-            CreateDebugPasswordOperationContext m_createDebugPasswordOperationContext;
-            GetThingShadowOperationContext m_getThingShadowOperationContext;
-            SendConfigurationValidityReportOperationContext m_sendConfigurationValidityReportOperationContext;
-            UpdateThingShadowOperationContext m_updateThingShadowOperationContext;
-            UpdateConfigurationOperationContext m_updateConfigurationOperationContext;
-            ValidateAuthorizationTokenOperationContext m_validateAuthorizationTokenOperationContext;
-            RestartComponentOperationContext m_restartComponentOperationContext;
-            GetLocalDeploymentStatusOperationContext m_getLocalDeploymentStatusOperationContext;
-            GetSecretValueOperationContext m_getSecretValueOperationContext;
-            UpdateStateOperationContext m_updateStateOperationContext;
-            CancelLocalDeploymentOperationContext m_cancelLocalDeploymentOperationContext;
-            ListNamedShadowsForThingOperationContext m_listNamedShadowsForThingOperationContext;
-            SubscribeToComponentUpdatesOperationContext m_subscribeToComponentUpdatesOperationContext;
-            ListLocalDeploymentsOperationContext m_listLocalDeploymentsOperationContext;
-            StopComponentOperationContext m_stopComponentOperationContext;
-            PauseComponentOperationContext m_pauseComponentOperationContext;
-            CreateLocalDeploymentOperationContext m_createLocalDeploymentOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToIoTCoreOperationContext;
+            std::shared_ptr<OperationModelContext> m_resumeComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_publishToIoTCoreOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToConfigurationUpdateOperationContext;
+            std::shared_ptr<OperationModelContext> m_deleteThingShadowOperationContext;
+            std::shared_ptr<OperationModelContext> m_putComponentMetricOperationContext;
+            std::shared_ptr<OperationModelContext> m_deferComponentUpdateOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToValidateConfigurationUpdatesOperationContext;
+            std::shared_ptr<OperationModelContext> m_getConfigurationOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToTopicOperationContext;
+            std::shared_ptr<OperationModelContext> m_getComponentDetailsOperationContext;
+            std::shared_ptr<OperationModelContext> m_getClientDeviceAuthTokenOperationContext;
+            std::shared_ptr<OperationModelContext> m_publishToTopicOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToCertificateUpdatesOperationContext;
+            std::shared_ptr<OperationModelContext> m_verifyClientDeviceIdentityOperationContext;
+            std::shared_ptr<OperationModelContext> m_authorizeClientDeviceActionOperationContext;
+            std::shared_ptr<OperationModelContext> m_listComponentsOperationContext;
+            std::shared_ptr<OperationModelContext> m_createDebugPasswordOperationContext;
+            std::shared_ptr<OperationModelContext> m_getThingShadowOperationContext;
+            std::shared_ptr<OperationModelContext> m_sendConfigurationValidityReportOperationContext;
+            std::shared_ptr<OperationModelContext> m_updateThingShadowOperationContext;
+            std::shared_ptr<OperationModelContext> m_updateConfigurationOperationContext;
+            std::shared_ptr<OperationModelContext> m_validateAuthorizationTokenOperationContext;
+            std::shared_ptr<OperationModelContext> m_restartComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_getLocalDeploymentStatusOperationContext;
+            std::shared_ptr<OperationModelContext> m_getSecretValueOperationContext;
+            std::shared_ptr<OperationModelContext> m_updateStateOperationContext;
+            std::shared_ptr<OperationModelContext> m_cancelLocalDeploymentOperationContext;
+            std::shared_ptr<OperationModelContext> m_listNamedShadowsForThingOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToComponentUpdatesOperationContext;
+            std::shared_ptr<OperationModelContext> m_listLocalDeploymentsOperationContext;
+            std::shared_ptr<OperationModelContext> m_stopComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_pauseComponentOperationContext;
+            std::shared_ptr<OperationModelContext> m_createLocalDeploymentOperationContext;
             Aws::Crt::Map<Aws::Crt::String, ErrorResponseFactory> m_modelNameToErrorResponse;
         };
     } // namespace Greengrass
