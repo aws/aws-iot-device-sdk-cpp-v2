@@ -23,6 +23,29 @@ namespace Aws
 {
     namespace Eventstreamrpc
     {
+        /*
+         * User-data class for completing message flush callbacks.  The C++ API supports both callbacks and
+         * promise completion and so in turn this must support both.
+         *
+         * Additionally, because we synthesize callbacks (in order to have non-blocking destruction), this class
+         * must also support multiple users trying to complete it (with the first one winning) in a thread-safe
+         * manner.
+         *
+         * The general pattern, when needed, results in two possibilities:
+         *
+         * (1) Create a (shared_ptr) instance and submit it to the C API via activate()/connect()/send_message()
+         * (2) Keep a shared_ptr back in the connection/continuation as needed
+         * (3) C client sends message and invokes completion.  A later completion by the binding does nothing.
+         *
+         * or
+         *
+         * (1) Create a (shared_ptr) instance and submit it to the C API via activate()/connect()/send_message()
+         * (2) Keep a shared_ptr back in the connection/continuation as needed
+         * (3) Connection/continuation shutdown happens before the C client does the message flush, so the callbacks
+         *   get triggered by the shutdown.  When the C client goes to complete, the completion does nothing (but
+         *   is memory-safe).
+
+         */
         class OnMessageFlushCallbackContainer
         {
           public:
@@ -99,6 +122,10 @@ namespace Aws
             } m_sharedState;
         };
 
+        /*
+         * We can't submit a shared_ptr to the C layer, only a raw pointer.  So this class just wraps a shared_ptr
+         * to a callback container.
+         */
         class OnMessageFlushCallbackContainerWrapper
         {
           public:
@@ -142,6 +169,7 @@ namespace Aws
             std::shared_ptr<OnMessageFlushCallbackContainer> m_container;
         };
 
+        /* The flush completion callback function that the low-level C client will invoke */
         static void s_protocolMessageCallback(int errorCode, void *userData) noexcept
         {
             auto *wrapper = static_cast<OnMessageFlushCallbackContainerWrapper *>(userData);
@@ -333,10 +361,6 @@ namespace Aws
                     ret += Crt::ErrorDebugString(crtError);
                     return ret;
                 }
-                case EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED:
-                    return "EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED";
-                case EVENT_STREAM_RPC_CONTINUATION_CLOSE_IN_PROGRESS:
-                    return "EVENT_STREAM_RPC_CONTINUATION_CLOSE_IN_PROGRESS";
                 case EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED:
                     return "EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED";
             }
@@ -484,23 +508,38 @@ namespace Aws
         /*
          * Eventstream Connection Refactor
          *
-         * Part 1 of an effort to refactor the eventstream bindings to conform to the latest CRT binding guidelines.
-         *
          * For connections, we now enforce the following invariants for correctness:
          *
          * 1. No callback is made while a lock is held.  We perform callbacks by having a transactional callback context
          * that is moved out of shared state (under the lock), but the callback context does not perform its work until
          * the lock is released.
-         * 2. No C API call is made while the lock is held.  TODO: explain the pattern
-         *    Lock-OptimisticExclusiveStateChange-Unlock-APICall-OnFailureUndoStateChange
+         *
+         * 2. No C API call is made while the lock is held.  This prevents deadlock in degenerate cases where callbacks
+         * get invoked synchronously (for example, trying to send a message on a closed connection).
          *
          * 3. No destructor blocking or synchronization.  In order to provide the best behavioral backwards
          * compatibility, we "synthesize" the callbacks that would occur at destruction when we kick off the async
          * cleanup process.  Later, when the asynchronous events occur that would normally trigger a callback occur, we
          * ignore them.
+         *
          * 4. A self-reference (via shared_ptr member) guarantees the binding impl stays alive longer than the C
          * objects.   The public binding object also keeps a shared_ptr to the impl, so final destruction only occurs
          * once both the public binding object's destructor has run and no C connection object is still alive.
+         *
+         *
+         * Invariant (2) lead to a common pattern throughout the bindings:
+         *
+         * (1) Lock the shared state
+         * (2) Optimistically update the shared state as if action-to-take was successful
+         * (3) Unlock the shared state
+         * (4) Invoke the C API
+         * (5) If the C API was unsuccessful (rare case), lock the shared state, rollback the optimistic update, unlock
+         *
+         * For this to be correct, the shared state update in (2) must exclude other pathways from trying to do the same
+         * action.  For example, if a continuation is created but not activated, calling activate optimistically
+         * updates the state to PENDING_ACTIVATE, which prevents concurrent callers from doing anything.  If the C
+         * call to activate() fails, then we roll back from PENDING_ACTIVATE, allowing future callers to again try
+         * and activate the continuation.
          */
 
         /* What kind of callback should this context trigger? */
@@ -519,7 +558,7 @@ namespace Aws
          *   (3) Helping ensure callbacks always occur once and only once
          *   (4) Passing delayed state (like an error code) forward until the callback can safely be triggered
          *
-         * We rely heavily on careful move semantics to ensure (2) and (3)
+         * We rely on move semantics to ensure (2) and (3)
          */
         class ConnectionCallbackContext
         {
@@ -600,16 +639,18 @@ namespace Aws
             }
 
             /*
-             * Returns a callback context that should be invoked, and moves this context into a state that should be
-             * invoked when the connection is closed
+             * Returns a callback context that should be invoked now (indicating successful connection), and moves
+             * this context into a state that should be invoked when the connection is closed.
              */
             ConnectionCallbackContext TransitionToConnected()
             {
+                // connection success context caller should invoke
                 ConnectionCallbackContext context = {};
                 context.m_action = ConnectionCallbackActionType::CompleteConnectPromise;
                 context.m_connectPromise = std::move(m_connectPromise);
                 context.m_connectionSuccessCallback = m_connectionSuccessCallback;
 
+                // we're now a disconnect context
                 m_action = ConnectionCallbackActionType::DisconnectionCallback;
                 m_error = {EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS};
                 m_connectPromise = {};
@@ -664,6 +705,7 @@ namespace Aws
 
             bool IsOpen() const noexcept;
 
+            // Exclusively called by ClientConnection's destructor.
             void Shutdown() noexcept;
 
           private:
@@ -676,10 +718,19 @@ namespace Aws
 
             enum class ClientState
             {
+                // There is no C connection and no pending attempt to create one
                 Disconnected,
+
+                // There is a pending attempt to create a C connection, but it has not completed yet
                 PendingConnect,
+
+                // We have a C connection, but the Connect->Connack handshake has not completed yet
                 PendingConnack,
+
+                // We have a C connection ready to be used
                 Connected,
+
+                // Our formerly-connected C connection is in the process of shutting down
                 Disconnecting,
             };
 
@@ -688,6 +739,8 @@ namespace Aws
             ConnectionLifecycleHandler *m_lifecycleHandler; // cannot be made a shared_ptr sadly
             ConnectMessageAmender m_connectMessageAmender;
             ConnectionConfig m_connectionConfig;
+
+            // Non-null as long as something connection-related is going on in the C layer.
             std::shared_ptr<ClientConnectionImpl> m_selfReference;
             aws_client_bootstrap *m_bootstrap;
             aws_event_loop *m_eventLoop;
@@ -761,6 +814,13 @@ namespace Aws
             aws_task_init(&m_task, s_zeroSharedReference, this, "AwsEventstreamConnectionImplClearSharedTask");
         }
 
+        /*
+         * This gets called in the following cases:
+         *
+         * (1) Synchronous failure to initiate a connection
+         * (2) Connection setup failure (async callback)
+         * (3) Connnection (that was successfully established) shutdown completion (async callback)
+         */
         void ClientConnectionImpl::MoveToDisconnected(RpcError error) noexcept
         {
             auto *clearSharedTask =
@@ -774,7 +834,9 @@ namespace Aws
                 m_sharedState.m_currentState = ClientState::Disconnected;
                 m_sharedState.m_desiredState = ClientState::Disconnected;
                 m_sharedState.m_callbackContext.SetError(error);
-                m_selfReference = nullptr; // impossible to drop, since the clear shared task just took a ref
+                m_selfReference = nullptr; // doesn't actually drop, since the clear shared task just took a ref
+
+                // If we've called shutdown, then no further callbacks should be done
                 if (!m_sharedState.m_hasShutDown)
                 {
                     localContext = std::move(m_sharedState.m_callbackContext);
@@ -787,6 +849,9 @@ namespace Aws
             aws_event_loop_schedule_task_now(m_eventLoop, &clearSharedTask->m_task);
         }
 
+        /*
+         * Common logic to kick off the process of shutting down the connection
+         */
         void ClientConnectionImpl::CloseInternal(bool isShutdown) noexcept
         {
             struct aws_event_stream_rpc_client_connection *closeConnection = nullptr;
@@ -812,14 +877,22 @@ namespace Aws
 
                 if (isShutdown)
                 {
+                    /*
+                     * When shutting down (ClientConnection::~ClientConnection only) we synthesize any disconnect/
+                     * connection-failure callbacks that might happen in the future, and ignore them when they do.
+                     * This gives us behavioral compatibility with the old implementation (that blocked in
+                     * destructors) while still removing the blocking logic.
+                     */
                     localContext = std::move(m_sharedState.m_callbackContext);
                     connectFlushContainer = m_sharedState.m_connectFlushContainer;
                     m_sharedState.m_connectFlushContainer = nullptr;
                 }
             }
 
+            // only does something on shutdown
             localContext.InvokeCallbacks();
 
+            // only does something on shutdown
             OnMessageFlushCallbackContainer::Complete(
                 connectFlushContainer.get(),
                 {EVENT_STREAM_RPC_CONNECTION_CLOSED, AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED});
@@ -832,6 +905,10 @@ namespace Aws
             }
         }
 
+        /*
+         * Only called by the destructor of the public-facing ClientConnection object.  When this returns, no
+         * further callbacks will be made.
+         */
         void ClientConnectionImpl::Shutdown() noexcept
         {
             CloseInternal(true);
@@ -864,6 +941,8 @@ namespace Aws
                     return localFuture;
                 }
 
+                // Optimistic state update under the lock.  Nothing can alter a PendingConnect (other than a
+                // connection callback).
                 m_lifecycleHandler = connectionLifecycleHandler;
                 std::function<void(RpcError)> disconnectCallback = [connectionLifecycleHandler](RpcError error)
                 { connectionLifecycleHandler->OnDisconnectCallback(error); };
@@ -895,6 +974,7 @@ namespace Aws
             connectOptions.on_connection_setup = ClientConnectionImpl::s_onConnectionSetup;
             connectOptions.on_connection_protocol_message = ClientConnectionImpl::s_onProtocolMessage;
             connectOptions.on_connection_shutdown = ClientConnectionImpl::s_onConnectionShutdown;
+
             connectOptions.user_data = reinterpret_cast<void *>(this);
 
             if (m_connectionConfig.GetTlsConnectionOptions().has_value())
@@ -904,6 +984,7 @@ namespace Aws
 
             if (aws_event_stream_rpc_client_connection_connect(m_allocator, &connectOptions))
             {
+                // Rollback our optimistic state update
                 MoveToDisconnected({EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED, aws_last_error()});
             }
 
@@ -977,12 +1058,15 @@ namespace Aws
 
                 if (impl->m_sharedState.m_desiredState != ClientState::Connected)
                 {
+                    // Someone called Close/Shutdown during the connection process.  We couldn't do anything at the
+                    // time, but now we can.  So start the close process.
                     AWS_FATAL_ASSERT(impl->m_sharedState.m_desiredState == ClientState::Disconnected);
                     impl->m_sharedState.m_currentState = ClientState::Disconnecting;
                     closeConnection = connection;
                 }
                 else
                 {
+                    // optimistic state update to waiting on a connack from the server
                     impl->m_sharedState.m_currentState = ClientState::PendingConnack;
                     connectConnection = connection;
 
@@ -1019,6 +1103,8 @@ namespace Aws
 
                 if (connectErrorCode != AWS_ERROR_SUCCESS)
                 {
+                    // rollback our optimistic connack update since we failed to send the connect.
+                    // We dont need to release connectConnection because we're "transferring" it to closeConnection
                     std::lock_guard<std::mutex> lock(impl->m_sharedStateLock);
 
                     impl->m_sharedState.m_callbackContext.SetError({EVENT_STREAM_RPC_CRT_ERROR, connectErrorCode});
@@ -1074,6 +1160,7 @@ namespace Aws
                         std::lock_guard<std::mutex> lock(impl->m_sharedStateLock);
                         if (impl->m_sharedState.m_currentState != ClientState::PendingConnack || !successfulAck)
                         {
+                            // triggered if closed/shutdown or failed the handshake
                             if (!impl->m_sharedState.m_hasShutDown)
                             {
                                 impl->m_sharedState.m_callbackContext.SetError(RpcError{
@@ -1091,6 +1178,7 @@ namespace Aws
                         }
                         else
                         {
+                            // everything's good; transition into the connected state
                             impl->m_sharedState.m_currentState = ClientState::Connected;
                             localCallbackContext = impl->m_sharedState.m_callbackContext.TransitionToConnected();
                         }
@@ -1316,10 +1404,16 @@ namespace Aws
             return nullptr;
         }
 
+        // Depending on the current state of the continuation, each inbound message falls into one of three types
         enum class EventStreamMessageRoutingType
         {
+            // The inbound message should be turned into a modeled response for an Activate request
             Response,
+
+            // The inbound message should be turned into a modeled streaming event
             Stream,
+
+            // The inbound message should be turned into a modeled error for an Activate request
             Error
         };
 
@@ -1352,12 +1446,22 @@ namespace Aws
             Crt::Optional<MessageDeserialization> m_message;
         };
 
+        // One-way, sequential state sequence for continuations
         enum class ContinuationStateType
         {
+            // Continuation has been created, but Activate has not been called yet
             None,
+
+            // The continuation is in the process of being activated
             PendingActivate,
+
+            // The continuation has been successfully activated
             Activated,
+
+            // The continuation is closing
             PendingClose,
+
+            // The continuation is closed
             Closed,
         };
 
@@ -1389,6 +1493,7 @@ namespace Aws
                 struct aws_event_stream_rpc_client_connection *connection) noexcept;
             virtual ~ClientContinuationImpl();
 
+            // Only called by ClientContinuation::~ClientContinuation
             void ShutDown() noexcept;
 
             std::future<RpcError> Activate(
@@ -1462,6 +1567,16 @@ namespace Aws
 
             std::shared_ptr<OperationModelContext> m_operationModelContext;
 
+            /*
+             * A small exception to our "never hold a lock while making callbacks" rule.
+             *
+             * The handler lock is "one-way"; it is held while invoking callbacks on the stream handler.  We also
+             * conditionally hold it while zeroing the handler on shutdown.  Because we do not need the lock for
+             * user-facing functions outside ShutDown, deadlock is not a risk.
+             *
+             * THis allows us to guarantee that streaming events/errors are not emitted after ShutDown is called,
+             * even while asynchronous C shutdown is in-progress.
+             */
             std::mutex m_streamHandlerLock;
             std::shared_ptr<StreamResponseHandler> m_streamHandler;
 
@@ -1477,82 +1592,6 @@ namespace Aws
              */
             bool m_continuationValid;
         };
-
-        ClientOperation::ClientOperation(
-            ClientConnection &connection,
-            std::shared_ptr<StreamResponseHandler> streamHandler,
-            const std::shared_ptr<OperationModelContext> &operationModelContext,
-            Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator), m_impl(connection.NewStream())
-        {
-            m_impl->Initialize(operationModelContext, std::move(streamHandler));
-        }
-
-        ClientOperation::~ClientOperation() noexcept
-        {
-            m_impl->ShutDown();
-            m_impl = nullptr;
-        }
-
-        std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            return m_impl->Close(std::move(onMessageFlushCallback));
-        }
-
-        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
-        {
-            (void)mode;
-        }
-
-        Crt::String ClientOperation::GetModelName() const noexcept
-        {
-            return m_impl->GetModelName();
-        }
-
-        std::future<RpcError> ClientOperation::Activate(
-            const AbstractShapeBase *shape,
-            OnMessageFlushCallback &&onMessageFlushCallback,
-            std::function<void(TaggedResult &&)> &&onResultCallback) noexcept
-        {
-            Crt::List<EventStreamHeader> headers;
-            headers.emplace_back(EventStreamHeader(
-                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
-            headers.emplace_back(
-                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
-            Crt::JsonObject payloadObject;
-            shape->SerializeToJsonObject(payloadObject);
-            Crt::String payloadString = payloadObject.View().WriteCompact();
-
-            return m_impl->Activate(
-                GetModelName(),
-                headers,
-                Crt::ByteBufFromCString(payloadString.c_str()),
-                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
-                0,
-                std::move(onResultCallback),
-                std::move(onMessageFlushCallback));
-        }
-
-        std::future<RpcError> ClientOperation::SendStreamMessage(
-            const AbstractShapeBase *shape,
-            OnMessageFlushCallback &&onMessageFlushCallback) noexcept
-        {
-            Crt::List<EventStreamHeader> headers;
-            headers.emplace_back(EventStreamHeader(
-                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
-            headers.emplace_back(
-                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
-            Crt::JsonObject payloadObject;
-            shape->SerializeToJsonObject(payloadObject);
-            Crt::String payloadString = payloadObject.View().WriteCompact();
-
-            return m_impl->SendStreamMessage(
-                headers,
-                Crt::ByteBufFromCString(payloadString.c_str()),
-                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
-                0,
-                std::move(onMessageFlushCallback));
-        }
 
         ClientContinuationImpl::ClientContinuationImpl(
             Aws::Crt::Allocator *allocator,
@@ -1633,6 +1672,7 @@ namespace Aws
 
             AWS_FATAL_ASSERT(bootstrap != NULL);
 
+            // We use the bootstrap rather than the connection's event loop because we might not have a connection
             struct aws_event_loop *event_loop = aws_event_loop_group_get_next_loop(bootstrap->event_loop_group);
             AWS_FATAL_ASSERT(event_loop != NULL);
 
@@ -1647,9 +1687,13 @@ namespace Aws
             std::shared_ptr<OnMessageFlushCallbackContainer> activationCallbackContainer = nullptr;
             std::function<void(TaggedResult &&)> activationResponseCallback = nullptr;
 
+            // This block prevents streaming event callbacks from triggering after scope exit
             {
                 if (m_connectionEventLoop != nullptr)
                 {
+                    // If we're on the connection's event loop thread then we risk deadlock by trying to use
+                    // the handler lock.  But in that case, it's safe not to use it, because we only use the lock from
+                    // the event loop (or the single call to ShutDown)
                     bool useHandlerLock = !aws_event_loop_thread_is_callers_thread(m_connectionEventLoop);
                     if (useHandlerLock)
                     {
@@ -1666,6 +1710,7 @@ namespace Aws
             }
 
             {
+                // update state and gather up all the callbacks we need to synthesize
                 std::lock_guard<std::mutex> lock(m_sharedStateLock);
                 if (m_sharedState.m_currentState == ContinuationStateType::None)
                 {
@@ -1685,15 +1730,15 @@ namespace Aws
                 m_sharedState.m_activationResponseCallback = nullptr;
             }
 
+            // synthesize callbacks
+
             if (activationResponseCallback)
             {
                 activationResponseCallback(
                     TaggedResult(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
             }
 
-            /*
-             * Short-circuit and simulate both activate and close callbacks as necessary.
-             */
+            // Short-circuit and simulate both activate and close callbacks as necessary.
             OnMessageFlushCallbackContainer::Complete(
                 activationCallbackContainer.get(), {EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS});
 
@@ -1702,10 +1747,12 @@ namespace Aws
 
             if (releaseContinuation != nullptr)
             {
+                // An unactivated continuation should be released directly
                 ReleaseContinuation(m_allocator, m_clientBootstrap, releaseContinuation);
             }
             else
             {
+                // A continuation that has at least started the activation process should be closed first
                 Close();
             }
         }
@@ -1716,10 +1763,8 @@ namespace Aws
             {
                 return EVENT_STREAM_RPC_CONTINUATION_CLOSED;
             }
-            else
-            {
-                return EVENT_STREAM_RPC_CONNECTION_CLOSED;
-            }
+
+            return EVENT_STREAM_RPC_CONNECTION_CLOSED;
         }
 
         std::future<RpcError> ClientContinuationImpl::Activate(
@@ -1747,6 +1792,7 @@ namespace Aws
                 {
                     if (m_sharedState.m_currentState == ContinuationStateType::None)
                     {
+                        // optimistically update shared state to pending activate
                         activateContinuation = m_sharedState.m_continuation;
                         aws_event_stream_rpc_client_continuation_acquire(activateContinuation);
                         m_sharedState.m_currentState = ContinuationStateType::PendingActivate;
@@ -1756,11 +1802,13 @@ namespace Aws
                     }
                     else
                     {
+                        // we're not in a state we can activate
                         switch (m_sharedState.m_currentState)
                         {
                             case ContinuationStateType::PendingActivate:
                             case ContinuationStateType::Activated:
-                                activationError = {EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED, 0};
+                                // simulate what would be returned if we invoked the C API
+                                activationError = {EVENT_STREAM_RPC_CRT_ERROR, AWS_ERROR_INVALID_STATE};
                                 break;
 
                             case ContinuationStateType::PendingClose:
@@ -1776,7 +1824,6 @@ namespace Aws
                 }
                 else
                 {
-                    // null continuation is only if the connection didn't exist at creation time
                     activationError = {GetEmptyContinuationStatusCode(), 0};
                 }
             }
@@ -1805,6 +1852,7 @@ namespace Aws
 
                 if (result != AWS_OP_SUCCESS)
                 {
+                    // ah shucks, we failed, rollback our optimistic shared state update
                     std::lock_guard<std::mutex> lock(m_sharedStateLock);
                     m_sharedState.m_currentState = ContinuationStateType::None;
                     m_sharedState.m_desiredState = ContinuationStateType::None;
@@ -1853,11 +1901,13 @@ namespace Aws
                 {
                     if (m_sharedState.m_currentState == ContinuationStateType::Activated)
                     {
+                        // it's safe to send a stream message
                         sendContinuation = m_sharedState.m_continuation;
                         aws_event_stream_rpc_client_continuation_acquire(sendContinuation);
                     }
                     else
                     {
+                        // we're not in a state to send a stream message
                         switch (m_sharedState.m_currentState)
                         {
                             case ContinuationStateType::PendingActivate:
@@ -1878,8 +1928,7 @@ namespace Aws
                 }
                 else
                 {
-                    // null continuation is only if the connection didn't exist at creation time
-                    sendError = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                    sendError = {GetEmptyContinuationStatusCode(), 0};
                 }
             }
 
@@ -1932,6 +1981,8 @@ namespace Aws
                 m_allocator, m_allocator, std::move(onMessageFlushCallback), std::move(closePromise));
             RpcError closeError = {};
             struct aws_event_stream_rpc_client_continuation_token *closeContinuation = nullptr;
+
+            // needed to correctly roll back on failure to send the end-stream message
             ContinuationStateType previousState = ContinuationStateType::PendingClose;
 
             {
@@ -1952,20 +2003,13 @@ namespace Aws
                     }
                     else
                     {
-                        if (m_sharedState.m_currentState == ContinuationStateType::PendingClose)
-                        {
-                            closeError = {EVENT_STREAM_RPC_CONTINUATION_CLOSE_IN_PROGRESS, 0};
-                        }
-                        else
-                        {
-                            closeError = {EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0};
-                        }
+                        // not in a valid state to close
+                        closeError = {EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0};
                     }
                 }
                 else
                 {
-                    // null continuation is only if the connection didn't exist at creation time
-                    closeError = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
+                    closeError = {GetEmptyContinuationStatusCode(), 0};
                 }
             }
 
@@ -1992,6 +2036,7 @@ namespace Aws
                     m_sharedState.m_closeCallbackContainer = nullptr;
                     if (m_sharedState.m_currentState != ContinuationStateType::Closed)
                     {
+                        // Rollback to previous state
                         m_sharedState.m_currentState = previousState;
                     }
                 }
@@ -2218,6 +2263,7 @@ namespace Aws
                     }
                     else
                     {
+                        // Horribly awkward cast due to the infuriating original API design
                         Crt::Allocator *allocator = m_allocator;
                         auto errorResponse = Crt::ScopedResource<OperationError>(
                             static_cast<OperationError *>(result.m_message.value().m_shape.release()),
@@ -2318,5 +2364,80 @@ namespace Aws
                 m_allocator, m_allocator, m_bootstrap, m_sharedState.m_underlyingConnection);
         }
 
+        ClientOperation::ClientOperation(
+            ClientConnection &connection,
+            std::shared_ptr<StreamResponseHandler> streamHandler,
+            const std::shared_ptr<OperationModelContext> &operationModelContext,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator), m_impl(connection.NewStream())
+        {
+            m_impl->Initialize(operationModelContext, std::move(streamHandler));
+        }
+
+        ClientOperation::~ClientOperation() noexcept
+        {
+            m_impl->ShutDown();
+            m_impl = nullptr;
+        }
+
+        std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            return m_impl->Close(std::move(onMessageFlushCallback));
+        }
+
+        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
+        {
+            (void)mode;
+        }
+
+        Crt::String ClientOperation::GetModelName() const noexcept
+        {
+            return m_impl->GetModelName();
+        }
+
+        std::future<RpcError> ClientOperation::Activate(
+            const AbstractShapeBase *shape,
+            OnMessageFlushCallback &&onMessageFlushCallback,
+            std::function<void(TaggedResult &&)> &&onResultCallback) noexcept
+        {
+            Crt::List<EventStreamHeader> headers;
+            headers.emplace_back(EventStreamHeader(
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
+            headers.emplace_back(
+                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
+            Crt::JsonObject payloadObject;
+            shape->SerializeToJsonObject(payloadObject);
+            Crt::String payloadString = payloadObject.View().WriteCompact();
+
+            return m_impl->Activate(
+                GetModelName(),
+                headers,
+                Crt::ByteBufFromCString(payloadString.c_str()),
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                0,
+                std::move(onResultCallback),
+                std::move(onMessageFlushCallback));
+        }
+
+        std::future<RpcError> ClientOperation::SendStreamMessage(
+            const AbstractShapeBase *shape,
+            OnMessageFlushCallback &&onMessageFlushCallback) noexcept
+        {
+            Crt::List<EventStreamHeader> headers;
+            headers.emplace_back(EventStreamHeader(
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
+            headers.emplace_back(
+                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
+            Crt::JsonObject payloadObject;
+            shape->SerializeToJsonObject(payloadObject);
+            Crt::String payloadString = payloadObject.View().WriteCompact();
+
+            return m_impl->SendStreamMessage(
+                headers,
+                Crt::ByteBufFromCString(payloadString.c_str()),
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                0,
+                std::move(onMessageFlushCallback));
+        }
     } /* namespace Eventstreamrpc */
 } // namespace Aws

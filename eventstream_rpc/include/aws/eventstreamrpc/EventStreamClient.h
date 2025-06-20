@@ -33,7 +33,6 @@ namespace Aws
         class MessageAmendment;
         class ClientOperation;
         class ClientConnection;
-        class ClientContinuation;
         class ClientContinuationHandler;
 
         using HeaderValueType = aws_event_stream_header_value_type;
@@ -147,8 +146,6 @@ namespace Aws
             EVENT_STREAM_RPC_UNMAPPED_DATA,
             EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
             EVENT_STREAM_RPC_CRT_ERROR,
-            EVENT_STREAM_RPC_CONTINUATION_ALREADY_OPENED,
-            EVENT_STREAM_RPC_CONTINUATION_CLOSE_IN_PROGRESS,
             EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED,
         };
 
