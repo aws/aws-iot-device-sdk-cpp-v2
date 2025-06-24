@@ -1603,12 +1603,13 @@ namespace Aws
         {
             if (connection != nullptr)
             {
-                struct aws_event_stream_rpc_client_stream_continuation_options continuation_options = {
-                    .on_continuation = s_OnContinuationMessage,
-                    .on_continuation_closed = s_OnContinuationClosed,
-                    .on_continuation_terminated = s_OnContinuationTerminated,
-                    .user_data = this,
-                };
+                struct aws_event_stream_rpc_client_stream_continuation_options continuation_options;
+                AWS_ZERO_STRUCT(continuation_options);
+                continuation_options.on_continuation = s_OnContinuationMessage;
+                continuation_options.on_continuation_closed = s_OnContinuationClosed;
+                continuation_options.on_continuation_terminated = s_OnContinuationTerminated;
+                continuation_options.user_data = this;
+
                 m_sharedState.m_continuation =
                     aws_event_stream_rpc_client_connection_new_stream(connection, &continuation_options);
             }
