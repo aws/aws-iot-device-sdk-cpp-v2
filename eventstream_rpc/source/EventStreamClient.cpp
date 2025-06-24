@@ -5,13 +5,11 @@
 #include <aws/eventstreamrpc/EventStreamClient.h>
 
 #include <aws/crt/Api.h>
-#include <aws/crt/Config.h>
 #include <aws/crt/auth/Credentials.h>
 
-#include <stdint.h>
-#include <string.h>
-
 #include <algorithm>
+#include <cstdint>
+#include <cstring>
 
 constexpr auto EVENTSTREAM_VERSION_HEADER = ":version";
 constexpr auto EVENTSTREAM_VERSION_STRING = "0.1.0";
@@ -235,14 +233,14 @@ namespace Aws
             return *this;
         }
 
-        MessageAmendment::MessageAmendment(MessageAmendment &&rhs)
+        MessageAmendment::MessageAmendment(MessageAmendment &&rhs) noexcept
             : m_headers(std::move(rhs.m_headers)), m_payload(rhs.m_payload), m_allocator(rhs.m_allocator)
         {
             rhs.m_allocator = nullptr;
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
         }
 
-        MessageAmendment &MessageAmendment::operator=(MessageAmendment &&rhs)
+        MessageAmendment &MessageAmendment::operator=(MessageAmendment &&rhs) noexcept
         {
             if (this != &rhs)
             {
@@ -457,15 +455,19 @@ namespace Aws
 
         EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
         {
-            m_allocator = lhs.m_allocator;
-            if (aws_byte_buf_is_valid(&m_valueByteBuf))
+            if (this != &lhs)
             {
-                Crt::ByteBufDelete(m_valueByteBuf);
+                m_allocator = lhs.m_allocator;
+                if (aws_byte_buf_is_valid(&m_valueByteBuf))
+                {
+                    Crt::ByteBufDelete(m_valueByteBuf);
+                }
+                m_valueByteBuf =
+                    Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
+                m_underlyingHandle = lhs.m_underlyingHandle;
+                m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
+                m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
             }
-            m_valueByteBuf = Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
-            m_underlyingHandle = lhs.m_underlyingHandle;
-            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
-            m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
             return *this;
         }
 

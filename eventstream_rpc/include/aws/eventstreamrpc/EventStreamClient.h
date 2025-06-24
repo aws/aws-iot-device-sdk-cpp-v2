@@ -40,7 +40,7 @@ namespace Aws
 
         /**
          * A callback prototype that is called upon flushing a message over the wire.
-         * @param errorCode A non-zero value if an error occured while attempting to flush the message.
+         * @param errorCode A non-zero value if an error occurred while attempting to flush the message.
          */
         using OnMessageFlushCallback = std::function<void(int errorCode)>;
 
@@ -61,7 +61,7 @@ namespace Aws
             EventStreamHeader(EventStreamHeader &&rhs) noexcept;
             EventStreamHeader &operator=(const EventStreamHeader &lhs) noexcept;
             ~EventStreamHeader() noexcept;
-            EventStreamHeader(
+            explicit EventStreamHeader(
                 const struct aws_event_stream_header_value_pair &header,
                 Crt::Allocator *allocator = Crt::g_allocator);
             EventStreamHeader(
@@ -74,8 +74,6 @@ namespace Aws
             bool GetValueAsString(Crt::String &) const noexcept;
 
             const struct aws_event_stream_header_value_pair *GetUnderlyingHandle() const;
-
-            bool operator==(const EventStreamHeader &other) const noexcept;
 
           private:
             Crt::Allocator *m_allocator;
@@ -92,22 +90,24 @@ namespace Aws
         {
           public:
             MessageAmendment(const MessageAmendment &lhs);
-            MessageAmendment(MessageAmendment &&rhs);
+            MessageAmendment(MessageAmendment &&rhs) noexcept;
             MessageAmendment &operator=(const MessageAmendment &lhs);
-            MessageAmendment &operator=(MessageAmendment &&rhs);
+            MessageAmendment &operator=(MessageAmendment &&rhs) noexcept;
             ~MessageAmendment() noexcept;
             explicit MessageAmendment(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             MessageAmendment(
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 Crt::Allocator *allocator) noexcept;
-            MessageAmendment(
+            explicit MessageAmendment(
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            MessageAmendment(
+            explicit MessageAmendment(
                 Crt::List<EventStreamHeader> &&headers,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            MessageAmendment(const Crt::ByteBuf &payload, Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+            explicit MessageAmendment(
+                const Crt::ByteBuf &payload,
+                Crt::Allocator *allocator = Crt::g_allocator) noexcept;
 
             /**
              * Add a given header to the end of the header list.
@@ -168,10 +168,10 @@ namespace Aws
             OnMessageFlushCallback GetConnectRequestCallback() const noexcept { return m_connectRequestCallback; }
             ConnectMessageAmender GetConnectMessageAmender() const noexcept
             {
-                return [&](void) -> const MessageAmendment & { return m_connectAmendment; };
+                return [&]() -> const MessageAmendment & { return m_connectAmendment; };
             }
 
-            void SetHostName(Crt::String hostName) noexcept { m_hostName = hostName; }
+            void SetHostName(Crt::String hostName) noexcept { m_hostName = std::move(hostName); }
             void SetPort(uint32_t port) noexcept { m_port = port; }
             void SetSocketOptions(const Crt::Io::SocketOptions &socketOptions) noexcept
             {
@@ -191,7 +191,7 @@ namespace Aws
             }
             void SetConnectRequestCallback(OnMessageFlushCallback connectRequestCallback) noexcept
             {
-                m_connectRequestCallback = connectRequestCallback;
+                m_connectRequestCallback = std::move(connectRequestCallback);
             }
 
             EventStreamRpcStatusCode Validate() const noexcept;
@@ -330,7 +330,7 @@ namespace Aws
           public:
             explicit OperationError() noexcept = default;
             static void s_customDeleter(OperationError *shape) noexcept;
-            virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
+            void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
             virtual Crt::Optional<Crt::String> GetMessage() const noexcept = 0;
         };
 
@@ -416,13 +416,16 @@ namespace Aws
           private:
             union AWS_EVENTSTREAMRPC_API OperationResult
             {
-                OperationResult(Crt::ScopedResource<AbstractShapeBase> &&response) noexcept
+                explicit OperationResult(Crt::ScopedResource<AbstractShapeBase> &&response) noexcept
                     : m_response(std::move(response))
                 {
                 }
-                OperationResult(Crt::ScopedResource<OperationError> &&error) noexcept : m_error(std::move(error)) {}
+                explicit OperationResult(Crt::ScopedResource<OperationError> &&error) noexcept
+                    : m_error(std::move(error))
+                {
+                }
                 OperationResult() noexcept : m_response(nullptr) {}
-                ~OperationResult() noexcept {};
+                ~OperationResult() noexcept {}
                 Crt::ScopedResource<AbstractShapeBase> m_response;
                 Crt::ScopedResource<OperationError> m_error;
             };
