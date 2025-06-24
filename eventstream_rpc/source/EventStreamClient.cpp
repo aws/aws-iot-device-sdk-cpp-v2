@@ -49,18 +49,16 @@ namespace Aws
         class OnMessageFlushCallbackContainer
         {
           public:
-            OnMessageFlushCallbackContainer(Crt::Allocator *allocator, OnMessageFlushCallback &&flushCallback)
-                : m_sharedState({})
+            OnMessageFlushCallbackContainer(OnMessageFlushCallback &&flushCallback) : m_sharedState({})
             {
                 m_sharedState.m_state = CallbackState::Incomplete;
                 m_sharedState.m_onMessageFlushCallback = std::move(flushCallback);
             }
 
             OnMessageFlushCallbackContainer(
-                Crt::Allocator *allocator,
                 OnMessageFlushCallback &&flushCallback,
                 std::promise<RpcError> &&flushPromise)
-                : OnMessageFlushCallbackContainer(allocator, std::move(flushCallback))
+                : OnMessageFlushCallbackContainer(std::move(flushCallback))
             {
                 m_sharedState.m_onFlushPromise = std::move(flushPromise);
             }
@@ -130,10 +128,9 @@ namespace Aws
         {
           public:
             OnMessageFlushCallbackContainerWrapper(Crt::Allocator *allocator, OnMessageFlushCallback &&flushCallback)
-                : m_allocator(allocator), m_container(Aws::Crt::MakeShared<OnMessageFlushCallbackContainer>(
-                                              allocator,
-                                              allocator,
-                                              std::move(flushCallback)))
+                : m_allocator(allocator),
+                  m_container(
+                      Aws::Crt::MakeShared<OnMessageFlushCallbackContainer>(allocator, std::move(flushCallback)))
             {
             }
 
@@ -142,7 +139,6 @@ namespace Aws
                 OnMessageFlushCallback &&flushCallback,
                 std::promise<RpcError> &&flushPromise)
                 : m_allocator(allocator), m_container(Aws::Crt::MakeShared<OnMessageFlushCallbackContainer>(
-                                              allocator,
                                               allocator,
                                               std::move(flushCallback),
                                               std::move(flushPromise)))
@@ -412,7 +408,7 @@ namespace Aws
                     m_valueByteBuf =
                         Crt::ByteBufNewCopy(allocator, header.header_value.variable_len_val, header.header_value_len);
                     m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
-                    m_underlyingHandle.header_value_len = m_valueByteBuf.len;
+                    m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
                     break;
 
                 default:
@@ -800,6 +796,9 @@ namespace Aws
 
         static void s_zeroSharedReference(struct aws_task *task, void *arg, enum aws_task_status status)
         {
+            (void)task;
+            (void)status;
+
             auto clearSharedTask = static_cast<AwsEventstreamConnectionImplClearSharedTask *>(arg);
 
             // implicit destructor does all the work
@@ -1386,7 +1385,10 @@ namespace Aws
             return true;
         }
 
-        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<AbstractShapeBase> response) {}
+        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<AbstractShapeBase> response)
+        {
+            (void)response;
+        }
 
         void StreamResponseHandler::OnStreamClosed() {}
 
@@ -1646,6 +1648,9 @@ namespace Aws
 
         static void s_releaseContinuation(struct aws_task *task, void *arg, enum aws_task_status status)
         {
+            (void)task;
+            (void)status;
+
             auto releaseTask = static_cast<AwsEventstreamContinuationReleaseTask *>(arg);
 
             aws_event_stream_rpc_client_continuation_release(releaseTask->m_continuation);
@@ -2332,6 +2337,8 @@ namespace Aws
             struct aws_event_stream_rpc_client_continuation_token *token,
             void *user_data) noexcept
         {
+            (void)token;
+
             auto impl = reinterpret_cast<ClientContinuationImpl *>(user_data);
             impl->OnClosed();
         }
@@ -2341,6 +2348,8 @@ namespace Aws
             const struct aws_event_stream_rpc_message_args *message_args,
             void *user_data) noexcept
         {
+            (void)token;
+
             auto impl = reinterpret_cast<ClientContinuationImpl *>(user_data);
             impl->OnMessage(message_args);
         }
