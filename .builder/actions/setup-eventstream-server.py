@@ -118,7 +118,6 @@ class SetupEventstreamServer(Builder.Action):
 
         try:
             self._build_and_run_eventstream_echo_server(env)
-            Builder.SetupCrossCICrtEnvironment().run(env)
         except:
             pass
 
