@@ -966,11 +966,13 @@ namespace Aws
             }
 
             auto hostName = connectionConfig.GetHostName().value();
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient - Host name %d bytes long", (int)hostName.length());
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient - Host name : %s", hostName.c_str());
 
             struct aws_event_stream_rpc_client_connection_options connectOptions;
             AWS_ZERO_STRUCT(connectOptions);
 
-            connectOptions.host_name = connectionConfig.GetHostName().value().c_str();
+            connectOptions.host_name = hostName.c_str();
             connectOptions.port = connectionConfig.GetPort().value();
             connectOptions.bootstrap = m_bootstrap;
             connectOptions.socket_options = &socketOptions.GetImpl();
@@ -979,9 +981,6 @@ namespace Aws
             connectOptions.on_connection_shutdown = ClientConnectionImpl::s_onConnectionShutdown;
 
             connectOptions.user_data = reinterpret_cast<void *>(this);
-
-            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient - Host name %d bytes long", (int)hostName.length());
-            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient - Host name : %s", hostName.c_str());
 
             if (m_connectionConfig.GetTlsConnectionOptions().has_value())
             {
@@ -993,6 +992,10 @@ namespace Aws
                 // Rollback our optimistic state update
                 MoveToDisconnected({EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED, aws_last_error()});
             }
+
+            AWS_LOGF_INFO(
+                AWS_LS_COMMON_GENERAL, "EventStreamClient2 - Host name %d bytes long", (int)hostName.length());
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient2 - Host name : %s", hostName.c_str());
 
             return localFuture;
         }
