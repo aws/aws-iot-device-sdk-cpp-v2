@@ -65,7 +65,7 @@ EventStreamClientTestContext::EventStreamClientTestContext(struct aws_allocator 
 
     AWS_LOGF_INFO(
         AWS_LS_COMMON_GENERAL, "EventStreamClientTestContext - Host name %d bytes long", (int)echoServerHost.length());
-    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClientTestContext - Host name : %s", (int)echoServerHost.c_str());
+    AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClientTestContext - Host name : %s", echoServerHost.c_str());
 }
 
 bool EventStreamClientTestContext::isValidEnvironment() const
