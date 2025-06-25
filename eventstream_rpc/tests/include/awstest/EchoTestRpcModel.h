@@ -25,7 +25,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API Product : public AbstractShapeBase
     {
       public:
-        Product() noexcept {}
+        Product() noexcept = default;
         Product(const Product &) = default;
         /**
          * The product's name
@@ -67,7 +67,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API Pair : public AbstractShapeBase
     {
       public:
-        Pair() noexcept {}
+        Pair() noexcept = default;
         Pair(const Pair &) = default;
         /**
          * Pair.key as a string
@@ -117,7 +117,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API Customer : public AbstractShapeBase
     {
       public:
-        Customer() noexcept {}
+        Customer() noexcept = default;
         Customer(const Customer &) = default;
         /**
          * Opaque customer identifier
@@ -168,7 +168,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API MessageData : public AbstractShapeBase
     {
       public:
-        MessageData() noexcept {}
+        MessageData() noexcept = default;
         MessageData(const MessageData &) = default;
         /**
          * Some string data
@@ -291,7 +291,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamingMessage : public AbstractShapeBase
     {
       public:
-        EchoStreamingMessage() noexcept {}
+        EchoStreamingMessage() noexcept = default;
         EchoStreamingMessage &operator=(const EchoStreamingMessage &) noexcept;
         EchoStreamingMessage(const EchoStreamingMessage &objectToCopy) { *this = objectToCopy; }
         /**
@@ -367,7 +367,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API ServiceError : public OperationError
     {
       public:
-        ServiceError() noexcept {}
+        ServiceError() noexcept = default;
         ServiceError(const ServiceError &) = default;
         /**
          * An error message
@@ -409,7 +409,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllProductsResponse : public AbstractShapeBase
     {
       public:
-        GetAllProductsResponse() noexcept {}
+        GetAllProductsResponse() noexcept = default;
         GetAllProductsResponse(const GetAllProductsResponse &) = default;
         /**
          * A map from strings to products
@@ -442,7 +442,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllProductsRequest : public AbstractShapeBase
     {
       public:
-        GetAllProductsRequest() noexcept {}
+        GetAllProductsRequest() noexcept = default;
         GetAllProductsRequest(const GetAllProductsRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllProductsRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -466,7 +466,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllCustomersResponse : public AbstractShapeBase
     {
       public:
-        GetAllCustomersResponse() noexcept {}
+        GetAllCustomersResponse() noexcept = default;
         GetAllCustomersResponse(const GetAllCustomersResponse &) = default;
         /**
          * A list of all known customers
@@ -499,7 +499,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllCustomersRequest : public AbstractShapeBase
     {
       public:
-        GetAllCustomersRequest() noexcept {}
+        GetAllCustomersRequest() noexcept = default;
         GetAllCustomersRequest(const GetAllCustomersRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllCustomersRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -523,7 +523,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamingResponse : public AbstractShapeBase
     {
       public:
-        EchoStreamingResponse() noexcept {}
+        EchoStreamingResponse() noexcept = default;
         EchoStreamingResponse(const EchoStreamingResponse &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoStreamingResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -547,7 +547,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamingRequest : public AbstractShapeBase
     {
       public:
-        EchoStreamingRequest() noexcept {}
+        EchoStreamingRequest() noexcept = default;
         EchoStreamingRequest(const EchoStreamingRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoStreamingRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -571,7 +571,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoMessageResponse : public AbstractShapeBase
     {
       public:
-        EchoMessageResponse() noexcept {}
+        EchoMessageResponse() noexcept = default;
         EchoMessageResponse(const EchoMessageResponse &) = default;
         /**
          * Some message data
@@ -604,7 +604,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoMessageRequest : public AbstractShapeBase
     {
       public:
-        EchoMessageRequest() noexcept {}
+        EchoMessageRequest() noexcept = default;
         EchoMessageRequest(const EchoMessageRequest &) = default;
         /**
          * Some message data
@@ -637,7 +637,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseServiceErrorResponse : public AbstractShapeBase
     {
       public:
-        CauseServiceErrorResponse() noexcept {}
+        CauseServiceErrorResponse() noexcept = default;
         CauseServiceErrorResponse(const CauseServiceErrorResponse &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(CauseServiceErrorResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -661,7 +661,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseServiceErrorRequest : public AbstractShapeBase
     {
       public:
-        CauseServiceErrorRequest() noexcept {}
+        CauseServiceErrorRequest() noexcept = default;
         CauseServiceErrorRequest(const CauseServiceErrorRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(CauseServiceErrorRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -693,7 +693,7 @@ namespace Awstest
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return m_taggedResult == true; }
+        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
         OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
         RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
         ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -743,7 +743,7 @@ namespace Awstest
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return m_taggedResult == true; }
+        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
         OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
         RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
         ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -844,7 +844,7 @@ namespace Awstest
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return m_taggedResult == true; }
+        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
         OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
         RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
         ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -946,7 +946,7 @@ namespace Awstest
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return m_taggedResult == true; }
+        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
         OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
         RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
         ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -1009,7 +1009,7 @@ namespace Awstest
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return m_taggedResult == true; }
+        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
         OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
         RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
         ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -1059,7 +1059,7 @@ namespace Awstest
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return m_taggedResult == true; }
+        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
         OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
         RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
         ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }

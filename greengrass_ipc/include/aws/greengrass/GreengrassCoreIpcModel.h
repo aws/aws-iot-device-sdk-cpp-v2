@@ -24,7 +24,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UserProperty : public AbstractShapeBase
         {
           public:
-            UserProperty() noexcept {}
+            UserProperty() noexcept = default;
             UserProperty(const UserProperty &) = default;
 
             void SetKey(const Aws::Crt::String &key) noexcept { m_key = key; }
@@ -68,7 +68,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API MessageContext : public AbstractShapeBase
         {
           public:
-            MessageContext() noexcept {}
+            MessageContext() noexcept = default;
             MessageContext(const MessageContext &) = default;
             /**
              * The topic where the message was published.
@@ -114,7 +114,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeploymentStatusDetails : public AbstractShapeBase
         {
           public:
-            DeploymentStatusDetails() noexcept {}
+            DeploymentStatusDetails() noexcept = default;
             DeploymentStatusDetails(const DeploymentStatusDetails &) = default;
             /**
              * The detailed deployment status of the local deployment.
@@ -210,7 +210,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SystemResourceLimits : public AbstractShapeBase
         {
           public:
-            SystemResourceLimits() noexcept {}
+            SystemResourceLimits() noexcept = default;
             SystemResourceLimits(const SystemResourceLimits &) = default;
             /**
              * (Optional) The maximum amount of RAM (in kilobytes) that this component's processes can use on the core
@@ -251,7 +251,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ValidateConfigurationUpdateEvent : public AbstractShapeBase
         {
           public:
-            ValidateConfigurationUpdateEvent() noexcept {}
+            ValidateConfigurationUpdateEvent() noexcept = default;
             ValidateConfigurationUpdateEvent(const ValidateConfigurationUpdateEvent &) = default;
             /**
              * The object that contains the new configuration.
@@ -293,7 +293,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API BinaryMessage : public AbstractShapeBase
         {
           public:
-            BinaryMessage() noexcept {}
+            BinaryMessage() noexcept = default;
             BinaryMessage(const BinaryMessage &) = default;
             /**
              * The binary message as a blob.
@@ -332,7 +332,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API JsonMessage : public AbstractShapeBase
         {
           public:
-            JsonMessage() noexcept {}
+            JsonMessage() noexcept = default;
             JsonMessage(const JsonMessage &) = default;
             /**
              * The JSON message as an object.
@@ -371,7 +371,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API MQTTMessage : public AbstractShapeBase
         {
           public:
-            MQTTMessage() noexcept {}
+            MQTTMessage() noexcept = default;
             MQTTMessage(const MQTTMessage &) = default;
             /**
              * The topic to which the message was published.
@@ -491,7 +491,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ConfigurationUpdateEvent : public AbstractShapeBase
         {
           public:
-            ConfigurationUpdateEvent() noexcept {}
+            ConfigurationUpdateEvent() noexcept = default;
             ConfigurationUpdateEvent(const ConfigurationUpdateEvent &) = default;
             /**
              * The name of the component.
@@ -530,7 +530,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PostComponentUpdateEvent : public AbstractShapeBase
         {
           public:
-            PostComponentUpdateEvent() noexcept {}
+            PostComponentUpdateEvent() noexcept = default;
             PostComponentUpdateEvent(const PostComponentUpdateEvent &) = default;
             /**
              * The ID of the AWS IoT Greengrass deployment that updated the component.
@@ -560,7 +560,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PreComponentUpdateEvent : public AbstractShapeBase
         {
           public:
-            PreComponentUpdateEvent() noexcept {}
+            PreComponentUpdateEvent() noexcept = default;
             PreComponentUpdateEvent(const PreComponentUpdateEvent &) = default;
             /**
              * The ID of the AWS IoT Greengrass deployment that updates the component.
@@ -599,7 +599,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CertificateUpdate : public AbstractShapeBase
         {
           public:
-            CertificateUpdate() noexcept {}
+            CertificateUpdate() noexcept = default;
             CertificateUpdate(const CertificateUpdate &) = default;
             /**
              * The private key in pem format.
@@ -673,7 +673,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API Metric : public AbstractShapeBase
         {
           public:
-            Metric() noexcept {}
+            Metric() noexcept = default;
             Metric(const Metric &) = default;
 
             void SetName(const Aws::Crt::String &name) noexcept { m_name = name; }
@@ -709,7 +709,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API LocalDeployment : public AbstractShapeBase
         {
           public:
-            LocalDeployment() noexcept {}
+            LocalDeployment() noexcept = default;
             LocalDeployment(const LocalDeployment &) = default;
             /**
              * The ID of the local deployment.
@@ -772,7 +772,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ComponentDetails : public AbstractShapeBase
         {
           public:
-            ComponentDetails() noexcept {}
+            ComponentDetails() noexcept = default;
             ComponentDetails(const ComponentDetails &) = default;
             /**
              * The name of the component.
@@ -832,7 +832,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API MQTTCredential : public AbstractShapeBase
         {
           public:
-            MQTTCredential() noexcept {}
+            MQTTCredential() noexcept = default;
             MQTTCredential(const MQTTCredential &) = default;
             /**
              * The client ID to used to connect.
@@ -892,7 +892,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API RunWithInfo : public AbstractShapeBase
         {
           public:
-            RunWithInfo() noexcept {}
+            RunWithInfo() noexcept = default;
             RunWithInfo(const RunWithInfo &) = default;
             /**
              * (Optional) The POSIX system user and, optionally, group to use to run this component on Linux core
@@ -948,7 +948,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ClientDeviceCredential : public AbstractShapeBase
         {
           public:
-            ClientDeviceCredential() noexcept {}
+            ClientDeviceCredential() noexcept = default;
             ClientDeviceCredential &operator=(const ClientDeviceCredential &) noexcept;
             ClientDeviceCredential(const ClientDeviceCredential &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1003,7 +1003,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ValidateConfigurationUpdateEvents : public AbstractShapeBase
         {
           public:
-            ValidateConfigurationUpdateEvents() noexcept {}
+            ValidateConfigurationUpdateEvents() noexcept = default;
             ValidateConfigurationUpdateEvents &operator=(const ValidateConfigurationUpdateEvents &) noexcept;
             ValidateConfigurationUpdateEvents(const ValidateConfigurationUpdateEvents &objectToCopy)
             {
@@ -1056,7 +1056,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscriptionResponseMessage : public AbstractShapeBase
         {
           public:
-            SubscriptionResponseMessage() noexcept {}
+            SubscriptionResponseMessage() noexcept = default;
             SubscriptionResponseMessage &operator=(const SubscriptionResponseMessage &) noexcept;
             SubscriptionResponseMessage(const SubscriptionResponseMessage &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1135,7 +1135,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API IoTCoreMessage : public AbstractShapeBase
         {
           public:
-            IoTCoreMessage() noexcept {}
+            IoTCoreMessage() noexcept = default;
             IoTCoreMessage &operator=(const IoTCoreMessage &) noexcept;
             IoTCoreMessage(const IoTCoreMessage &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1190,7 +1190,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ConfigurationUpdateEvents : public AbstractShapeBase
         {
           public:
-            ConfigurationUpdateEvents() noexcept {}
+            ConfigurationUpdateEvents() noexcept = default;
             ConfigurationUpdateEvents &operator=(const ConfigurationUpdateEvents &) noexcept;
             ConfigurationUpdateEvents(const ConfigurationUpdateEvents &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1239,7 +1239,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ComponentUpdatePolicyEvents : public AbstractShapeBase
         {
           public:
-            ComponentUpdatePolicyEvents() noexcept {}
+            ComponentUpdatePolicyEvents() noexcept = default;
             ComponentUpdatePolicyEvents &operator=(const ComponentUpdatePolicyEvents &) noexcept;
             ComponentUpdatePolicyEvents(const ComponentUpdatePolicyEvents &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1312,7 +1312,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CertificateUpdateEvent : public AbstractShapeBase
         {
           public:
-            CertificateUpdateEvent() noexcept {}
+            CertificateUpdateEvent() noexcept = default;
             CertificateUpdateEvent &operator=(const CertificateUpdateEvent &) noexcept;
             CertificateUpdateEvent(const CertificateUpdateEvent &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1361,7 +1361,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CertificateOptions : public AbstractShapeBase
         {
           public:
-            CertificateOptions() noexcept {}
+            CertificateOptions() noexcept = default;
             CertificateOptions(const CertificateOptions &) = default;
             /**
              * The types of certificate updates to subscribe to.
@@ -1397,7 +1397,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ConfigurationValidityReport : public AbstractShapeBase
         {
           public:
-            ConfigurationValidityReport() noexcept {}
+            ConfigurationValidityReport() noexcept = default;
             ConfigurationValidityReport(const ConfigurationValidityReport &) = default;
             /**
              * The validity status.
@@ -1445,7 +1445,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishMessage : public AbstractShapeBase
         {
           public:
-            PublishMessage() noexcept {}
+            PublishMessage() noexcept = default;
             PublishMessage &operator=(const PublishMessage &) noexcept;
             PublishMessage(const PublishMessage &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1518,7 +1518,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SecretValue : public AbstractShapeBase
         {
           public:
-            SecretValue() noexcept {}
+            SecretValue() noexcept = default;
             SecretValue &operator=(const SecretValue &) noexcept;
             SecretValue(const SecretValue &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1593,7 +1593,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CredentialDocument : public AbstractShapeBase
         {
           public:
-            CredentialDocument() noexcept {}
+            CredentialDocument() noexcept = default;
             CredentialDocument &operator=(const CredentialDocument &) noexcept;
             CredentialDocument(const CredentialDocument &objectToCopy) { *this = objectToCopy; }
             /**
@@ -1650,7 +1650,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API InvalidArgumentsError : public OperationError
         {
           public:
-            InvalidArgumentsError() noexcept {}
+            InvalidArgumentsError() noexcept = default;
             InvalidArgumentsError(const InvalidArgumentsError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -1676,7 +1676,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ServiceError : public OperationError
         {
           public:
-            ServiceError() noexcept {}
+            ServiceError() noexcept = default;
             ServiceError(const ServiceError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -1707,7 +1707,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UnauthorizedError : public OperationError
         {
           public:
-            UnauthorizedError() noexcept {}
+            UnauthorizedError() noexcept = default;
             UnauthorizedError(const UnauthorizedError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -1733,7 +1733,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityResponse : public AbstractShapeBase
         {
           public:
-            VerifyClientDeviceIdentityResponse() noexcept {}
+            VerifyClientDeviceIdentityResponse() noexcept = default;
             VerifyClientDeviceIdentityResponse(const VerifyClientDeviceIdentityResponse &) = default;
             /**
              * Whether the client device's identity is valid.
@@ -1766,7 +1766,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityRequest : public AbstractShapeBase
         {
           public:
-            VerifyClientDeviceIdentityRequest() noexcept {}
+            VerifyClientDeviceIdentityRequest() noexcept = default;
             VerifyClientDeviceIdentityRequest(const VerifyClientDeviceIdentityRequest &) = default;
             /**
              * The client device's credentials.
@@ -1796,7 +1796,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API InvalidTokenError : public OperationError
         {
           public:
-            InvalidTokenError() noexcept {}
+            InvalidTokenError() noexcept = default;
             InvalidTokenError(const InvalidTokenError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -1822,7 +1822,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenResponse : public AbstractShapeBase
         {
           public:
-            ValidateAuthorizationTokenResponse() noexcept {}
+            ValidateAuthorizationTokenResponse() noexcept = default;
             ValidateAuthorizationTokenResponse(const ValidateAuthorizationTokenResponse &) = default;
 
             void SetIsValid(const bool &isValid) noexcept { m_isValid = isValid; }
@@ -1848,7 +1848,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenRequest : public AbstractShapeBase
         {
           public:
-            ValidateAuthorizationTokenRequest() noexcept {}
+            ValidateAuthorizationTokenRequest() noexcept = default;
             ValidateAuthorizationTokenRequest(const ValidateAuthorizationTokenRequest &) = default;
 
             void SetToken(const Aws::Crt::String &token) noexcept { m_token = token; }
@@ -1874,7 +1874,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ConflictError : public OperationError
         {
           public:
-            ConflictError() noexcept {}
+            ConflictError() noexcept = default;
             ConflictError(const ConflictError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -1900,7 +1900,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowResponse : public AbstractShapeBase
         {
           public:
-            UpdateThingShadowResponse() noexcept {}
+            UpdateThingShadowResponse() noexcept = default;
             UpdateThingShadowResponse(const UpdateThingShadowResponse &) = default;
             /**
              * The response state document as a JSON encoded blob.
@@ -1930,7 +1930,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowRequest : public AbstractShapeBase
         {
           public:
-            UpdateThingShadowRequest() noexcept {}
+            UpdateThingShadowRequest() noexcept = default;
             UpdateThingShadowRequest(const UpdateThingShadowRequest &) = default;
             /**
              * The name of the thing.
@@ -1980,7 +1980,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ResourceNotFoundError : public OperationError
         {
           public:
-            ResourceNotFoundError() noexcept {}
+            ResourceNotFoundError() noexcept = default;
             ResourceNotFoundError(const ResourceNotFoundError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -2016,7 +2016,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateStateResponse : public AbstractShapeBase
         {
           public:
-            UpdateStateResponse() noexcept {}
+            UpdateStateResponse() noexcept = default;
             UpdateStateResponse(const UpdateStateResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UpdateStateResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2037,7 +2037,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateStateRequest : public AbstractShapeBase
         {
           public:
-            UpdateStateRequest() noexcept {}
+            UpdateStateRequest() noexcept = default;
             UpdateStateRequest(const UpdateStateRequest &) = default;
             /**
              * The state to set this component to.
@@ -2067,7 +2067,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API FailedUpdateConditionCheckError : public OperationError
         {
           public:
-            FailedUpdateConditionCheckError() noexcept {}
+            FailedUpdateConditionCheckError() noexcept = default;
             FailedUpdateConditionCheckError(const FailedUpdateConditionCheckError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -2093,7 +2093,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationResponse : public AbstractShapeBase
         {
           public:
-            UpdateConfigurationResponse() noexcept {}
+            UpdateConfigurationResponse() noexcept = default;
             UpdateConfigurationResponse(const UpdateConfigurationResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(UpdateConfigurationResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2114,7 +2114,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationRequest : public AbstractShapeBase
         {
           public:
-            UpdateConfigurationRequest() noexcept {}
+            UpdateConfigurationRequest() noexcept = default;
             UpdateConfigurationRequest(const UpdateConfigurationRequest &) = default;
             /**
              * (Optional) The key path to the container node (the object) to update. Specify a list where each entry is
@@ -2168,7 +2168,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesResponse : public AbstractShapeBase
         {
           public:
-            SubscribeToValidateConfigurationUpdatesResponse() noexcept {}
+            SubscribeToValidateConfigurationUpdatesResponse() noexcept = default;
             SubscribeToValidateConfigurationUpdatesResponse(const SubscribeToValidateConfigurationUpdatesResponse &) =
                 default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
@@ -2193,7 +2193,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesRequest : public AbstractShapeBase
         {
           public:
-            SubscribeToValidateConfigurationUpdatesRequest() noexcept {}
+            SubscribeToValidateConfigurationUpdatesRequest() noexcept = default;
             SubscribeToValidateConfigurationUpdatesRequest(const SubscribeToValidateConfigurationUpdatesRequest &) =
                 default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
@@ -2218,7 +2218,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicResponse : public AbstractShapeBase
         {
           public:
-            SubscribeToTopicResponse() noexcept {}
+            SubscribeToTopicResponse() noexcept = default;
             SubscribeToTopicResponse(const SubscribeToTopicResponse &) = default;
             /**
              * @deprecated No longer used
@@ -2248,7 +2248,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicRequest : public AbstractShapeBase
         {
           public:
-            SubscribeToTopicRequest() noexcept {}
+            SubscribeToTopicRequest() noexcept = default;
             SubscribeToTopicRequest(const SubscribeToTopicRequest &) = default;
             /**
              * The topic to subscribe to. Supports MQTT-style wildcards.
@@ -2287,7 +2287,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreResponse : public AbstractShapeBase
         {
           public:
-            SubscribeToIoTCoreResponse() noexcept {}
+            SubscribeToIoTCoreResponse() noexcept = default;
             SubscribeToIoTCoreResponse(const SubscribeToIoTCoreResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToIoTCoreResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2308,7 +2308,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreRequest : public AbstractShapeBase
         {
           public:
-            SubscribeToIoTCoreRequest() noexcept {}
+            SubscribeToIoTCoreRequest() noexcept = default;
             SubscribeToIoTCoreRequest(const SubscribeToIoTCoreRequest &) = default;
             /**
              * The topic to which to subscribe. Supports MQTT wildcards.
@@ -2347,7 +2347,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateResponse : public AbstractShapeBase
         {
           public:
-            SubscribeToConfigurationUpdateResponse() noexcept {}
+            SubscribeToConfigurationUpdateResponse() noexcept = default;
             SubscribeToConfigurationUpdateResponse(const SubscribeToConfigurationUpdateResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(
@@ -2371,7 +2371,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateRequest : public AbstractShapeBase
         {
           public:
-            SubscribeToConfigurationUpdateRequest() noexcept {}
+            SubscribeToConfigurationUpdateRequest() noexcept = default;
             SubscribeToConfigurationUpdateRequest(const SubscribeToConfigurationUpdateRequest &) = default;
             /**
              * (Optional) The name of the component. Defaults to the name of the component that makes the request.
@@ -2414,7 +2414,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesResponse : public AbstractShapeBase
         {
           public:
-            SubscribeToComponentUpdatesResponse() noexcept {}
+            SubscribeToComponentUpdatesResponse() noexcept = default;
             SubscribeToComponentUpdatesResponse(const SubscribeToComponentUpdatesResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToComponentUpdatesResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2435,7 +2435,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesRequest : public AbstractShapeBase
         {
           public:
-            SubscribeToComponentUpdatesRequest() noexcept {}
+            SubscribeToComponentUpdatesRequest() noexcept = default;
             SubscribeToComponentUpdatesRequest(const SubscribeToComponentUpdatesRequest &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(SubscribeToComponentUpdatesRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -2456,7 +2456,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesResponse : public AbstractShapeBase
         {
           public:
-            SubscribeToCertificateUpdatesResponse() noexcept {}
+            SubscribeToCertificateUpdatesResponse() noexcept = default;
             SubscribeToCertificateUpdatesResponse(const SubscribeToCertificateUpdatesResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(
@@ -2479,7 +2479,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesRequest : public AbstractShapeBase
         {
           public:
-            SubscribeToCertificateUpdatesRequest() noexcept {}
+            SubscribeToCertificateUpdatesRequest() noexcept = default;
             SubscribeToCertificateUpdatesRequest(const SubscribeToCertificateUpdatesRequest &) = default;
 
             void SetCertificateOptions(const CertificateOptions &certificateOptions) noexcept
@@ -2511,7 +2511,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ComponentNotFoundError : public OperationError
         {
           public:
-            ComponentNotFoundError() noexcept {}
+            ComponentNotFoundError() noexcept = default;
             ComponentNotFoundError(const ComponentNotFoundError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -2537,7 +2537,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API StopComponentResponse : public AbstractShapeBase
         {
           public:
-            StopComponentResponse() noexcept {}
+            StopComponentResponse() noexcept = default;
             StopComponentResponse(const StopComponentResponse &) = default;
             /**
              * The status of the stop request.
@@ -2576,7 +2576,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API StopComponentRequest : public AbstractShapeBase
         {
           public:
-            StopComponentRequest() noexcept {}
+            StopComponentRequest() noexcept = default;
             StopComponentRequest(const StopComponentRequest &) = default;
             /**
              * The name of the component.
@@ -2606,7 +2606,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportResponse : public AbstractShapeBase
         {
           public:
-            SendConfigurationValidityReportResponse() noexcept {}
+            SendConfigurationValidityReportResponse() noexcept = default;
             SendConfigurationValidityReportResponse(const SendConfigurationValidityReportResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(
@@ -2630,7 +2630,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportRequest : public AbstractShapeBase
         {
           public:
-            SendConfigurationValidityReportRequest() noexcept {}
+            SendConfigurationValidityReportRequest() noexcept = default;
             SendConfigurationValidityReportRequest(const SendConfigurationValidityReportRequest &) = default;
             /**
              * The report that tells Greengrass whether or not the configuration update is valid.
@@ -2669,7 +2669,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ResumeComponentResponse : public AbstractShapeBase
         {
           public:
-            ResumeComponentResponse() noexcept {}
+            ResumeComponentResponse() noexcept = default;
             ResumeComponentResponse(const ResumeComponentResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ResumeComponentResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2690,7 +2690,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ResumeComponentRequest : public AbstractShapeBase
         {
           public:
-            ResumeComponentRequest() noexcept {}
+            ResumeComponentRequest() noexcept = default;
             ResumeComponentRequest(const ResumeComponentRequest &) = default;
             /**
              * The name of the component to resume.
@@ -2720,7 +2720,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API RestartComponentResponse : public AbstractShapeBase
         {
           public:
-            RestartComponentResponse() noexcept {}
+            RestartComponentResponse() noexcept = default;
             RestartComponentResponse(const RestartComponentResponse &) = default;
             /**
              * The status of the restart request.
@@ -2759,7 +2759,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API RestartComponentRequest : public AbstractShapeBase
         {
           public:
-            RestartComponentRequest() noexcept {}
+            RestartComponentRequest() noexcept = default;
             RestartComponentRequest(const RestartComponentRequest &) = default;
             /**
              * The name of the component.
@@ -2789,7 +2789,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricResponse : public AbstractShapeBase
         {
           public:
-            PutComponentMetricResponse() noexcept {}
+            PutComponentMetricResponse() noexcept = default;
             PutComponentMetricResponse(const PutComponentMetricResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PutComponentMetricResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2810,7 +2810,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricRequest : public AbstractShapeBase
         {
           public:
-            PutComponentMetricRequest() noexcept {}
+            PutComponentMetricRequest() noexcept = default;
             PutComponentMetricRequest(const PutComponentMetricRequest &) = default;
 
             void SetMetrics(const Aws::Crt::Vector<Metric> &metrics) noexcept { m_metrics = metrics; }
@@ -2836,7 +2836,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishToTopicResponse : public AbstractShapeBase
         {
           public:
-            PublishToTopicResponse() noexcept {}
+            PublishToTopicResponse() noexcept = default;
             PublishToTopicResponse(const PublishToTopicResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PublishToTopicResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2857,7 +2857,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishToTopicRequest : public AbstractShapeBase
         {
           public:
-            PublishToTopicRequest() noexcept {}
+            PublishToTopicRequest() noexcept = default;
             PublishToTopicRequest(const PublishToTopicRequest &) = default;
             /**
              * The topic to publish the message.
@@ -2896,7 +2896,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreResponse : public AbstractShapeBase
         {
           public:
-            PublishToIoTCoreResponse() noexcept {}
+            PublishToIoTCoreResponse() noexcept = default;
             PublishToIoTCoreResponse(const PublishToIoTCoreResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PublishToIoTCoreResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -2917,7 +2917,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreRequest : public AbstractShapeBase
         {
           public:
-            PublishToIoTCoreRequest() noexcept {}
+            PublishToIoTCoreRequest() noexcept = default;
             PublishToIoTCoreRequest(const PublishToIoTCoreRequest &) = default;
             /**
              * The topic to which to publish the message.
@@ -3046,7 +3046,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PauseComponentResponse : public AbstractShapeBase
         {
           public:
-            PauseComponentResponse() noexcept {}
+            PauseComponentResponse() noexcept = default;
             PauseComponentResponse(const PauseComponentResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(PauseComponentResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -3067,7 +3067,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PauseComponentRequest : public AbstractShapeBase
         {
           public:
-            PauseComponentRequest() noexcept {}
+            PauseComponentRequest() noexcept = default;
             PauseComponentRequest(const PauseComponentRequest &) = default;
             /**
              * The name of the component to pause, which must be a generic component.
@@ -3097,7 +3097,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingResponse : public AbstractShapeBase
         {
           public:
-            ListNamedShadowsForThingResponse() noexcept {}
+            ListNamedShadowsForThingResponse() noexcept = default;
             ListNamedShadowsForThingResponse(const ListNamedShadowsForThingResponse &) = default;
             /**
              * The list of shadow names.
@@ -3147,7 +3147,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingRequest : public AbstractShapeBase
         {
           public:
-            ListNamedShadowsForThingRequest() noexcept {}
+            ListNamedShadowsForThingRequest() noexcept = default;
             ListNamedShadowsForThingRequest(const ListNamedShadowsForThingRequest &) = default;
             /**
              * The name of the thing.
@@ -3199,7 +3199,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsResponse : public AbstractShapeBase
         {
           public:
-            ListLocalDeploymentsResponse() noexcept {}
+            ListLocalDeploymentsResponse() noexcept = default;
             ListLocalDeploymentsResponse(const ListLocalDeploymentsResponse &) = default;
             /**
              * The list of local deployments.
@@ -3235,7 +3235,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsRequest : public AbstractShapeBase
         {
           public:
-            ListLocalDeploymentsRequest() noexcept {}
+            ListLocalDeploymentsRequest() noexcept = default;
             ListLocalDeploymentsRequest(const ListLocalDeploymentsRequest &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ListLocalDeploymentsRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -3256,7 +3256,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListComponentsResponse : public AbstractShapeBase
         {
           public:
-            ListComponentsResponse() noexcept {}
+            ListComponentsResponse() noexcept = default;
             ListComponentsResponse(const ListComponentsResponse &) = default;
             /**
              * The list of components.
@@ -3292,7 +3292,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListComponentsRequest : public AbstractShapeBase
         {
           public:
-            ListComponentsRequest() noexcept {}
+            ListComponentsRequest() noexcept = default;
             ListComponentsRequest(const ListComponentsRequest &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(ListComponentsRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -3313,7 +3313,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetThingShadowResponse : public AbstractShapeBase
         {
           public:
-            GetThingShadowResponse() noexcept {}
+            GetThingShadowResponse() noexcept = default;
             GetThingShadowResponse(const GetThingShadowResponse &) = default;
             /**
              * The response state document as a JSON encoded blob.
@@ -3343,7 +3343,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetThingShadowRequest : public AbstractShapeBase
         {
           public:
-            GetThingShadowRequest() noexcept {}
+            GetThingShadowRequest() noexcept = default;
             GetThingShadowRequest(const GetThingShadowRequest &) = default;
             /**
              * The name of the thing.
@@ -3384,7 +3384,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetSecretValueResponse : public AbstractShapeBase
         {
           public:
-            GetSecretValueResponse() noexcept {}
+            GetSecretValueResponse() noexcept = default;
             GetSecretValueResponse(const GetSecretValueResponse &) = default;
             /**
              * The ID of the secret.
@@ -3447,7 +3447,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetSecretValueRequest : public AbstractShapeBase
         {
           public:
-            GetSecretValueRequest() noexcept {}
+            GetSecretValueRequest() noexcept = default;
             GetSecretValueRequest(const GetSecretValueRequest &) = default;
             /**
              * The name of the secret to get. You can specify either the Amazon Resource Name (ARN) or the friendly name
@@ -3510,7 +3510,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusResponse : public AbstractShapeBase
         {
           public:
-            GetLocalDeploymentStatusResponse() noexcept {}
+            GetLocalDeploymentStatusResponse() noexcept = default;
             GetLocalDeploymentStatusResponse(const GetLocalDeploymentStatusResponse &) = default;
             /**
              * The local deployment.
@@ -3540,7 +3540,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusRequest : public AbstractShapeBase
         {
           public:
-            GetLocalDeploymentStatusRequest() noexcept {}
+            GetLocalDeploymentStatusRequest() noexcept = default;
             GetLocalDeploymentStatusRequest(const GetLocalDeploymentStatusRequest &) = default;
             /**
              * The ID of the local deployment to get.
@@ -3570,7 +3570,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetConfigurationResponse : public AbstractShapeBase
         {
           public:
-            GetConfigurationResponse() noexcept {}
+            GetConfigurationResponse() noexcept = default;
             GetConfigurationResponse(const GetConfigurationResponse &) = default;
             /**
              * The name of the component.
@@ -3609,7 +3609,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetConfigurationRequest : public AbstractShapeBase
         {
           public:
-            GetConfigurationRequest() noexcept {}
+            GetConfigurationRequest() noexcept = default;
             GetConfigurationRequest(const GetConfigurationRequest &) = default;
             /**
              * (Optional) The name of the component. Defaults to the name of the component that makes the request.
@@ -3650,7 +3650,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsResponse : public AbstractShapeBase
         {
           public:
-            GetComponentDetailsResponse() noexcept {}
+            GetComponentDetailsResponse() noexcept = default;
             GetComponentDetailsResponse(const GetComponentDetailsResponse &) = default;
             /**
              * The component's details.
@@ -3683,7 +3683,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsRequest : public AbstractShapeBase
         {
           public:
-            GetComponentDetailsRequest() noexcept {}
+            GetComponentDetailsRequest() noexcept = default;
             GetComponentDetailsRequest(const GetComponentDetailsRequest &) = default;
             /**
              * The name of the component to get.
@@ -3713,7 +3713,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API InvalidCredentialError : public OperationError
         {
           public:
-            InvalidCredentialError() noexcept {}
+            InvalidCredentialError() noexcept = default;
             InvalidCredentialError(const InvalidCredentialError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -3739,7 +3739,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenResponse : public AbstractShapeBase
         {
           public:
-            GetClientDeviceAuthTokenResponse() noexcept {}
+            GetClientDeviceAuthTokenResponse() noexcept = default;
             GetClientDeviceAuthTokenResponse(const GetClientDeviceAuthTokenResponse &) = default;
             /**
              * The session token for the client device. You can use this session token in subsequent requests to
@@ -3777,7 +3777,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenRequest : public AbstractShapeBase
         {
           public:
-            GetClientDeviceAuthTokenRequest() noexcept {}
+            GetClientDeviceAuthTokenRequest() noexcept = default;
             GetClientDeviceAuthTokenRequest(const GetClientDeviceAuthTokenRequest &) = default;
             /**
              * The client device's credentials.
@@ -3807,7 +3807,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowResponse : public AbstractShapeBase
         {
           public:
-            DeleteThingShadowResponse() noexcept {}
+            DeleteThingShadowResponse() noexcept = default;
             DeleteThingShadowResponse(const DeleteThingShadowResponse &) = default;
             /**
              * An empty response state document.
@@ -3837,7 +3837,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowRequest : public AbstractShapeBase
         {
           public:
-            DeleteThingShadowRequest() noexcept {}
+            DeleteThingShadowRequest() noexcept = default;
             DeleteThingShadowRequest(const DeleteThingShadowRequest &) = default;
             /**
              * The name of the thing.
@@ -3878,7 +3878,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateResponse : public AbstractShapeBase
         {
           public:
-            DeferComponentUpdateResponse() noexcept {}
+            DeferComponentUpdateResponse() noexcept = default;
             DeferComponentUpdateResponse(const DeferComponentUpdateResponse &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(DeferComponentUpdateResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -3899,7 +3899,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateRequest : public AbstractShapeBase
         {
           public:
-            DeferComponentUpdateRequest() noexcept {}
+            DeferComponentUpdateRequest() noexcept = default;
             DeferComponentUpdateRequest(const DeferComponentUpdateRequest &) = default;
             /**
              * The ID of the AWS IoT Greengrass deployment to defer.
@@ -3951,7 +3951,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API InvalidArtifactsDirectoryPathError : public OperationError
         {
           public:
-            InvalidArtifactsDirectoryPathError() noexcept {}
+            InvalidArtifactsDirectoryPathError() noexcept = default;
             InvalidArtifactsDirectoryPathError(const InvalidArtifactsDirectoryPathError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -3977,7 +3977,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API InvalidRecipeDirectoryPathError : public OperationError
         {
           public:
-            InvalidRecipeDirectoryPathError() noexcept {}
+            InvalidRecipeDirectoryPathError() noexcept = default;
             InvalidRecipeDirectoryPathError(const InvalidRecipeDirectoryPathError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -4003,7 +4003,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentResponse : public AbstractShapeBase
         {
           public:
-            CreateLocalDeploymentResponse() noexcept {}
+            CreateLocalDeploymentResponse() noexcept = default;
             CreateLocalDeploymentResponse(const CreateLocalDeploymentResponse &) = default;
             /**
              * The ID of the local deployment that the request created.
@@ -4033,7 +4033,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentRequest : public AbstractShapeBase
         {
           public:
-            CreateLocalDeploymentRequest() noexcept {}
+            CreateLocalDeploymentRequest() noexcept = default;
             CreateLocalDeploymentRequest(const CreateLocalDeploymentRequest &) = default;
             /**
              * The thing group name the deployment is targeting. If the group name is not specified, "LOCAL_DEPLOYMENT"
@@ -4171,7 +4171,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordResponse : public AbstractShapeBase
         {
           public:
-            CreateDebugPasswordResponse() noexcept {}
+            CreateDebugPasswordResponse() noexcept = default;
             CreateDebugPasswordResponse(const CreateDebugPasswordResponse &) = default;
 
             void SetPassword(const Aws::Crt::String &password) noexcept { m_password = password; }
@@ -4235,7 +4235,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordRequest : public AbstractShapeBase
         {
           public:
-            CreateDebugPasswordRequest() noexcept {}
+            CreateDebugPasswordRequest() noexcept = default;
             CreateDebugPasswordRequest(const CreateDebugPasswordRequest &) = default;
             void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
             static void s_loadFromJsonView(CreateDebugPasswordRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -4256,7 +4256,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentResponse : public AbstractShapeBase
         {
           public:
-            CancelLocalDeploymentResponse() noexcept {}
+            CancelLocalDeploymentResponse() noexcept = default;
             CancelLocalDeploymentResponse(const CancelLocalDeploymentResponse &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -4282,7 +4282,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentRequest : public AbstractShapeBase
         {
           public:
-            CancelLocalDeploymentRequest() noexcept {}
+            CancelLocalDeploymentRequest() noexcept = default;
             CancelLocalDeploymentRequest(const CancelLocalDeploymentRequest &) = default;
             /**
              * (Optional) The ID of the local deployment to cancel.
@@ -4312,7 +4312,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API InvalidClientDeviceAuthTokenError : public OperationError
         {
           public:
-            InvalidClientDeviceAuthTokenError() noexcept {}
+            InvalidClientDeviceAuthTokenError() noexcept = default;
             InvalidClientDeviceAuthTokenError(const InvalidClientDeviceAuthTokenError &) = default;
 
             void SetMessage(const Aws::Crt::String &message) noexcept { m_message = message; }
@@ -4338,7 +4338,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionResponse : public AbstractShapeBase
         {
           public:
-            AuthorizeClientDeviceActionResponse() noexcept {}
+            AuthorizeClientDeviceActionResponse() noexcept = default;
             AuthorizeClientDeviceActionResponse(const AuthorizeClientDeviceActionResponse &) = default;
             /**
              * Whether the client device is authorized to perform the operation on the resource.
@@ -4368,7 +4368,7 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionRequest : public AbstractShapeBase
         {
           public:
-            AuthorizeClientDeviceActionRequest() noexcept {}
+            AuthorizeClientDeviceActionRequest() noexcept = default;
             AuthorizeClientDeviceActionRequest(const AuthorizeClientDeviceActionRequest &) = default;
             /**
              * The session token for the client device from GetClientDeviceAuthToken.
@@ -4492,7 +4492,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4543,7 +4543,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4593,7 +4593,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4705,7 +4705,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4756,7 +4756,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4806,7 +4806,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4858,7 +4858,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -4962,7 +4962,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5013,7 +5013,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5132,7 +5132,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5183,7 +5183,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5236,7 +5236,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5286,7 +5286,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5408,7 +5408,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5462,7 +5462,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5515,7 +5515,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5565,7 +5565,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5615,7 +5615,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5665,7 +5665,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5718,7 +5718,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5768,7 +5768,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5818,7 +5818,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5871,7 +5871,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5921,7 +5921,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -5974,7 +5974,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6024,7 +6024,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6074,7 +6074,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6126,7 +6126,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6179,7 +6179,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6291,7 +6291,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6344,7 +6344,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6394,7 +6394,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6444,7 +6444,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
@@ -6496,7 +6496,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return m_taggedResult == true; }
+            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
             OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
             RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
             ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }

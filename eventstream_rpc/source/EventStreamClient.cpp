@@ -47,7 +47,7 @@ namespace Aws
         class OnMessageFlushCallbackContainer
         {
           public:
-            OnMessageFlushCallbackContainer(OnMessageFlushCallback &&flushCallback) : m_sharedState({})
+            explicit OnMessageFlushCallbackContainer(OnMessageFlushCallback &&flushCallback) : m_sharedState({})
             {
                 m_sharedState.m_state = CallbackState::Incomplete;
                 m_sharedState.m_onMessageFlushCallback = std::move(flushCallback);
@@ -234,7 +234,7 @@ namespace Aws
         }
 
         MessageAmendment::MessageAmendment(MessageAmendment &&rhs) noexcept
-            : m_headers(std::move(rhs.m_headers)), m_payload(rhs.m_payload), m_allocator(rhs.m_allocator)
+            : m_headers(std::move(rhs.m_headers)), m_payload(std::move(rhs.m_payload)), m_allocator(rhs.m_allocator)
         {
             rhs.m_allocator = nullptr;
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
@@ -321,7 +321,7 @@ namespace Aws
             }
         }
 
-        Crt::String RpcError::StatusToString()
+        Crt::String RpcError::StatusToString() const
         {
             switch (baseStatus)
             {

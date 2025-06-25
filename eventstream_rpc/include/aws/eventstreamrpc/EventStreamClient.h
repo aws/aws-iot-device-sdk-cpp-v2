@@ -183,7 +183,7 @@ namespace Aws
             }
             void SetTlsConnectionOptions(Crt::Io::TlsConnectionOptions tlsConnectionOptions) noexcept
             {
-                m_tlsConnectionOptions = tlsConnectionOptions;
+                m_tlsConnectionOptions = std::move(tlsConnectionOptions);
             }
             void SetClientBootstrap(Crt::Io::ClientBootstrap *clientBootstrap) noexcept
             {
@@ -209,7 +209,7 @@ namespace Aws
         struct AWS_EVENTSTREAMRPC_API RpcError
         {
             explicit operator bool() const noexcept { return baseStatus == EVENT_STREAM_RPC_SUCCESS; }
-            Crt::String StatusToString();
+            Crt::String StatusToString() const;
 
             EventStreamRpcStatusCode baseStatus;
             int crtError;
@@ -387,7 +387,7 @@ namespace Aws
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept;
+            explicit operator bool() const noexcept;
 
             /**
              * Get operation result.
