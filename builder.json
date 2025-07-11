@@ -1,5 +1,8 @@
 {
   "name": "aws-iot-device-sdk-cpp-v2",
+  "packages": [
+    "maven"
+  ],
   "!cmake_args": [
     "-DPERFORM_HEADER_CHECK=OFF",
     "-DS2N_NO_PQ_ASM=ON"
@@ -24,6 +27,7 @@
     "build-samples"
   ],
   "test_steps": [
+    "setup-eventstream-server",
     "sdk-ci-prep",
     "test"
   ],

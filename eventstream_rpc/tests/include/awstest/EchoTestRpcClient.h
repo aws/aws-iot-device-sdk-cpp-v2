@@ -36,7 +36,7 @@ namespace Awstest
         std::future<RpcError> Connect(
             ConnectionLifecycleHandler &lifecycleHandler,
             const ConnectionConfig &connectionConfig = DefaultConnectionConfig()) noexcept;
-        bool IsConnected() const noexcept { return m_connection.IsOpen(); }
+        bool IsConnected() const noexcept { return m_connection->IsOpen(); }
         void Close() noexcept;
         void WithLaunchMode(std::launch mode) noexcept;
 
@@ -76,8 +76,7 @@ namespace Awstest
 
       private:
         EchoTestRpcServiceModel m_echoTestRpcServiceModel;
-        ClientConnection m_connection;
-        Aws::Crt::Io::ClientBootstrap &m_clientBootstrap;
+        std::shared_ptr<ClientConnection> m_connection;
         Aws::Crt::Allocator *m_allocator;
         MessageAmendment m_connectAmendment;
         std::launch m_asyncLaunchMode;
