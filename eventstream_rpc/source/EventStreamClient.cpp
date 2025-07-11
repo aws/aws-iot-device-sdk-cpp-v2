@@ -1396,7 +1396,10 @@ namespace Aws
             return true;
         }
 
-        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<AbstractShapeBase> response) {}
+        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<AbstractShapeBase> response)
+        {
+            (void)response;
+        }
 
         void StreamResponseHandler::OnStreamClosed() {}
 
