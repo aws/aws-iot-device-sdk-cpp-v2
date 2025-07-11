@@ -212,6 +212,8 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        # The "--cmake-extra=-Tv143" explicitly sets VS 17 2022 to be used for compilation.
+        # See https://cmake.org/cmake/help/latest/generator/Visual%20Studio%2017%202022.html#toolset-selection
         run: |
           md ${{ env.CI_FOLDER }}
           cd ${{ env.CI_FOLDER }}
