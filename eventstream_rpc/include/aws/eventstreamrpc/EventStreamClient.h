@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include "aws/crt/Variant.h"
+
 #include <aws/eventstreamrpc/Exports.h>
 
 #include <aws/crt/DateTime.h>
@@ -60,7 +62,6 @@ namespace Aws
             EventStreamHeader(const EventStreamHeader &lhs) noexcept;
             EventStreamHeader(EventStreamHeader &&rhs) noexcept;
             EventStreamHeader &operator=(const EventStreamHeader &lhs) noexcept;
-            ~EventStreamHeader() noexcept;
             explicit EventStreamHeader(
                 const struct aws_event_stream_header_value_pair &header,
                 Crt::Allocator *allocator = Crt::g_allocator);
@@ -68,6 +69,8 @@ namespace Aws
                 const Crt::String &name,
                 const Crt::String &value,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+
+            ~EventStreamHeader() noexcept;
 
             Crt::String GetHeaderName() const noexcept;
 

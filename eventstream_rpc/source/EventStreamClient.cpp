@@ -61,8 +61,6 @@ namespace Aws
                 m_sharedState.m_onFlushPromise = std::move(flushPromise);
             }
 
-            ~OnMessageFlushCallbackContainer() = default;
-
             static void Complete(OnMessageFlushCallbackContainer *callback, RpcError error)
             {
                 if (callback == nullptr)
@@ -142,8 +140,6 @@ namespace Aws
                                               std::move(flushPromise)))
             {
             }
-
-            ~OnMessageFlushCallbackContainerWrapper() = default;
 
             static void Complete(OnMessageFlushCallbackContainerWrapper *wrapper, RpcError error)
             {
@@ -311,7 +307,6 @@ namespace Aws
             Crt::Allocator *m_allocator = Crt::g_allocator)
         {
             AWS_ZERO_STRUCT(*headersArray);
-            /* Check if the connection has expired before attempting to send. */
             aws_event_stream_headers_list_init(headersArray, m_allocator);
 
             /* Populate the array with the underlying handle of each EventStreamHeader. */
@@ -422,17 +417,17 @@ namespace Aws
             : m_allocator(allocator),
               m_valueByteBuf(Crt::ByteBufNewCopy(allocator, (uint8_t *)value.c_str(), value.length()))
         {
-            m_underlyingHandle.header_name_len = static_cast<uint8_t>(name.length());
             size_t length;
-            if (name.length() > INT8_MAX)
+            if (name.length() > AWS_EVENT_STREAM_HEADER_NAME_LEN_MAX)
             {
-                length = INT8_MAX;
+                length = AWS_EVENT_STREAM_HEADER_NAME_LEN_MAX;
             }
             else
             {
                 length = static_cast<size_t>(name.length());
             }
             (void)memcpy(m_underlyingHandle.header_name, name.c_str(), length);
+            m_underlyingHandle.header_name_len = static_cast<uint8_t>(length);
             m_underlyingHandle.header_value_type = AWS_EVENT_STREAM_HEADER_STRING;
             m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
             m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
@@ -453,18 +448,18 @@ namespace Aws
             m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
         }
 
-        EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
+        EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &rhs) noexcept
         {
-            if (this != &lhs)
+            if (this != &rhs)
             {
-                m_allocator = lhs.m_allocator;
+                m_allocator = rhs.m_allocator;
                 if (aws_byte_buf_is_valid(&m_valueByteBuf))
                 {
                     Crt::ByteBufDelete(m_valueByteBuf);
                 }
                 m_valueByteBuf =
-                    Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
-                m_underlyingHandle = lhs.m_underlyingHandle;
+                    Crt::ByteBufNewCopy(rhs.m_allocator, rhs.m_valueByteBuf.buffer, rhs.m_valueByteBuf.len);
+                m_underlyingHandle = rhs.m_underlyingHandle;
                 m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
                 m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
             }
@@ -574,6 +569,17 @@ namespace Aws
                   m_error{EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS}, m_connectPromise(),
                   m_disconnectionCallback(disconnectionCallback), m_errorCallback(errorCallback),
                   m_connectionSuccessCallback(connectionSuccessCallback)
+            {
+            }
+
+            ConnectionCallbackContext(
+                std::function<void(RpcError)> &&disconnectionCallback,
+                std::function<bool(RpcError)> &&errorCallback,
+                std::function<void()> &&connectionSuccessCallback)
+                : m_action(ConnectionCallbackActionType::CompleteConnectPromise),
+                  m_error{EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS}, m_connectPromise(),
+                  m_disconnectionCallback(std::move(disconnectionCallback)), m_errorCallback(std::move(errorCallback)),
+                  m_connectionSuccessCallback(std::move(connectionSuccessCallback))
             {
             }
 
@@ -712,7 +718,8 @@ namespace Aws
 
             void ConstructConnectMessage(
                 struct aws_event_stream_rpc_message_args *msg_args,
-                struct aws_array_list *headersArray) noexcept;
+                struct aws_array_list *headersArray,
+                MessageAmendment &amendmentStorage) noexcept;
 
             enum class ClientState
             {
@@ -743,7 +750,7 @@ namespace Aws
             aws_client_bootstrap *m_bootstrap;
             aws_event_loop *m_eventLoop;
 
-            std::mutex m_sharedStateLock;
+            mutable std::mutex m_sharedStateLock;
             struct
             {
                 aws_event_stream_rpc_client_connection *m_underlyingConnection;
@@ -820,7 +827,7 @@ namespace Aws
          *
          * (1) Synchronous failure to initiate a connection
          * (2) Connection setup failure (async callback)
-         * (3) Connnection (that was successfully established) shutdown completion (async callback)
+         * (3) Connection (that was successfully established) shutdown completion (async callback)
          */
         void ClientConnectionImpl::MoveToDisconnected(RpcError error) noexcept
         {
@@ -995,41 +1002,37 @@ namespace Aws
                 MoveToDisconnected({EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED, aws_last_error()});
             }
 
-            AWS_LOGF_INFO(
-                AWS_LS_COMMON_GENERAL, "EventStreamClient2 - Host name %d bytes long", (int)hostName.length());
-            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient2 - Host name : %s", hostName.c_str());
-
             return localFuture;
         }
 
         bool ClientConnectionImpl::IsOpen() const noexcept
         {
-            std::lock_guard<std::mutex> lock(const_cast<ClientConnectionImpl *>(this)->m_sharedStateLock);
+            std::lock_guard<std::mutex> lock(m_sharedStateLock);
             return m_sharedState.m_currentState == ClientState::Connected;
         }
 
         void ClientConnectionImpl::ConstructConnectMessage(
             struct aws_event_stream_rpc_message_args *msg_args,
-            struct aws_array_list *headersArray) noexcept
+            struct aws_array_list *headersArray,
+            MessageAmendment &amendmentStorage) noexcept
         {
-            MessageAmendment messageAmendment;
             // The version header is necessary for establishing the connection.
-            messageAmendment.AddHeader(EventStreamHeader(
+            amendmentStorage.AddHeader(EventStreamHeader(
                 Crt::String(EVENTSTREAM_VERSION_HEADER), Crt::String(EVENTSTREAM_VERSION_STRING), m_allocator));
 
             if (m_connectionConfig.GetConnectAmendment().has_value())
             {
                 MessageAmendment connectAmendment(m_connectionConfig.GetConnectAmendment().value());
-                messageAmendment.PrependHeaders(std::move(connectAmendment).GetHeaders());
-                messageAmendment.SetPayload(std::move(connectAmendment).GetPayload());
+                amendmentStorage.PrependHeaders(std::move(connectAmendment).GetHeaders());
+                amendmentStorage.SetPayload(std::move(connectAmendment).GetPayload());
             }
 
-            s_fillNativeHeadersArray(messageAmendment.GetHeaders(), headersArray, m_allocator);
+            s_fillNativeHeadersArray(amendmentStorage.GetHeaders(), headersArray, m_allocator);
 
             msg_args->headers = (struct aws_event_stream_header_value_pair *)headersArray->data;
-            msg_args->headers_count = messageAmendment.GetHeaders().size();
-            msg_args->payload = messageAmendment.GetPayload().has_value()
-                                    ? (aws_byte_buf *)(&(messageAmendment.GetPayload().value()))
+            msg_args->headers_count = amendmentStorage.GetHeaders().size();
+            msg_args->payload = amendmentStorage.GetPayload().has_value()
+                                    ? (aws_byte_buf *)(&(amendmentStorage.GetPayload().value()))
                                     : nullptr;
             msg_args->message_type = AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT;
             msg_args->message_flags = 0U;
@@ -1092,10 +1095,11 @@ namespace Aws
             {
                 AWS_FATAL_ASSERT(connectCallbackWrapper);
 
+                MessageAmendment amendmentStorage;
                 struct aws_event_stream_rpc_message_args msgArgs;
                 struct aws_array_list headersArray;
 
-                impl->ConstructConnectMessage(&msgArgs, &headersArray);
+                impl->ConstructConnectMessage(&msgArgs, &headersArray, amendmentStorage);
 
                 int connectErrorCode = AWS_ERROR_SUCCESS;
                 if (aws_event_stream_rpc_client_connection_send_protocol_message(
@@ -1210,7 +1214,7 @@ namespace Aws
                     Crt::List<EventStreamHeader> pingHeaders;
                     for (size_t i = 0; i < messageArgs->headers_count; ++i)
                     {
-                        pingHeaders.emplace_back(EventStreamHeader(messageArgs->headers[i], impl->m_allocator));
+                        pingHeaders.emplace_back(messageArgs->headers[i], impl->m_allocator);
                     }
 
                     if (messageArgs->payload)
@@ -1642,7 +1646,7 @@ namespace Aws
         }
 
         // We use a task to release the C continuation to make it impossible to trigger the termination callback
-        // in a callstack that includes ClientContinationImpl methods or state.
+        // in a callstack that includes ClientContinuationImpl methods or state.
         //
         // If we were the last ref holder then release would trigger the termination callback further down the
         // callstack.  This isn't necessarily unsafe, but for peace-of-mind, it's best for destruction to never
@@ -2120,7 +2124,7 @@ namespace Aws
             Crt::List<EventStreamHeader> continuationMessageHeaders;
             for (size_t i = 0; i < rawMessage->headers_count; ++i)
             {
-                continuationMessageHeaders.emplace_back(EventStreamHeader(rawMessage->headers[i], m_allocator));
+                continuationMessageHeaders.emplace_back(rawMessage->headers[i], m_allocator);
             }
 
             Crt::Optional<Crt::ByteBuf> payload;
@@ -2178,6 +2182,7 @@ namespace Aws
                 s_GetHeaderByName(continuationMessageHeaders, Crt::String(CONTENT_TYPE_HEADER));
             if (contentHeader == nullptr)
             {
+                /* Missing required content type header. */
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A required header (%s) could not be found in the message.",
@@ -2187,14 +2192,28 @@ namespace Aws
             }
 
             Crt::String contentType;
-            if (contentHeader->GetValueAsString(contentType) && contentType != CONTENT_TYPE_APPLICATION_JSON)
+            if (contentHeader->GetValueAsString(contentType))
             {
-                /* Missing required content type header. */
+                if (contentType != CONTENT_TYPE_APPLICATION_JSON)
+                {
+                    /* Unrecognized content type header value. */
+                    AWS_LOGF_ERROR(
+                        AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                        "The content type (%s) header was specified with an unsupported value (%s).",
+                        CONTENT_TYPE_HEADER,
+                        contentType.c_str());
+                    result.m_statusCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
+                    return result;
+                }
+            }
+            else
+            {
+                /* Invalid content type header value type. */
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "The content type (%s) header was specified with an unsupported value (%s).",
+                    "The content type (%s) header value was not a string type (%d)",
                     CONTENT_TYPE_HEADER,
-                    contentType.c_str());
+                    (int)(contentHeader->GetUnderlyingHandle()->header_value_type));
                 result.m_statusCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
                 return result;
             }
@@ -2423,10 +2442,9 @@ namespace Aws
             std::function<void(TaggedResult &&)> &&onResultCallback) noexcept
         {
             Crt::List<EventStreamHeader> headers;
-            headers.emplace_back(EventStreamHeader(
-                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
             headers.emplace_back(
-                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator);
+            headers.emplace_back(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator);
             Crt::JsonObject payloadObject;
             shape->SerializeToJsonObject(payloadObject);
             Crt::String payloadString = payloadObject.View().WriteCompact();
@@ -2446,10 +2464,9 @@ namespace Aws
             OnMessageFlushCallback &&onMessageFlushCallback) noexcept
         {
             Crt::List<EventStreamHeader> headers;
-            headers.emplace_back(EventStreamHeader(
-                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
             headers.emplace_back(
-                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator);
+            headers.emplace_back(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator);
             Crt::JsonObject payloadObject;
             shape->SerializeToJsonObject(payloadObject);
             Crt::String payloadString = payloadObject.View().WriteCompact();
