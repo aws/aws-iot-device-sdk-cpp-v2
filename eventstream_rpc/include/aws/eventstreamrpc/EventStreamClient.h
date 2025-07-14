@@ -12,6 +12,7 @@
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
+#include <aws/crt/Variant.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/crt/io/TlsOptions.h>
 
@@ -373,69 +374,10 @@ namespace Aws
             RPC_ERROR
         };
 
-        /**
-         * A wrapper for operation result.
-         */
-        class AWS_EVENTSTREAMRPC_API TaggedResult
-        {
-          public:
-            TaggedResult() noexcept;
-            explicit TaggedResult(Crt::ScopedResource<AbstractShapeBase> response) noexcept;
-            explicit TaggedResult(Crt::ScopedResource<OperationError> error) noexcept;
-            explicit TaggedResult(RpcError rpcError) noexcept;
-            TaggedResult(TaggedResult &&rhs) noexcept;
-            TaggedResult &operator=(TaggedResult &&rhs) noexcept;
-            ~TaggedResult() noexcept;
-            /**
-             * @return true if the response is associated with an expected response;
-             * false if the response is associated with an error.
-             */
-            explicit operator bool() const noexcept;
+        using EventstreamResultVariantType =
+            Crt::Variant<Crt::ScopedResource<AbstractShapeBase>, Crt::ScopedResource<OperationError>, RpcError>;
 
-            /**
-             * Get operation result.
-             * @return A pointer to the resulting object in case of success, nullptr otherwise.
-             */
-            AbstractShapeBase *GetOperationResponse() const noexcept;
-
-            /**
-             * Get error for a failed operation.
-             * @return A pointer to the error object in case of failure, nullptr otherwise.
-             */
-            OperationError *GetOperationError() const noexcept;
-
-            /**
-             * Get RPC-level error.
-             * @return A pointer to the error object in case of RPC-level failure, nullptr otherwise.
-             */
-            RpcError GetRpcError() const noexcept;
-
-            /**
-             * Get the type of the result with which the operation has completed.
-             * @return Result type.
-             */
-            ResultType GetResultType() const noexcept { return m_responseType; }
-
-          private:
-            union AWS_EVENTSTREAMRPC_API OperationResult
-            {
-                explicit OperationResult(Crt::ScopedResource<AbstractShapeBase> &&response) noexcept
-                    : m_response(std::move(response))
-                {
-                }
-                explicit OperationResult(Crt::ScopedResource<OperationError> &&error) noexcept
-                    : m_error(std::move(error))
-                {
-                }
-                OperationResult() noexcept : m_response(nullptr) {}
-                ~OperationResult() noexcept {}
-                Crt::ScopedResource<AbstractShapeBase> m_response;
-                Crt::ScopedResource<OperationError> m_error;
-            };
-            ResultType m_responseType;
-            OperationResult m_operationResult;
-            RpcError m_rpcError;
-        };
+        AWS_EVENTSTREAMRPC_API ResultType ResultVariantToResultType(const EventstreamResultVariantType &resultVariant);
 
         using ExpectedResponseFactory = std::function<
             Crt::ScopedResource<AbstractShapeBase>(const Crt::StringView &payload, Crt::Allocator *allocator)>;
@@ -591,7 +533,7 @@ namespace Aws
             std::future<RpcError> Activate(
                 const AbstractShapeBase *shape,
                 OnMessageFlushCallback &&onMessageFlushCallback,
-                std::function<void(TaggedResult &&)> &&onResultCallback) noexcept;
+                std::function<void(EventstreamResultVariantType &&)> &&onResultCallback) noexcept;
 
             /**
              * Sends a message on the stream

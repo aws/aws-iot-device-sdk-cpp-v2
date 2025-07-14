@@ -7079,7 +7079,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(SubscribeToIoTCoreResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7167,7 +7167,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(ResumeComponentResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7255,7 +7255,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(PublishToIoTCoreResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7374,7 +7374,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(SubscribeToConfigurationUpdateResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7462,7 +7462,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(DeleteThingShadowResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7550,7 +7550,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(PutComponentMetricResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7638,7 +7638,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(DeferComponentUpdateResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7756,7 +7756,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult) {
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult) {
                     promiseReference->set_value(
                         SubscribeToValidateConfigurationUpdatesResult(std::move(unmodeledResult)));
                 });
@@ -7846,7 +7846,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(GetConfigurationResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -7970,7 +7970,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(SubscribeToTopicResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8058,7 +8058,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(GetComponentDetailsResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8146,7 +8146,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(GetClientDeviceAuthTokenResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8234,7 +8234,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(PublishToTopicResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8359,7 +8359,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(SubscribeToCertificateUpdatesResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8447,7 +8447,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(VerifyClientDeviceIdentityResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8535,7 +8535,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(AuthorizeClientDeviceActionResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8623,7 +8623,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(ListComponentsResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8711,7 +8711,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(CreateDebugPasswordResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8799,7 +8799,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(GetThingShadowResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8888,7 +8888,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(SendConfigurationValidityReportResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -8976,7 +8976,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(UpdateThingShadowResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9064,7 +9064,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(UpdateConfigurationResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9152,7 +9152,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(ValidateAuthorizationTokenResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9240,7 +9240,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(RestartComponentResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9328,7 +9328,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(GetLocalDeploymentStatusResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9416,7 +9416,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(GetSecretValueResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9503,7 +9503,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(UpdateStateResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9591,7 +9591,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(CancelLocalDeploymentResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9679,7 +9679,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(ListNamedShadowsForThingResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9798,7 +9798,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(SubscribeToComponentUpdatesResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9886,7 +9886,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(ListLocalDeploymentsResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -9974,7 +9974,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(StopComponentResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -10062,7 +10062,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(PauseComponentResult(std::move(unmodeledResult))); });
 
             return activateFuture;
@@ -10150,7 +10150,7 @@ namespace Aws
             auto activateFuture = ClientOperation::Activate(
                 static_cast<const AbstractShapeBase *>(&request),
                 std::move(onMessageFlushCallback),
-                [promiseReference](TaggedResult &&unmodeledResult)
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
                 { promiseReference->set_value(CreateLocalDeploymentResult(std::move(unmodeledResult))); });
 
             return activateFuture;

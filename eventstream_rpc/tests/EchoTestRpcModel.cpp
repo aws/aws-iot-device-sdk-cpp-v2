@@ -1055,7 +1055,7 @@ namespace Awstest
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
-            [promiseReference](TaggedResult &&unmodeledResult)
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
             { promiseReference->set_value(GetAllProductsResult(std::move(unmodeledResult))); });
 
         return activateFuture;
@@ -1143,7 +1143,7 @@ namespace Awstest
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
-            [promiseReference](TaggedResult &&unmodeledResult)
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
             { promiseReference->set_value(CauseServiceErrorResult(std::move(unmodeledResult))); });
 
         return activateFuture;
@@ -1254,7 +1254,7 @@ namespace Awstest
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
-            [promiseReference](TaggedResult &&unmodeledResult)
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
             { promiseReference->set_value(CauseStreamServiceToErrorResult(std::move(unmodeledResult))); });
 
         return activateFuture;
@@ -1368,7 +1368,7 @@ namespace Awstest
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
-            [promiseReference](TaggedResult &&unmodeledResult)
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
             { promiseReference->set_value(EchoStreamMessagesResult(std::move(unmodeledResult))); });
 
         return activateFuture;
@@ -1462,7 +1462,7 @@ namespace Awstest
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
-            [promiseReference](TaggedResult &&unmodeledResult)
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
             { promiseReference->set_value(EchoMessageResult(std::move(unmodeledResult))); });
 
         return activateFuture;
@@ -1549,7 +1549,7 @@ namespace Awstest
         auto activateFuture = ClientOperation::Activate(
             static_cast<const AbstractShapeBase *>(&request),
             std::move(onMessageFlushCallback),
-            [promiseReference](TaggedResult &&unmodeledResult)
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
             { promiseReference->set_value(GetAllCustomersResult(std::move(unmodeledResult))); });
 
         return activateFuture;

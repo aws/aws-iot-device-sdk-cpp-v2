@@ -4481,24 +4481,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreResult
         {
           public:
-            SubscribeToIoTCoreResult() noexcept {}
-            SubscribeToIoTCoreResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            SubscribeToIoTCoreResult() noexcept = default;
+            SubscribeToIoTCoreResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             SubscribeToIoTCoreResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToIoTCoreResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<SubscribeToIoTCoreResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreOperation : public ClientOperation
@@ -4532,24 +4536,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ResumeComponentResult
         {
           public:
-            ResumeComponentResult() noexcept {}
-            ResumeComponentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            ResumeComponentResult() noexcept = default;
+            ResumeComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ResumeComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ResumeComponentResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<ResumeComponentResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API ResumeComponentOperation : public ClientOperation
@@ -4582,24 +4590,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreResult
         {
           public:
-            PublishToIoTCoreResult() noexcept {}
-            PublishToIoTCoreResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            PublishToIoTCoreResult() noexcept = default;
+            PublishToIoTCoreResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PublishToIoTCoreResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PublishToIoTCoreResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<PublishToIoTCoreResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToIoTCoreOperation : public ClientOperation
@@ -4691,27 +4703,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateResult
         {
           public:
-            SubscribeToConfigurationUpdateResult() noexcept {}
-            SubscribeToConfigurationUpdateResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            SubscribeToConfigurationUpdateResult() noexcept = default;
+            SubscribeToConfigurationUpdateResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             SubscribeToConfigurationUpdateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToConfigurationUpdateResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<SubscribeToConfigurationUpdateResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToConfigurationUpdateOperation : public ClientOperation
@@ -4745,24 +4761,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowResult
         {
           public:
-            DeleteThingShadowResult() noexcept {}
-            DeleteThingShadowResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            DeleteThingShadowResult() noexcept = default;
+            DeleteThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             DeleteThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<DeleteThingShadowResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<DeleteThingShadowResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeleteThingShadowOperation : public ClientOperation
@@ -4795,24 +4815,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricResult
         {
           public:
-            PutComponentMetricResult() noexcept {}
-            PutComponentMetricResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            PutComponentMetricResult() noexcept = default;
+            PutComponentMetricResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PutComponentMetricResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PutComponentMetricResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<PutComponentMetricResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API PutComponentMetricOperation : public ClientOperation
@@ -4845,26 +4869,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateResult
         {
           public:
-            DeferComponentUpdateResult() noexcept {}
-            DeferComponentUpdateResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult))
-            {
-            }
+            DeferComponentUpdateResult() noexcept = default;
+            DeferComponentUpdateResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             DeferComponentUpdateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<DeferComponentUpdateResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<DeferComponentUpdateResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API DeferComponentUpdateOperation : public ClientOperation
@@ -4947,28 +4973,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesResult
         {
           public:
-            SubscribeToValidateConfigurationUpdatesResult() noexcept {}
-            SubscribeToValidateConfigurationUpdatesResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            SubscribeToValidateConfigurationUpdatesResult() noexcept = default;
+            SubscribeToValidateConfigurationUpdatesResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             SubscribeToValidateConfigurationUpdatesResponse *GetOperationResponse() const noexcept
             {
                 return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(
-                    m_taggedResult.GetOperationResponse());
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToValidateConfigurationUpdatesOperation : public ClientOperation
@@ -5002,24 +5031,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetConfigurationResult
         {
           public:
-            GetConfigurationResult() noexcept {}
-            GetConfigurationResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            GetConfigurationResult() noexcept = default;
+            GetConfigurationResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetConfigurationResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetConfigurationResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<GetConfigurationResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetConfigurationOperation : public ClientOperation
@@ -5121,24 +5154,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicResult
         {
           public:
-            SubscribeToTopicResult() noexcept {}
-            SubscribeToTopicResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            SubscribeToTopicResult() noexcept = default;
+            SubscribeToTopicResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             SubscribeToTopicResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToTopicResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<SubscribeToTopicResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToTopicOperation : public ClientOperation
@@ -5172,24 +5209,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsResult
         {
           public:
-            GetComponentDetailsResult() noexcept {}
-            GetComponentDetailsResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            GetComponentDetailsResult() noexcept = default;
+            GetComponentDetailsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetComponentDetailsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetComponentDetailsResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<GetComponentDetailsResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetComponentDetailsOperation : public ClientOperation
@@ -5222,27 +5263,30 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenResult
         {
           public:
-            GetClientDeviceAuthTokenResult() noexcept {}
-            GetClientDeviceAuthTokenResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            GetClientDeviceAuthTokenResult() noexcept = default;
+            GetClientDeviceAuthTokenResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result))
             {
             }
             GetClientDeviceAuthTokenResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetClientDeviceAuthTokenResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<GetClientDeviceAuthTokenResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetClientDeviceAuthTokenOperation : public ClientOperation
@@ -5275,24 +5319,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PublishToTopicResult
         {
           public:
-            PublishToTopicResult() noexcept {}
-            PublishToTopicResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            PublishToTopicResult() noexcept = default;
+            PublishToTopicResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PublishToTopicResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PublishToTopicResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<PublishToTopicResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API PublishToTopicOperation : public ClientOperation
@@ -5394,27 +5442,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesResult
         {
           public:
-            SubscribeToCertificateUpdatesResult() noexcept {}
-            SubscribeToCertificateUpdatesResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            SubscribeToCertificateUpdatesResult() noexcept = default;
+            SubscribeToCertificateUpdatesResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             SubscribeToCertificateUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToCertificateUpdatesResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<SubscribeToCertificateUpdatesResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToCertificateUpdatesOperation : public ClientOperation
@@ -5448,27 +5500,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityResult
         {
           public:
-            VerifyClientDeviceIdentityResult() noexcept {}
-            VerifyClientDeviceIdentityResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            VerifyClientDeviceIdentityResult() noexcept = default;
+            VerifyClientDeviceIdentityResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             VerifyClientDeviceIdentityResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<VerifyClientDeviceIdentityResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<VerifyClientDeviceIdentityResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API VerifyClientDeviceIdentityOperation : public ClientOperation
@@ -5501,27 +5557,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionResult
         {
           public:
-            AuthorizeClientDeviceActionResult() noexcept {}
-            AuthorizeClientDeviceActionResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            AuthorizeClientDeviceActionResult() noexcept = default;
+            AuthorizeClientDeviceActionResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             AuthorizeClientDeviceActionResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<AuthorizeClientDeviceActionResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<AuthorizeClientDeviceActionResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API AuthorizeClientDeviceActionOperation : public ClientOperation
@@ -5554,24 +5614,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListComponentsResult
         {
           public:
-            ListComponentsResult() noexcept {}
-            ListComponentsResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            ListComponentsResult() noexcept = default;
+            ListComponentsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ListComponentsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListComponentsResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<ListComponentsResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListComponentsOperation : public ClientOperation
@@ -5604,24 +5668,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordResult
         {
           public:
-            CreateDebugPasswordResult() noexcept {}
-            CreateDebugPasswordResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            CreateDebugPasswordResult() noexcept = default;
+            CreateDebugPasswordResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CreateDebugPasswordResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CreateDebugPasswordResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<CreateDebugPasswordResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateDebugPasswordOperation : public ClientOperation
@@ -5654,24 +5722,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetThingShadowResult
         {
           public:
-            GetThingShadowResult() noexcept {}
-            GetThingShadowResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            GetThingShadowResult() noexcept = default;
+            GetThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetThingShadowResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<GetThingShadowResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetThingShadowOperation : public ClientOperation
@@ -5704,27 +5776,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportResult
         {
           public:
-            SendConfigurationValidityReportResult() noexcept {}
-            SendConfigurationValidityReportResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            SendConfigurationValidityReportResult() noexcept = default;
+            SendConfigurationValidityReportResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             SendConfigurationValidityReportResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SendConfigurationValidityReportResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<SendConfigurationValidityReportResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SendConfigurationValidityReportOperation : public ClientOperation
@@ -5757,24 +5833,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowResult
         {
           public:
-            UpdateThingShadowResult() noexcept {}
-            UpdateThingShadowResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            UpdateThingShadowResult() noexcept = default;
+            UpdateThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateThingShadowResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<UpdateThingShadowResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateThingShadowOperation : public ClientOperation
@@ -5807,24 +5887,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationResult
         {
           public:
-            UpdateConfigurationResult() noexcept {}
-            UpdateConfigurationResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            UpdateConfigurationResult() noexcept = default;
+            UpdateConfigurationResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateConfigurationResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateConfigurationResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<UpdateConfigurationResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateConfigurationOperation : public ClientOperation
@@ -5857,27 +5941,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenResult
         {
           public:
-            ValidateAuthorizationTokenResult() noexcept {}
-            ValidateAuthorizationTokenResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            ValidateAuthorizationTokenResult() noexcept = default;
+            ValidateAuthorizationTokenResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             ValidateAuthorizationTokenResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ValidateAuthorizationTokenResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<ValidateAuthorizationTokenResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API ValidateAuthorizationTokenOperation : public ClientOperation
@@ -5910,24 +5998,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API RestartComponentResult
         {
           public:
-            RestartComponentResult() noexcept {}
-            RestartComponentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            RestartComponentResult() noexcept = default;
+            RestartComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             RestartComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<RestartComponentResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<RestartComponentResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API RestartComponentOperation : public ClientOperation
@@ -5960,27 +6052,30 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusResult
         {
           public:
-            GetLocalDeploymentStatusResult() noexcept {}
-            GetLocalDeploymentStatusResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            GetLocalDeploymentStatusResult() noexcept = default;
+            GetLocalDeploymentStatusResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result))
             {
             }
             GetLocalDeploymentStatusResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetLocalDeploymentStatusResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<GetLocalDeploymentStatusResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetLocalDeploymentStatusOperation : public ClientOperation
@@ -6013,24 +6108,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API GetSecretValueResult
         {
           public:
-            GetSecretValueResult() noexcept {}
-            GetSecretValueResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            GetSecretValueResult() noexcept = default;
+            GetSecretValueResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetSecretValueResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetSecretValueResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<GetSecretValueResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API GetSecretValueOperation : public ClientOperation
@@ -6063,24 +6162,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API UpdateStateResult
         {
           public:
-            UpdateStateResult() noexcept {}
-            UpdateStateResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            UpdateStateResult() noexcept = default;
+            UpdateStateResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateStateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateStateResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<UpdateStateResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API UpdateStateOperation : public ClientOperation
@@ -6113,26 +6216,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentResult
         {
           public:
-            CancelLocalDeploymentResult() noexcept {}
-            CancelLocalDeploymentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult))
-            {
-            }
+            CancelLocalDeploymentResult() noexcept = default;
+            CancelLocalDeploymentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CancelLocalDeploymentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CancelLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<CancelLocalDeploymentResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API CancelLocalDeploymentOperation : public ClientOperation
@@ -6165,27 +6270,30 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingResult
         {
           public:
-            ListNamedShadowsForThingResult() noexcept {}
-            ListNamedShadowsForThingResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            ListNamedShadowsForThingResult() noexcept = default;
+            ListNamedShadowsForThingResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result))
             {
             }
             ListNamedShadowsForThingResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListNamedShadowsForThingResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<ListNamedShadowsForThingResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListNamedShadowsForThingOperation : public ClientOperation
@@ -6277,27 +6385,31 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesResult
         {
           public:
-            SubscribeToComponentUpdatesResult() noexcept {}
-            SubscribeToComponentUpdatesResult(TaggedResult &&taggedResult) noexcept
-                : m_taggedResult(std::move(taggedResult))
+            SubscribeToComponentUpdatesResult() noexcept = default;
+            SubscribeToComponentUpdatesResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
             {
             }
             SubscribeToComponentUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToComponentUpdatesResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<SubscribeToComponentUpdatesResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToComponentUpdatesOperation : public ClientOperation
@@ -6331,26 +6443,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsResult
         {
           public:
-            ListLocalDeploymentsResult() noexcept {}
-            ListLocalDeploymentsResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult))
-            {
-            }
+            ListLocalDeploymentsResult() noexcept = default;
+            ListLocalDeploymentsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ListLocalDeploymentsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListLocalDeploymentsResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<ListLocalDeploymentsResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API ListLocalDeploymentsOperation : public ClientOperation
@@ -6383,24 +6497,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API StopComponentResult
         {
           public:
-            StopComponentResult() noexcept {}
-            StopComponentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            StopComponentResult() noexcept = default;
+            StopComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             StopComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<StopComponentResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<StopComponentResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API StopComponentOperation : public ClientOperation
@@ -6433,24 +6551,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API PauseComponentResult
         {
           public:
-            PauseComponentResult() noexcept {}
-            PauseComponentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+            PauseComponentResult() noexcept = default;
+            PauseComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PauseComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PauseComponentResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<PauseComponentResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API PauseComponentOperation : public ClientOperation
@@ -6483,26 +6605,28 @@ namespace Aws
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentResult
         {
           public:
-            CreateLocalDeploymentResult() noexcept {}
-            CreateLocalDeploymentResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult))
-            {
-            }
+            CreateLocalDeploymentResult() noexcept = default;
+            CreateLocalDeploymentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CreateLocalDeploymentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CreateLocalDeploymentResponse *>(m_taggedResult.GetOperationResponse());
+                return static_cast<CreateLocalDeploymentResponse *>(
+                    m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
             }
 
             /**
              * @return true if the response is associated with an expected response;
              * false if the response is associated with an error.
              */
-            operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-            OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-            RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            }
+            RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
-            TaggedResult m_taggedResult;
+            EventstreamResultVariantType m_result;
         };
 
         class AWS_GREENGRASSCOREIPC_API CreateLocalDeploymentOperation : public ClientOperation

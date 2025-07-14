@@ -1118,6 +1118,26 @@ static int s_TestEchoClientOperationActivateWaitActivate(struct aws_allocator *a
 
 AWS_TEST_CASE(EchoClientOperationActivateWaitActivate, s_TestEchoClientOperationActivateWaitActivate);
 
+static int s_validateClosedActivateResult(const RpcError &result)
+{
+    auto flushErrorStatus = result.baseStatus;
+    if (flushErrorStatus == EVENT_STREAM_RPC_CRT_ERROR)
+    {
+        ASSERT_INT_EQUALS(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED, result.crtError);
+    }
+    else
+    {
+        if (flushErrorStatus != EVENT_STREAM_RPC_CONTINUATION_CLOSED && flushErrorStatus != EVENT_STREAM_RPC_SUCCESS)
+        {
+            return AWS_OP_ERR;
+        }
+        ASSERT_TRUE(
+            flushErrorStatus == EVENT_STREAM_RPC_SUCCESS || flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+    }
+
+    return AWS_OP_SUCCESS;
+}
+
 static int s_TestEchoClientOperationActivateCloseActivate(struct aws_allocator *allocator, void *ctx)
 {
     return s_DoSimpleRequestRaceCheckTest(
@@ -1132,18 +1152,12 @@ static int s_TestEchoClientOperationActivateCloseActivate(struct aws_allocator *
             auto closeFuture = getAllCustomers->Close();
 
             requestFuture.wait();
-            auto flushErrorStatus = requestFuture.get().baseStatus;
-            ASSERT_TRUE(
-                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
-                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+            ASSERT_SUCCESS(s_validateClosedActivateResult(requestFuture.get()));
 
             auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
             requestFuture2.wait();
 
-            auto flush2ErrorStatus = requestFuture2.get().baseStatus;
-            ASSERT_TRUE(
-                flush2ErrorStatus == EVENT_STREAM_RPC_CRT_ERROR ||
-                flush2ErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
+            s_validateClosedActivateResult(requestFuture2.get());
 
             closeFuture.wait();
 

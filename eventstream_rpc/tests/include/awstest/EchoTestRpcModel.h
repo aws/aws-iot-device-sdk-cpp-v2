@@ -682,24 +682,28 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllProductsResult
     {
       public:
-        GetAllProductsResult() noexcept {}
-        GetAllProductsResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+        GetAllProductsResult() noexcept = default;
+        GetAllProductsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllProductsResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<GetAllProductsResponse *>(m_taggedResult.GetOperationResponse());
+            return static_cast<GetAllProductsResponse *>(
+                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
         }
 
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-        OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-        RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-        ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+        operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+        OperationError *GetOperationError() const noexcept
+        {
+            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+        }
+        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
-        TaggedResult m_taggedResult;
+        EventstreamResultVariantType m_result;
     };
 
     class AWS_ECHOTESTRPC_API GetAllProductsOperation : public ClientOperation
@@ -732,24 +736,28 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseServiceErrorResult
     {
       public:
-        CauseServiceErrorResult() noexcept {}
-        CauseServiceErrorResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+        CauseServiceErrorResult() noexcept = default;
+        CauseServiceErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         CauseServiceErrorResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<CauseServiceErrorResponse *>(m_taggedResult.GetOperationResponse());
+            return static_cast<CauseServiceErrorResponse *>(
+                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
         }
 
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-        OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-        RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-        ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+        operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+        OperationError *GetOperationError() const noexcept
+        {
+            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+        }
+        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
-        TaggedResult m_taggedResult;
+        EventstreamResultVariantType m_result;
     };
 
     class AWS_ECHOTESTRPC_API CauseServiceErrorOperation : public ClientOperation
@@ -831,26 +839,28 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorResult
     {
       public:
-        CauseStreamServiceToErrorResult() noexcept {}
-        CauseStreamServiceToErrorResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult))
-        {
-        }
+        CauseStreamServiceToErrorResult() noexcept = default;
+        CauseStreamServiceToErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoStreamingResponse *>(m_taggedResult.GetOperationResponse());
+            return static_cast<EchoStreamingResponse *>(
+                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
         }
 
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-        OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-        RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-        ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+        operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+        OperationError *GetOperationError() const noexcept
+        {
+            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+        }
+        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
-        TaggedResult m_taggedResult;
+        EventstreamResultVariantType m_result;
     };
 
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorOperation : public ClientOperation
@@ -935,24 +945,28 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamMessagesResult
     {
       public:
-        EchoStreamMessagesResult() noexcept {}
-        EchoStreamMessagesResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+        EchoStreamMessagesResult() noexcept = default;
+        EchoStreamMessagesResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoStreamingResponse *>(m_taggedResult.GetOperationResponse());
+            return static_cast<EchoStreamingResponse *>(
+                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
         }
 
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-        OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-        RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-        ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+        operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+        OperationError *GetOperationError() const noexcept
+        {
+            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+        }
+        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
-        TaggedResult m_taggedResult;
+        EventstreamResultVariantType m_result;
     };
 
     class AWS_ECHOTESTRPC_API EchoStreamMessagesOperation : public ClientOperation
@@ -998,24 +1012,28 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoMessageResult
     {
       public:
-        EchoMessageResult() noexcept {}
-        EchoMessageResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+        EchoMessageResult() noexcept = default;
+        EchoMessageResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoMessageResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoMessageResponse *>(m_taggedResult.GetOperationResponse());
+            return static_cast<EchoMessageResponse *>(
+                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
         }
 
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-        OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-        RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-        ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+        operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+        OperationError *GetOperationError() const noexcept
+        {
+            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+        }
+        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
-        TaggedResult m_taggedResult;
+        EventstreamResultVariantType m_result;
     };
 
     class AWS_ECHOTESTRPC_API EchoMessageOperation : public ClientOperation
@@ -1048,24 +1066,28 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllCustomersResult
     {
       public:
-        GetAllCustomersResult() noexcept {}
-        GetAllCustomersResult(TaggedResult &&taggedResult) noexcept : m_taggedResult(std::move(taggedResult)) {}
+        GetAllCustomersResult() noexcept = default;
+        GetAllCustomersResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllCustomersResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<GetAllCustomersResponse *>(m_taggedResult.GetOperationResponse());
+            return static_cast<GetAllCustomersResponse *>(
+                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
         }
 
         /**
          * @return true if the response is associated with an expected response;
          * false if the response is associated with an error.
          */
-        operator bool() const noexcept { return static_cast<bool>(m_taggedResult) == true; }
-        OperationError *GetOperationError() const noexcept { return m_taggedResult.GetOperationError(); }
-        RpcError GetRpcError() const noexcept { return m_taggedResult.GetRpcError(); }
-        ResultType GetResultType() const noexcept { return m_taggedResult.GetResultType(); }
+        operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+        OperationError *GetOperationError() const noexcept
+        {
+            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+        }
+        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
-        TaggedResult m_taggedResult;
+        EventstreamResultVariantType m_result;
     };
 
     class AWS_ECHOTESTRPC_API GetAllCustomersOperation : public ClientOperation

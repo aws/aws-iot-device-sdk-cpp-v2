@@ -1298,100 +1298,6 @@ namespace Aws
             }
         }
 
-        TaggedResult::TaggedResult(Crt::ScopedResource<AbstractShapeBase> operationResponse) noexcept
-            : m_responseType(OPERATION_RESPONSE), m_rpcError({})
-        {
-            m_operationResult.m_response = std::move(operationResponse);
-        }
-
-        TaggedResult::~TaggedResult() noexcept
-        {
-            if (m_responseType == OPERATION_RESPONSE)
-            {
-                m_operationResult.m_response.~unique_ptr();
-            }
-            else if (m_responseType == OPERATION_ERROR)
-            {
-                m_operationResult.m_error.~unique_ptr();
-            }
-        }
-
-        TaggedResult::TaggedResult(Crt::ScopedResource<OperationError> operationError) noexcept
-            : m_responseType(OPERATION_ERROR), m_rpcError({EVENT_STREAM_RPC_UNINITIALIZED, 0})
-        {
-            m_operationResult.m_error = std::move(operationError);
-        }
-
-        TaggedResult &TaggedResult::operator=(TaggedResult &&rhs) noexcept
-        {
-            m_responseType = rhs.m_responseType;
-            if (m_responseType == OPERATION_RESPONSE)
-            {
-                m_operationResult.m_response = std::move(rhs.m_operationResult.m_response);
-            }
-            else if (m_responseType == OPERATION_ERROR)
-            {
-                m_operationResult.m_error = std::move(rhs.m_operationResult.m_error);
-            }
-            m_rpcError = rhs.m_rpcError;
-            rhs.m_rpcError = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
-
-            return *this;
-        }
-
-        TaggedResult::TaggedResult(RpcError rpcError) noexcept
-            : m_responseType(RPC_ERROR), m_operationResult(), m_rpcError(rpcError)
-        {
-        }
-
-        TaggedResult::TaggedResult() noexcept
-            : m_responseType(RPC_ERROR), m_operationResult(), m_rpcError({EVENT_STREAM_RPC_UNINITIALIZED, 0})
-        {
-        }
-
-        TaggedResult::TaggedResult(TaggedResult &&rhs) noexcept
-        {
-            m_responseType = rhs.m_responseType;
-            if (m_responseType == OPERATION_RESPONSE)
-            {
-                m_operationResult.m_response = std::move(rhs.m_operationResult.m_response);
-            }
-            else if (m_responseType == OPERATION_ERROR)
-            {
-                m_operationResult.m_error = std::move(rhs.m_operationResult.m_error);
-            }
-            m_rpcError = rhs.m_rpcError;
-            rhs.m_rpcError = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
-        }
-
-        TaggedResult::operator bool() const noexcept
-        {
-            return m_responseType == OPERATION_RESPONSE;
-        }
-
-        AbstractShapeBase *TaggedResult::GetOperationResponse() const noexcept
-        {
-            return (m_responseType == OPERATION_RESPONSE) ? m_operationResult.m_response.get() : nullptr;
-        }
-
-        OperationError *TaggedResult::GetOperationError() const noexcept
-        {
-            return (m_responseType == OPERATION_ERROR) ? m_operationResult.m_error.get() : nullptr;
-        }
-
-        RpcError TaggedResult::GetRpcError() const noexcept
-        {
-            if (m_responseType == RPC_ERROR)
-            {
-                return m_rpcError;
-            }
-            else
-            {
-                /* Assume success since an application response or error was received. */
-                return {EVENT_STREAM_RPC_SUCCESS, 0};
-            }
-        }
-
         bool StreamResponseHandler::OnStreamError(Crt::ScopedResource<OperationError> operationError, RpcError rpcError)
         {
             (void)operationError;
@@ -1488,17 +1394,15 @@ namespace Aws
             ContinuationSharedState();
 
             ContinuationStateType m_currentState;
-            ContinuationStateType m_desiredState;
             struct aws_event_stream_rpc_client_continuation_token *m_continuation;
             std::shared_ptr<OnMessageFlushCallbackContainer> m_activationCallbackContainer;
-            std::function<void(TaggedResult &&)> m_activationResponseCallback;
+            std::function<void(EventstreamResultVariantType &&)> m_activationResponseCallback;
             std::shared_ptr<OnMessageFlushCallbackContainer> m_closeCallbackContainer;
         };
 
         ContinuationSharedState::ContinuationSharedState()
-            : m_currentState(ContinuationStateType::None), m_desiredState(ContinuationStateType::None),
-              m_continuation(nullptr), m_activationCallbackContainer(nullptr), m_activationResponseCallback(),
-              m_closeCallbackContainer(nullptr)
+            : m_currentState(ContinuationStateType::None), m_continuation(nullptr),
+              m_activationCallbackContainer(nullptr), m_activationResponseCallback(), m_closeCallbackContainer(nullptr)
         {
         }
 
@@ -1520,7 +1424,7 @@ namespace Aws
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t messageFlags,
-                std::function<void(TaggedResult &&)> &&onResultCallback,
+                std::function<void(EventstreamResultVariantType &&)> &&onResultCallback,
                 OnMessageFlushCallback &&onMessageFlushCallback) noexcept;
 
             std::future<RpcError> SendStreamMessage(
@@ -1636,7 +1540,6 @@ namespace Aws
             {
                 m_continuationValid = false;
                 m_sharedState.m_currentState = ContinuationStateType::Closed;
-                m_sharedState.m_desiredState = ContinuationStateType::Closed;
             }
         }
 
@@ -1707,7 +1610,7 @@ namespace Aws
             struct aws_event_stream_rpc_client_continuation_token *releaseContinuation = nullptr;
             std::shared_ptr<OnMessageFlushCallbackContainer> closeCallbackContainer = nullptr;
             std::shared_ptr<OnMessageFlushCallbackContainer> activationCallbackContainer = nullptr;
-            std::function<void(TaggedResult &&)> activationResponseCallback = nullptr;
+            std::function<void(EventstreamResultVariantType &&)> activationResponseCallback = nullptr;
 
             // This block prevents streaming event callbacks from triggering after scope exit
             {
@@ -1739,7 +1642,6 @@ namespace Aws
                     releaseContinuation = m_sharedState.m_continuation;
                     m_sharedState.m_continuation = nullptr;
                     m_sharedState.m_currentState = ContinuationStateType::Closed;
-                    m_sharedState.m_desiredState = ContinuationStateType::Closed;
                 }
 
                 activationCallbackContainer = m_sharedState.m_activationCallbackContainer;
@@ -1757,7 +1659,7 @@ namespace Aws
             if (activationResponseCallback)
             {
                 activationResponseCallback(
-                    TaggedResult(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
+                    EventstreamResultVariantType(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
             }
 
             // Short-circuit and simulate both activate and close callbacks as necessary.
@@ -1795,7 +1697,7 @@ namespace Aws
             const Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t messageFlags,
-            std::function<void(TaggedResult &&)> &&onResultCallback,
+            std::function<void(EventstreamResultVariantType &&)> &&onResultCallback,
             OnMessageFlushCallback &&onMessageFlushCallback) noexcept
         {
             AWS_FATAL_ASSERT(static_cast<bool>(onResultCallback));
@@ -1818,7 +1720,6 @@ namespace Aws
                         activateContinuation = m_sharedState.m_continuation;
                         aws_event_stream_rpc_client_continuation_acquire(activateContinuation);
                         m_sharedState.m_currentState = ContinuationStateType::PendingActivate;
-                        m_sharedState.m_desiredState = ContinuationStateType::Activated;
                         m_sharedState.m_activationCallbackContainer = activationContainerWrapper->GetContainer();
                         m_sharedState.m_activationResponseCallback = std::move(onResultCallback);
                     }
@@ -1877,7 +1778,6 @@ namespace Aws
                     // ah shucks, we failed, rollback our optimistic shared state update
                     std::lock_guard<std::mutex> lock(m_sharedStateLock);
                     m_sharedState.m_currentState = ContinuationStateType::None;
-                    m_sharedState.m_desiredState = ContinuationStateType::None;
                     m_sharedState.m_activationCallbackContainer = nullptr;
                     m_sharedState.m_activationResponseCallback = nullptr;
 
@@ -2080,13 +1980,12 @@ namespace Aws
             struct aws_event_stream_rpc_client_continuation_token *releaseContinuation = nullptr;
             std::shared_ptr<OnMessageFlushCallbackContainer> closeCallbackContainer = nullptr;
             std::shared_ptr<OnMessageFlushCallbackContainer> activationCallbackContainer = nullptr;
-            std::function<void(TaggedResult &&)> activationResponseCallback;
+            std::function<void(EventstreamResultVariantType &&)> activationResponseCallback;
 
             {
                 std::lock_guard<std::mutex> lock(m_sharedStateLock);
 
                 m_sharedState.m_currentState = ContinuationStateType::Closed;
-                m_sharedState.m_desiredState = ContinuationStateType::Closed;
                 releaseContinuation = m_sharedState.m_continuation;
                 m_sharedState.m_continuation = nullptr;
 
@@ -2103,7 +2002,7 @@ namespace Aws
             if (activationResponseCallback)
             {
                 activationResponseCallback(
-                    TaggedResult(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
+                    EventstreamResultVariantType(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
             }
 
             OnMessageFlushCallbackContainer::Complete(
@@ -2264,7 +2163,7 @@ namespace Aws
             MessageResult result;
             bool isResponse = false;
             bool shouldClose = false;
-            std::function<void(TaggedResult &&)> activationResultCallback = nullptr;
+            std::function<void(EventstreamResultVariantType &&)> activationResultCallback = nullptr;
 
             {
                 std::lock_guard<std::mutex> lock(m_sharedStateLock);
@@ -2280,7 +2179,18 @@ namespace Aws
                     if (result.m_statusCode == EVENT_STREAM_RPC_SUCCESS &&
                         result.m_message.value().m_route == EventStreamMessageRoutingType::Response)
                     {
-                        m_sharedState.m_currentState = ContinuationStateType::Activated;
+                        if ((messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM) == 0)
+                        {
+                            m_sharedState.m_currentState = ContinuationStateType::Activated;
+                        }
+                        else
+                        {
+                            /*
+                             * The underlying implementation is going to close underneath us.  No need to send
+                             * an empty terminate stream message, which older server versions can fail on.
+                             */
+                            m_sharedState.m_currentState = ContinuationStateType::PendingClose;
+                        }
                     }
                     else
                     {
@@ -2296,7 +2206,8 @@ namespace Aws
                     const auto &message = result.m_message.value();
                     if (message.m_route == EventStreamMessageRoutingType::Response)
                     {
-                        activationResultCallback(TaggedResult(std::move(result.m_message.value().m_shape)));
+                        activationResultCallback(
+                            EventstreamResultVariantType(std::move(result.m_message.value().m_shape)));
                     }
                     else
                     {
@@ -2306,12 +2217,12 @@ namespace Aws
                             static_cast<OperationError *>(result.m_message.value().m_shape.release()),
                             [allocator](OperationError *shape) { Crt::Delete(shape, allocator); });
 
-                        activationResultCallback(TaggedResult(std::move(errorResponse)));
+                        activationResultCallback(EventstreamResultVariantType(std::move(errorResponse)));
                     }
                 }
                 else
                 {
-                    activationResultCallback(TaggedResult(RpcError{result.m_statusCode, 0}));
+                    activationResultCallback(EventstreamResultVariantType(RpcError{result.m_statusCode, 0}));
                 }
             }
 
@@ -2439,7 +2350,7 @@ namespace Aws
         std::future<RpcError> ClientOperation::Activate(
             const AbstractShapeBase *shape,
             OnMessageFlushCallback &&onMessageFlushCallback,
-            std::function<void(TaggedResult &&)> &&onResultCallback) noexcept
+            std::function<void(EventstreamResultVariantType &&)> &&onResultCallback) noexcept
         {
             Crt::List<EventStreamHeader> headers;
             headers.emplace_back(
@@ -2477,6 +2388,22 @@ namespace Aws
                 AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
                 0,
                 std::move(onMessageFlushCallback));
+        }
+
+        ResultType ResultVariantToResultType(const EventstreamResultVariantType &resultVariant)
+        {
+            if (resultVariant.holds_alternative<Crt::ScopedResource<AbstractShapeBase>>())
+            {
+                return OPERATION_RESPONSE;
+            }
+            else if (resultVariant.holds_alternative<Crt::ScopedResource<OperationError>>())
+            {
+                return OPERATION_ERROR;
+            }
+            else
+            {
+                return RPC_ERROR;
+            }
         }
     } /* namespace Eventstreamrpc */
 } // namespace Aws
