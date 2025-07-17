@@ -25,7 +25,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API Product : public AbstractShapeBase
     {
       public:
-        Product() noexcept = default;
+        Product() noexcept {};
         Product(const Product &) = default;
         /**
          * The product's name
@@ -67,7 +67,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API Pair : public AbstractShapeBase
     {
       public:
-        Pair() noexcept = default;
+        Pair() noexcept {};
         Pair(const Pair &) = default;
         /**
          * Pair.key as a string
@@ -117,7 +117,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API Customer : public AbstractShapeBase
     {
       public:
-        Customer() noexcept = default;
+        Customer() noexcept {};
         Customer(const Customer &) = default;
         /**
          * Opaque customer identifier
@@ -168,7 +168,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API MessageData : public AbstractShapeBase
     {
       public:
-        MessageData() noexcept = default;
+        MessageData() noexcept {};
         MessageData(const MessageData &) = default;
         /**
          * Some string data
@@ -291,7 +291,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamingMessage : public AbstractShapeBase
     {
       public:
-        EchoStreamingMessage() noexcept = default;
+        EchoStreamingMessage() noexcept {};
         EchoStreamingMessage &operator=(const EchoStreamingMessage &) noexcept;
         EchoStreamingMessage(const EchoStreamingMessage &objectToCopy) { *this = objectToCopy; }
         /**
@@ -367,7 +367,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API ServiceError : public OperationError
     {
       public:
-        ServiceError() noexcept = default;
+        ServiceError() noexcept {};
         ServiceError(const ServiceError &) = default;
         /**
          * An error message
@@ -409,7 +409,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllProductsResponse : public AbstractShapeBase
     {
       public:
-        GetAllProductsResponse() noexcept = default;
+        GetAllProductsResponse() noexcept {};
         GetAllProductsResponse(const GetAllProductsResponse &) = default;
         /**
          * A map from strings to products
@@ -442,7 +442,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllProductsRequest : public AbstractShapeBase
     {
       public:
-        GetAllProductsRequest() noexcept = default;
+        GetAllProductsRequest() noexcept {};
         GetAllProductsRequest(const GetAllProductsRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllProductsRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -466,7 +466,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllCustomersResponse : public AbstractShapeBase
     {
       public:
-        GetAllCustomersResponse() noexcept = default;
+        GetAllCustomersResponse() noexcept {};
         GetAllCustomersResponse(const GetAllCustomersResponse &) = default;
         /**
          * A list of all known customers
@@ -499,7 +499,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllCustomersRequest : public AbstractShapeBase
     {
       public:
-        GetAllCustomersRequest() noexcept = default;
+        GetAllCustomersRequest() noexcept {};
         GetAllCustomersRequest(const GetAllCustomersRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(GetAllCustomersRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -523,7 +523,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamingResponse : public AbstractShapeBase
     {
       public:
-        EchoStreamingResponse() noexcept = default;
+        EchoStreamingResponse() noexcept {};
         EchoStreamingResponse(const EchoStreamingResponse &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoStreamingResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -547,7 +547,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamingRequest : public AbstractShapeBase
     {
       public:
-        EchoStreamingRequest() noexcept = default;
+        EchoStreamingRequest() noexcept {};
         EchoStreamingRequest(const EchoStreamingRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(EchoStreamingRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -571,7 +571,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoMessageResponse : public AbstractShapeBase
     {
       public:
-        EchoMessageResponse() noexcept = default;
+        EchoMessageResponse() noexcept {};
         EchoMessageResponse(const EchoMessageResponse &) = default;
         /**
          * Some message data
@@ -604,7 +604,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoMessageRequest : public AbstractShapeBase
     {
       public:
-        EchoMessageRequest() noexcept = default;
+        EchoMessageRequest() noexcept {};
         EchoMessageRequest(const EchoMessageRequest &) = default;
         /**
          * Some message data
@@ -637,7 +637,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseServiceErrorResponse : public AbstractShapeBase
     {
       public:
-        CauseServiceErrorResponse() noexcept = default;
+        CauseServiceErrorResponse() noexcept {};
         CauseServiceErrorResponse(const CauseServiceErrorResponse &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(CauseServiceErrorResponse &, const Aws::Crt::JsonView &) noexcept;
@@ -661,7 +661,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseServiceErrorRequest : public AbstractShapeBase
     {
       public:
-        CauseServiceErrorRequest() noexcept = default;
+        CauseServiceErrorRequest() noexcept {};
         CauseServiceErrorRequest(const CauseServiceErrorRequest &) = default;
         void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
         static void s_loadFromJsonView(CauseServiceErrorRequest &, const Aws::Crt::JsonView &) noexcept;
@@ -682,7 +682,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllProductsResult
     {
       public:
-        GetAllProductsResult() noexcept = default;
+        GetAllProductsResult() noexcept {};
         GetAllProductsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllProductsResponse *GetOperationResponse() const noexcept
         {
@@ -736,7 +736,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseServiceErrorResult
     {
       public:
-        CauseServiceErrorResult() noexcept = default;
+        CauseServiceErrorResult() noexcept {};
         CauseServiceErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         CauseServiceErrorResponse *GetOperationResponse() const noexcept
         {
@@ -839,7 +839,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API CauseStreamServiceToErrorResult
     {
       public:
-        CauseStreamServiceToErrorResult() noexcept = default;
+        CauseStreamServiceToErrorResult() noexcept {};
         CauseStreamServiceToErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
@@ -945,7 +945,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoStreamMessagesResult
     {
       public:
-        EchoStreamMessagesResult() noexcept = default;
+        EchoStreamMessagesResult() noexcept {};
         EchoStreamMessagesResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
@@ -1012,7 +1012,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API EchoMessageResult
     {
       public:
-        EchoMessageResult() noexcept = default;
+        EchoMessageResult() noexcept {};
         EchoMessageResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoMessageResponse *GetOperationResponse() const noexcept
         {
@@ -1066,7 +1066,7 @@ namespace Awstest
     class AWS_ECHOTESTRPC_API GetAllCustomersResult
     {
       public:
-        GetAllCustomersResult() noexcept = default;
+        GetAllCustomersResult() noexcept {};
         GetAllCustomersResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllCustomersResponse *GetOperationResponse() const noexcept
         {
