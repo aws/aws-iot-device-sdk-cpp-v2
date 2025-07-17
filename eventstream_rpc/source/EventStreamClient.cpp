@@ -2211,12 +2211,8 @@ namespace Aws
                     }
                     else
                     {
-                        // Horribly awkward cast due to the infuriating original API design
-                        Crt::Allocator *allocator = m_allocator;
-                        auto errorResponse = Crt::ScopedResource<OperationError>(
-                            static_cast<OperationError *>(result.m_message.value().m_shape.release()),
-                            [allocator](OperationError *shape) { Crt::Delete(shape, allocator); });
-
+                        auto errorResponse = Crt::SafeSubCast<AbstractShapeBase, OperationError>(
+                            std::move(result.m_message.value().m_shape));
                         activationResultCallback(EventstreamResultVariantType(std::move(errorResponse)));
                     }
                 }
@@ -2248,11 +2244,8 @@ namespace Aws
 
                             case EventStreamMessageRoutingType::Error:
                             {
-                                Crt::Allocator *allocator = m_allocator;
-                                auto errorResponse = Crt::ScopedResource<OperationError>(
-                                    static_cast<OperationError *>(shape.release()),
-                                    [allocator](OperationError *shape) { Crt::Delete(shape, allocator); });
-
+                                auto errorResponse =
+                                    Crt::SafeSubCast<AbstractShapeBase, OperationError>(std::move(shape));
                                 shouldClose = streamHandler->OnStreamError(
                                     std::move(errorResponse), {EVENT_STREAM_RPC_SUCCESS, 0});
                                 break;
