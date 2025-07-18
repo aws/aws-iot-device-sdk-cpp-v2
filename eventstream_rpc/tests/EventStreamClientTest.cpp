@@ -905,8 +905,8 @@ static int s_TestEchoClientOperationCauseServiceErrorSuccess(struct aws_allocato
             ASSERT_FALSE(result);
             ASSERT_NOT_NULL(result.GetOperationError());
             auto error = result.GetOperationError();
-            const auto &errorMessage = error->GetMessage().value();
-            ASSERT_TRUE(errorMessage == "Intentionally thrown ServiceError");
+            auto errorMessage = error->GetMessage();
+            ASSERT_TRUE(errorMessage.value() == "Intentionally thrown ServiceError");
             const auto &modelName = error->GetModelName();
             ASSERT_TRUE(modelName == "awstest#ServiceError");
 
@@ -1737,17 +1737,22 @@ class CauseServiceErrorTestHandler : public CauseStreamServiceToErrorStreamHandl
         {
             const auto &error = m_serviceErrors[i];
 
-            ASSERT_TRUE(error->GetMessage().has_value() == expectedError.GetMessage().has_value());
-            ASSERT_TRUE(error->GetValue().has_value() == expectedError.GetValue().has_value());
+            auto errorMessage = error->GetMessage();
+            auto expectedErrorMessage = expectedError.GetMessage();
+            auto errorValue = error->GetValue();
+            auto expectedErrorValue = expectedError.GetValue();
 
-            if (expectedError.GetMessage().has_value())
+            ASSERT_TRUE(errorMessage.has_value() == expectedErrorMessage.has_value());
+            ASSERT_TRUE(errorValue.has_value() == expectedErrorValue.has_value());
+
+            if (expectedErrorMessage.has_value())
             {
-                ASSERT_TRUE(expectedError.GetMessage().value() == error->GetMessage().value());
+                ASSERT_TRUE(expectedErrorMessage.value() == errorMessage.value());
             }
 
-            if (expectedError.GetValue().has_value())
+            if (expectedErrorValue.has_value())
             {
-                ASSERT_TRUE(expectedError.GetValue().value() == error->GetValue().value());
+                ASSERT_TRUE(expectedErrorValue.value() == errorValue.value());
             }
         }
 
