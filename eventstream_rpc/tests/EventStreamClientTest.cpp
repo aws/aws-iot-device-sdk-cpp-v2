@@ -1241,18 +1241,24 @@ static int s_TestEchoClientOperationActivateCloseConnection(struct aws_allocator
             client.Close();
 
             requestFuture.wait();
-            auto flushErrorStatus = requestFuture.get().baseStatus;
+            auto flushResult = requestFuture.get();
+            auto flushErrorStatus = flushResult.baseStatus;
             ASSERT_TRUE(
-                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS || flushErrorStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                flushErrorStatus == EVENT_STREAM_RPC_SUCCESS ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED ||
+                flushErrorStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED ||
+                (flushErrorStatus == EVENT_STREAM_RPC_CRT_ERROR &&
+                 flushResult.crtError == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED));
 
             auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
             requestFuture2.wait();
 
-            auto flush2ErrorStatus = requestFuture2.get().baseStatus;
+            auto flush2Result = requestFuture2.get();
+            auto flush2ErrorStatus = flush2Result.baseStatus;
             ASSERT_TRUE(
                 flush2ErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED ||
                 flush2ErrorStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED ||
-                flush2ErrorStatus == EVENT_STREAM_RPC_CRT_ERROR);
+                (flush2ErrorStatus == EVENT_STREAM_RPC_CRT_ERROR && flush2Result.crtError == AWS_ERROR_INVALID_STATE));
 
             return AWS_OP_SUCCESS;
         });
@@ -1920,10 +1926,14 @@ static int s_TestEchoClientStreamingOperationSendCloseConnection(struct aws_allo
 
             client.Close();
 
-            auto streamResultStatus = streamFuture.get().baseStatus;
+            auto streamResult = streamFuture.get();
+            auto streamResultStatus = streamResult.baseStatus;
             ASSERT_TRUE(
                 streamResultStatus == EVENT_STREAM_RPC_SUCCESS ||
-                streamResultStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                streamResultStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED ||
+                streamResultStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED ||
+                (streamResultStatus == EVENT_STREAM_RPC_CRT_ERROR &&
+                 streamResult.crtError == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED));
 
             return AWS_OP_SUCCESS;
         });
