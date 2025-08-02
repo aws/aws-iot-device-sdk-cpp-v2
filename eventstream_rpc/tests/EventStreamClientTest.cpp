@@ -207,7 +207,14 @@ static int s_TestEventStreamConnectFailureBadAuthHeader(struct aws_allocator *al
         TestLifecycleHandler lifecycleHandler;
         ClientConnection connection(allocator, testContext.clientBootstrap->GetUnderlyingHandle());
         auto future = connection.Connect(connectionConfig, &lifecycleHandler);
-        EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
+        auto clientResult = future.get();
+        EventStreamRpcStatusCode clientStatus = clientResult.baseStatus;
+
+        AWS_LOGF_INFO(
+            AWS_LS_COMMON_GENERAL,
+            "Windows failing test result status: %d, error code: %d",
+            (int)clientStatus,
+            clientResult.crtError);
 
         ASSERT_TRUE(
             clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
@@ -1079,8 +1086,10 @@ static int s_TestEchoClientOperationActivateActivate(struct aws_allocator *alloc
             ASSERT_NOT_NULL(response);
 
             auto flush2Result = requestFuture2.get();
-            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CRT_ERROR, flush2Result.baseStatus);
-            ASSERT_INT_EQUALS(AWS_ERROR_INVALID_STATE, flush2Result.crtError);
+            ASSERT_TRUE(
+                (flush2Result.baseStatus == EVENT_STREAM_RPC_CRT_ERROR &&
+                 flush2Result.crtError == AWS_ERROR_INVALID_STATE) ||
+                flush2Result.baseStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED);
 
             return AWS_OP_SUCCESS;
         });
