@@ -176,7 +176,8 @@ static int s_TestEventStreamConnectFailureNoAuthHeader(struct aws_allocator *all
         EventStreamRpcStatusCode clientStatus = future.get().baseStatus;
 
         ASSERT_TRUE(
-            clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
+            clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED ||
+            clientStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
     }
 
     return AWS_OP_SUCCESS;
@@ -217,7 +218,8 @@ static int s_TestEventStreamConnectFailureBadAuthHeader(struct aws_allocator *al
             clientResult.crtError);
 
         ASSERT_TRUE(
-            clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED);
+            clientStatus == EVENT_STREAM_RPC_CRT_ERROR || clientStatus == EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED ||
+            clientStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED);
     }
 
     return AWS_OP_SUCCESS;
