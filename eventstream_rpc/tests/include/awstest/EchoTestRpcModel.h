@@ -687,7 +687,7 @@ namespace Awstest
         GetAllProductsResponse *GetOperationResponse() const noexcept
         {
             return static_cast<GetAllProductsResponse *>(
-                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
+                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
         }
 
         /**
@@ -697,9 +697,9 @@ namespace Awstest
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
         OperationError *GetOperationError() const noexcept
         {
-            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
         }
-        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
         ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
@@ -741,7 +741,7 @@ namespace Awstest
         CauseServiceErrorResponse *GetOperationResponse() const noexcept
         {
             return static_cast<CauseServiceErrorResponse *>(
-                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
+                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
         }
 
         /**
@@ -751,9 +751,9 @@ namespace Awstest
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
         OperationError *GetOperationError() const noexcept
         {
-            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
         }
-        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
         ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
@@ -844,7 +844,7 @@ namespace Awstest
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
             return static_cast<EchoStreamingResponse *>(
-                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
+                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
         }
 
         /**
@@ -854,9 +854,9 @@ namespace Awstest
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
         OperationError *GetOperationError() const noexcept
         {
-            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
         }
-        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
         ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
@@ -950,7 +950,7 @@ namespace Awstest
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
             return static_cast<EchoStreamingResponse *>(
-                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
+                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
         }
 
         /**
@@ -960,9 +960,9 @@ namespace Awstest
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
         OperationError *GetOperationError() const noexcept
         {
-            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
         }
-        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
         ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
@@ -1017,7 +1017,7 @@ namespace Awstest
         EchoMessageResponse *GetOperationResponse() const noexcept
         {
             return static_cast<EchoMessageResponse *>(
-                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
+                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
         }
 
         /**
@@ -1027,9 +1027,9 @@ namespace Awstest
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
         OperationError *GetOperationError() const noexcept
         {
-            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
         }
-        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
         ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
@@ -1071,7 +1071,7 @@ namespace Awstest
         GetAllCustomersResponse *GetOperationResponse() const noexcept
         {
             return static_cast<GetAllCustomersResponse *>(
-                m_result.get<Aws::Crt::ScopedResource<AbstractShapeBase>>().get());
+                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
         }
 
         /**
@@ -1081,9 +1081,9 @@ namespace Awstest
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
         OperationError *GetOperationError() const noexcept
         {
-            return m_result.get<Aws::Crt::ScopedResource<OperationError>>().get();
+            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
         }
-        RpcError GetRpcError() const noexcept { return m_result.get<RpcError>(); }
+        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
         ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
       private:
