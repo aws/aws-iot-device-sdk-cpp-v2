@@ -38,7 +38,7 @@ namespace Aws
         class FailVariantTestResult
         {
         public:
-            FailVariantTestResult() noexcept = default;
+            FailVariantTestResult() noexcept {}
             explicit FailVariantTestResult(FailResultVariantType &&result) noexcept : m_result(std::move(result)) {}
 
             FailVariantTestResult(FailVariantTestResult &&) noexcept = default;
