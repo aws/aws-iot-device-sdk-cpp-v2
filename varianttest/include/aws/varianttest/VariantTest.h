@@ -35,11 +35,17 @@ namespace Aws
         /* Failure case - variant with move-only type and copyable type */
         using FailResultVariantType = Aws::Crt::Variant<Crt::ScopedResource<Crt::String>, TestError>;
 
-        class AWS_VARIANTTEST_API FailVariantTestResult
+        class FailVariantTestResult
         {
         public:
-            FailVariantTestResult() noexcept {};
-            FailVariantTestResult(FailResultVariantType &&result) noexcept : m_result(std::move(result)) {}
+            FailVariantTestResult() noexcept = default;
+            explicit FailVariantTestResult(FailResultVariantType &&result) noexcept : m_result(std::move(result)) {}
+
+            FailVariantTestResult(FailVariantTestResult &&) noexcept = default;
+            FailVariantTestResult &operator=(FailVariantTestResult &&)  noexcept = default;
+
+            FailVariantTestResult(const FailVariantTestResult &) = delete;
+            FailVariantTestResult &operator=(const FailVariantTestResult &) = delete;
 
             Crt::String *GetFirst() const noexcept
             {
