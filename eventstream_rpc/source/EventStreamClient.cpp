@@ -2383,20 +2383,66 @@ namespace Aws
                 std::move(onMessageFlushCallback));
         }
 
-        ResultType ResultVariantToResultType(const EventstreamResultVariantType &resultVariant)
+        EventstreamResultVariantType::EventstreamResultVariantType()
+            : m_type(ResultType::NONE), m_modeledResult(nullptr), m_modeledError(nullptr),
+              m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
         {
-            if (resultVariant.holds_alternative<Crt::ScopedResource<AbstractShapeBase>>())
-            {
-                return OPERATION_RESPONSE;
-            }
-            else if (resultVariant.holds_alternative<Crt::ScopedResource<OperationError>>())
-            {
-                return OPERATION_ERROR;
-            }
-            else
-            {
-                return RPC_ERROR;
-            }
         }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(
+            Crt::ScopedResource<AbstractShapeBase> &&modeledResult) noexcept
+            : m_type(ResultType::OPERATION_RESPONSE), m_modeledResult(std::move(modeledResult)),
+              m_modeledError(nullptr),
+              m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(
+            Crt::ScopedResource<OperationError> &&modeledError) noexcept
+            : m_type(ResultType::OPERATION_ERROR), m_modeledResult(nullptr), m_modeledError(std::move(modeledError)),
+              m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(RpcError rpcError) noexcept
+            : m_type(ResultType::RPC_ERROR), m_modeledResult(nullptr), m_modeledError(nullptr), m_rpcError(rpcError)
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(EventstreamResultVariantType &&rhs) noexcept
+            : m_type(rhs.m_type), m_modeledResult(std::move(rhs.m_modeledResult)),
+              m_modeledError(std::move(rhs.m_modeledError)), m_rpcError(rhs.m_rpcError)
+        {
+        }
+
+        EventstreamResultVariantType &EventstreamResultVariantType::operator=(
+            EventstreamResultVariantType &&rhs) noexcept
+        {
+            if (this != &rhs)
+            {
+                m_type = rhs.m_type;
+                m_modeledResult = std::move(rhs.m_modeledResult);
+                m_modeledError = std::move(rhs.m_modeledError);
+                m_rpcError = rhs.m_rpcError;
+            }
+
+            return *this;
+        }
+
+        AbstractShapeBase *EventstreamResultVariantType::GetModeledResult() const
+        {
+            return m_modeledResult.get();
+        }
+
+        OperationError *EventstreamResultVariantType::GetModeledError() const
+        {
+            return m_modeledError.get();
+        }
+
+        RpcError EventstreamResultVariantType::GetRpcError() const
+        {
+            return m_rpcError;
+        }
+
     } /* namespace Eventstreamrpc */
 } // namespace Aws

@@ -686,8 +686,7 @@ namespace Awstest
         GetAllProductsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllProductsResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<GetAllProductsResponse *>(
-                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            return static_cast<GetAllProductsResponse *>(m_result.GetModeledResult());
         }
 
         /**
@@ -695,12 +694,9 @@ namespace Awstest
          * false if the response is associated with an error.
          */
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-        OperationError *GetOperationError() const noexcept
-        {
-            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
-        }
-        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
-        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+        OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+        RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+        ResultType GetResultType() const noexcept { return m_result.GetType(); }
 
       private:
         EventstreamResultVariantType m_result;
@@ -740,8 +736,7 @@ namespace Awstest
         CauseServiceErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         CauseServiceErrorResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<CauseServiceErrorResponse *>(
-                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            return static_cast<CauseServiceErrorResponse *>(m_result.GetModeledResult());
         }
 
         /**
@@ -749,12 +744,9 @@ namespace Awstest
          * false if the response is associated with an error.
          */
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-        OperationError *GetOperationError() const noexcept
-        {
-            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
-        }
-        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
-        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+        OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+        RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+        ResultType GetResultType() const noexcept { return m_result.GetType(); }
 
       private:
         EventstreamResultVariantType m_result;
@@ -843,8 +835,7 @@ namespace Awstest
         CauseStreamServiceToErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoStreamingResponse *>(
-                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            return static_cast<EchoStreamingResponse *>(m_result.GetModeledResult());
         }
 
         /**
@@ -852,12 +843,9 @@ namespace Awstest
          * false if the response is associated with an error.
          */
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-        OperationError *GetOperationError() const noexcept
-        {
-            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
-        }
-        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
-        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+        OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+        RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+        ResultType GetResultType() const noexcept { return m_result.GetType(); }
 
       private:
         EventstreamResultVariantType m_result;
@@ -949,8 +937,7 @@ namespace Awstest
         EchoStreamMessagesResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoStreamingResponse *>(
-                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            return static_cast<EchoStreamingResponse *>(m_result.GetModeledResult());
         }
 
         /**
@@ -958,12 +945,9 @@ namespace Awstest
          * false if the response is associated with an error.
          */
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-        OperationError *GetOperationError() const noexcept
-        {
-            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
-        }
-        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
-        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+        OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+        RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+        ResultType GetResultType() const noexcept { return m_result.GetType(); }
 
       private:
         EventstreamResultVariantType m_result;
@@ -1016,8 +1000,7 @@ namespace Awstest
         EchoMessageResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoMessageResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoMessageResponse *>(
-                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            return static_cast<EchoMessageResponse *>(m_result.GetModeledResult());
         }
 
         /**
@@ -1025,12 +1008,9 @@ namespace Awstest
          * false if the response is associated with an error.
          */
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-        OperationError *GetOperationError() const noexcept
-        {
-            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
-        }
-        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
-        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+        OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+        RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+        ResultType GetResultType() const noexcept { return m_result.GetType(); }
 
       private:
         EventstreamResultVariantType m_result;
@@ -1070,8 +1050,7 @@ namespace Awstest
         GetAllCustomersResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllCustomersResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<GetAllCustomersResponse *>(
-                std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            return static_cast<GetAllCustomersResponse *>(m_result.GetModeledResult());
         }
 
         /**
@@ -1079,12 +1058,9 @@ namespace Awstest
          * false if the response is associated with an error.
          */
         operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-        OperationError *GetOperationError() const noexcept
-        {
-            return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
-        }
-        RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
-        ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+        OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+        RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+        ResultType GetResultType() const noexcept { return m_result.GetType(); }
 
       private:
         EventstreamResultVariantType m_result;

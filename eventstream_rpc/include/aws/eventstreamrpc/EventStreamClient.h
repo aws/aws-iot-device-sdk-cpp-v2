@@ -12,7 +12,6 @@
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/Types.h>
-#include <aws/crt/Variant.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/crt/io/TlsOptions.h>
 
@@ -369,15 +368,39 @@ namespace Aws
 
         enum ResultType
         {
+            NONE,
             OPERATION_RESPONSE,
             OPERATION_ERROR,
             RPC_ERROR
         };
 
-        using EventstreamResultVariantType =
-            Crt::Variant<Crt::ScopedResource<AbstractShapeBase>, Crt::ScopedResource<OperationError>, RpcError>;
+        class AWS_EVENTSTREAMRPC_API EventstreamResultVariantType
+        {
+          public:
+            EventstreamResultVariantType();
+            explicit EventstreamResultVariantType(Crt::ScopedResource<AbstractShapeBase> &&modeledResult) noexcept;
+            explicit EventstreamResultVariantType(Crt::ScopedResource<OperationError> &&modeledError) noexcept;
+            explicit EventstreamResultVariantType(RpcError rpcError) noexcept;
+            EventstreamResultVariantType(EventstreamResultVariantType &&rhs) noexcept;
+            ~EventstreamResultVariantType() = default;
 
-        AWS_EVENTSTREAMRPC_API ResultType ResultVariantToResultType(const EventstreamResultVariantType &resultVariant);
+            EventstreamResultVariantType &operator=(EventstreamResultVariantType &&rhs) noexcept;
+
+            ResultType GetType() const { return m_type; }
+
+            AbstractShapeBase *GetModeledResult() const;
+
+            OperationError *GetModeledError() const;
+
+            RpcError GetRpcError() const;
+
+          private:
+            ResultType m_type;
+
+            Crt::ScopedResource<AbstractShapeBase> m_modeledResult;
+            Crt::ScopedResource<OperationError> m_modeledError;
+            RpcError m_rpcError;
+        };
 
         using ExpectedResponseFactory = std::function<
             Crt::ScopedResource<AbstractShapeBase>(const Crt::StringView &payload, Crt::Allocator *allocator)>;
