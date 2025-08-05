@@ -1024,7 +1024,15 @@ namespace Aws
             {
                 MessageAmendment connectAmendment(m_connectionConfig.GetConnectAmendment().value());
                 amendmentStorage.PrependHeaders(std::move(connectAmendment).GetHeaders());
-                amendmentStorage.SetPayload(std::move(connectAmendment).GetPayload());
+
+                // optional of a C structure is a terrible idea because it doesn't have a move which means
+                // a correct-looking move out of the optional does not actually erase the C struct, leading to a
+                // double free.  For now, work around by copying the buffer and then erasing the source optional
+                // by hand.
+                amendmentStorage.SetPayload(connectAmendment.GetPayload());
+
+                Crt::Optional<Crt::ByteBuf> noBuffer;
+                connectAmendment.SetPayload(noBuffer);
             }
 
             s_fillNativeHeadersArray(amendmentStorage.GetHeaders(), headersArray, m_allocator);
