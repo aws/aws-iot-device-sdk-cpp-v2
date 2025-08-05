@@ -38,11 +38,11 @@ namespace Aws
         class AWS_VARIANTTEST_API FailVariantTestResult
         {
         public:
-            FailVariantTestResult() noexcept {}
-            explicit FailVariantTestResult(FailResultVariantType &&result) noexcept : m_result(std::move(result)) {}
+            FailVariantTestResult() = default;
+            FailVariantTestResult(FailResultVariantType &&result) : m_result(std::move(result)) {}
 
-            FailVariantTestResult(FailVariantTestResult &&) noexcept = default;
-            FailVariantTestResult &operator=(FailVariantTestResult &&)  noexcept = default;
+            FailVariantTestResult(FailVariantTestResult &&) = default;
+            FailVariantTestResult &operator=(FailVariantTestResult &&) = default;
 
             FailVariantTestResult(const FailVariantTestResult &) = delete;
             FailVariantTestResult &operator=(const FailVariantTestResult &) = delete;
