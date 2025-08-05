@@ -83,6 +83,8 @@ include(AwsSanitizers)
 
 aws_use_package(aws-crt-cpp)
 
+add_subdirectory(varianttest)
+
 add_subdirectory(jobs)
 add_subdirectory(shadow)
 add_subdirectory(discovery)
