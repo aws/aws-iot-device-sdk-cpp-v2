@@ -103,35 +103,35 @@ namespace Aws
         /* Both move-only case */
         using MoveResultVariantType = Aws::Crt::Variant<Crt::ScopedResource<Crt::String>, Crt::ScopedResource<int>>;
 
-        class AWS_VARIANTTEST_API MoveVariantTestResult
-        {
-          public:
-            MoveVariantTestResult() noexcept {};
-            MoveVariantTestResult(MoveResultVariantType &&result) noexcept : m_result(std::move(result)) {}
-
-            Crt::String *GetFirst() const noexcept
-            {
-                if (m_result.holds_alternative<Crt::ScopedResource<Crt::String>>())
-                {
-                    return m_result.get<Crt::ScopedResource<Crt::String>>().get();
-                }
-
-                return nullptr;
-            }
-
-            int *GetSecond() const noexcept
-            {
-                if (m_result.holds_alternative<Crt::ScopedResource<int>>())
-                {
-                    return m_result.get<Crt::ScopedResource<int>>().get();
-                }
-
-                return nullptr;
-            }
-
-          private:
-            MoveResultVariantType m_result;
-        };
+//        class AWS_VARIANTTEST_API MoveVariantTestResult
+//        {
+//          public:
+//            MoveVariantTestResult() noexcept {}
+//            MoveVariantTestResult(MoveResultVariantType &&result) noexcept : m_result(std::move(result)) {}
+//
+//            Crt::String *GetFirst() const noexcept
+//            {
+//                if (m_result.holds_alternative<Crt::ScopedResource<Crt::String>>())
+//                {
+//                    return m_result.get<Crt::ScopedResource<Crt::String>>().get();
+//                }
+//
+//                return nullptr;
+//            }
+//
+//            int *GetSecond() const noexcept
+//            {
+//                if (m_result.holds_alternative<Crt::ScopedResource<int>>())
+//                {
+//                    return m_result.get<Crt::ScopedResource<int>>().get();
+//                }
+//
+//                return nullptr;
+//            }
+//
+//          private:
+//            MoveResultVariantType m_result;
+//        };
 
 
     } // namespace Varianttest
