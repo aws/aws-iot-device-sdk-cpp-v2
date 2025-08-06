@@ -517,6 +517,32 @@ static bool s_messageDataMembersAreEqual(
     return true;
 }
 
+static bool s_messageDataMembersAreEqual(
+    const Aws::Crt::Optional<DateTime> &lhs,
+    const Aws::Crt::Optional<DateTime> &rhs)
+{
+    if (lhs.has_value() != rhs.has_value())
+    {
+        AWS_LOGF_FATAL(AWS_LS_COMMON_GENERAL, "Timestamp comparison optional has value mismatch");
+        return false;
+    }
+
+    if (lhs.has_value())
+    {
+        if (lhs.value() != rhs.value())
+        {
+            AWS_LOGF_FATAL(
+                AWS_LS_COMMON_GENERAL,
+                "Timestamp comparison value mismatch: %lu vs %lu",
+                lhs.value().Millis(),
+                rhs.value().Millis());
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // Specialization for Vector<Pair> since we don't codegen == for Shapes
 static bool s_messageDataMembersAreEqual(
     const Aws::Crt::Optional<Aws::Crt::Vector<Pair>> &lhs,
