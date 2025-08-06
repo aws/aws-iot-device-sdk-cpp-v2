@@ -686,7 +686,7 @@ namespace Awstest
         GetAllProductsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllProductsResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<GetAllProductsResponse *>(m_result.GetModeledResult());
+            return static_cast<GetAllProductsResponse *>(m_result.GetModeledResponse());
         }
 
         /**
@@ -736,7 +736,7 @@ namespace Awstest
         CauseServiceErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         CauseServiceErrorResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<CauseServiceErrorResponse *>(m_result.GetModeledResult());
+            return static_cast<CauseServiceErrorResponse *>(m_result.GetModeledResponse());
         }
 
         /**
@@ -835,7 +835,7 @@ namespace Awstest
         CauseStreamServiceToErrorResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoStreamingResponse *>(m_result.GetModeledResult());
+            return static_cast<EchoStreamingResponse *>(m_result.GetModeledResponse());
         }
 
         /**
@@ -937,7 +937,7 @@ namespace Awstest
         EchoStreamMessagesResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoStreamingResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoStreamingResponse *>(m_result.GetModeledResult());
+            return static_cast<EchoStreamingResponse *>(m_result.GetModeledResponse());
         }
 
         /**
@@ -1000,7 +1000,7 @@ namespace Awstest
         EchoMessageResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         EchoMessageResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<EchoMessageResponse *>(m_result.GetModeledResult());
+            return static_cast<EchoMessageResponse *>(m_result.GetModeledResponse());
         }
 
         /**
@@ -1050,7 +1050,7 @@ namespace Awstest
         GetAllCustomersResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
         GetAllCustomersResponse *GetOperationResponse() const noexcept
         {
-            return static_cast<GetAllCustomersResponse *>(m_result.GetModeledResult());
+            return static_cast<GetAllCustomersResponse *>(m_result.GetModeledResponse());
         }
 
         /**

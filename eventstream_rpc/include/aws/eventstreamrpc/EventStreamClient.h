@@ -61,7 +61,6 @@ namespace Aws
           public:
             EventStreamHeader(const EventStreamHeader &lhs) noexcept;
             EventStreamHeader(EventStreamHeader &&rhs) noexcept;
-            EventStreamHeader &operator=(const EventStreamHeader &lhs) noexcept;
             explicit EventStreamHeader(
                 const struct aws_event_stream_header_value_pair &header,
                 Crt::Allocator *allocator = Crt::g_allocator);
@@ -71,6 +70,8 @@ namespace Aws
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
 
             ~EventStreamHeader() noexcept;
+
+            EventStreamHeader &operator=(const EventStreamHeader &lhs) noexcept;
 
             Crt::String GetHeaderName() const noexcept;
 
@@ -92,12 +93,9 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API MessageAmendment final
         {
           public:
+            explicit MessageAmendment(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             MessageAmendment(const MessageAmendment &lhs);
             MessageAmendment(MessageAmendment &&rhs) noexcept;
-            MessageAmendment &operator=(const MessageAmendment &lhs);
-            MessageAmendment &operator=(MessageAmendment &&rhs) noexcept;
-            ~MessageAmendment() noexcept;
-            explicit MessageAmendment(Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             MessageAmendment(
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
@@ -111,6 +109,11 @@ namespace Aws
             explicit MessageAmendment(
                 const Crt::ByteBuf &payload,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+
+            ~MessageAmendment() noexcept;
+
+            MessageAmendment &operator=(const MessageAmendment &lhs);
+            MessageAmendment &operator=(MessageAmendment &&rhs) noexcept;
 
             /**
              * Add a given header to the end of the header list.
@@ -378,7 +381,7 @@ namespace Aws
         {
           public:
             EventstreamResultVariantType();
-            explicit EventstreamResultVariantType(Crt::ScopedResource<AbstractShapeBase> &&modeledResult) noexcept;
+            explicit EventstreamResultVariantType(Crt::ScopedResource<AbstractShapeBase> &&modeledResponse) noexcept;
             explicit EventstreamResultVariantType(Crt::ScopedResource<OperationError> &&modeledError) noexcept;
             explicit EventstreamResultVariantType(RpcError rpcError) noexcept;
             EventstreamResultVariantType(EventstreamResultVariantType &&rhs) noexcept;
@@ -388,7 +391,7 @@ namespace Aws
 
             ResultType GetType() const { return m_type; }
 
-            AbstractShapeBase *GetModeledResult() const;
+            AbstractShapeBase *GetModeledResponse() const;
 
             OperationError *GetModeledError() const;
 
@@ -397,7 +400,7 @@ namespace Aws
           private:
             ResultType m_type;
 
-            Crt::ScopedResource<AbstractShapeBase> m_modeledResult;
+            Crt::ScopedResource<AbstractShapeBase> m_modeledResponse;
             Crt::ScopedResource<OperationError> m_modeledError;
             RpcError m_rpcError;
         };

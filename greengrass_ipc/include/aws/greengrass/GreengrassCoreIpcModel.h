@@ -4485,7 +4485,7 @@ namespace Aws
             SubscribeToIoTCoreResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             SubscribeToIoTCoreResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToIoTCoreResponse *>(m_result.GetModeledResult());
+                return static_cast<SubscribeToIoTCoreResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4536,7 +4536,7 @@ namespace Aws
             ResumeComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ResumeComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ResumeComponentResponse *>(m_result.GetModeledResult());
+                return static_cast<ResumeComponentResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4586,7 +4586,7 @@ namespace Aws
             PublishToIoTCoreResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PublishToIoTCoreResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PublishToIoTCoreResponse *>(m_result.GetModeledResult());
+                return static_cast<PublishToIoTCoreResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4698,7 +4698,7 @@ namespace Aws
             }
             SubscribeToConfigurationUpdateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToConfigurationUpdateResponse *>(m_result.GetModeledResult());
+                return static_cast<SubscribeToConfigurationUpdateResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4749,7 +4749,7 @@ namespace Aws
             DeleteThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             DeleteThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<DeleteThingShadowResponse *>(m_result.GetModeledResult());
+                return static_cast<DeleteThingShadowResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4799,7 +4799,7 @@ namespace Aws
             PutComponentMetricResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PutComponentMetricResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PutComponentMetricResponse *>(m_result.GetModeledResult());
+                return static_cast<PutComponentMetricResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4849,7 +4849,7 @@ namespace Aws
             DeferComponentUpdateResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             DeferComponentUpdateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<DeferComponentUpdateResponse *>(m_result.GetModeledResult());
+                return static_cast<DeferComponentUpdateResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -4952,7 +4952,7 @@ namespace Aws
             }
             SubscribeToValidateConfigurationUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(m_result.GetModeledResult());
+                return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5003,7 +5003,7 @@ namespace Aws
             GetConfigurationResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetConfigurationResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetConfigurationResponse *>(m_result.GetModeledResult());
+                return static_cast<GetConfigurationResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5122,7 +5122,7 @@ namespace Aws
             SubscribeToTopicResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             SubscribeToTopicResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToTopicResponse *>(m_result.GetModeledResult());
+                return static_cast<SubscribeToTopicResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5173,7 +5173,7 @@ namespace Aws
             GetComponentDetailsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetComponentDetailsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetComponentDetailsResponse *>(m_result.GetModeledResult());
+                return static_cast<GetComponentDetailsResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5225,7 +5225,7 @@ namespace Aws
             }
             GetClientDeviceAuthTokenResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetClientDeviceAuthTokenResponse *>(m_result.GetModeledResult());
+                return static_cast<GetClientDeviceAuthTokenResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5275,7 +5275,7 @@ namespace Aws
             PublishToTopicResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PublishToTopicResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PublishToTopicResponse *>(m_result.GetModeledResult());
+                return static_cast<PublishToTopicResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5397,7 +5397,7 @@ namespace Aws
             }
             SubscribeToCertificateUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToCertificateUpdatesResponse *>(m_result.GetModeledResult());
+                return static_cast<SubscribeToCertificateUpdatesResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5451,7 +5451,7 @@ namespace Aws
             }
             VerifyClientDeviceIdentityResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<VerifyClientDeviceIdentityResponse *>(m_result.GetModeledResult());
+                return static_cast<VerifyClientDeviceIdentityResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5504,7 +5504,7 @@ namespace Aws
             }
             AuthorizeClientDeviceActionResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<AuthorizeClientDeviceActionResponse *>(m_result.GetModeledResult());
+                return static_cast<AuthorizeClientDeviceActionResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5554,7 +5554,7 @@ namespace Aws
             ListComponentsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ListComponentsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListComponentsResponse *>(m_result.GetModeledResult());
+                return static_cast<ListComponentsResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5604,7 +5604,7 @@ namespace Aws
             CreateDebugPasswordResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CreateDebugPasswordResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CreateDebugPasswordResponse *>(m_result.GetModeledResult());
+                return static_cast<CreateDebugPasswordResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5654,7 +5654,7 @@ namespace Aws
             GetThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetThingShadowResponse *>(m_result.GetModeledResult());
+                return static_cast<GetThingShadowResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5707,7 +5707,7 @@ namespace Aws
             }
             SendConfigurationValidityReportResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SendConfigurationValidityReportResponse *>(m_result.GetModeledResult());
+                return static_cast<SendConfigurationValidityReportResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5757,7 +5757,7 @@ namespace Aws
             UpdateThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateThingShadowResponse *>(m_result.GetModeledResult());
+                return static_cast<UpdateThingShadowResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5807,7 +5807,7 @@ namespace Aws
             UpdateConfigurationResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateConfigurationResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateConfigurationResponse *>(m_result.GetModeledResult());
+                return static_cast<UpdateConfigurationResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5860,7 +5860,7 @@ namespace Aws
             }
             ValidateAuthorizationTokenResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ValidateAuthorizationTokenResponse *>(m_result.GetModeledResult());
+                return static_cast<ValidateAuthorizationTokenResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5910,7 +5910,7 @@ namespace Aws
             RestartComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             RestartComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<RestartComponentResponse *>(m_result.GetModeledResult());
+                return static_cast<RestartComponentResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -5962,7 +5962,7 @@ namespace Aws
             }
             GetLocalDeploymentStatusResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetLocalDeploymentStatusResponse *>(m_result.GetModeledResult());
+                return static_cast<GetLocalDeploymentStatusResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6012,7 +6012,7 @@ namespace Aws
             GetSecretValueResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetSecretValueResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetSecretValueResponse *>(m_result.GetModeledResult());
+                return static_cast<GetSecretValueResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6062,7 +6062,7 @@ namespace Aws
             UpdateStateResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateStateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateStateResponse *>(m_result.GetModeledResult());
+                return static_cast<UpdateStateResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6112,7 +6112,7 @@ namespace Aws
             CancelLocalDeploymentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CancelLocalDeploymentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CancelLocalDeploymentResponse *>(m_result.GetModeledResult());
+                return static_cast<CancelLocalDeploymentResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6164,7 +6164,7 @@ namespace Aws
             }
             ListNamedShadowsForThingResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListNamedShadowsForThingResponse *>(m_result.GetModeledResult());
+                return static_cast<ListNamedShadowsForThingResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6276,7 +6276,7 @@ namespace Aws
             }
             SubscribeToComponentUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToComponentUpdatesResponse *>(m_result.GetModeledResult());
+                return static_cast<SubscribeToComponentUpdatesResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6327,7 +6327,7 @@ namespace Aws
             ListLocalDeploymentsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ListLocalDeploymentsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListLocalDeploymentsResponse *>(m_result.GetModeledResult());
+                return static_cast<ListLocalDeploymentsResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6377,7 +6377,7 @@ namespace Aws
             StopComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             StopComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<StopComponentResponse *>(m_result.GetModeledResult());
+                return static_cast<StopComponentResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6427,7 +6427,7 @@ namespace Aws
             PauseComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PauseComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PauseComponentResponse *>(m_result.GetModeledResult());
+                return static_cast<PauseComponentResponse *>(m_result.GetModeledResponse());
             }
 
             /**
@@ -6477,7 +6477,7 @@ namespace Aws
             CreateLocalDeploymentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CreateLocalDeploymentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CreateLocalDeploymentResponse *>(m_result.GetModeledResult());
+                return static_cast<CreateLocalDeploymentResponse *>(m_result.GetModeledResponse());
             }
 
             /**

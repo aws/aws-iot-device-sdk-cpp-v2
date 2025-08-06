@@ -1025,14 +1025,14 @@ namespace Aws
                 MessageAmendment connectAmendment(m_connectionConfig.GetConnectAmendment().value());
                 amendmentStorage.PrependHeaders(std::move(connectAmendment).GetHeaders());
 
-                // optional of a C structure is a terrible idea because it doesn't have a move which means
-                // a correct-looking move out of the optional does not actually erase the C struct, leading to a
-                // double free.  For now, work around by copying the buffer and then erasing the source optional
-                // by hand.
-                amendmentStorage.SetPayload(connectAmendment.GetPayload());
+                if (connectAmendment.GetPayload().has_value())
+                {
+                    const auto &payload = connectAmendment.GetPayload().value();
 
-                Crt::Optional<Crt::ByteBuf> noBuffer;
-                connectAmendment.SetPayload(noBuffer);
+                    Crt::Optional<Crt::ByteBuf> copiedPayload =
+                        Crt::ByteBufNewCopy(payload.allocator, payload.buffer, payload.len);
+                    amendmentStorage.SetPayload(copiedPayload);
+                }
             }
 
             s_fillNativeHeadersArray(amendmentStorage.GetHeaders(), headersArray, m_allocator);
@@ -2392,14 +2392,14 @@ namespace Aws
         }
 
         EventstreamResultVariantType::EventstreamResultVariantType()
-            : m_type(ResultType::NONE), m_modeledResult(nullptr), m_modeledError(nullptr),
+            : m_type(ResultType::NONE), m_modeledResponse(nullptr), m_modeledError(nullptr),
               m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
         {
         }
 
         EventstreamResultVariantType::EventstreamResultVariantType(
             Crt::ScopedResource<AbstractShapeBase> &&modeledResult) noexcept
-            : m_type(ResultType::OPERATION_RESPONSE), m_modeledResult(std::move(modeledResult)),
+            : m_type(ResultType::OPERATION_RESPONSE), m_modeledResponse(std::move(modeledResult)),
               m_modeledError(nullptr),
               m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
         {
@@ -2407,18 +2407,18 @@ namespace Aws
 
         EventstreamResultVariantType::EventstreamResultVariantType(
             Crt::ScopedResource<OperationError> &&modeledError) noexcept
-            : m_type(ResultType::OPERATION_ERROR), m_modeledResult(nullptr), m_modeledError(std::move(modeledError)),
+            : m_type(ResultType::OPERATION_ERROR), m_modeledResponse(nullptr), m_modeledError(std::move(modeledError)),
               m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
         {
         }
 
         EventstreamResultVariantType::EventstreamResultVariantType(RpcError rpcError) noexcept
-            : m_type(ResultType::RPC_ERROR), m_modeledResult(nullptr), m_modeledError(nullptr), m_rpcError(rpcError)
+            : m_type(ResultType::RPC_ERROR), m_modeledResponse(nullptr), m_modeledError(nullptr), m_rpcError(rpcError)
         {
         }
 
         EventstreamResultVariantType::EventstreamResultVariantType(EventstreamResultVariantType &&rhs) noexcept
-            : m_type(rhs.m_type), m_modeledResult(std::move(rhs.m_modeledResult)),
+            : m_type(rhs.m_type), m_modeledResponse(std::move(rhs.m_modeledResponse)),
               m_modeledError(std::move(rhs.m_modeledError)), m_rpcError(rhs.m_rpcError)
         {
         }
@@ -2429,7 +2429,7 @@ namespace Aws
             if (this != &rhs)
             {
                 m_type = rhs.m_type;
-                m_modeledResult = std::move(rhs.m_modeledResult);
+                m_modeledResponse = std::move(rhs.m_modeledResponse);
                 m_modeledError = std::move(rhs.m_modeledError);
                 m_rpcError = rhs.m_rpcError;
             }
@@ -2437,9 +2437,9 @@ namespace Aws
             return *this;
         }
 
-        AbstractShapeBase *EventstreamResultVariantType::GetModeledResult() const
+        AbstractShapeBase *EventstreamResultVariantType::GetModeledResponse() const
         {
-            return m_modeledResult.get();
+            return m_modeledResponse.get();
         }
 
         OperationError *EventstreamResultVariantType::GetModeledError() const
