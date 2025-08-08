@@ -211,7 +211,8 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<DetailedDeploymentStatus> DeploymentStatusDetails::GetDetailedDeploymentStatus() noexcept
+        Aws::Crt::Optional<DetailedDeploymentStatus> DeploymentStatusDetails::GetDetailedDeploymentStatus()
+            const noexcept
         {
             if (!m_detailedDeploymentStatus.has_value())
                 return Aws::Crt::Optional<DetailedDeploymentStatus>();
@@ -626,7 +627,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<PayloadFormat> MQTTMessage::GetPayloadFormat() noexcept
+        Aws::Crt::Optional<PayloadFormat> MQTTMessage::GetPayloadFormat() const noexcept
         {
             if (!m_payloadFormat.has_value())
                 return Aws::Crt::Optional<PayloadFormat>();
@@ -988,7 +989,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<MetricUnitType> Metric::GetUnit() noexcept
+        Aws::Crt::Optional<MetricUnitType> Metric::GetUnit() const noexcept
         {
             if (!m_unit.has_value())
                 return Aws::Crt::Optional<MetricUnitType>();
@@ -1119,7 +1120,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<DeploymentStatus> LocalDeployment::GetStatus() noexcept
+        Aws::Crt::Optional<DeploymentStatus> LocalDeployment::GetStatus() const noexcept
         {
             if (!m_status.has_value())
                 return Aws::Crt::Optional<DeploymentStatus>();
@@ -1252,7 +1253,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<LifecycleState> ComponentDetails::GetState() noexcept
+        Aws::Crt::Optional<LifecycleState> ComponentDetails::GetState() const noexcept
         {
             if (!m_state.has_value())
                 return Aws::Crt::Optional<LifecycleState>();
@@ -1956,7 +1957,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<CertificateType> CertificateOptions::GetCertificateType() noexcept
+        Aws::Crt::Optional<CertificateType> CertificateOptions::GetCertificateType() const noexcept
         {
             if (!m_certificateType.has_value())
                 return Aws::Crt::Optional<CertificateType>();
@@ -2048,7 +2049,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<ConfigurationValidityStatus> ConfigurationValidityReport::GetStatus() noexcept
+        Aws::Crt::Optional<ConfigurationValidityStatus> ConfigurationValidityReport::GetStatus() const noexcept
         {
             if (!m_status.has_value())
                 return Aws::Crt::Optional<ConfigurationValidityStatus>();
@@ -3007,7 +3008,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<ReportedLifecycleState> UpdateStateRequest::GetState() noexcept
+        Aws::Crt::Optional<ReportedLifecycleState> UpdateStateRequest::GetState() const noexcept
         {
             if (!m_state.has_value())
                 return Aws::Crt::Optional<ReportedLifecycleState>();
@@ -3396,7 +3397,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<ReceiveMode> SubscribeToTopicRequest::GetReceiveMode() noexcept
+        Aws::Crt::Optional<ReceiveMode> SubscribeToTopicRequest::GetReceiveMode() const noexcept
         {
             if (!m_receiveMode.has_value())
                 return Aws::Crt::Optional<ReceiveMode>();
@@ -3523,7 +3524,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<QOS> SubscribeToIoTCoreRequest::GetQos() noexcept
+        Aws::Crt::Optional<QOS> SubscribeToIoTCoreRequest::GetQos() const noexcept
         {
             if (!m_qos.has_value())
                 return Aws::Crt::Optional<QOS>();
@@ -3961,7 +3962,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<RequestStatus> StopComponentResponse::GetStopStatus() noexcept
+        Aws::Crt::Optional<RequestStatus> StopComponentResponse::GetStopStatus() const noexcept
         {
             if (!m_stopStatus.has_value())
                 return Aws::Crt::Optional<RequestStatus>();
@@ -4283,7 +4284,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<RequestStatus> RestartComponentResponse::GetRestartStatus() noexcept
+        Aws::Crt::Optional<RequestStatus> RestartComponentResponse::GetRestartStatus() const noexcept
         {
             if (!m_restartStatus.has_value())
                 return Aws::Crt::Optional<RequestStatus>();
@@ -4757,7 +4758,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<QOS> PublishToIoTCoreRequest::GetQos() noexcept
+        Aws::Crt::Optional<QOS> PublishToIoTCoreRequest::GetQos() const noexcept
         {
             if (!m_qos.has_value())
                 return Aws::Crt::Optional<QOS>();
@@ -4787,7 +4788,7 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<PayloadFormat> PublishToIoTCoreRequest::GetPayloadFormat() noexcept
+        Aws::Crt::Optional<PayloadFormat> PublishToIoTCoreRequest::GetPayloadFormat() const noexcept
         {
             if (!m_payloadFormat.has_value())
                 return Aws::Crt::Optional<PayloadFormat>();
@@ -6535,7 +6536,8 @@ namespace Aws
             }
         }
 
-        Aws::Crt::Optional<FailureHandlingPolicy> CreateLocalDeploymentRequest::GetFailureHandlingPolicy() noexcept
+        Aws::Crt::Optional<FailureHandlingPolicy> CreateLocalDeploymentRequest::GetFailureHandlingPolicy()
+            const noexcept
         {
             if (!m_failureHandlingPolicy.has_value())
                 return Aws::Crt::Optional<FailureHandlingPolicy>();
@@ -6996,6 +6998,22 @@ namespace Aws
             return streamShouldTerminate;
         }
 
+        class SubscribeToIoTCoreOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
         SubscribeToIoTCoreOperationContext::SubscribeToIoTCoreOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
             : OperationModelContext(serviceModel)
@@ -7039,16 +7057,16 @@ namespace Aws
 
         std::future<SubscribeToIoTCoreResult> SubscribeToIoTCoreOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return SubscribeToIoTCoreResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SubscribeToIoTCoreOperation::SubscribeToIoTCoreOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToIoTCoreStreamHandler> streamHandler,
-            const SubscribeToIoTCoreOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToIoTCoreResult>>(allocator))
         {
         }
 
@@ -7056,13 +7074,32 @@ namespace Aws
             const SubscribeToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToIoTCoreResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SubscribeToIoTCoreOperation::GetModelName() const noexcept
+        class ResumeComponentOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            ResumeComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         ResumeComponentOperationContext::ResumeComponentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7109,15 +7146,15 @@ namespace Aws
 
         std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         ResumeComponentOperation::ResumeComponentOperation(
             ClientConnection &connection,
-            const ResumeComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ResumeComponentResult>>(allocator))
         {
         }
 
@@ -7125,13 +7162,32 @@ namespace Aws
             const ResumeComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(ResumeComponentResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String ResumeComponentOperation::GetModelName() const noexcept
+        class PublishToIoTCoreOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            PublishToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         PublishToIoTCoreOperationContext::PublishToIoTCoreOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7178,15 +7234,15 @@ namespace Aws
 
         std::future<PublishToIoTCoreResult> PublishToIoTCoreOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return PublishToIoTCoreResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         PublishToIoTCoreOperation::PublishToIoTCoreOperation(
             ClientConnection &connection,
-            const PublishToIoTCoreOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PublishToIoTCoreResult>>(allocator))
         {
         }
 
@@ -7194,12 +7250,15 @@ namespace Aws
             const PublishToIoTCoreRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
+            auto promiseReference = m_resultPromise;
 
-        Aws::Crt::String PublishToIoTCoreOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(PublishToIoTCoreResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
         void SubscribeToConfigurationUpdateStreamHandler::OnStreamEvent(
@@ -7233,6 +7292,22 @@ namespace Aws
                 streamShouldTerminate = OnStreamError(operationError.get());
             return streamShouldTerminate;
         }
+
+        class SubscribeToConfigurationUpdateOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToConfigurationUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         SubscribeToConfigurationUpdateOperationContext::SubscribeToConfigurationUpdateOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7277,17 +7352,16 @@ namespace Aws
 
         std::future<SubscribeToConfigurationUpdateResult> SubscribeToConfigurationUpdateOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SubscribeToConfigurationUpdateResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SubscribeToConfigurationUpdateOperation::SubscribeToConfigurationUpdateOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToConfigurationUpdateStreamHandler> streamHandler,
-            const SubscribeToConfigurationUpdateOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToConfigurationUpdateResult>>(allocator))
         {
         }
 
@@ -7295,13 +7369,32 @@ namespace Aws
             const SubscribeToConfigurationUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToConfigurationUpdateResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SubscribeToConfigurationUpdateOperation::GetModelName() const noexcept
+        class DeleteThingShadowOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            DeleteThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         DeleteThingShadowOperationContext::DeleteThingShadowOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7348,15 +7441,15 @@ namespace Aws
 
         std::future<DeleteThingShadowResult> DeleteThingShadowOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return DeleteThingShadowResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         DeleteThingShadowOperation::DeleteThingShadowOperation(
             ClientConnection &connection,
-            const DeleteThingShadowOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<DeleteThingShadowResult>>(allocator))
         {
         }
 
@@ -7364,13 +7457,32 @@ namespace Aws
             const DeleteThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(DeleteThingShadowResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String DeleteThingShadowOperation::GetModelName() const noexcept
+        class PutComponentMetricOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            PutComponentMetricOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         PutComponentMetricOperationContext::PutComponentMetricOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7417,15 +7529,15 @@ namespace Aws
 
         std::future<PutComponentMetricResult> PutComponentMetricOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return PutComponentMetricResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         PutComponentMetricOperation::PutComponentMetricOperation(
             ClientConnection &connection,
-            const PutComponentMetricOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PutComponentMetricResult>>(allocator))
         {
         }
 
@@ -7433,13 +7545,32 @@ namespace Aws
             const PutComponentMetricRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(PutComponentMetricResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String PutComponentMetricOperation::GetModelName() const noexcept
+        class DeferComponentUpdateOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            DeferComponentUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         DeferComponentUpdateOperationContext::DeferComponentUpdateOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7486,15 +7617,15 @@ namespace Aws
 
         std::future<DeferComponentUpdateResult> DeferComponentUpdateOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return DeferComponentUpdateResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         DeferComponentUpdateOperation::DeferComponentUpdateOperation(
             ClientConnection &connection,
-            const DeferComponentUpdateOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<DeferComponentUpdateResult>>(allocator))
         {
         }
 
@@ -7502,12 +7633,15 @@ namespace Aws
             const DeferComponentUpdateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
+            auto promiseReference = m_resultPromise;
 
-        Aws::Crt::String DeferComponentUpdateOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(DeferComponentUpdateResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
         void SubscribeToValidateConfigurationUpdatesStreamHandler::OnStreamEvent(
@@ -7535,6 +7669,23 @@ namespace Aws
                 streamShouldTerminate = OnStreamError(operationError.get());
             return streamShouldTerminate;
         }
+
+        class SubscribeToValidateConfigurationUpdatesOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToValidateConfigurationUpdatesOperationContext(
+                const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         SubscribeToValidateConfigurationUpdatesOperationContext::
             SubscribeToValidateConfigurationUpdatesOperationContext(
@@ -7582,17 +7733,17 @@ namespace Aws
         std::future<SubscribeToValidateConfigurationUpdatesResult> SubscribeToValidateConfigurationUpdatesOperation::
             GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SubscribeToValidateConfigurationUpdatesResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SubscribeToValidateConfigurationUpdatesOperation::SubscribeToValidateConfigurationUpdatesOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToValidateConfigurationUpdatesStreamHandler> streamHandler,
-            const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(
+                  Aws::Crt::MakeShared<std::promise<SubscribeToValidateConfigurationUpdatesResult>>(allocator))
         {
         }
 
@@ -7600,13 +7751,34 @@ namespace Aws
             const SubscribeToValidateConfigurationUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult) {
+                    promiseReference->set_value(
+                        SubscribeToValidateConfigurationUpdatesResult(std::move(unmodeledResult)));
+                });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SubscribeToValidateConfigurationUpdatesOperation::GetModelName() const noexcept
+        class GetConfigurationOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            GetConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         GetConfigurationOperationContext::GetConfigurationOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7653,15 +7825,15 @@ namespace Aws
 
         std::future<GetConfigurationResult> GetConfigurationOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetConfigurationResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         GetConfigurationOperation::GetConfigurationOperation(
             ClientConnection &connection,
-            const GetConfigurationOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetConfigurationResult>>(allocator))
         {
         }
 
@@ -7669,12 +7841,15 @@ namespace Aws
             const GetConfigurationRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
+            auto promiseReference = m_resultPromise;
 
-        Aws::Crt::String GetConfigurationOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(GetConfigurationResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
         void SubscribeToTopicStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
@@ -7713,6 +7888,22 @@ namespace Aws
                 streamShouldTerminate = OnStreamError(operationError.get());
             return streamShouldTerminate;
         }
+
+        class SubscribeToTopicOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         SubscribeToTopicOperationContext::SubscribeToTopicOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7757,16 +7948,16 @@ namespace Aws
 
         std::future<SubscribeToTopicResult> SubscribeToTopicOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return SubscribeToTopicResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SubscribeToTopicOperation::SubscribeToTopicOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToTopicStreamHandler> streamHandler,
-            const SubscribeToTopicOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToTopicResult>>(allocator))
         {
         }
 
@@ -7774,13 +7965,32 @@ namespace Aws
             const SubscribeToTopicRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToTopicResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SubscribeToTopicOperation::GetModelName() const noexcept
+        class GetComponentDetailsOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            GetComponentDetailsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         GetComponentDetailsOperationContext::GetComponentDetailsOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7827,15 +8037,15 @@ namespace Aws
 
         std::future<GetComponentDetailsResult> GetComponentDetailsOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetComponentDetailsResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         GetComponentDetailsOperation::GetComponentDetailsOperation(
             ClientConnection &connection,
-            const GetComponentDetailsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetComponentDetailsResult>>(allocator))
         {
         }
 
@@ -7843,13 +8053,32 @@ namespace Aws
             const GetComponentDetailsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(GetComponentDetailsResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String GetComponentDetailsOperation::GetModelName() const noexcept
+        class GetClientDeviceAuthTokenOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            GetClientDeviceAuthTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         GetClientDeviceAuthTokenOperationContext::GetClientDeviceAuthTokenOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7896,15 +8125,15 @@ namespace Aws
 
         std::future<GetClientDeviceAuthTokenResult> GetClientDeviceAuthTokenOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetClientDeviceAuthTokenResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         GetClientDeviceAuthTokenOperation::GetClientDeviceAuthTokenOperation(
             ClientConnection &connection,
-            const GetClientDeviceAuthTokenOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetClientDeviceAuthTokenResult>>(allocator))
         {
         }
 
@@ -7912,13 +8141,32 @@ namespace Aws
             const GetClientDeviceAuthTokenRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(GetClientDeviceAuthTokenResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String GetClientDeviceAuthTokenOperation::GetModelName() const noexcept
+        class PublishToTopicOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            PublishToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         PublishToTopicOperationContext::PublishToTopicOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -7965,14 +8213,15 @@ namespace Aws
 
         std::future<PublishToTopicResult> PublishToTopicOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return PublishToTopicResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         PublishToTopicOperation::PublishToTopicOperation(
             ClientConnection &connection,
-            const PublishToTopicOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PublishToTopicResult>>(allocator))
         {
         }
 
@@ -7980,12 +8229,15 @@ namespace Aws
             const PublishToTopicRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
+            auto promiseReference = m_resultPromise;
 
-        Aws::Crt::String PublishToTopicOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(PublishToTopicResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
         void SubscribeToCertificateUpdatesStreamHandler::OnStreamEvent(
@@ -8025,6 +8277,22 @@ namespace Aws
                 streamShouldTerminate = OnStreamError(operationError.get());
             return streamShouldTerminate;
         }
+
+        class SubscribeToCertificateUpdatesOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToCertificateUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         SubscribeToCertificateUpdatesOperationContext::SubscribeToCertificateUpdatesOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8069,17 +8337,16 @@ namespace Aws
 
         std::future<SubscribeToCertificateUpdatesResult> SubscribeToCertificateUpdatesOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SubscribeToCertificateUpdatesResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SubscribeToCertificateUpdatesOperation::SubscribeToCertificateUpdatesOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToCertificateUpdatesStreamHandler> streamHandler,
-            const SubscribeToCertificateUpdatesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToCertificateUpdatesResult>>(allocator))
         {
         }
 
@@ -8087,13 +8354,32 @@ namespace Aws
             const SubscribeToCertificateUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToCertificateUpdatesResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SubscribeToCertificateUpdatesOperation::GetModelName() const noexcept
+        class VerifyClientDeviceIdentityOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            VerifyClientDeviceIdentityOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         VerifyClientDeviceIdentityOperationContext::VerifyClientDeviceIdentityOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8140,15 +8426,15 @@ namespace Aws
 
         std::future<VerifyClientDeviceIdentityResult> VerifyClientDeviceIdentityOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return VerifyClientDeviceIdentityResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         VerifyClientDeviceIdentityOperation::VerifyClientDeviceIdentityOperation(
             ClientConnection &connection,
-            const VerifyClientDeviceIdentityOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<VerifyClientDeviceIdentityResult>>(allocator))
         {
         }
 
@@ -8156,13 +8442,32 @@ namespace Aws
             const VerifyClientDeviceIdentityRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(VerifyClientDeviceIdentityResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String VerifyClientDeviceIdentityOperation::GetModelName() const noexcept
+        class AuthorizeClientDeviceActionOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            AuthorizeClientDeviceActionOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         AuthorizeClientDeviceActionOperationContext::AuthorizeClientDeviceActionOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8209,15 +8514,15 @@ namespace Aws
 
         std::future<AuthorizeClientDeviceActionResult> AuthorizeClientDeviceActionOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return AuthorizeClientDeviceActionResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         AuthorizeClientDeviceActionOperation::AuthorizeClientDeviceActionOperation(
             ClientConnection &connection,
-            const AuthorizeClientDeviceActionOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<AuthorizeClientDeviceActionResult>>(allocator))
         {
         }
 
@@ -8225,13 +8530,32 @@ namespace Aws
             const AuthorizeClientDeviceActionRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(AuthorizeClientDeviceActionResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String AuthorizeClientDeviceActionOperation::GetModelName() const noexcept
+        class ListComponentsOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            ListComponentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         ListComponentsOperationContext::ListComponentsOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8278,14 +8602,15 @@ namespace Aws
 
         std::future<ListComponentsResult> ListComponentsOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return ListComponentsResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         ListComponentsOperation::ListComponentsOperation(
             ClientConnection &connection,
-            const ListComponentsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ListComponentsResult>>(allocator))
         {
         }
 
@@ -8293,13 +8618,32 @@ namespace Aws
             const ListComponentsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(ListComponentsResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String ListComponentsOperation::GetModelName() const noexcept
+        class CreateDebugPasswordOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            CreateDebugPasswordOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         CreateDebugPasswordOperationContext::CreateDebugPasswordOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8346,15 +8690,15 @@ namespace Aws
 
         std::future<CreateDebugPasswordResult> CreateDebugPasswordOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return CreateDebugPasswordResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         CreateDebugPasswordOperation::CreateDebugPasswordOperation(
             ClientConnection &connection,
-            const CreateDebugPasswordOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<CreateDebugPasswordResult>>(allocator))
         {
         }
 
@@ -8362,13 +8706,32 @@ namespace Aws
             const CreateDebugPasswordRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(CreateDebugPasswordResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String CreateDebugPasswordOperation::GetModelName() const noexcept
+        class GetThingShadowOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            GetThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         GetThingShadowOperationContext::GetThingShadowOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8415,14 +8778,15 @@ namespace Aws
 
         std::future<GetThingShadowResult> GetThingShadowOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return GetThingShadowResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         GetThingShadowOperation::GetThingShadowOperation(
             ClientConnection &connection,
-            const GetThingShadowOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetThingShadowResult>>(allocator))
         {
         }
 
@@ -8430,13 +8794,32 @@ namespace Aws
             const GetThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(GetThingShadowResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String GetThingShadowOperation::GetModelName() const noexcept
+        class SendConfigurationValidityReportOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            SendConfigurationValidityReportOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         SendConfigurationValidityReportOperationContext::SendConfigurationValidityReportOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8484,16 +8867,15 @@ namespace Aws
         std::future<SendConfigurationValidityReportResult> SendConfigurationValidityReportOperation::
             GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode,
-                [this]() { return SendConfigurationValidityReportResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SendConfigurationValidityReportOperation::SendConfigurationValidityReportOperation(
             ClientConnection &connection,
-            const SendConfigurationValidityReportOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SendConfigurationValidityReportResult>>(allocator))
         {
         }
 
@@ -8501,13 +8883,32 @@ namespace Aws
             const SendConfigurationValidityReportRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SendConfigurationValidityReportResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SendConfigurationValidityReportOperation::GetModelName() const noexcept
+        class UpdateThingShadowOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            UpdateThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         UpdateThingShadowOperationContext::UpdateThingShadowOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8554,15 +8955,15 @@ namespace Aws
 
         std::future<UpdateThingShadowResult> UpdateThingShadowOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return UpdateThingShadowResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         UpdateThingShadowOperation::UpdateThingShadowOperation(
             ClientConnection &connection,
-            const UpdateThingShadowOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateThingShadowResult>>(allocator))
         {
         }
 
@@ -8570,13 +8971,32 @@ namespace Aws
             const UpdateThingShadowRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(UpdateThingShadowResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String UpdateThingShadowOperation::GetModelName() const noexcept
+        class UpdateConfigurationOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            UpdateConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         UpdateConfigurationOperationContext::UpdateConfigurationOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8623,15 +9043,15 @@ namespace Aws
 
         std::future<UpdateConfigurationResult> UpdateConfigurationOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return UpdateConfigurationResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         UpdateConfigurationOperation::UpdateConfigurationOperation(
             ClientConnection &connection,
-            const UpdateConfigurationOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateConfigurationResult>>(allocator))
         {
         }
 
@@ -8639,13 +9059,32 @@ namespace Aws
             const UpdateConfigurationRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(UpdateConfigurationResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String UpdateConfigurationOperation::GetModelName() const noexcept
+        class ValidateAuthorizationTokenOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            ValidateAuthorizationTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         ValidateAuthorizationTokenOperationContext::ValidateAuthorizationTokenOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8692,15 +9131,15 @@ namespace Aws
 
         std::future<ValidateAuthorizationTokenResult> ValidateAuthorizationTokenOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ValidateAuthorizationTokenResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         ValidateAuthorizationTokenOperation::ValidateAuthorizationTokenOperation(
             ClientConnection &connection,
-            const ValidateAuthorizationTokenOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ValidateAuthorizationTokenResult>>(allocator))
         {
         }
 
@@ -8708,13 +9147,32 @@ namespace Aws
             const ValidateAuthorizationTokenRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(ValidateAuthorizationTokenResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String ValidateAuthorizationTokenOperation::GetModelName() const noexcept
+        class RestartComponentOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            RestartComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         RestartComponentOperationContext::RestartComponentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8761,15 +9219,15 @@ namespace Aws
 
         std::future<RestartComponentResult> RestartComponentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return RestartComponentResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         RestartComponentOperation::RestartComponentOperation(
             ClientConnection &connection,
-            const RestartComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<RestartComponentResult>>(allocator))
         {
         }
 
@@ -8777,13 +9235,32 @@ namespace Aws
             const RestartComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(RestartComponentResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String RestartComponentOperation::GetModelName() const noexcept
+        class GetLocalDeploymentStatusOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            GetLocalDeploymentStatusOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         GetLocalDeploymentStatusOperationContext::GetLocalDeploymentStatusOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8830,15 +9307,15 @@ namespace Aws
 
         std::future<GetLocalDeploymentStatusResult> GetLocalDeploymentStatusOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return GetLocalDeploymentStatusResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         GetLocalDeploymentStatusOperation::GetLocalDeploymentStatusOperation(
             ClientConnection &connection,
-            const GetLocalDeploymentStatusOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetLocalDeploymentStatusResult>>(allocator))
         {
         }
 
@@ -8846,13 +9323,32 @@ namespace Aws
             const GetLocalDeploymentStatusRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(GetLocalDeploymentStatusResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String GetLocalDeploymentStatusOperation::GetModelName() const noexcept
+        class GetSecretValueOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            GetSecretValueOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         GetSecretValueOperationContext::GetSecretValueOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8899,14 +9395,15 @@ namespace Aws
 
         std::future<GetSecretValueResult> GetSecretValueOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return GetSecretValueResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         GetSecretValueOperation::GetSecretValueOperation(
             ClientConnection &connection,
-            const GetSecretValueOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<GetSecretValueResult>>(allocator))
         {
         }
 
@@ -8914,13 +9411,32 @@ namespace Aws
             const GetSecretValueRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(GetSecretValueResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String GetSecretValueOperation::GetModelName() const noexcept
+        class UpdateStateOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            UpdateStateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         UpdateStateOperationContext::UpdateStateOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -8966,14 +9482,15 @@ namespace Aws
 
         std::future<UpdateStateResult> UpdateStateOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return UpdateStateResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         UpdateStateOperation::UpdateStateOperation(
             ClientConnection &connection,
-            const UpdateStateOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<UpdateStateResult>>(allocator))
         {
         }
 
@@ -8981,13 +9498,32 @@ namespace Aws
             const UpdateStateRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(UpdateStateResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String UpdateStateOperation::GetModelName() const noexcept
+        class CancelLocalDeploymentOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            CancelLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         CancelLocalDeploymentOperationContext::CancelLocalDeploymentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9034,15 +9570,15 @@ namespace Aws
 
         std::future<CancelLocalDeploymentResult> CancelLocalDeploymentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return CancelLocalDeploymentResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         CancelLocalDeploymentOperation::CancelLocalDeploymentOperation(
             ClientConnection &connection,
-            const CancelLocalDeploymentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<CancelLocalDeploymentResult>>(allocator))
         {
         }
 
@@ -9050,13 +9586,32 @@ namespace Aws
             const CancelLocalDeploymentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(CancelLocalDeploymentResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String CancelLocalDeploymentOperation::GetModelName() const noexcept
+        class ListNamedShadowsForThingOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            ListNamedShadowsForThingOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         ListNamedShadowsForThingOperationContext::ListNamedShadowsForThingOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9103,15 +9658,15 @@ namespace Aws
 
         std::future<ListNamedShadowsForThingResult> ListNamedShadowsForThingOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ListNamedShadowsForThingResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         ListNamedShadowsForThingOperation::ListNamedShadowsForThingOperation(
             ClientConnection &connection,
-            const ListNamedShadowsForThingOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ListNamedShadowsForThingResult>>(allocator))
         {
         }
 
@@ -9119,12 +9674,15 @@ namespace Aws
             const ListNamedShadowsForThingRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-        }
+            auto promiseReference = m_resultPromise;
 
-        Aws::Crt::String ListNamedShadowsForThingOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(ListNamedShadowsForThingResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
         void SubscribeToComponentUpdatesStreamHandler::OnStreamEvent(
@@ -9158,6 +9716,22 @@ namespace Aws
                 streamShouldTerminate = OnStreamError(operationError.get());
             return streamShouldTerminate;
         }
+
+        class SubscribeToComponentUpdatesOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToComponentUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         SubscribeToComponentUpdatesOperationContext::SubscribeToComponentUpdatesOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9202,16 +9776,16 @@ namespace Aws
 
         std::future<SubscribeToComponentUpdatesResult> SubscribeToComponentUpdatesOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return SubscribeToComponentUpdatesResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         SubscribeToComponentUpdatesOperation::SubscribeToComponentUpdatesOperation(
             ClientConnection &connection,
             std::shared_ptr<SubscribeToComponentUpdatesStreamHandler> streamHandler,
-            const SubscribeToComponentUpdatesOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, streamHandler, operationContext, allocator)
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToComponentUpdatesResult>>(allocator))
         {
         }
 
@@ -9219,13 +9793,32 @@ namespace Aws
             const SubscribeToComponentUpdatesRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToComponentUpdatesResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String SubscribeToComponentUpdatesOperation::GetModelName() const noexcept
+        class ListLocalDeploymentsOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            ListLocalDeploymentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         ListLocalDeploymentsOperationContext::ListLocalDeploymentsOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9272,15 +9865,15 @@ namespace Aws
 
         std::future<ListLocalDeploymentsResult> ListLocalDeploymentsOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return ListLocalDeploymentsResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         ListLocalDeploymentsOperation::ListLocalDeploymentsOperation(
             ClientConnection &connection,
-            const ListLocalDeploymentsOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<ListLocalDeploymentsResult>>(allocator))
         {
         }
 
@@ -9288,13 +9881,32 @@ namespace Aws
             const ListLocalDeploymentsRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(ListLocalDeploymentsResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String ListLocalDeploymentsOperation::GetModelName() const noexcept
+        class StopComponentOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            StopComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         StopComponentOperationContext::StopComponentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9341,14 +9953,15 @@ namespace Aws
 
         std::future<StopComponentResult> StopComponentOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return StopComponentResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         StopComponentOperation::StopComponentOperation(
             ClientConnection &connection,
-            const StopComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<StopComponentResult>>(allocator))
         {
         }
 
@@ -9356,13 +9969,32 @@ namespace Aws
             const StopComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(StopComponentResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String StopComponentOperation::GetModelName() const noexcept
+        class PauseComponentOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            PauseComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         PauseComponentOperationContext::PauseComponentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9409,14 +10041,15 @@ namespace Aws
 
         std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
         {
-            return std::async(m_asyncLaunchMode, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         PauseComponentOperation::PauseComponentOperation(
             ClientConnection &connection,
-            const PauseComponentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<PauseComponentResult>>(allocator))
         {
         }
 
@@ -9424,13 +10057,32 @@ namespace Aws
             const PauseComponentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(PauseComponentResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String PauseComponentOperation::GetModelName() const noexcept
+        class CreateLocalDeploymentOperationContext : public OperationModelContext
         {
-            return m_operationModelContext.GetOperationName();
-        }
+          public:
+            CreateLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
 
         CreateLocalDeploymentOperationContext::CreateLocalDeploymentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
@@ -9477,15 +10129,15 @@ namespace Aws
 
         std::future<CreateLocalDeploymentResult> CreateLocalDeploymentOperation::GetResult() noexcept
         {
-            return std::async(
-                m_asyncLaunchMode, [this]() { return CreateLocalDeploymentResult(GetOperationResult().get()); });
+            return m_resultPromise->get_future();
         }
 
         CreateLocalDeploymentOperation::CreateLocalDeploymentOperation(
             ClientConnection &connection,
-            const CreateLocalDeploymentOperationContext &operationContext,
+            const std::shared_ptr<OperationModelContext> &operationContext,
             Aws::Crt::Allocator *allocator) noexcept
-            : ClientOperation(connection, nullptr, operationContext, allocator)
+            : ClientOperation(connection, nullptr, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<CreateLocalDeploymentResult>>(allocator))
         {
         }
 
@@ -9493,33 +10145,79 @@ namespace Aws
             const CreateLocalDeploymentRequest &request,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(CreateLocalDeploymentResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
         }
 
-        Aws::Crt::String CreateLocalDeploymentOperation::GetModelName() const noexcept
-        {
-            return m_operationModelContext.GetOperationName();
-        }
-
-        GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel() noexcept
-            : m_subscribeToIoTCoreOperationContext(*this), m_resumeComponentOperationContext(*this),
-              m_publishToIoTCoreOperationContext(*this), m_subscribeToConfigurationUpdateOperationContext(*this),
-              m_deleteThingShadowOperationContext(*this), m_putComponentMetricOperationContext(*this),
-              m_deferComponentUpdateOperationContext(*this),
-              m_subscribeToValidateConfigurationUpdatesOperationContext(*this),
-              m_getConfigurationOperationContext(*this), m_subscribeToTopicOperationContext(*this),
-              m_getComponentDetailsOperationContext(*this), m_getClientDeviceAuthTokenOperationContext(*this),
-              m_publishToTopicOperationContext(*this), m_subscribeToCertificateUpdatesOperationContext(*this),
-              m_verifyClientDeviceIdentityOperationContext(*this), m_authorizeClientDeviceActionOperationContext(*this),
-              m_listComponentsOperationContext(*this), m_createDebugPasswordOperationContext(*this),
-              m_getThingShadowOperationContext(*this), m_sendConfigurationValidityReportOperationContext(*this),
-              m_updateThingShadowOperationContext(*this), m_updateConfigurationOperationContext(*this),
-              m_validateAuthorizationTokenOperationContext(*this), m_restartComponentOperationContext(*this),
-              m_getLocalDeploymentStatusOperationContext(*this), m_getSecretValueOperationContext(*this),
-              m_updateStateOperationContext(*this), m_cancelLocalDeploymentOperationContext(*this),
-              m_listNamedShadowsForThingOperationContext(*this), m_subscribeToComponentUpdatesOperationContext(*this),
-              m_listLocalDeploymentsOperationContext(*this), m_stopComponentOperationContext(*this),
-              m_pauseComponentOperationContext(*this), m_createLocalDeploymentOperationContext(*this)
+        GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel(Aws::Crt::Allocator *allocator) noexcept
+            : m_subscribeToIoTCoreOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToIoTCoreOperationContext>(allocator, *this)),
+              m_resumeComponentOperationContext(
+                  Aws::Crt::MakeShared<ResumeComponentOperationContext>(allocator, *this)),
+              m_publishToIoTCoreOperationContext(
+                  Aws::Crt::MakeShared<PublishToIoTCoreOperationContext>(allocator, *this)),
+              m_subscribeToConfigurationUpdateOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToConfigurationUpdateOperationContext>(allocator, *this)),
+              m_deleteThingShadowOperationContext(
+                  Aws::Crt::MakeShared<DeleteThingShadowOperationContext>(allocator, *this)),
+              m_putComponentMetricOperationContext(
+                  Aws::Crt::MakeShared<PutComponentMetricOperationContext>(allocator, *this)),
+              m_deferComponentUpdateOperationContext(
+                  Aws::Crt::MakeShared<DeferComponentUpdateOperationContext>(allocator, *this)),
+              m_subscribeToValidateConfigurationUpdatesOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToValidateConfigurationUpdatesOperationContext>(allocator, *this)),
+              m_getConfigurationOperationContext(
+                  Aws::Crt::MakeShared<GetConfigurationOperationContext>(allocator, *this)),
+              m_subscribeToTopicOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToTopicOperationContext>(allocator, *this)),
+              m_getComponentDetailsOperationContext(
+                  Aws::Crt::MakeShared<GetComponentDetailsOperationContext>(allocator, *this)),
+              m_getClientDeviceAuthTokenOperationContext(
+                  Aws::Crt::MakeShared<GetClientDeviceAuthTokenOperationContext>(allocator, *this)),
+              m_publishToTopicOperationContext(Aws::Crt::MakeShared<PublishToTopicOperationContext>(allocator, *this)),
+              m_subscribeToCertificateUpdatesOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToCertificateUpdatesOperationContext>(allocator, *this)),
+              m_verifyClientDeviceIdentityOperationContext(
+                  Aws::Crt::MakeShared<VerifyClientDeviceIdentityOperationContext>(allocator, *this)),
+              m_authorizeClientDeviceActionOperationContext(
+                  Aws::Crt::MakeShared<AuthorizeClientDeviceActionOperationContext>(allocator, *this)),
+              m_listComponentsOperationContext(Aws::Crt::MakeShared<ListComponentsOperationContext>(allocator, *this)),
+              m_createDebugPasswordOperationContext(
+                  Aws::Crt::MakeShared<CreateDebugPasswordOperationContext>(allocator, *this)),
+              m_getThingShadowOperationContext(Aws::Crt::MakeShared<GetThingShadowOperationContext>(allocator, *this)),
+              m_sendConfigurationValidityReportOperationContext(
+                  Aws::Crt::MakeShared<SendConfigurationValidityReportOperationContext>(allocator, *this)),
+              m_updateThingShadowOperationContext(
+                  Aws::Crt::MakeShared<UpdateThingShadowOperationContext>(allocator, *this)),
+              m_updateConfigurationOperationContext(
+                  Aws::Crt::MakeShared<UpdateConfigurationOperationContext>(allocator, *this)),
+              m_validateAuthorizationTokenOperationContext(
+                  Aws::Crt::MakeShared<ValidateAuthorizationTokenOperationContext>(allocator, *this)),
+              m_restartComponentOperationContext(
+                  Aws::Crt::MakeShared<RestartComponentOperationContext>(allocator, *this)),
+              m_getLocalDeploymentStatusOperationContext(
+                  Aws::Crt::MakeShared<GetLocalDeploymentStatusOperationContext>(allocator, *this)),
+              m_getSecretValueOperationContext(Aws::Crt::MakeShared<GetSecretValueOperationContext>(allocator, *this)),
+              m_updateStateOperationContext(Aws::Crt::MakeShared<UpdateStateOperationContext>(allocator, *this)),
+              m_cancelLocalDeploymentOperationContext(
+                  Aws::Crt::MakeShared<CancelLocalDeploymentOperationContext>(allocator, *this)),
+              m_listNamedShadowsForThingOperationContext(
+                  Aws::Crt::MakeShared<ListNamedShadowsForThingOperationContext>(allocator, *this)),
+              m_subscribeToComponentUpdatesOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToComponentUpdatesOperationContext>(allocator, *this)),
+              m_listLocalDeploymentsOperationContext(
+                  Aws::Crt::MakeShared<ListLocalDeploymentsOperationContext>(allocator, *this)),
+              m_stopComponentOperationContext(Aws::Crt::MakeShared<StopComponentOperationContext>(allocator, *this)),
+              m_pauseComponentOperationContext(Aws::Crt::MakeShared<PauseComponentOperationContext>(allocator, *this)),
+              m_createLocalDeploymentOperationContext(
+                  Aws::Crt::MakeShared<CreateLocalDeploymentOperationContext>(allocator, *this))
         {
         }
 

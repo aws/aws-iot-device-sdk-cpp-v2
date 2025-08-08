@@ -326,7 +326,7 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::Optional<FruitEnum> MessageData::GetEnumMessage() noexcept
+    Aws::Crt::Optional<FruitEnum> MessageData::GetEnumMessage() const noexcept
     {
         if (!m_enumMessage.has_value())
             return Aws::Crt::Optional<FruitEnum>();
@@ -975,6 +975,22 @@ namespace Awstest
         AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
     }
 
+    class GetAllProductsOperationContext : public OperationModelContext
+    {
+      public:
+        GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
+
     GetAllProductsOperationContext::GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept
         : OperationModelContext(serviceModel)
     {
@@ -1018,14 +1034,15 @@ namespace Awstest
 
     std::future<GetAllProductsResult> GetAllProductsOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return GetAllProductsResult(GetOperationResult().get()); });
+        return m_resultPromise->get_future();
     }
 
     GetAllProductsOperation::GetAllProductsOperation(
         ClientConnection &connection,
-        const GetAllProductsOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, nullptr, operationContext, allocator)
+        : ClientOperation(connection, nullptr, operationContext, allocator),
+          m_resultPromise(Aws::Crt::MakeShared<std::promise<GetAllProductsResult>>(allocator))
     {
     }
 
@@ -1033,13 +1050,32 @@ namespace Awstest
         const GetAllProductsRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        auto promiseReference = m_resultPromise;
+
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+            { promiseReference->set_value(GetAllProductsResult(std::move(unmodeledResult))); });
+
+        return activateFuture;
     }
 
-    Aws::Crt::String GetAllProductsOperation::GetModelName() const noexcept
+    class CauseServiceErrorOperationContext : public OperationModelContext
     {
-        return m_operationModelContext.GetOperationName();
-    }
+      public:
+        CauseServiceErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     CauseServiceErrorOperationContext::CauseServiceErrorOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1086,14 +1122,15 @@ namespace Awstest
 
     std::future<CauseServiceErrorResult> CauseServiceErrorOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return CauseServiceErrorResult(GetOperationResult().get()); });
+        return m_resultPromise->get_future();
     }
 
     CauseServiceErrorOperation::CauseServiceErrorOperation(
         ClientConnection &connection,
-        const CauseServiceErrorOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, nullptr, operationContext, allocator)
+        : ClientOperation(connection, nullptr, operationContext, allocator),
+          m_resultPromise(Aws::Crt::MakeShared<std::promise<CauseServiceErrorResult>>(allocator))
     {
     }
 
@@ -1101,12 +1138,15 @@ namespace Awstest
         const CauseServiceErrorRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
-    }
+        auto promiseReference = m_resultPromise;
 
-    Aws::Crt::String CauseServiceErrorOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+            { promiseReference->set_value(CauseServiceErrorResult(std::move(unmodeledResult))); });
+
+        return activateFuture;
     }
 
     void CauseStreamServiceToErrorStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
@@ -1132,6 +1172,22 @@ namespace Awstest
             streamShouldTerminate = OnStreamError(operationError.get());
         return streamShouldTerminate;
     }
+
+    class CauseStreamServiceToErrorOperationContext : public OperationModelContext
+    {
+      public:
+        CauseStreamServiceToErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     CauseStreamServiceToErrorOperationContext::CauseStreamServiceToErrorOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1176,16 +1232,16 @@ namespace Awstest
 
     std::future<CauseStreamServiceToErrorResult> CauseStreamServiceToErrorOperation::GetResult() noexcept
     {
-        return std::async(
-            m_asyncLaunchMode, [this]() { return CauseStreamServiceToErrorResult(GetOperationResult().get()); });
+        return m_resultPromise->get_future();
     }
 
     CauseStreamServiceToErrorOperation::CauseStreamServiceToErrorOperation(
         ClientConnection &connection,
         std::shared_ptr<CauseStreamServiceToErrorStreamHandler> streamHandler,
-        const CauseStreamServiceToErrorOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, streamHandler, operationContext, allocator)
+        : ClientOperation(connection, streamHandler, operationContext, allocator),
+          m_resultPromise(Aws::Crt::MakeShared<std::promise<CauseStreamServiceToErrorResult>>(allocator))
     {
     }
 
@@ -1193,12 +1249,23 @@ namespace Awstest
         const EchoStreamingRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        auto promiseReference = m_resultPromise;
+
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+            { promiseReference->set_value(CauseStreamServiceToErrorResult(std::move(unmodeledResult))); });
+
+        return activateFuture;
     }
 
-    Aws::Crt::String CauseStreamServiceToErrorOperation::GetModelName() const noexcept
+    std::future<RpcError> CauseStreamServiceToErrorOperation::SendStreamMessage(
+        const EchoStreamingMessage &message,
+        OnMessageFlushCallback onMessageFlushCallback)
     {
-        return m_operationModelContext.GetOperationName();
+        return ClientOperation::SendStreamMessage(
+            static_cast<const AbstractShapeBase *>(&message), std::move(onMessageFlushCallback));
     }
 
     void EchoStreamMessagesStreamHandler::OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response)
@@ -1219,6 +1286,22 @@ namespace Awstest
             streamShouldTerminate = OnStreamError(operationError.get());
         return streamShouldTerminate;
     }
+
+    class EchoStreamMessagesOperationContext : public OperationModelContext
+    {
+      public:
+        EchoStreamMessagesOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     EchoStreamMessagesOperationContext::EchoStreamMessagesOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1263,15 +1346,16 @@ namespace Awstest
 
     std::future<EchoStreamMessagesResult> EchoStreamMessagesOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return EchoStreamMessagesResult(GetOperationResult().get()); });
+        return m_resultPromise->get_future();
     }
 
     EchoStreamMessagesOperation::EchoStreamMessagesOperation(
         ClientConnection &connection,
         std::shared_ptr<EchoStreamMessagesStreamHandler> streamHandler,
-        const EchoStreamMessagesOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, streamHandler, operationContext, allocator)
+        : ClientOperation(connection, streamHandler, operationContext, allocator),
+          m_resultPromise(Aws::Crt::MakeShared<std::promise<EchoStreamMessagesResult>>(allocator))
     {
     }
 
@@ -1279,13 +1363,40 @@ namespace Awstest
         const EchoStreamingRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        auto promiseReference = m_resultPromise;
+
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+            { promiseReference->set_value(EchoStreamMessagesResult(std::move(unmodeledResult))); });
+
+        return activateFuture;
     }
 
-    Aws::Crt::String EchoStreamMessagesOperation::GetModelName() const noexcept
+    std::future<RpcError> EchoStreamMessagesOperation::SendStreamMessage(
+        const EchoStreamingMessage &message,
+        OnMessageFlushCallback onMessageFlushCallback)
     {
-        return m_operationModelContext.GetOperationName();
+        return ClientOperation::SendStreamMessage(
+            static_cast<const AbstractShapeBase *>(&message), std::move(onMessageFlushCallback));
     }
+
+    class EchoMessageOperationContext : public OperationModelContext
+    {
+      public:
+        EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     EchoMessageOperationContext::EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept
         : OperationModelContext(serviceModel)
@@ -1330,14 +1441,15 @@ namespace Awstest
 
     std::future<EchoMessageResult> EchoMessageOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return EchoMessageResult(GetOperationResult().get()); });
+        return m_resultPromise->get_future();
     }
 
     EchoMessageOperation::EchoMessageOperation(
         ClientConnection &connection,
-        const EchoMessageOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, nullptr, operationContext, allocator)
+        : ClientOperation(connection, nullptr, operationContext, allocator),
+          m_resultPromise(Aws::Crt::MakeShared<std::promise<EchoMessageResult>>(allocator))
     {
     }
 
@@ -1345,13 +1457,32 @@ namespace Awstest
         const EchoMessageRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        auto promiseReference = m_resultPromise;
+
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+            { promiseReference->set_value(EchoMessageResult(std::move(unmodeledResult))); });
+
+        return activateFuture;
     }
 
-    Aws::Crt::String EchoMessageOperation::GetModelName() const noexcept
+    class GetAllCustomersOperationContext : public OperationModelContext
     {
-        return m_operationModelContext.GetOperationName();
-    }
+      public:
+        GetAllCustomersOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+        Aws::Crt::String GetRequestModelName() const noexcept override;
+        Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+        Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+        Aws::Crt::String GetOperationName() const noexcept override;
+    };
 
     GetAllCustomersOperationContext::GetAllCustomersOperationContext(
         const EchoTestRpcServiceModel &serviceModel) noexcept
@@ -1397,14 +1528,15 @@ namespace Awstest
 
     std::future<GetAllCustomersResult> GetAllCustomersOperation::GetResult() noexcept
     {
-        return std::async(m_asyncLaunchMode, [this]() { return GetAllCustomersResult(GetOperationResult().get()); });
+        return m_resultPromise->get_future();
     }
 
     GetAllCustomersOperation::GetAllCustomersOperation(
         ClientConnection &connection,
-        const GetAllCustomersOperationContext &operationContext,
+        const std::shared_ptr<OperationModelContext> &operationContext,
         Aws::Crt::Allocator *allocator) noexcept
-        : ClientOperation(connection, nullptr, operationContext, allocator)
+        : ClientOperation(connection, nullptr, operationContext, allocator),
+          m_resultPromise(Aws::Crt::MakeShared<std::promise<GetAllCustomersResult>>(allocator))
     {
     }
 
@@ -1412,18 +1544,27 @@ namespace Awstest
         const GetAllCustomersRequest &request,
         OnMessageFlushCallback onMessageFlushCallback) noexcept
     {
-        return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        auto promiseReference = m_resultPromise;
+
+        auto activateFuture = ClientOperation::Activate(
+            static_cast<const AbstractShapeBase *>(&request),
+            std::move(onMessageFlushCallback),
+            [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+            { promiseReference->set_value(GetAllCustomersResult(std::move(unmodeledResult))); });
+
+        return activateFuture;
     }
 
-    Aws::Crt::String GetAllCustomersOperation::GetModelName() const noexcept
-    {
-        return m_operationModelContext.GetOperationName();
-    }
-
-    EchoTestRpcServiceModel::EchoTestRpcServiceModel() noexcept
-        : m_getAllProductsOperationContext(*this), m_causeServiceErrorOperationContext(*this),
-          m_causeStreamServiceToErrorOperationContext(*this), m_echoStreamMessagesOperationContext(*this),
-          m_echoMessageOperationContext(*this), m_getAllCustomersOperationContext(*this)
+    EchoTestRpcServiceModel::EchoTestRpcServiceModel(Aws::Crt::Allocator *allocator) noexcept
+        : m_getAllProductsOperationContext(Aws::Crt::MakeShared<GetAllProductsOperationContext>(allocator, *this)),
+          m_causeServiceErrorOperationContext(
+              Aws::Crt::MakeShared<CauseServiceErrorOperationContext>(allocator, *this)),
+          m_causeStreamServiceToErrorOperationContext(
+              Aws::Crt::MakeShared<CauseStreamServiceToErrorOperationContext>(allocator, *this)),
+          m_echoStreamMessagesOperationContext(
+              Aws::Crt::MakeShared<EchoStreamMessagesOperationContext>(allocator, *this)),
+          m_echoMessageOperationContext(Aws::Crt::MakeShared<EchoMessageOperationContext>(allocator, *this)),
+          m_getAllCustomersOperationContext(Aws::Crt::MakeShared<GetAllCustomersOperationContext>(allocator, *this))
     {
     }
 
