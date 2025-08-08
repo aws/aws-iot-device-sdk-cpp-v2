@@ -2148,14 +2148,11 @@ namespace Aws
             }
             else
             {
-                auto errorShape = m_operationModelContext
-                                      ->AllocateOperationErrorFromPayload(modelName, payloadStringView, m_allocator)
-                                      .release();
-                Crt::Allocator *allocator = m_allocator;
-                result.m_message = MessageDeserialization{
-                    EventStreamMessageRoutingType::Error,
-                    Crt::ScopedResource<AbstractShapeBase>(
-                        errorShape, [allocator](AbstractShapeBase *shape) { Crt::Delete(shape, allocator); })};
+                auto errorShape = m_operationModelContext->AllocateOperationErrorFromPayload(
+                    modelName, payloadStringView, m_allocator);
+
+                auto shape = Crt::SafeSuperCast<OperationError, AbstractShapeBase>(std::move(errorShape));
+                result.m_message = MessageDeserialization{EventStreamMessageRoutingType::Error, std::move(shape)};
             }
 
             if (result.m_message.value().m_shape.get() == nullptr)

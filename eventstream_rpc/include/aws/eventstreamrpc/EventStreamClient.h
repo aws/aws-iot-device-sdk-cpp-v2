@@ -4,8 +4,6 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#include "aws/crt/Variant.h"
-
 #include <aws/eventstreamrpc/Exports.h>
 
 #include <aws/crt/DateTime.h>

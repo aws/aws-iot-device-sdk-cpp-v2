@@ -6,7 +6,11 @@
 
 #include <awstest/EchoTestRpcClient.h>
 
-#include <aws/testing/aws_test_harness.h>
+#include <aws/common/environment.h>
+
+#include <cinttypes>
+#include <thread>
+
 #if defined(_WIN32)
 // aws_test_harness.h includes Windows.h, which is an abomination.
 // undef macros with clashing names...
@@ -14,9 +18,7 @@
 #    undef GetMessage
 #endif
 
-#include <aws/common/environment.h>
-
-#include <thread>
+#include <aws/testing/aws_test_harness.h>
 
 using namespace Aws::Crt;
 using namespace Aws::Eventstreamrpc;
@@ -533,7 +535,7 @@ static bool s_messageDataMembersAreEqual(
         {
             AWS_LOGF_FATAL(
                 AWS_LS_COMMON_GENERAL,
-                "Timestamp comparison value mismatch: %lu vs %lu",
+                "Timestamp comparison value mismatch: %" PRIu64 " vs %" PRIu64,
                 lhs.value().Millis(),
                 rhs.value().Millis());
             return false;
