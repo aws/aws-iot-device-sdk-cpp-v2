@@ -6,8 +6,6 @@
 
 #include <awstest/EchoTestRpcClient.h>
 
-#include <aws/common/environment.h>
-
 #include <cinttypes>
 #include <thread>
 
@@ -18,6 +16,7 @@
 #    undef GetMessage
 #endif
 
+#include <aws/common/environment.h>
 #include <aws/testing/aws_test_harness.h>
 
 using namespace Aws::Crt;
