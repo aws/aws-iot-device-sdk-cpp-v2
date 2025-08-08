@@ -6,8 +6,7 @@
 
 #include <awstest/EchoTestRpcClient.h>
 
-#include <cinttypes>
-#include <thread>
+#include <aws/testing/aws_test_harness.h>
 
 #if defined(_WIN32)
 // aws_test_harness.h includes Windows.h, which is an abomination.
@@ -17,7 +16,9 @@
 #endif
 
 #include <aws/common/environment.h>
-#include <aws/testing/aws_test_harness.h>
+
+#include <cinttypes>
+#include <thread>
 
 using namespace Aws::Crt;
 using namespace Aws::Eventstreamrpc;
