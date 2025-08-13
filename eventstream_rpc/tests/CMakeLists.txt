@@ -30,6 +30,10 @@ file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
 
+# -- Silence soft-deprecation warnings inside THIS test binary --
+target_compile_definitions(${TEST_BINARY_NAME}
+    PRIVATE AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+
 # Connectivity tests
 add_test_case(EventStreamClientCreateFailureInvalidHost)
 add_test_case(EventStreamClientCreateFailureInvalidPort)
