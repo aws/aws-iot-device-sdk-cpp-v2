@@ -43,6 +43,7 @@ jobs:
   linux-compat:
     runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       matrix:
         image:
           - manylinux2014-x64
@@ -66,7 +67,8 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} \
+          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
   raspberry:
     runs-on: ubuntu-24.04 # latest
     strategy:
@@ -92,6 +94,7 @@ jobs:
   linux-compiler-compat:
     runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       matrix:
         compiler:
           - clang-6
@@ -200,9 +203,9 @@ jobs:
   windows-vs17:
     runs-on: windows-2025
     strategy:
+      fail-fast: false
       matrix:
         arch: [Win32, x64]
-      fail-fast: false
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
@@ -352,6 +355,7 @@ jobs:
   osx:
     runs-on: ${{ matrix.runner }}
     strategy:
+      fail-fast: false
       matrix:
         runner:
           - macos-13
@@ -730,6 +734,7 @@ jobs:
   clang-sanitizers:
     runs-on: ubuntu-24.04 # latest
     strategy:
+      fail-fast: false
       matrix:
         sanitizer-variants: ["tsan", "asan"]
     permissions:
