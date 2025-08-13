@@ -24,7 +24,6 @@ env:
   CI_SAMPLES_CFG_FOLDER: "./aws-iot-device-sdk-cpp-v2/.github/workflows"
   CI_SERVICE_TESTS_CFG_FOLDER: "./test_cases"
   CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
-  CI_PUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_PubSub_Role
   CI_CYCLEPUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_CyclePubSub_Role
   CI_CUSTOM_AUTHORIZER_ROLE: arn:aws:iam::180635532705:role/CI_CustomAuthorizer_Role
   CI_COGNITO_ROLE: arn:aws:iam::180635532705:role/CI_Cognito_Role
@@ -177,19 +176,6 @@ jobs:
       - name: Running samples in CI setup
         run: |
           python -m pip install boto3
-      - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT3 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_windows_cfg.json
-      - name: run Windows Certificate Connect sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -235,19 +221,6 @@ jobs:
       - name: Running samples in CI setup
         run: |
           python -m pip install boto3
-      - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT3 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_windows_cfg.json
-      - name: run Windows Certificate Connect sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -287,19 +260,6 @@ jobs:
       - name: Running samples in CI setup
         run: |
           python -m pip install boto3
-      - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT3 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_windows_cfg.json
-      - name: run Windows Certificate Connect sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_windows_cert_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
