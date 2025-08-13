@@ -25,15 +25,10 @@ env:
   CI_SERVICE_TESTS_CFG_FOLDER: "./test_cases"
   CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
   CI_CYCLEPUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_CyclePubSub_Role
-  CI_CUSTOM_AUTHORIZER_ROLE: arn:aws:iam::180635532705:role/CI_CustomAuthorizer_Role
-  CI_COGNITO_ROLE: arn:aws:iam::180635532705:role/CI_Cognito_Role
-  CI_SHADOW_ROLE: arn:aws:iam::180635532705:role/CI_Shadow_Role
-  CI_JOBS_ROLE: arn:aws:iam::180635532705:role/CI_Jobs_Role
   CI_FLEET_PROVISIONING_ROLE: arn:aws:iam::180635532705:role/service-role/CI_FleetProvisioning_Role
   CI_DEVICE_ADVISOR: arn:aws:iam::180635532705:role/CI_DeviceAdvisor_Role
   CI_DEVICE_DEFENDER: arn:aws:iam::180635532705:role/CI_DeviceDefender_Role
   CI_SECURE_TUNNEL: arn:aws:iam::180635532705:role/CI_SecureTunnel_Role
-  CI_X509_ROLE: arn:aws:iam::180635532705:role/CI_X509_Role
   CI_MQTT5_ROLE: arn:aws:iam::180635532705:role/CI_MQTT5_Role
   CI_JOBS_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_JobsServiceClient_Role
   CI_SHADOW_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_ShadowServiceClient_Role
@@ -355,33 +350,6 @@ jobs:
           python3 -m venv .venv
           source .venv/bin/activate
           python3 -m pip install boto3
-      - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT3 PubSub sample
-        run: |
-          source .venv/bin/activate
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
-      - name: run PKCS12 sample
-        run: |
-          source .venv/bin/activate
-          aws s3 cp s3://iot-sdk-ci-bucket-us-east1/pkcs12_identity.p12 ./pkcs12_identity.p12
-          pkcs12_identity_name=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-          pkcs12_identity_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/macos/pkcs12_identity_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-          cert=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/cert" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$cert" > /tmp/certificate.pem
-          key=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\") && echo -e "$key" > /tmp/privatekey.pem
-          iot_pkcs12_password=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id "ci/PubSub/key_pkcs12_password" --query "SecretString" | cut -f2 -d":" | cut -f2 -d\")
-          openssl pkcs12 -export -in /tmp/certificate.pem -inkey /tmp/privatekey.pem -out ./iot_pkcs12_key.p12 -name PubSub_Thing_Alias -password pass:$iot_pkcs12_password
-          security create-keychain -p test_password build.keychain
-          security set-keychain-settings -lut 21600 build.keychain
-          security default-keychain -s build.keychain
-          security unlock-keychain -p test_password build.keychain
-          security import pkcs12_identity.p12 -A -k build.keychain -f pkcs12 -P $pkcs12_identity_password -T /usr/bin/codesign -T /usr/bin/security
-          security set-key-partition-list -S 'apple-tool:,apple:' -k test_password build.keychain
-          /usr/bin/codesign --force -s $pkcs12_identity_name ./aws-iot-device-sdk-cpp-v2/build/samples/mqtt/pkcs12_connect/pkcs12-connect -v
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs12_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -421,14 +389,6 @@ jobs:
       - name: Running samples in CI setup
         run: |
           python3 -m pip install boto3
-      - name: configure AWS credentials (PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT3 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -492,7 +452,6 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install softhsm -y
           softhsm2-util --version
-
       - name: configure AWS credentials (Fleet provisioning)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -559,26 +518,6 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
-      - name: configure AWS credentials (Connect and PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Basic Connect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_basic_connect_cfg.json
-      - name: run Websocket Connect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_websocket_connect_cfg.json
-      - name: run MQTT3 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
-      - name: run PKCS11 Connect sample
-        run: |
-          mkdir -p /tmp/tokens
-          export SOFTHSM2_CONF=/tmp/softhsm2.conf
-          echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs11_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -590,61 +529,6 @@ jobs:
       - name: run MQTT5 Shared Subscription sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_shared_subscription_cfg.json
-      - name: configure AWS credentials (Jobs)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_JOBS_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Jobs sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_cfg.json
-      - name: run Mqtt5 Jobs sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_mqtt5_cfg.json
-      - name: configure AWS credentials (Cognito)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_COGNITO_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run CognitoConnect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_cognito_connect_cfg.json
-      - name: configure AWS credentials (Custom Authorizer)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_CUSTOM_AUTHORIZER_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run CustomAuthorizerConnect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_custom_authorizer_connect_cfg.json
-      - name: configure AWS credentials (Shadow)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_SHADOW_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Shadow sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_shadow_cfg.json
-      - name: run Mqtt5 Shadow sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_shadow_mqtt5_cfg.json
-      - name: configure AWS credentials (Fleet provisioning)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_FLEET_PROVISIONING_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Fleet Provisioning sample
-        run: |
-          echo "Generating UUID for IoT thing"
-          Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_cfg.json --input_uuid ${Sample_UUID}
-          python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
-      - name: run Mqtt5 Fleet Provisioning sample
-        run: |
-          echo "Generating UUID for IoT thing"
-          Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_mqtt5_cfg.json --input_uuid ${Sample_UUID}
-          python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
       - name: configure AWS credentials (Secure tunneling)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -654,14 +538,6 @@ jobs:
       - name: run Secure Tunneling sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
-      - name: configure AWS credentials (X509)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_X509_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run X509 sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_x509_connect_cfg.json
 
   # check that docs can still build
   check-docs:
@@ -799,26 +675,6 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
-      - name: configure AWS credentials (Connect and PubSub)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_PUBSUB_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Basic Connect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_basic_connect_cfg.json
-      - name: run Websocket Connect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_websocket_connect_cfg.json
-      - name: run MQTT3 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pubsub_cfg.json
-      - name: run PKCS11 Connect sample
-        run: |
-          mkdir -p /tmp/tokens
-          export SOFTHSM2_CONF=/tmp/softhsm2.conf
-          echo "directories.tokendir = /tmp/tokens" > /tmp/softhsm2.conf
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_pkcs11_connect_cfg.json
       - name: configure AWS credentials (MQTT5)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -830,61 +686,6 @@ jobs:
       - name: run MQTT5 Shared Subscription sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_shared_subscription_cfg.json
-      - name: configure AWS credentials (Jobs)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_JOBS_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Jobs sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_cfg.json
-      - name: run Mqtt5 Jobs sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_jobs_mqtt5_cfg.json
-      - name: configure AWS credentials (Cognito)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_COGNITO_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run CognitoConnect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_cognito_connect_cfg.json
-      - name: configure AWS credentials (Custom Authorizer)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_CUSTOM_AUTHORIZER_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run CustomAuthorizerConnect sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_custom_authorizer_connect_cfg.json
-      - name: configure AWS credentials (Shadow)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_SHADOW_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Shadow sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_shadow_cfg.json
-      - name: run Mqtt5 Shadow sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_shadow_mqtt5_cfg.json
-      - name: configure AWS credentials (Fleet provisioning)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_FLEET_PROVISIONING_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run Fleet Provisioning sample
-        run: |
-          echo "Generating UUID for IoT thing"
-          Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_cfg.json --input_uuid ${Sample_UUID}
-          python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
-      - name: run Mqtt5 Fleet Provisioning sample
-        run: |
-          echo "Generating UUID for IoT thing"
-          Sample_UUID=$(python3  -c "import uuid; print (uuid.uuid4())")
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_fleet_provisioning_mqtt5_cfg.json --input_uuid ${Sample_UUID}
-          python3 ${{ env.CI_UTILS_FOLDER }}/delete_iot_thing_ci.py --thing_name "Fleet_Thing_${Sample_UUID}" --region "us-east-1"
       - name: configure AWS credentials (Secure tunneling)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -894,11 +695,3 @@ jobs:
       - name: run Secure Tunneling sample
         run: |
           python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
-      - name: configure AWS credentials (X509)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_X509_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run X509 sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_x509_connect_cfg.json
