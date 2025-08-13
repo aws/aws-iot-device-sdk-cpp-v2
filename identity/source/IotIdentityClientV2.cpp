@@ -379,7 +379,8 @@ namespace Aws
                 Aws::Crt::ByteCursorFromArray((uint8_t *)outgoingJson.data(), outgoingJson.length());
 
             auto resultHandler = [handler, responsePathTopicAccepted, responsePathTopicRejected](
-                                     Aws::Iot::RequestResponse::UnmodeledResult &&result) {
+                                     Aws::Iot::RequestResponse::UnmodeledResult &&result)
+            {
                 s_RegisterThingResponseHandler(
                     std::move(result), handler, responsePathTopicAccepted, responsePathTopicRejected);
             };
@@ -388,6 +389,56 @@ namespace Aws
 
             return submitResult == AWS_OP_SUCCESS;
         }
+
+        template <typename T> class ServiceStreamingOperation : public Aws::Iot::RequestResponse::IStreamingOperation
+        {
+          public:
+            explicit ServiceStreamingOperation(std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> stream)
+                : m_stream(std::move(stream))
+            {
+            }
+
+            static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> Create(
+                Aws::Crt::Allocator *allocator,
+                const std::shared_ptr<Aws::Iot::RequestResponse::IMqttRequestResponseClient> &bindingClient,
+                const Aws::Crt::String &subscriptionTopicFilter,
+                const Aws::Iot::RequestResponse::StreamingOperationOptions<T> &options)
+            {
+
+                std::function<void(Aws::Iot::RequestResponse::IncomingPublishEvent &&)> unmodeledHandler =
+                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&event)
+                {
+                    const auto &payload = event.GetPayload();
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    if (!jsonObject.WasParseSuccessful())
+                    {
+                        return;
+                    }
+
+                    T modeledEvent(jsonObject);
+                    options.GetStreamHandler()(std::move(modeledEvent));
+                };
+
+                Aws::Iot::RequestResponse::StreamingOperationOptionsInternal internalOptions;
+                internalOptions.subscriptionTopicFilter = Aws::Crt::ByteCursorFromString(subscriptionTopicFilter);
+                internalOptions.subscriptionStatusEventHandler = options.GetSubscriptionStatusEventHandler();
+                internalOptions.incomingPublishEventHandler = unmodeledHandler;
+
+                auto unmodeledStream = bindingClient->CreateStream(internalOptions);
+                if (!unmodeledStream)
+                {
+                    return nullptr;
+                }
+
+                return Aws::Crt::MakeShared<ServiceStreamingOperation<T>>(allocator, unmodeledStream);
+            }
+
+            void Open() override { m_stream->Open(); }
+
+          private:
+            std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> m_stream;
+        };
 
         std::shared_ptr<IClientV2> NewClientFrom5(
             const Aws::Crt::Mqtt5::Mqtt5Client &protocolClient,
