@@ -2,15 +2,16 @@ include(AwsTestHarness)
 enable_testing()
 include(CTest)
 
+option(AWS_CRT_DISABLE_DEPRECATION_WARNINGS "Set this to silence [[deprecated]] warnings coming from aws-crt-cpp headers" OFF)
+if(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+    add_compile_definitions(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+endif()
+
 file(GLOB TEST_SRC "*.cpp")
 file(GLOB TEST_HDRS "*.h")
 file(GLOB TESTS ${TEST_HDRS} ${TEST_SRC})
 
 set(TEST_BINARY_NAME ${PROJECT_NAME}-tests)
-
-# -- Silence soft-deprecation warnings inside THIS test binary --
-target_compile_definitions(${TEST_BINARY_NAME}
-    PRIVATE AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
 
 add_net_test_case(IdentityV2ClientCreateDestroy5)
 add_net_test_case(IdentityV2ClientCreateDestroy311)
