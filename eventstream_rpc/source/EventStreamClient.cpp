@@ -5,13 +5,11 @@
 #include <aws/eventstreamrpc/EventStreamClient.h>
 
 #include <aws/crt/Api.h>
-#include <aws/crt/Config.h>
 #include <aws/crt/auth/Credentials.h>
 
-#include <stdint.h>
-#include <string.h>
-
 #include <algorithm>
+#include <cstdint>
+#include <cstring>
 
 constexpr auto EVENTSTREAM_VERSION_HEADER = ":version";
 constexpr auto EVENTSTREAM_VERSION_STRING = "0.1.0";
@@ -23,14 +21,153 @@ namespace Aws
 {
     namespace Eventstreamrpc
     {
-        /* Because `std::function` cannot be typecasted to void *, we must contain it in a struct. */
-        struct OnMessageFlushCallbackContainer
+        /*
+         * User-data class for completing message flush callbacks.  The C++ API supports both callbacks and
+         * promise completion and so in turn this must support both.
+         *
+         * Additionally, because we synthesize callbacks (in order to have non-blocking destruction), this class
+         * must also support multiple users trying to complete it (with the first one winning) in a thread-safe
+         * manner.
+         *
+         * The general pattern, when needed, results in two possibilities:
+         *
+         * (1) Create a (shared_ptr) instance and submit it to the C API via activate()/connect()/send_message()
+         * (2) Keep a shared_ptr back in the connection/continuation as needed
+         * (3) C client sends message and invokes completion.  A later completion by the binding does nothing.
+         *
+         * or
+         *
+         * (1) Create a (shared_ptr) instance and submit it to the C API via activate()/connect()/send_message()
+         * (2) Keep a shared_ptr back in the connection/continuation as needed
+         * (3) Connection/continuation shutdown happens before the C client does the message flush, so the callbacks
+         *   get triggered by the shutdown.  When the C client goes to complete, the completion does nothing (but
+         *   is memory-safe).
+
+         */
+        class OnMessageFlushCallbackContainer
         {
-            explicit OnMessageFlushCallbackContainer(Crt::Allocator *allocator) : allocator(allocator) {}
-            Crt::Allocator *allocator;
-            OnMessageFlushCallback onMessageFlushCallback;
-            std::promise<RpcError> onFlushPromise;
+          public:
+            explicit OnMessageFlushCallbackContainer(OnMessageFlushCallback &&flushCallback) : m_sharedState({})
+            {
+                m_sharedState.m_state = CallbackState::Incomplete;
+                m_sharedState.m_onMessageFlushCallback = std::move(flushCallback);
+            }
+
+            OnMessageFlushCallbackContainer(
+                OnMessageFlushCallback &&flushCallback,
+                std::promise<RpcError> &&flushPromise)
+                : OnMessageFlushCallbackContainer(std::move(flushCallback))
+            {
+                m_sharedState.m_onFlushPromise = std::move(flushPromise);
+            }
+
+            static void Complete(OnMessageFlushCallbackContainer *callback, RpcError error)
+            {
+                if (callback == nullptr)
+                {
+                    return;
+                }
+
+                bool performCallback = false;
+                OnMessageFlushCallback onMessageFlushCallback;
+                std::promise<RpcError> onFlushPromise;
+                {
+                    std::lock_guard<std::mutex> lock(callback->m_sharedStateLock);
+
+                    if (callback->m_sharedState.m_state == CallbackState::Incomplete)
+                    {
+                        performCallback = true;
+                        callback->m_sharedState.m_state = CallbackState::Finished;
+                        onMessageFlushCallback = std::move(callback->m_sharedState.m_onMessageFlushCallback);
+                        onFlushPromise = std::move(callback->m_sharedState.m_onFlushPromise);
+                    }
+                }
+
+                if (performCallback)
+                {
+                    if (error.crtError != AWS_ERROR_SUCCESS)
+                    {
+                        AWS_LOGF_ERROR(
+                            AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                            "A CRT error occurred while attempting to send a message: %s",
+                            Crt::ErrorDebugString(error.crtError));
+                    }
+                    onFlushPromise.set_value(error);
+                    if (onMessageFlushCallback)
+                    {
+                        onMessageFlushCallback(error.crtError);
+                    }
+                }
+            }
+
+          private:
+            enum class CallbackState
+            {
+                Incomplete,
+                Finished
+            };
+
+            std::mutex m_sharedStateLock;
+            struct
+            {
+                CallbackState m_state;
+                OnMessageFlushCallback m_onMessageFlushCallback;
+                std::promise<RpcError> m_onFlushPromise;
+            } m_sharedState;
         };
+
+        /*
+         * We can't submit a shared_ptr to the C layer, only a raw pointer.  So this class just wraps a shared_ptr
+         * to a callback container.
+         */
+        class OnMessageFlushCallbackContainerWrapper
+        {
+          public:
+            OnMessageFlushCallbackContainerWrapper(Crt::Allocator *allocator, OnMessageFlushCallback &&flushCallback)
+                : m_allocator(allocator),
+                  m_container(
+                      Aws::Crt::MakeShared<OnMessageFlushCallbackContainer>(allocator, std::move(flushCallback)))
+            {
+            }
+
+            OnMessageFlushCallbackContainerWrapper(
+                Crt::Allocator *allocator,
+                OnMessageFlushCallback &&flushCallback,
+                std::promise<RpcError> &&flushPromise)
+                : m_allocator(allocator), m_container(Aws::Crt::MakeShared<OnMessageFlushCallbackContainer>(
+                                              allocator,
+                                              std::move(flushCallback),
+                                              std::move(flushPromise)))
+            {
+            }
+
+            static void Complete(OnMessageFlushCallbackContainerWrapper *wrapper, RpcError error)
+            {
+                if (wrapper == nullptr)
+                {
+                    return;
+                }
+
+                OnMessageFlushCallbackContainer::Complete(wrapper->GetContainer().get(), error);
+            }
+
+            std::shared_ptr<OnMessageFlushCallbackContainer> GetContainer() const { return m_container; }
+            Crt::Allocator *GetAllocator() { return m_allocator; }
+
+          private:
+            Crt::Allocator *m_allocator;
+            std::shared_ptr<OnMessageFlushCallbackContainer> m_container;
+        };
+
+        /* The flush completion callback function that the low-level C client will invoke */
+        static void s_protocolMessageCallback(int errorCode, void *userData) noexcept
+        {
+            auto *wrapper = static_cast<OnMessageFlushCallbackContainerWrapper *>(userData);
+
+            auto rpcStatus = (errorCode == AWS_ERROR_SUCCESS) ? EVENT_STREAM_RPC_SUCCESS : EVENT_STREAM_RPC_CRT_ERROR;
+            OnMessageFlushCallbackContainerWrapper::Complete(wrapper, {rpcStatus, errorCode});
+            Aws::Crt::Delete(wrapper, wrapper->GetAllocator());
+        }
 
         MessageAmendment::MessageAmendment(Crt::Allocator *allocator) noexcept
             : m_headers(), m_payload(), m_allocator(allocator)
@@ -92,14 +229,14 @@ namespace Aws
             return *this;
         }
 
-        MessageAmendment::MessageAmendment(MessageAmendment &&rhs)
-            : m_headers(std::move(rhs.m_headers)), m_payload(rhs.m_payload), m_allocator(rhs.m_allocator)
+        MessageAmendment::MessageAmendment(MessageAmendment &&rhs) noexcept
+            : m_headers(std::move(rhs.m_headers)), m_payload(std::move(rhs.m_payload)), m_allocator(rhs.m_allocator)
         {
             rhs.m_allocator = nullptr;
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
         }
 
-        MessageAmendment &MessageAmendment::operator=(MessageAmendment &&rhs)
+        MessageAmendment &MessageAmendment::operator=(MessageAmendment &&rhs) noexcept
         {
             if (this != &rhs)
             {
@@ -164,120 +301,22 @@ namespace Aws
             }
         }
 
-        class EventStreamCppToNativeCrtBuilder
-        {
-          private:
-            friend class ClientConnection;
-            friend class ClientContinuation;
-            static int s_fillNativeHeadersArray(
-                const Crt::List<EventStreamHeader> &headers,
-                struct aws_array_list *headersArray,
-                Crt::Allocator *m_allocator = Crt::g_allocator)
-            {
-                AWS_ZERO_STRUCT(*headersArray);
-                /* Check if the connection has expired before attempting to send. */
-                int errorCode = aws_event_stream_headers_list_init(headersArray, m_allocator);
-
-                if (!errorCode)
-                {
-                    /* Populate the array with the underlying handle of each EventStreamHeader. */
-                    for (auto &i : headers)
-                    {
-                        errorCode = aws_array_list_push_back(headersArray, i.GetUnderlyingHandle());
-
-                        if (errorCode)
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                return errorCode;
-            }
-        };
-
-        ClientConnection &ClientConnection::operator=(ClientConnection &&rhs) noexcept
-        {
-            m_allocator = std::move(rhs.m_allocator);
-            m_underlyingConnection = rhs.m_underlyingConnection;
-            rhs.m_stateMutex.lock();
-            m_clientState = rhs.m_clientState;
-            rhs.m_stateMutex.unlock();
-            m_lifecycleHandler = rhs.m_lifecycleHandler;
-            m_connectMessageAmender = rhs.m_connectMessageAmender;
-            m_connectAckedPromise = std::move(rhs.m_connectAckedPromise);
-            m_closedPromise = std::move(rhs.m_closedPromise);
-            m_onConnectRequestCallback = rhs.m_onConnectRequestCallback;
-
-            /* Reset rhs. */
-            rhs.m_allocator = nullptr;
-            rhs.m_underlyingConnection = nullptr;
-            rhs.m_clientState = DISCONNECTED;
-            rhs.m_lifecycleHandler = nullptr;
-            rhs.m_connectMessageAmender = nullptr;
-            rhs.m_closedPromise = {};
-            rhs.m_onConnectRequestCallback = nullptr;
-
-            return *this;
-        }
-
-        ClientConnection::ClientConnection(ClientConnection &&rhs) noexcept : m_lifecycleHandler(rhs.m_lifecycleHandler)
-        {
-            *this = std::move(rhs);
-        }
-
-        ClientConnection::ClientConnection(Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator), m_underlyingConnection(nullptr), m_clientState(DISCONNECTED),
-              m_lifecycleHandler(nullptr), m_connectMessageAmender(nullptr), m_connectionWillSetup(false),
-              m_onConnectRequestCallback(nullptr)
-        {
-        }
-
-        ClientConnection::~ClientConnection() noexcept
-        {
-            m_stateMutex.lock();
-            if (m_connectionWillSetup)
-            {
-                m_stateMutex.unlock();
-                m_connectionSetupPromise.get_future().wait();
-            }
-            m_stateMutex.lock();
-            if (m_clientState != DISCONNECTED)
-            {
-                Close();
-                m_stateMutex.unlock();
-                m_closedPromise.get_future().wait();
-            }
-            /* Cover the case in which the if statements are not hit. */
-            m_stateMutex.unlock();
-            m_stateMutex.unlock();
-
-            m_underlyingConnection = nullptr;
-        }
-
-        bool ConnectionLifecycleHandler::OnErrorCallback(RpcError error)
-        {
-            (void)error;
-            /* Returning true implies that the connection should close as a result of encountering this error. */
-            return true;
-        }
-
-        void ConnectionLifecycleHandler::OnPingCallback(
+        static void s_fillNativeHeadersArray(
             const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload)
+            struct aws_array_list *headersArray,
+            Crt::Allocator *m_allocator = Crt::g_allocator)
         {
-            (void)headers;
-            (void)payload;
+            AWS_ZERO_STRUCT(*headersArray);
+            aws_event_stream_headers_list_init(headersArray, m_allocator);
+
+            /* Populate the array with the underlying handle of each EventStreamHeader. */
+            for (auto &i : headers)
+            {
+                aws_array_list_push_back(headersArray, i.GetUnderlyingHandle());
+            }
         }
 
-        void ConnectionLifecycleHandler::OnConnectCallback() {}
-
-        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error)
-        {
-            (void)error;
-        }
-
-        Crt::String RpcError::StatusToString()
+        Crt::String RpcError::StatusToString() const
         {
             switch (baseStatus)
             {
@@ -306,285 +345,47 @@ namespace Aws
                 case EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE:
                     return "EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE";
                 case EVENT_STREAM_RPC_CRT_ERROR:
+                {
                     Crt::String ret = "Failed with EVENT_STREAM_RPC_CRT_ERROR, the CRT error was ";
                     ret += Crt::ErrorDebugString(crtError);
                     return ret;
+                }
+                case EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED:
+                    return "EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED";
             }
             return "Unknown status code";
         }
 
-        std::future<RpcError> ClientConnection::Connect(
-            const ConnectionConfig &connectionConfig,
-            ConnectionLifecycleHandler *connectionLifecycleHandler,
-            Crt::Io::ClientBootstrap &clientBootstrap) noexcept
+        EventStreamRpcStatusCode ConnectionConfig::Validate() const noexcept
         {
-            EventStreamRpcStatusCode baseError = EVENT_STREAM_RPC_SUCCESS;
-            struct aws_event_stream_rpc_client_connection_options connOptions;
-
+            if (!m_hostName.has_value() || !m_port.has_value())
             {
-                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
-                if (m_clientState == DISCONNECTED)
-                {
-                    m_clientState = CONNECTING_SOCKET;
-                    m_onConnectCalled = false;
-                    m_connectionSetupPromise = {};
-                    m_connectAckedPromise = {};
-                    m_closedPromise = {};
-                    m_closeReason = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
-                    m_connectionConfig = connectionConfig;
-                    m_lifecycleHandler = connectionLifecycleHandler;
-                }
-                else
-                {
-                    baseError = EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED;
-                }
+                return EVENT_STREAM_RPC_NULL_PARAMETER;
             }
 
-            m_onConnectRequestCallback = m_connectionConfig.GetConnectRequestCallback();
-            Crt::String hostName;
-
-            if (baseError == EVENT_STREAM_RPC_SUCCESS)
-            {
-                AWS_ZERO_STRUCT(connOptions);
-                if (m_connectionConfig.GetHostName().has_value())
-                {
-                    hostName = m_connectionConfig.GetHostName().value();
-                    connOptions.host_name = hostName.c_str();
-                }
-                else
-                {
-                    baseError = EVENT_STREAM_RPC_NULL_PARAMETER;
-                }
-                if (m_connectionConfig.GetPort().has_value())
-                {
-                    connOptions.port = m_connectionConfig.GetPort().value();
-                }
-                else
-                {
-                    baseError = EVENT_STREAM_RPC_NULL_PARAMETER;
-                }
-
-                connOptions.bootstrap = clientBootstrap.GetUnderlyingHandle();
-            }
-
-            if (baseError)
-            {
-                std::promise<RpcError> errorPromise;
-                errorPromise.set_value({baseError, 0});
-                if (baseError == EVENT_STREAM_RPC_NULL_PARAMETER)
-                {
-                    const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
-                    m_clientState = DISCONNECTED;
-                }
-                return errorPromise.get_future();
-            }
-
-            if (m_connectionConfig.GetSocketOptions().has_value())
-            {
-                m_socketOptions = m_connectionConfig.GetSocketOptions().value();
-            }
-            connOptions.socket_options = &m_socketOptions.GetImpl();
-
-            connOptions.on_connection_setup = ClientConnection::s_onConnectionSetup;
-            connOptions.on_connection_protocol_message = ClientConnection::s_onProtocolMessage;
-            connOptions.on_connection_shutdown = ClientConnection::s_onConnectionShutdown;
-            connOptions.user_data = reinterpret_cast<void *>(this);
-
-            m_lifecycleHandler = connectionLifecycleHandler;
-            m_connectMessageAmender = m_connectionConfig.GetConnectMessageAmender();
-
-            if (m_connectionConfig.GetTlsConnectionOptions().has_value())
-            {
-                connOptions.tls_options = m_connectionConfig.GetTlsConnectionOptions()->GetUnderlyingHandle();
-            }
-
-            int crtError = aws_event_stream_rpc_client_connection_connect(m_allocator, &connOptions);
-
-            if (crtError)
-            {
-                std::promise<RpcError> errorPromise;
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A CRT error occurred while attempting to establish the connection: %s",
-                    Crt::ErrorDebugString(crtError));
-                errorPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, crtError});
-                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
-                m_clientState = DISCONNECTED;
-                return errorPromise.get_future();
-            }
-            else
-            {
-                const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
-                m_connectionWillSetup = true;
-            }
-
-            return m_connectAckedPromise.get_future();
+            return EVENT_STREAM_RPC_SUCCESS;
         }
 
-        std::future<RpcError> ClientConnection::SendPing(
+        bool ConnectionLifecycleHandler::OnErrorCallback(RpcError error)
+        {
+            (void)error;
+            /* Returning true implies that the connection should close as a result of encountering this error. */
+            return true;
+        }
+
+        void ConnectionLifecycleHandler::OnPingCallback(
             const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
+            const Crt::Optional<Crt::ByteBuf> &payload)
         {
-            return s_sendPing(this, headers, payload, onMessageFlushCallback);
+            (void)headers;
+            (void)payload;
         }
 
-        std::future<RpcError> ClientConnection::SendPingResponse(
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        void ConnectionLifecycleHandler::OnConnectCallback() {}
+
+        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error)
         {
-            return s_sendPingResponse(this, headers, payload, onMessageFlushCallback);
-        }
-
-        std::future<RpcError> ClientConnection::s_sendPing(
-            ClientConnection *connection,
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            return s_sendProtocolMessage(
-                connection, headers, payload, AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING, 0, onMessageFlushCallback);
-        }
-
-        std::future<RpcError> ClientConnection::s_sendPingResponse(
-            ClientConnection *connection,
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            return s_sendProtocolMessage(
-                connection,
-                headers,
-                payload,
-                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING_RESPONSE,
-                0,
-                onMessageFlushCallback);
-        }
-
-        std::future<RpcError> ClientConnection::SendProtocolMessage(
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            MessageType messageType,
-            uint32_t messageFlags,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            return s_sendProtocolMessage(this, headers, payload, messageType, messageFlags, onMessageFlushCallback);
-        }
-
-        void ClientConnection::s_protocolMessageCallback(int errorCode, void *userData) noexcept
-        {
-            auto *callbackData = static_cast<OnMessageFlushCallbackContainer *>(userData);
-
-            if (errorCode)
-            {
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A CRT error occurred while attempting to send a message: %s",
-                    Crt::ErrorDebugString(errorCode));
-                callbackData->onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-            }
-            else
-            {
-                callbackData->onFlushPromise.set_value({EVENT_STREAM_RPC_SUCCESS, 0});
-            }
-
-            /* Call the user-provided callback. */
-            if (callbackData->onMessageFlushCallback)
-            {
-                callbackData->onMessageFlushCallback(errorCode);
-            }
-
-            Crt::Delete(callbackData, callbackData->allocator);
-        }
-
-        std::future<RpcError> ClientConnection::s_sendProtocolMessage(
-            ClientConnection *connection,
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            MessageType messageType,
-            uint32_t messageFlags,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            std::promise<RpcError> onFlushPromise;
-            OnMessageFlushCallbackContainer *callbackContainer = nullptr;
-            struct aws_array_list headersArray;
-
-            /* The caller should never pass a NULL connection. */
-            AWS_PRECONDITION(connection != nullptr);
-
-            int errorCode = EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(
-                headers, &headersArray, connection->m_allocator);
-
-            if (!errorCode)
-            {
-                struct aws_event_stream_rpc_message_args msg_args;
-                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
-                msg_args.headers_count = headers.size();
-                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
-                msg_args.message_type = messageType;
-                msg_args.message_flags = messageFlags;
-
-                /* This heap allocation is necessary so that the flush callback can still be invoked when this function
-                 * returns. */
-                callbackContainer =
-                    Crt::New<OnMessageFlushCallbackContainer>(connection->m_allocator, connection->m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
-                callbackContainer->onFlushPromise = std::move(onFlushPromise);
-
-                errorCode = aws_event_stream_rpc_client_connection_send_protocol_message(
-                    connection->m_underlyingConnection,
-                    &msg_args,
-                    ClientConnection::s_protocolMessageCallback,
-                    reinterpret_cast<void *>(callbackContainer));
-            }
-
-            /* Cleanup. */
-            if (aws_array_list_is_valid(&headersArray))
-            {
-                aws_array_list_clean_up(&headersArray);
-            }
-
-            if (errorCode)
-            {
-                onFlushPromise = std::move(callbackContainer->onFlushPromise);
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A CRT error occurred while queueing a message to be sent on the connection: %s",
-                    Crt::ErrorDebugString(errorCode));
-                onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                Crt::Delete(callbackContainer, connection->m_allocator);
-            }
-            else
-            {
-                return callbackContainer->onFlushPromise.get_future();
-            }
-
-            return onFlushPromise.get_future();
-        }
-
-        void ClientConnection::Close() noexcept
-        {
-            const std::lock_guard<std::recursive_mutex> lock(m_stateMutex);
-
-            if (IsOpen())
-            {
-                aws_event_stream_rpc_client_connection_close(this->m_underlyingConnection, AWS_OP_SUCCESS);
-            }
-            else if (m_clientState == CONNECTING_SOCKET && !m_connectionWillSetup)
-            {
-                m_connectAckedPromise.set_value({EVENT_STREAM_RPC_CONNECTION_CLOSED, 0});
-            }
-
-            if (m_clientState != DISCONNECTING && m_clientState != DISCONNECTED)
-            {
-                m_clientState = DISCONNECTING;
-            }
-
-            if (m_closeReason.baseStatus == EVENT_STREAM_RPC_UNINITIALIZED)
-            {
-                m_closeReason = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
-            }
+            (void)error;
         }
 
         EventStreamHeader::EventStreamHeader(
@@ -592,6 +393,21 @@ namespace Aws
             Crt::Allocator *allocator)
             : m_allocator(allocator), m_valueByteBuf({}), m_underlyingHandle(header)
         {
+            switch (header.header_value_type)
+            {
+                case AWS_EVENT_STREAM_HEADER_STRING:
+                case AWS_EVENT_STREAM_HEADER_BYTE_BUF:
+                    // Unsafe to copy C struct by value.  Copy the referenced buffer and fix up pointers.
+                    m_valueByteBuf =
+                        Crt::ByteBufNewCopy(allocator, header.header_value.variable_len_val, header.header_value_len);
+                    m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
+                    m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
+                    break;
+
+                default:
+                    // C struct can be copied by value safely
+                    break;
+            }
         }
 
         EventStreamHeader::EventStreamHeader(
@@ -601,17 +417,17 @@ namespace Aws
             : m_allocator(allocator),
               m_valueByteBuf(Crt::ByteBufNewCopy(allocator, (uint8_t *)value.c_str(), value.length()))
         {
-            m_underlyingHandle.header_name_len = static_cast<uint8_t>(name.length());
             size_t length;
-            if (name.length() > INT8_MAX)
+            if (name.length() > AWS_EVENT_STREAM_HEADER_NAME_LEN_MAX)
             {
-                length = INT8_MAX;
+                length = AWS_EVENT_STREAM_HEADER_NAME_LEN_MAX;
             }
             else
             {
                 length = static_cast<size_t>(name.length());
             }
             (void)memcpy(m_underlyingHandle.header_name, name.c_str(), length);
+            m_underlyingHandle.header_name_len = static_cast<uint8_t>(length);
             m_underlyingHandle.header_value_type = AWS_EVENT_STREAM_HEADER_STRING;
             m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
             m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
@@ -632,13 +448,21 @@ namespace Aws
             m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
         }
 
-        EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &lhs) noexcept
+        EventStreamHeader &EventStreamHeader::operator=(const EventStreamHeader &rhs) noexcept
         {
-            m_allocator = lhs.m_allocator;
-            m_valueByteBuf = Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len);
-            m_underlyingHandle = lhs.m_underlyingHandle;
-            m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
-            m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
+            if (this != &rhs)
+            {
+                m_allocator = rhs.m_allocator;
+                if (aws_byte_buf_is_valid(&m_valueByteBuf))
+                {
+                    Crt::ByteBufDelete(m_valueByteBuf);
+                }
+                m_valueByteBuf =
+                    Crt::ByteBufNewCopy(rhs.m_allocator, rhs.m_valueByteBuf.buffer, rhs.m_valueByteBuf.len);
+                m_underlyingHandle = rhs.m_underlyingHandle;
+                m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
+                m_underlyingHandle.header_value_len = static_cast<uint16_t>(m_valueByteBuf.len);
+            }
             return *this;
         }
 
@@ -674,125 +498,671 @@ namespace Aws
             return true;
         }
 
-        ClientContinuation ClientConnection::NewStream(ClientContinuationHandler &clientContinuationHandler) noexcept
+        /*
+         * Eventstream Connection Refactor
+         *
+         * For connections, we now enforce the following invariants for correctness:
+         *
+         * 1. No callback is made while a lock is held.  We perform callbacks by having a transactional callback context
+         * that is moved out of shared state (under the lock), but the callback context does not perform its work until
+         * the lock is released.
+         *
+         * 2. No C API call is made while the lock is held.  This prevents deadlock in degenerate cases where callbacks
+         * get invoked synchronously (for example, trying to send a message on a closed connection).
+         *
+         * 3. No destructor blocking or synchronization.  In order to provide the best behavioral backwards
+         * compatibility, we "synthesize" the callbacks that would occur at destruction when we kick off the async
+         * cleanup process.  Later, when the asynchronous events occur that would normally trigger a callback occur, we
+         * ignore them.
+         *
+         * 4. A self-reference (via shared_ptr member) guarantees the binding impl stays alive longer than the C
+         * objects.   The public binding object also keeps a shared_ptr to the impl, so final destruction only occurs
+         * once both the public binding object's destructor has run and no C connection object is still alive.
+         *
+         *
+         * Invariant (2) lead to a common pattern throughout the bindings:
+         *
+         * (1) Lock the shared state
+         * (2) Optimistically update the shared state as if action-to-take was successful
+         * (3) Unlock the shared state
+         * (4) Invoke the C API
+         * (5) If the C API was unsuccessful (rare case), lock the shared state, rollback the optimistic update, unlock
+         *
+         * For this to be correct, the shared state update in (2) must exclude other pathways from trying to do the same
+         * action.  For example, if a continuation is created but not activated, calling activate optimistically
+         * updates the state to PENDING_ACTIVATE, which prevents concurrent callers from doing anything.  If the C
+         * call to activate() fails, then we roll back from PENDING_ACTIVATE, allowing future callers to again try
+         * and activate the continuation.
+         */
+
+        /* What kind of callback should this context trigger? */
+        enum class ConnectionCallbackActionType
         {
-            return ClientContinuation(this, clientContinuationHandler, m_allocator);
+            None,
+            CompleteConnectPromise,
+            DisconnectionCallback
+        };
+
+        /*
+         * The purpose of this type is to hide much of the conditional complexity around callbacks that the
+         * connection implementation faces.  Issues include:
+         *   (1) When to complete a promise vs. calling a function
+         *   (2) Tracking what promise to complete
+         *   (3) Helping ensure callbacks always occur once and only once
+         *   (4) Passing delayed state (like an error code) forward until the callback can safely be triggered
+         *
+         * We rely on move semantics to ensure (2) and (3)
+         */
+        class ConnectionCallbackContext
+        {
+          public:
+            ConnectionCallbackContext()
+                : m_action(ConnectionCallbackActionType::None), m_error{EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS}
+            {
+            }
+
+            ConnectionCallbackContext(
+                const std::function<void(RpcError)> &disconnectionCallback,
+                const std::function<bool(RpcError)> &errorCallback,
+                const std::function<void()> &connectionSuccessCallback)
+                : m_action(ConnectionCallbackActionType::CompleteConnectPromise),
+                  m_error{EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS}, m_connectPromise(),
+                  m_disconnectionCallback(disconnectionCallback), m_errorCallback(errorCallback),
+                  m_connectionSuccessCallback(connectionSuccessCallback)
+            {
+            }
+
+            ConnectionCallbackContext(
+                std::function<void(RpcError)> &&disconnectionCallback,
+                std::function<bool(RpcError)> &&errorCallback,
+                std::function<void()> &&connectionSuccessCallback)
+                : m_action(ConnectionCallbackActionType::CompleteConnectPromise),
+                  m_error{EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS}, m_connectPromise(),
+                  m_disconnectionCallback(std::move(disconnectionCallback)), m_errorCallback(std::move(errorCallback)),
+                  m_connectionSuccessCallback(std::move(connectionSuccessCallback))
+            {
+            }
+
+            ConnectionCallbackContext(ConnectionCallbackContext &&rhs) noexcept
+                : m_action(rhs.m_action), m_error(rhs.m_error), m_connectPromise(std::move(rhs.m_connectPromise)),
+                  m_disconnectionCallback(std::move(rhs.m_disconnectionCallback)),
+                  m_errorCallback(std::move(rhs.m_errorCallback)),
+                  m_connectionSuccessCallback(std::move(rhs.m_connectionSuccessCallback))
+            {
+                rhs.ClearContext();
+            }
+
+            ConnectionCallbackContext &operator=(ConnectionCallbackContext &&rhs) noexcept
+            {
+                m_action = rhs.m_action;
+                m_error = rhs.m_error;
+                m_connectPromise = std::move(rhs.m_connectPromise);
+                m_disconnectionCallback = std::move(rhs.m_disconnectionCallback);
+                m_errorCallback = std::move(rhs.m_errorCallback);
+                m_connectionSuccessCallback = std::move(rhs.m_connectionSuccessCallback);
+
+                rhs.ClearContext();
+
+                return *this;
+            }
+
+            void InvokeCallbacks()
+            {
+                switch (m_action)
+                {
+                    case ConnectionCallbackActionType::CompleteConnectPromise:
+                    {
+                        if (m_error.crtError != AWS_ERROR_SUCCESS)
+                        {
+                            if (m_errorCallback)
+                            {
+                                (void)m_errorCallback(m_error);
+                            }
+                        }
+                        else
+                        {
+                            if (m_connectionSuccessCallback)
+                            {
+                                m_connectionSuccessCallback();
+                            }
+                        }
+                        m_connectPromise.set_value(m_error);
+                        break;
+                    }
+                    case ConnectionCallbackActionType::DisconnectionCallback:
+                    {
+                        if (m_disconnectionCallback)
+                        {
+                            m_disconnectionCallback(m_error);
+                        }
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }
+
+            /*
+             * Returns a callback context that should be invoked now (indicating successful connection), and moves
+             * this context into a state that should be invoked when the connection is closed.
+             */
+            ConnectionCallbackContext TransitionToConnected()
+            {
+                // connection success context caller should invoke
+                ConnectionCallbackContext context = {};
+                context.m_action = ConnectionCallbackActionType::CompleteConnectPromise;
+                context.m_connectPromise = std::move(m_connectPromise);
+                context.m_connectionSuccessCallback = m_connectionSuccessCallback;
+
+                // we're now a disconnect context
+                m_action = ConnectionCallbackActionType::DisconnectionCallback;
+                m_error = {EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS};
+                m_connectPromise = {};
+
+                return context;
+            }
+
+            void SetAction(ConnectionCallbackActionType action) { m_action = action; }
+            void SetError(RpcError error)
+            {
+                if (m_error.baseStatus == EVENT_STREAM_RPC_SUCCESS)
+                {
+                    m_error = error;
+                }
+            }
+
+            std::future<RpcError> GetConnectPromiseFuture() { return m_connectPromise.get_future(); }
+
+          private:
+            /* Wipes out state in a context to guarantee it does nothing if someone tries to InvokeCallbacks on it */
+            void ClearContext()
+            {
+                m_action = ConnectionCallbackActionType::None;
+                m_error = {EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS};
+                m_connectPromise = {};
+                m_disconnectionCallback = {};
+                m_errorCallback = {};
+                m_connectionSuccessCallback = {};
+            }
+
+            ConnectionCallbackActionType m_action;
+            RpcError m_error;
+            std::promise<RpcError> m_connectPromise;
+            std::function<void(RpcError)> m_disconnectionCallback;
+            std::function<bool(RpcError)> m_errorCallback;
+            std::function<void()> m_connectionSuccessCallback;
+        };
+
+        class ClientConnectionImpl final : public std::enable_shared_from_this<ClientConnectionImpl>
+        {
+          public:
+            explicit ClientConnectionImpl(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept;
+            ~ClientConnectionImpl() noexcept;
+
+            std::future<RpcError> Connect(
+                const ConnectionConfig &connectionOptions,
+                ConnectionLifecycleHandler *connectionLifecycleHandler) noexcept;
+
+            std::shared_ptr<ClientContinuationImpl> NewStream() noexcept;
+
+            void Close() noexcept;
+
+            bool IsOpen() const noexcept;
+
+            // Exclusively called by ClientConnection's destructor.
+            void Shutdown() noexcept;
+
+          private:
+            void CloseInternal(bool isShutdown) noexcept;
+            void MoveToDisconnected(RpcError error) noexcept;
+
+            void ConstructConnectMessage(
+                struct aws_event_stream_rpc_message_args *msg_args,
+                struct aws_array_list *headersArray,
+                MessageAmendment &amendmentStorage) noexcept;
+
+            enum class ClientState
+            {
+                // There is no C connection and no pending attempt to create one
+                Disconnected,
+
+                // There is a pending attempt to create a C connection, but it has not completed yet
+                PendingConnect,
+
+                // We have a C connection, but the Connect->Connack handshake has not completed yet
+                PendingConnack,
+
+                // We have a C connection ready to be used
+                Connected,
+
+                // Our formerly-connected C connection is in the process of shutting down
+                Disconnecting,
+            };
+
+            Crt::Allocator *m_allocator;
+
+            ConnectionLifecycleHandler *m_lifecycleHandler; // cannot be made a shared_ptr sadly
+            ConnectMessageAmender m_connectMessageAmender;
+            ConnectionConfig m_connectionConfig;
+
+            // Non-null as long as something connection-related is going on in the C layer.
+            std::shared_ptr<ClientConnectionImpl> m_selfReference;
+            aws_client_bootstrap *m_bootstrap;
+            aws_event_loop *m_eventLoop;
+
+            mutable std::mutex m_sharedStateLock;
+            struct
+            {
+                aws_event_stream_rpc_client_connection *m_underlyingConnection;
+                ClientState m_currentState;
+                ClientState m_desiredState;
+                ConnectionCallbackContext m_callbackContext;
+                std::shared_ptr<OnMessageFlushCallbackContainer> m_connectFlushContainer;
+                bool m_hasShutDown;
+            } m_sharedState;
+
+            static void s_onConnectionShutdown(
+                struct aws_event_stream_rpc_client_connection *connection,
+                int errorCode,
+                void *userData) noexcept;
+
+            static void s_onConnectionSetup(
+                struct aws_event_stream_rpc_client_connection *connection,
+                int errorCode,
+                void *userData) noexcept;
+
+            static void s_onProtocolMessage(
+                struct aws_event_stream_rpc_client_connection *connection,
+                const struct aws_event_stream_rpc_message_args *messageArgs,
+                void *userData) noexcept;
+        };
+
+        ClientConnectionImpl::ClientConnectionImpl(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept
+            : m_allocator(allocator), m_lifecycleHandler(nullptr), m_connectMessageAmender(nullptr),
+              m_bootstrap(aws_client_bootstrap_acquire(bootstrap)), m_eventLoop(nullptr),
+              m_sharedState{nullptr, ClientState::Disconnected, ClientState::Disconnected, {}, nullptr, false}
+        {
+            m_eventLoop = aws_event_loop_group_get_next_loop(bootstrap->event_loop_group);
         }
 
-        void ClientConnection::s_onConnectionSetup(
+        ClientConnectionImpl::~ClientConnectionImpl() noexcept
+        {
+            aws_client_bootstrap_release(m_bootstrap);
+        }
+
+        // We use a task to zero out the self reference to make sure we are not in a call stack that includes
+        // a member function of the connection impl itself when potentially releasing the final reference.
+        struct AwsEventstreamConnectionImplClearSharedTask
+        {
+            AwsEventstreamConnectionImplClearSharedTask(
+                Aws::Crt::Allocator *allocator,
+                ClientConnectionImpl *clientConnectionImpl) noexcept;
+
+            struct aws_task m_task;
+            struct aws_allocator *m_allocator;
+            std::shared_ptr<ClientConnectionImpl> m_impl;
+        };
+
+        static void s_zeroSharedReference(struct aws_task *task, void *arg, enum aws_task_status status)
+        {
+            (void)task;
+            (void)status;
+
+            auto clearSharedTask = static_cast<AwsEventstreamConnectionImplClearSharedTask *>(arg);
+
+            // implicit destructor does all the work
+            Aws::Crt::Delete(clearSharedTask, clearSharedTask->m_allocator);
+        }
+
+        AwsEventstreamConnectionImplClearSharedTask::AwsEventstreamConnectionImplClearSharedTask(
+            Aws::Crt::Allocator *allocator,
+            ClientConnectionImpl *clientConnectionImpl) noexcept
+            : m_task{}, m_allocator(allocator), m_impl(clientConnectionImpl->shared_from_this())
+        {
+            aws_task_init(&m_task, s_zeroSharedReference, this, "AwsEventstreamConnectionImplClearSharedTask");
+        }
+
+        /*
+         * This gets called in the following cases:
+         *
+         * (1) Synchronous failure to initiate a connection
+         * (2) Connection setup failure (async callback)
+         * (3) Connection (that was successfully established) shutdown completion (async callback)
+         */
+        void ClientConnectionImpl::MoveToDisconnected(RpcError error) noexcept
+        {
+            auto *clearSharedTask =
+                Aws::Crt::New<AwsEventstreamConnectionImplClearSharedTask>(m_allocator, m_allocator, this);
+            ConnectionCallbackContext localContext = {};
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+
+                aws_event_stream_rpc_client_connection_release(m_sharedState.m_underlyingConnection);
+                m_sharedState.m_underlyingConnection = nullptr;
+                m_sharedState.m_currentState = ClientState::Disconnected;
+                m_sharedState.m_desiredState = ClientState::Disconnected;
+                m_sharedState.m_callbackContext.SetError(error);
+                m_selfReference = nullptr; // doesn't actually drop, since the clear shared task just took a ref
+
+                // If we've called shutdown, then no further callbacks should be done
+                if (!m_sharedState.m_hasShutDown)
+                {
+                    localContext = std::move(m_sharedState.m_callbackContext);
+                }
+                m_sharedState.m_callbackContext = {};
+                m_sharedState.m_connectFlushContainer = nullptr;
+            }
+
+            localContext.InvokeCallbacks();
+            aws_event_loop_schedule_task_now(m_eventLoop, &clearSharedTask->m_task);
+        }
+
+        /*
+         * Common logic to kick off the process of shutting down the connection
+         */
+        void ClientConnectionImpl::CloseInternal(bool isShutdown) noexcept
+        {
+            struct aws_event_stream_rpc_client_connection *closeConnection = nullptr;
+            ConnectionCallbackContext localContext = {};
+            std::shared_ptr<OnMessageFlushCallbackContainer> connectFlushContainer = nullptr;
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                m_sharedState.m_desiredState = ClientState::Disconnected;
+                m_sharedState.m_callbackContext.SetError(
+                    {EVENT_STREAM_RPC_CONNECTION_CLOSED, AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED});
+                if (isShutdown)
+                {
+                    m_sharedState.m_hasShutDown = true;
+                }
+
+                if (m_sharedState.m_currentState == ClientState::Connected ||
+                    m_sharedState.m_currentState == ClientState::PendingConnack)
+                {
+                    m_sharedState.m_currentState = ClientState::Disconnecting;
+                    closeConnection = m_sharedState.m_underlyingConnection;
+                    aws_event_stream_rpc_client_connection_acquire(closeConnection);
+                }
+
+                if (isShutdown)
+                {
+                    /*
+                     * When shutting down (ClientConnection::~ClientConnection only) we synthesize any disconnect/
+                     * connection-failure callbacks that might happen in the future, and ignore them when they do.
+                     * This gives us behavioral compatibility with the old implementation (that blocked in
+                     * destructors) while still removing the blocking logic.
+                     */
+                    localContext = std::move(m_sharedState.m_callbackContext);
+                    connectFlushContainer = m_sharedState.m_connectFlushContainer;
+                    m_sharedState.m_connectFlushContainer = nullptr;
+                }
+            }
+
+            // only does something on shutdown
+            localContext.InvokeCallbacks();
+
+            // only does something on shutdown
+            OnMessageFlushCallbackContainer::Complete(
+                connectFlushContainer.get(),
+                {EVENT_STREAM_RPC_CONNECTION_CLOSED, AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED});
+
+            if (closeConnection != nullptr)
+            {
+                aws_event_stream_rpc_client_connection_close(
+                    closeConnection, AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                aws_event_stream_rpc_client_connection_release(closeConnection);
+            }
+        }
+
+        /*
+         * Only called by the destructor of the public-facing ClientConnection object.  When this returns, no
+         * further callbacks will be made.
+         */
+        void ClientConnectionImpl::Shutdown() noexcept
+        {
+            CloseInternal(true);
+        }
+
+        void ClientConnectionImpl::Close() noexcept
+        {
+            CloseInternal(false);
+        }
+
+        std::future<RpcError> ClientConnectionImpl::Connect(
+            const ConnectionConfig &connectionConfig,
+            ConnectionLifecycleHandler *connectionLifecycleHandler) noexcept
+        {
+            std::promise<RpcError> localPromise;
+            std::future<RpcError> localFuture = localPromise.get_future();
+
+            EventStreamRpcStatusCode status = connectionConfig.Validate();
+            if (status != EVENT_STREAM_RPC_SUCCESS)
+            {
+                localPromise.set_value({status, AWS_ERROR_INVALID_ARGUMENT});
+                return localFuture;
+            }
+
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                if (m_sharedState.m_currentState != ClientState::Disconnected)
+                {
+                    localPromise.set_value({EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED, AWS_ERROR_SUCCESS});
+                    return localFuture;
+                }
+
+                // Optimistic state update under the lock.  Nothing can alter a PendingConnect (other than a
+                // connection callback).
+                m_lifecycleHandler = connectionLifecycleHandler;
+                std::function<void(RpcError)> disconnectCallback = [connectionLifecycleHandler](RpcError error)
+                { connectionLifecycleHandler->OnDisconnectCallback(error); };
+                std::function<bool(RpcError)> errorCallback = [connectionLifecycleHandler](RpcError error)
+                { return connectionLifecycleHandler->OnErrorCallback(error); };
+                std::function<void()> connectionSuccessCallback = [connectionLifecycleHandler]()
+                { connectionLifecycleHandler->OnConnectCallback(); };
+
+                m_connectionConfig = connectionConfig;
+                m_selfReference = shared_from_this();
+                m_sharedState.m_desiredState = ClientState::Connected;
+                m_sharedState.m_currentState = ClientState::PendingConnect;
+                m_sharedState.m_callbackContext = {
+                    std::move(disconnectCallback), std::move(errorCallback), std::move(connectionSuccessCallback)};
+                localFuture = m_sharedState.m_callbackContext.GetConnectPromiseFuture();
+            }
+
+            Crt::Io::SocketOptions socketOptions;
+            if (m_connectionConfig.GetSocketOptions().has_value())
+            {
+                socketOptions = m_connectionConfig.GetSocketOptions().value();
+            }
+
+            auto hostName = connectionConfig.GetHostName().value();
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient - Host name %d bytes long", (int)hostName.length());
+            AWS_LOGF_INFO(AWS_LS_COMMON_GENERAL, "EventStreamClient - Host name : %s", hostName.c_str());
+
+            struct aws_event_stream_rpc_client_connection_options connectOptions;
+            AWS_ZERO_STRUCT(connectOptions);
+
+            connectOptions.host_name = hostName.c_str();
+            connectOptions.port = connectionConfig.GetPort().value();
+            connectOptions.bootstrap = m_bootstrap;
+            connectOptions.socket_options = &socketOptions.GetImpl();
+            connectOptions.on_connection_setup = ClientConnectionImpl::s_onConnectionSetup;
+            connectOptions.on_connection_protocol_message = ClientConnectionImpl::s_onProtocolMessage;
+            connectOptions.on_connection_shutdown = ClientConnectionImpl::s_onConnectionShutdown;
+
+            connectOptions.user_data = reinterpret_cast<void *>(this);
+
+            if (m_connectionConfig.GetTlsConnectionOptions().has_value())
+            {
+                connectOptions.tls_options = m_connectionConfig.GetTlsConnectionOptions()->GetUnderlyingHandle();
+            }
+
+            if (aws_event_stream_rpc_client_connection_connect(m_allocator, &connectOptions))
+            {
+                // Rollback our optimistic state update
+                MoveToDisconnected({EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED, aws_last_error()});
+            }
+
+            return localFuture;
+        }
+
+        bool ClientConnectionImpl::IsOpen() const noexcept
+        {
+            std::lock_guard<std::mutex> lock(m_sharedStateLock);
+            return m_sharedState.m_currentState == ClientState::Connected;
+        }
+
+        void ClientConnectionImpl::ConstructConnectMessage(
+            struct aws_event_stream_rpc_message_args *msg_args,
+            struct aws_array_list *headersArray,
+            MessageAmendment &amendmentStorage) noexcept
+        {
+            // The version header is necessary for establishing the connection.
+            amendmentStorage.AddHeader(EventStreamHeader(
+                Crt::String(EVENTSTREAM_VERSION_HEADER), Crt::String(EVENTSTREAM_VERSION_STRING), m_allocator));
+
+            if (m_connectionConfig.GetConnectAmendment().has_value())
+            {
+                MessageAmendment connectAmendment(m_connectionConfig.GetConnectAmendment().value());
+                amendmentStorage.PrependHeaders(std::move(connectAmendment).GetHeaders());
+
+                if (connectAmendment.GetPayload().has_value())
+                {
+                    const auto &payload = connectAmendment.GetPayload().value();
+
+                    Crt::Optional<Crt::ByteBuf> copiedPayload =
+                        Crt::ByteBufNewCopy(payload.allocator, payload.buffer, payload.len);
+                    amendmentStorage.SetPayload(copiedPayload);
+                }
+            }
+
+            s_fillNativeHeadersArray(amendmentStorage.GetHeaders(), headersArray, m_allocator);
+
+            msg_args->headers = (struct aws_event_stream_header_value_pair *)headersArray->data;
+            msg_args->headers_count = amendmentStorage.GetHeaders().size();
+            msg_args->payload = amendmentStorage.GetPayload().has_value()
+                                    ? (aws_byte_buf *)(&(amendmentStorage.GetPayload().value()))
+                                    : nullptr;
+            msg_args->message_type = AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT;
+            msg_args->message_flags = 0U;
+        }
+
+        void ClientConnectionImpl::s_onConnectionSetup(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
             void *userData) noexcept
         {
-            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
-            auto *thisConnection = static_cast<ClientConnection *>(userData);
-
-            const std::lock_guard<std::recursive_mutex> lock(thisConnection->m_stateMutex);
-
-            if (errorCode)
+            auto *impl = static_cast<ClientConnectionImpl *>(userData);
+            if (errorCode != AWS_ERROR_SUCCESS)
             {
-                thisConnection->m_clientState = DISCONNECTED;
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A CRT error occurred while setting up the connection: %s",
-                    Crt::ErrorDebugString(errorCode));
-                thisConnection->m_connectAckedPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                aws_event_stream_rpc_client_connection_release(connection);
-                thisConnection->m_underlyingConnection = nullptr;
-                /* No connection to close on error, so no need to check return value of the callback. */
-                (void)thisConnection->m_lifecycleHandler->OnErrorCallback({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
+                AWS_FATAL_ASSERT(connection == nullptr);
+                impl->MoveToDisconnected({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
+                return;
             }
-            else if (thisConnection->m_clientState == DISCONNECTING || thisConnection->m_clientState == DISCONNECTED)
-            {
-                thisConnection->m_underlyingConnection = connection;
-                thisConnection->m_closeReason = {EVENT_STREAM_RPC_CONNECTION_CLOSED, 0};
-                thisConnection->Close();
-            }
-            else
-            {
-                thisConnection->m_clientState = WAITING_FOR_CONNECT_ACK;
-                thisConnection->m_underlyingConnection = connection;
-                MessageAmendment messageAmendment;
 
-                if (thisConnection->m_connectMessageAmender)
+            struct aws_event_stream_rpc_client_connection *closeConnection = nullptr;
+            struct aws_event_stream_rpc_client_connection *connectConnection = nullptr;
+            OnMessageFlushCallbackContainerWrapper *connectCallbackWrapper = nullptr;
+
+            AWS_FATAL_ASSERT(connection != nullptr);
+            {
+                std::lock_guard<std::mutex> lock(impl->m_sharedStateLock);
+                AWS_FATAL_ASSERT(impl->m_sharedState.m_currentState == ClientState::PendingConnect);
+                AWS_FATAL_ASSERT(impl->m_sharedState.m_connectFlushContainer == nullptr);
+
+                // the channel owns the initial ref; we have to take our own
+                aws_event_stream_rpc_client_connection_acquire(connection);
+                impl->m_sharedState.m_underlyingConnection = connection;
+
+                // we also temporarily take a reference because either closeConnection or clientConnection will
+                // also hold a local reference outside the lock.  Not truly needed in this case due to event loop
+                // pinning, but do it anyways as a pattern to follow.
+                aws_event_stream_rpc_client_connection_acquire(connection);
+
+                if (impl->m_sharedState.m_desiredState != ClientState::Connected)
                 {
-                    MessageAmendment connectAmendment(thisConnection->m_connectMessageAmender());
-                    /* The version header is necessary for establishing the connection. */
-                    messageAmendment.AddHeader(EventStreamHeader(
-                        Crt::String(EVENTSTREAM_VERSION_HEADER),
-                        Crt::String(EVENTSTREAM_VERSION_STRING),
-                        thisConnection->m_allocator));
-                    messageAmendment.PrependHeaders(std::move(connectAmendment).GetHeaders());
-                    messageAmendment.SetPayload(std::move(connectAmendment).GetPayload());
+                    // Someone called Close/Shutdown during the connection process.  We couldn't do anything at the
+                    // time, but now we can.  So start the close process.
+                    AWS_FATAL_ASSERT(impl->m_sharedState.m_desiredState == ClientState::Disconnected);
+                    impl->m_sharedState.m_currentState = ClientState::Disconnecting;
+                    closeConnection = connection;
+                }
+                else
+                {
+                    // optimistic state update to waiting on a connack from the server
+                    impl->m_sharedState.m_currentState = ClientState::PendingConnack;
+                    connectConnection = connection;
+
+                    auto callback = impl->m_connectionConfig.GetConnectRequestCallback();
+                    connectCallbackWrapper = Aws::Crt::New<OnMessageFlushCallbackContainerWrapper>(
+                        impl->m_allocator, impl->m_allocator, std::move(callback));
+                    impl->m_sharedState.m_connectFlushContainer = connectCallbackWrapper->GetContainer();
+                }
+            }
+
+            if (connectConnection)
+            {
+                AWS_FATAL_ASSERT(connectCallbackWrapper);
+
+                MessageAmendment amendmentStorage;
+                struct aws_event_stream_rpc_message_args msgArgs;
+                struct aws_array_list headersArray;
+
+                impl->ConstructConnectMessage(&msgArgs, &headersArray, amendmentStorage);
+
+                int connectErrorCode = AWS_ERROR_SUCCESS;
+                if (aws_event_stream_rpc_client_connection_send_protocol_message(
+                        connectConnection,
+                        &msgArgs,
+                        s_protocolMessageCallback,
+                        reinterpret_cast<void *>(connectCallbackWrapper)))
+                {
+                    connectErrorCode = aws_last_error();
                 }
 
-                /* Send a CONNECT packet to the server. */
-                s_sendProtocolMessage(
-                    thisConnection,
-                    messageAmendment.GetHeaders(),
-                    messageAmendment.GetPayload(),
-                    AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT,
-                    0U,
-                    thisConnection->m_onConnectRequestCallback);
+                if (aws_array_list_is_valid(&headersArray))
+                {
+                    aws_array_list_clean_up(&headersArray);
+                }
+
+                if (connectErrorCode != AWS_ERROR_SUCCESS)
+                {
+                    // rollback our optimistic connack update since we failed to send the connect.
+                    // We dont need to release connectConnection because we're "transferring" it to closeConnection
+                    std::lock_guard<std::mutex> lock(impl->m_sharedStateLock);
+
+                    impl->m_sharedState.m_callbackContext.SetError({EVENT_STREAM_RPC_CRT_ERROR, connectErrorCode});
+                    impl->m_sharedState.m_currentState = ClientState::Disconnecting;
+                    closeConnection = connection;
+
+                    impl->m_sharedState.m_connectFlushContainer = nullptr;
+                    Aws::Crt::Delete(connectCallbackWrapper, connectCallbackWrapper->GetAllocator());
+                }
+                else
+                {
+                    aws_event_stream_rpc_client_connection_release(connectConnection);
+                }
             }
 
-            thisConnection->m_connectionSetupPromise.set_value();
+            if (closeConnection)
+            {
+                aws_event_stream_rpc_client_connection_close(
+                    closeConnection, AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                aws_event_stream_rpc_client_connection_release(closeConnection);
+            }
         }
 
-        void ClientConnection::s_onConnectionShutdown(
+        void ClientConnectionImpl::s_onConnectionShutdown(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
             void *userData) noexcept
         {
             (void)connection;
-            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
-            auto *thisConnection = static_cast<ClientConnection *>(userData);
+            auto *impl = static_cast<ClientConnectionImpl *>(userData);
 
-            const std::lock_guard<std::recursive_mutex> lock(thisConnection->m_stateMutex);
-
-            if (thisConnection->m_closeReason.baseStatus == EVENT_STREAM_RPC_UNINITIALIZED && errorCode)
-            {
-                thisConnection->m_closeReason = {EVENT_STREAM_RPC_CRT_ERROR, errorCode};
-            }
-
-            thisConnection->m_underlyingConnection = nullptr;
-
-            if (thisConnection->m_closeReason.baseStatus != EVENT_STREAM_RPC_UNINITIALIZED &&
-                !thisConnection->m_onConnectCalled)
-            {
-                thisConnection->m_connectAckedPromise.set_value(thisConnection->m_closeReason);
-            }
-
-            thisConnection->m_clientState = DISCONNECTED;
-
-            if (thisConnection->m_onConnectCalled)
-            {
-                if (errorCode)
-                {
-                    thisConnection->m_lifecycleHandler->OnDisconnectCallback({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                }
-                else
-                {
-                    thisConnection->m_lifecycleHandler->OnDisconnectCallback({EVENT_STREAM_RPC_SUCCESS, 0});
-                }
-                thisConnection->m_onConnectCalled = false;
-            }
-
-            if (errorCode)
-            {
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A CRT error occurred while shutting down the connection: %s",
-                    Crt::ErrorDebugString(errorCode));
-                thisConnection->m_closedPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-            }
-            else
-            {
-                thisConnection->m_closedPromise.set_value({EVENT_STREAM_RPC_SUCCESS, errorCode});
-            }
+            impl->MoveToDisconnected({EVENT_STREAM_RPC_CONNECTION_CLOSED, errorCode});
         }
 
-        void ClientConnection::s_onProtocolMessage(
+        void ClientConnectionImpl::s_onProtocolMessage(
             struct aws_event_stream_rpc_client_connection *connection,
             const struct aws_event_stream_rpc_message_args *messageArgs,
             void *userData) noexcept
@@ -800,340 +1170,115 @@ namespace Aws
             AWS_PRECONDITION(messageArgs != nullptr);
             (void)connection;
 
-            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
-            auto *thisConnection = static_cast<ClientConnection *>(userData);
-            Crt::List<EventStreamHeader> pingHeaders;
-
+            struct aws_event_stream_rpc_client_connection *closeConnection = nullptr;
+            auto *impl = static_cast<ClientConnectionImpl *>(userData);
             switch (messageArgs->message_type)
             {
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT_ACK:
-                    thisConnection->m_stateMutex.lock();
-                    if (thisConnection->m_clientState == WAITING_FOR_CONNECT_ACK)
+                {
+                    ConnectionCallbackContext localCallbackContext = {};
+                    bool successfulAck =
+                        (messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_CONNECTION_ACCEPTED) != 0;
                     {
-                        if (messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_CONNECTION_ACCEPTED)
+                        std::lock_guard<std::mutex> lock(impl->m_sharedStateLock);
+                        if (impl->m_sharedState.m_currentState != ClientState::PendingConnack || !successfulAck)
                         {
-                            thisConnection->m_clientState = CONNECTED;
-                            thisConnection->m_onConnectCalled = true;
-                            thisConnection->m_connectAckedPromise.set_value({EVENT_STREAM_RPC_SUCCESS, 0});
-                            thisConnection->m_lifecycleHandler->OnConnectCallback();
+                            // triggered if closed/shutdown or failed the handshake
+                            if (!impl->m_sharedState.m_hasShutDown)
+                            {
+                                impl->m_sharedState.m_callbackContext.SetError(RpcError{
+                                    successfulAck ? EVENT_STREAM_RPC_CONNECTION_CLOSED
+                                                  : EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
+                                    0});
+                            }
+                            impl->m_sharedState.m_desiredState = ClientState::Disconnected;
+                            if (impl->m_sharedState.m_currentState != ClientState::Disconnecting)
+                            {
+                                impl->m_sharedState.m_currentState = ClientState::Disconnecting;
+                                closeConnection = connection;
+                                aws_event_stream_rpc_client_connection_acquire(closeConnection);
+                            }
                         }
                         else
                         {
-                            thisConnection->m_closeReason = {EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED, 0};
-                            thisConnection->Close();
+                            // everything's good; transition into the connected state
+                            impl->m_sharedState.m_currentState = ClientState::Connected;
+                            localCallbackContext = impl->m_sharedState.m_callbackContext.TransitionToConnected();
                         }
                     }
-                    else
-                    {
-                        /* Unexpected CONNECT_ACK received. */
-                    }
-                    thisConnection->m_stateMutex.unlock();
+                    localCallbackContext.InvokeCallbacks();
 
+                    if (closeConnection)
+                    {
+                        aws_event_stream_rpc_client_connection_close(
+                            closeConnection, AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                        aws_event_stream_rpc_client_connection_release(closeConnection);
+                    }
                     break;
+                }
 
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:
-
+                {
+                    Crt::List<EventStreamHeader> pingHeaders;
                     for (size_t i = 0; i < messageArgs->headers_count; ++i)
                     {
-                        pingHeaders.emplace_back(
-                            EventStreamHeader(messageArgs->headers[i], thisConnection->m_allocator));
+                        pingHeaders.emplace_back(messageArgs->headers[i], impl->m_allocator);
                     }
 
                     if (messageArgs->payload)
                     {
-                        thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, *messageArgs->payload);
+                        impl->m_lifecycleHandler->OnPingCallback(pingHeaders, *messageArgs->payload);
                     }
                     else
                     {
-                        thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, Crt::Optional<Crt::ByteBuf>());
+                        impl->m_lifecycleHandler->OnPingCallback(pingHeaders, Crt::Optional<Crt::ByteBuf>());
                     }
 
                     break;
+                }
 
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING_RESPONSE:
-                    return;
-                    break;
-
-                case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
-                case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
-
-                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(
-                            {EVENT_STREAM_RPC_CRT_ERROR, AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR}))
-                    {
-                        thisConnection->Close();
-                    }
-
                     break;
 
                 default:
-
-                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(
-                            {EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE, 0}))
-                    {
-                        thisConnection->Close();
-                    }
-
+                    impl->m_lifecycleHandler->OnErrorCallback(
+                        {EVENT_STREAM_RPC_CRT_ERROR, AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR});
+                    impl->Close();
                     break;
             }
         }
 
-        void AbstractShapeBase::s_customDeleter(AbstractShapeBase *shape) noexcept
+        ClientConnection::ClientConnection(Crt::Allocator *allocator, aws_client_bootstrap *bootstrap) noexcept
+            : m_impl(Aws::Crt::MakeShared<ClientConnectionImpl>(allocator, allocator, bootstrap))
         {
-            if (shape->m_allocator != nullptr)
-                Crt::Delete<AbstractShapeBase>(shape, shape->m_allocator);
         }
 
-        ClientContinuation::ClientContinuation(
-            ClientConnection *connection,
-            ClientContinuationHandler &continuationHandler,
-            Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator), m_continuationHandler(continuationHandler), m_continuationToken(nullptr)
+        ClientConnection::~ClientConnection() noexcept
         {
-            struct aws_event_stream_rpc_client_stream_continuation_options options;
-            options.on_continuation = ClientContinuation::s_onContinuationMessage;
-            options.on_continuation_closed = ClientContinuation::s_onContinuationClosed;
-
-            m_callbackData = Crt::New<ContinuationCallbackData>(m_allocator, this, m_allocator);
-
-            m_continuationHandler.m_callbackData = m_callbackData;
-            options.user_data = reinterpret_cast<void *>(m_callbackData);
-
-            if (connection->IsOpen())
-            {
-                m_continuationToken =
-                    aws_event_stream_rpc_client_connection_new_stream(connection->m_underlyingConnection, &options);
-                if (m_continuationToken == nullptr)
-                {
-                    Crt::Delete<ContinuationCallbackData>(m_callbackData, m_allocator);
-                    m_continuationHandler.m_callbackData = nullptr;
-                    m_callbackData = nullptr;
-                }
-            }
+            m_impl->Shutdown();
+            m_impl = nullptr;
         }
 
-        ClientContinuation::~ClientContinuation() noexcept
+        std::future<RpcError> ClientConnection::Connect(
+            const ConnectionConfig &connectionOptions,
+            ConnectionLifecycleHandler *connectionLifecycleHandler) noexcept
         {
-            if (m_continuationToken)
-            {
-                aws_event_stream_rpc_client_continuation_release(m_continuationToken);
-                m_continuationToken = nullptr;
-            }
-            if (m_callbackData != nullptr)
-            {
-                {
-                    const std::lock_guard<std::mutex> lock(m_callbackData->callbackMutex);
-                    m_callbackData->continuationDestroyed = true;
-                }
-                Crt::Delete<ContinuationCallbackData>(m_callbackData, m_allocator);
-            }
+            return m_impl->Connect(connectionOptions, connectionLifecycleHandler);
         }
 
-        void ClientContinuation::s_onContinuationMessage(
-            struct aws_event_stream_rpc_client_continuation_token *continuationToken,
-            const struct aws_event_stream_rpc_message_args *messageArgs,
-            void *userData) noexcept
+        std::shared_ptr<ClientContinuationImpl> ClientConnection::NewStream() noexcept
         {
-            (void)continuationToken;
-            /* The `userData` pointer is used to pass a `ContinuationCallbackData` object. */
-            auto *callbackData = static_cast<ContinuationCallbackData *>(userData);
-            auto *thisContinuation = callbackData->clientContinuation;
-
-            Crt::List<EventStreamHeader> continuationMessageHeaders;
-            for (size_t i = 0; i < messageArgs->headers_count; ++i)
-            {
-                continuationMessageHeaders.emplace_back(
-                    EventStreamHeader(messageArgs->headers[i], thisContinuation->m_allocator));
-            }
-
-            Crt::Optional<Crt::ByteBuf> payload;
-
-            if (messageArgs->payload)
-            {
-                payload = Crt::Optional<Crt::ByteBuf>(*messageArgs->payload);
-            }
-            else
-            {
-                payload = Crt::Optional<Crt::ByteBuf>();
-            }
-
-            const std::lock_guard<std::mutex> lock(callbackData->callbackMutex);
-            if (callbackData->continuationDestroyed)
-                return;
-            thisContinuation->m_continuationHandler.OnContinuationMessage(
-                continuationMessageHeaders, payload, messageArgs->message_type, messageArgs->message_flags);
+            return m_impl->NewStream();
         }
 
-        void ClientContinuation::s_onContinuationClosed(
-            struct aws_event_stream_rpc_client_continuation_token *continuationToken,
-            void *userData) noexcept
+        void ClientConnection::Close() noexcept
         {
-            (void)continuationToken;
-
-            /* The `userData` pointer is used to pass a `ContinuationCallbackData` object. */
-            auto *callbackData = static_cast<ContinuationCallbackData *>(userData);
-
-            const std::lock_guard<std::mutex> lock(callbackData->callbackMutex);
-            if (callbackData->continuationDestroyed)
-                return;
-
-            auto *thisContinuation = callbackData->clientContinuation;
-            thisContinuation->m_continuationHandler.OnContinuationClosed();
+            m_impl->Close();
         }
 
-        std::future<RpcError> ClientContinuation::Activate(
-            const Crt::String &operationName,
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            MessageType messageType,
-            uint32_t messageFlags,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        bool ClientConnection::IsOpen() const noexcept
         {
-            struct aws_array_list headersArray;
-            OnMessageFlushCallbackContainer *callbackContainer = nullptr;
-            std::promise<RpcError> onFlushPromise;
-
-            if (m_continuationToken == nullptr)
-            {
-                onFlushPromise.set_value({EVENT_STREAM_RPC_CONNECTION_CLOSED, 0});
-                return onFlushPromise.get_future();
-            }
-
-            if (IsClosed())
-            {
-                onFlushPromise.set_value({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0});
-                return onFlushPromise.get_future();
-            }
-
-            int errorCode =
-                EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
-
-            /*
-             * Regardless of how the promise gets moved around (or not), this future should stay valid as a return
-             * value.
-             *
-             * We pull it out early because the call to aws_event_stream_rpc_client_continuation_activate() may complete
-             * and delete the promise before we pull out the future afterwords.
-             */
-            std::future<RpcError> retValue = onFlushPromise.get_future();
-
-            if (!errorCode)
-            {
-                struct aws_event_stream_rpc_message_args msg_args;
-                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
-                msg_args.headers_count = headers.size();
-                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
-                msg_args.message_type = messageType;
-                msg_args.message_flags = messageFlags;
-
-                /* This heap allocation is necessary so that the flush callback can still be invoked when this function
-                 * returns. */
-                callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
-                callbackContainer->onFlushPromise = std::move(onFlushPromise);
-
-                errorCode = aws_event_stream_rpc_client_continuation_activate(
-                    m_continuationToken,
-                    Crt::ByteCursorFromCString(operationName.c_str()),
-                    &msg_args,
-                    ClientConnection::s_protocolMessageCallback,
-                    reinterpret_cast<void *>(callbackContainer));
-            }
-
-            /* Cleanup. */
-            if (aws_array_list_is_valid(&headersArray))
-            {
-                aws_array_list_clean_up(&headersArray);
-            }
-
-            if (errorCode)
-            {
-                onFlushPromise = std::move(callbackContainer->onFlushPromise);
-                onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                Crt::Delete(callbackContainer, m_allocator);
-            }
-
-            return retValue;
-        }
-
-        std::future<RpcError> ClientContinuation::SendMessage(
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            MessageType messageType,
-            uint32_t messageFlags,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            struct aws_array_list headersArray;
-            OnMessageFlushCallbackContainer *callbackContainer = nullptr;
-            std::promise<RpcError> onFlushPromise;
-
-            if (IsClosed())
-            {
-                onFlushPromise.set_value({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0});
-                return onFlushPromise.get_future();
-            }
-
-            int errorCode =
-                EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
-
-            if (!errorCode)
-            {
-                struct aws_event_stream_rpc_message_args msg_args;
-                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
-                msg_args.headers_count = headers.size();
-                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
-                msg_args.message_type = messageType;
-                msg_args.message_flags = messageFlags;
-
-                /* This heap allocation is necessary so that the flush callback can still be invoked when this function
-                 * returns. */
-                callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
-                callbackContainer->onFlushPromise = std::move(onFlushPromise);
-
-                if (m_continuationToken)
-                {
-                    errorCode = aws_event_stream_rpc_client_continuation_send_message(
-                        m_continuationToken,
-                        &msg_args,
-                        ClientConnection::s_protocolMessageCallback,
-                        reinterpret_cast<void *>(callbackContainer));
-                }
-            }
-
-            /* Cleanup. */
-            if (aws_array_list_is_valid(&headersArray))
-            {
-                aws_array_list_clean_up(&headersArray);
-            }
-
-            if (errorCode)
-            {
-                onFlushPromise = std::move(callbackContainer->onFlushPromise);
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A CRT error occurred while queueing a message to be sent on a stream: %s",
-                    Crt::ErrorDebugString(errorCode));
-                onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                Crt::Delete(callbackContainer, m_allocator);
-            }
-            else
-            {
-                return callbackContainer->onFlushPromise.get_future();
-            }
-
-            return onFlushPromise.get_future();
-        }
-
-        bool ClientContinuation::IsClosed() noexcept
-        {
-            if (!m_continuationToken)
-            {
-                return true;
-            }
-            else
-            {
-                return aws_event_stream_rpc_client_continuation_is_closed(m_continuationToken);
-            }
+            return m_impl->IsOpen();
         }
 
         OperationModelContext::OperationModelContext(const ServiceModel &serviceModel) noexcept
@@ -1146,245 +1291,19 @@ namespace Aws
             (void)payloadObject;
         }
 
+        void OperationError::s_customDeleter(OperationError *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(shape);
+        }
+
         AbstractShapeBase::AbstractShapeBase() noexcept : m_allocator(nullptr) {}
 
-        ClientOperation::ClientOperation(
-            ClientConnection &connection,
-            std::shared_ptr<StreamResponseHandler> streamHandler,
-            const OperationModelContext &operationModelContext,
-            Crt::Allocator *allocator) noexcept
-            : m_operationModelContext(operationModelContext), m_asyncLaunchMode(std::launch::deferred),
-              m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
-              m_clientContinuation(connection.NewStream(*this)), m_expectedCloses(0), m_streamClosedCalled(false)
+        void AbstractShapeBase::s_customDeleter(AbstractShapeBase *shape) noexcept
         {
-        }
-
-        ClientOperation::~ClientOperation() noexcept
-        {
-            Close().wait();
-            std::unique_lock<std::mutex> lock(m_continuationMutex);
-            m_closeReady.wait(lock, [this] { return m_expectedCloses.load() == 0; });
-        }
-
-        TaggedResult::TaggedResult(Crt::ScopedResource<AbstractShapeBase> operationResponse) noexcept
-            : m_responseType(OPERATION_RESPONSE)
-        {
-            m_operationResult.m_response = std::move(operationResponse);
-        }
-
-        TaggedResult::~TaggedResult() noexcept
-        {
-            if (m_responseType == OPERATION_RESPONSE)
+            if (shape->m_allocator != nullptr)
             {
-                m_operationResult.m_response.~unique_ptr();
+                Crt::Delete<AbstractShapeBase>(shape, shape->m_allocator);
             }
-            else if (m_responseType == OPERATION_ERROR)
-            {
-                m_operationResult.m_error.~unique_ptr();
-            }
-        }
-
-        TaggedResult::TaggedResult(Crt::ScopedResource<OperationError> operationError) noexcept
-            : m_responseType(OPERATION_ERROR), m_rpcError({EVENT_STREAM_RPC_UNINITIALIZED, 0})
-        {
-            m_operationResult.m_error = std::move(operationError);
-        }
-
-        TaggedResult &TaggedResult::operator=(TaggedResult &&rhs) noexcept
-        {
-            m_responseType = rhs.m_responseType;
-            if (m_responseType == OPERATION_RESPONSE)
-            {
-                m_operationResult.m_response = std::move(rhs.m_operationResult.m_response);
-            }
-            else if (m_responseType == OPERATION_ERROR)
-            {
-                m_operationResult.m_error = std::move(rhs.m_operationResult.m_error);
-            }
-            m_rpcError = rhs.m_rpcError;
-            rhs.m_rpcError = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
-
-            return *this;
-        }
-
-        TaggedResult::TaggedResult(RpcError rpcError) noexcept
-            : m_responseType(RPC_ERROR), m_operationResult(), m_rpcError(rpcError)
-        {
-        }
-
-        TaggedResult::TaggedResult() noexcept
-            : m_responseType(RPC_ERROR), m_operationResult(), m_rpcError({EVENT_STREAM_RPC_UNINITIALIZED, 0})
-        {
-        }
-
-        TaggedResult::TaggedResult(TaggedResult &&rhs) noexcept
-        {
-            m_responseType = rhs.m_responseType;
-            if (m_responseType == OPERATION_RESPONSE)
-            {
-                m_operationResult.m_response = std::move(rhs.m_operationResult.m_response);
-            }
-            else if (m_responseType == OPERATION_ERROR)
-            {
-                m_operationResult.m_error = std::move(rhs.m_operationResult.m_error);
-            }
-            m_rpcError = rhs.m_rpcError;
-            rhs.m_rpcError = {EVENT_STREAM_RPC_UNINITIALIZED, 0};
-        }
-
-        TaggedResult::operator bool() const noexcept
-        {
-            return m_responseType == OPERATION_RESPONSE;
-        }
-
-        AbstractShapeBase *TaggedResult::GetOperationResponse() const noexcept
-        {
-            return (m_responseType == OPERATION_RESPONSE) ? m_operationResult.m_response.get() : nullptr;
-        }
-
-        OperationError *TaggedResult::GetOperationError() const noexcept
-        {
-            return (m_responseType == OPERATION_ERROR) ? m_operationResult.m_error.get() : nullptr;
-        }
-
-        RpcError TaggedResult::GetRpcError() const noexcept
-        {
-            if (m_responseType == RPC_ERROR)
-            {
-                return m_rpcError;
-            }
-            else
-            {
-                /* Assume success since an application response or error was received. */
-                return {EVENT_STREAM_RPC_SUCCESS, 0};
-            }
-        }
-
-        std::future<TaggedResult> ClientOperation::GetOperationResult() noexcept
-        {
-            {
-                const std::lock_guard<std::mutex> lock(m_continuationMutex);
-
-                if (m_clientContinuation.IsClosed() && !m_resultReceived)
-                {
-                    AWS_LOGF_ERROR(AWS_LS_EVENT_STREAM_RPC_CLIENT, "The underlying stream is already closed.");
-                    m_initialResponsePromise.set_value(TaggedResult({EVENT_STREAM_RPC_CONNECTION_CLOSED, 0}));
-                    m_resultReceived = true;
-                }
-            }
-
-            return m_initialResponsePromise.get_future();
-        }
-
-        const EventStreamHeader *ClientOperation::GetHeaderByName(
-            const Crt::List<EventStreamHeader> &headers,
-            const Crt::String &name) noexcept
-        {
-            for (auto it = headers.begin(); it != headers.end(); ++it)
-            {
-                if (name == it->GetHeaderName())
-                {
-                    return &(*it);
-                }
-            }
-            return nullptr;
-        }
-
-        EventStreamRpcStatusCode ClientOperation::HandleData(const Crt::Optional<Crt::ByteBuf> &payload)
-        {
-            Crt::StringView payloadStringView;
-            if (payload.has_value())
-            {
-                payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
-            }
-
-            /* The value of this hashmap contains the function that allocates the response object from the
-             * payload. */
-            /* Responses after the first message don't necessarily have the same shape as the first. */
-            Crt::ScopedResource<AbstractShapeBase> response;
-            if (m_messageCount == 1)
-            {
-                response = m_operationModelContext.AllocateInitialResponseFromPayload(payloadStringView, m_allocator);
-            }
-            else
-            {
-                response = m_operationModelContext.AllocateStreamingResponseFromPayload(payloadStringView, m_allocator);
-            }
-
-            if (response.get() == nullptr)
-            {
-                AWS_LOGF_ERROR(AWS_LS_EVENT_STREAM_RPC_CLIENT, "Failed to allocate a response from the payload.");
-                return EVENT_STREAM_RPC_ALLOCATION_ERROR;
-            }
-
-            if (m_messageCount == 1)
-            {
-                const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                m_resultReceived = true;
-                m_initialResponsePromise.set_value(TaggedResult(std::move(response)));
-            }
-            else
-            {
-                if (m_streamHandler)
-                    m_streamHandler->OnStreamEvent(std::move(response));
-            }
-
-            return EVENT_STREAM_RPC_SUCCESS;
-        }
-
-        EventStreamRpcStatusCode ClientOperation::HandleError(
-            const Crt::String &modelName,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            uint32_t messageFlags)
-        {
-            bool streamAlreadyTerminated = (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM) != 0;
-
-            Crt::StringView payloadStringView;
-            if (payload.has_value())
-            {
-                payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
-            }
-
-            /* The value of this hashmap contains the function that allocates the error from the
-             * payload. */
-            Crt::ScopedResource<OperationError> error =
-                m_operationModelContext.AllocateOperationErrorFromPayload(modelName, payloadStringView, m_allocator);
-            if (error.get() == nullptr)
-                return EVENT_STREAM_RPC_UNMAPPED_DATA;
-            if (error->GetMessage().has_value())
-            {
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "An error was received from the server: %s",
-                    error->GetMessage().value().c_str());
-            }
-            TaggedResult taggedResult(std::move(error));
-            if (m_messageCount == 1)
-            {
-                {
-                    const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                    m_resultReceived = true;
-                    m_initialResponsePromise.set_value(std::move(taggedResult));
-                }
-                /* Close the stream unless the server already closed it for us. This condition is checked
-                 * so that TERMINATE_STREAM messages aren't resent by the client. */
-                if (!streamAlreadyTerminated && !m_clientContinuation.IsClosed())
-                {
-                    Close().wait();
-                }
-            }
-            else
-            {
-                bool shouldCloseNow = true;
-                if (m_streamHandler)
-                    shouldCloseNow = m_streamHandler->OnStreamError(std::move(error), {EVENT_STREAM_RPC_SUCCESS, 0});
-                if (!streamAlreadyTerminated && shouldCloseNow && !m_clientContinuation.IsClosed())
-                {
-                    Close().wait();
-                }
-            }
-
-            return EVENT_STREAM_RPC_SUCCESS;
         }
 
         bool StreamResponseHandler::OnStreamError(Crt::ScopedResource<OperationError> operationError, RpcError rpcError)
@@ -1403,189 +1322,629 @@ namespace Aws
 
         void StreamResponseHandler::OnStreamClosed() {}
 
-        void ClientOperation::OnContinuationMessage(
+        static const EventStreamHeader *s_GetHeaderByName(
             const Crt::List<EventStreamHeader> &headers,
-            const Crt::Optional<Crt::ByteBuf> &payload,
-            MessageType messageType,
-            uint32_t messageFlags)
+            const Crt::String &name) noexcept
         {
-            EventStreamRpcStatusCode errorCode = EVENT_STREAM_RPC_SUCCESS;
-            const EventStreamHeader *modelHeader = nullptr;
-            const EventStreamHeader *contentHeader = nullptr;
-            Crt::String modelName;
-
-            if (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM)
+            for (const auto &header : headers)
             {
-                const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                m_expectedCloses.fetch_add(1);
-            }
-
-            m_messageCount += 1;
-
-            modelHeader = GetHeaderByName(headers, Crt::String(SERVICE_MODEL_TYPE_HEADER));
-            if (modelHeader == nullptr)
-            {
-                /* Missing required service model type header. */
-                AWS_LOGF_ERROR(
-                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                    "A required header (%s) could not be found in the message.",
-                    SERVICE_MODEL_TYPE_HEADER);
-                errorCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
-            }
-
-            /* Verify that the model name matches. */
-            if (!errorCode)
-            {
-                modelHeader->GetValueAsString(modelName);
-                if (messageType == AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE)
+                if (name == header.GetHeaderName())
                 {
-                    if (m_messageCount == 1 && m_operationModelContext.GetInitialResponseModelName() != modelName)
+                    return &header;
+                }
+            }
+            return nullptr;
+        }
+
+        // Depending on the current state of the continuation, each inbound message falls into one of three types
+        enum class EventStreamMessageRoutingType
+        {
+            // The inbound message should be turned into a modeled response for an Activate request
+            Response,
+
+            // The inbound message should be turned into a modeled streaming event
+            Stream,
+
+            // The inbound message should be turned into a modeled error for an Activate request
+            Error
+        };
+
+        struct MessageDeserialization
+        {
+            MessageDeserialization() : m_route(EventStreamMessageRoutingType::Error) {}
+
+            MessageDeserialization(EventStreamMessageRoutingType route, Crt::ScopedResource<AbstractShapeBase> shape)
+                : m_route(route), m_shape(std::move(shape))
+            {
+            }
+
+            MessageDeserialization(MessageDeserialization &&) = default;
+
+            MessageDeserialization &operator=(MessageDeserialization &&) = default;
+
+            EventStreamMessageRoutingType m_route;
+            Crt::ScopedResource<AbstractShapeBase> m_shape;
+        };
+
+        struct MessageResult
+        {
+            MessageResult() : m_statusCode(EVENT_STREAM_RPC_SUCCESS) {}
+
+            MessageResult(MessageResult &&) = default;
+
+            MessageResult &operator=(MessageResult &&) = default;
+
+            EventStreamRpcStatusCode m_statusCode;
+            Crt::Optional<MessageDeserialization> m_message;
+        };
+
+        // One-way, sequential state sequence for continuations
+        enum class ContinuationStateType
+        {
+            // Continuation has been created, but Activate has not been called yet
+            None,
+
+            // The continuation is in the process of being activated
+            PendingActivate,
+
+            // The continuation has been successfully activated
+            Activated,
+
+            // The continuation is closing
+            PendingClose,
+
+            // The continuation is closed
+            Closed,
+        };
+
+        struct ContinuationSharedState
+        {
+            ContinuationSharedState();
+
+            ContinuationStateType m_currentState;
+            struct aws_event_stream_rpc_client_continuation_token *m_continuation;
+            std::shared_ptr<OnMessageFlushCallbackContainer> m_activationCallbackContainer;
+            std::function<void(EventstreamResultVariantType &&)> m_activationResponseCallback;
+            std::shared_ptr<OnMessageFlushCallbackContainer> m_closeCallbackContainer;
+        };
+
+        ContinuationSharedState::ContinuationSharedState()
+            : m_currentState(ContinuationStateType::None), m_continuation(nullptr),
+              m_activationCallbackContainer(nullptr), m_activationResponseCallback(), m_closeCallbackContainer(nullptr)
+        {
+        }
+
+        class ClientContinuationImpl : public std::enable_shared_from_this<ClientContinuationImpl>
+        {
+          public:
+            ClientContinuationImpl(
+                Aws::Crt::Allocator *allocator,
+                struct aws_client_bootstrap *bootstrap,
+                struct aws_event_stream_rpc_client_connection *connection) noexcept;
+            virtual ~ClientContinuationImpl();
+
+            // Only called by ClientContinuation::~ClientContinuation
+            void ShutDown() noexcept;
+
+            std::future<RpcError> Activate(
+                const Crt::String &operation,
+                const Crt::List<EventStreamHeader> &headers,
+                const Crt::Optional<Crt::ByteBuf> &payload,
+                MessageType messageType,
+                uint32_t messageFlags,
+                std::function<void(EventstreamResultVariantType &&)> &&onResultCallback,
+                OnMessageFlushCallback &&onMessageFlushCallback) noexcept;
+
+            std::future<RpcError> SendStreamMessage(
+                const Crt::List<EventStreamHeader> &headers,
+                const Crt::Optional<Crt::ByteBuf> &payload,
+                MessageType messageType,
+                uint32_t messageFlags,
+                OnMessageFlushCallback &&onMessageFlushCallback);
+
+            std::future<RpcError> Close(OnMessageFlushCallback &&onMessageFlushCallback = nullptr) noexcept;
+
+            Crt::String GetModelName() const noexcept;
+
+            void Initialize(
+                const std::shared_ptr<OperationModelContext> &operationModelContext,
+                std::shared_ptr<StreamResponseHandler> streamHandler) noexcept
+            {
+                m_operationModelContext = operationModelContext;
+                m_streamHandler = std::move(streamHandler);
+                if (m_sharedState.m_continuation != nullptr)
+                {
+                    m_selfReference = shared_from_this();
+                }
+            }
+
+          private:
+            MessageResult DeserializeRawMessage(
+                const struct aws_event_stream_rpc_message_args *rawMessage,
+                bool shouldBeActivationResponse) noexcept;
+
+            void OnClosed() noexcept;
+
+            void OnMessage(const struct aws_event_stream_rpc_message_args *messageArgs) noexcept;
+
+            EventStreamRpcStatusCode GetEmptyContinuationStatusCode() const;
+
+            static void s_OnContinuationClosed(
+                struct aws_event_stream_rpc_client_continuation_token *token,
+                void *user_data) noexcept;
+
+            static void s_OnContinuationMessage(
+                struct aws_event_stream_rpc_client_continuation_token *token,
+                const struct aws_event_stream_rpc_message_args *message_args,
+                void *user_data) noexcept;
+
+            static void s_OnContinuationTerminated(void *user_data) noexcept;
+
+            static void ReleaseContinuation(
+                Aws::Crt::Allocator *allocator,
+                const struct aws_client_bootstrap *bootstrap,
+                struct aws_event_stream_rpc_client_continuation_token *continuation) noexcept;
+
+            Aws::Crt::Allocator *m_allocator;
+
+            struct aws_client_bootstrap *m_clientBootstrap;
+            struct aws_event_loop *m_connectionEventLoop;
+
+            std::shared_ptr<ClientContinuationImpl> m_selfReference;
+
+            std::mutex m_sharedStateLock;
+            ContinuationSharedState m_sharedState;
+
+            std::shared_ptr<OperationModelContext> m_operationModelContext;
+
+            /*
+             * A small exception to our "never hold a lock while making callbacks" rule.
+             *
+             * The handler lock is "one-way"; it is held while invoking callbacks on the stream handler.  We also
+             * conditionally hold it while zeroing the handler on shutdown.  Because we do not need the lock for
+             * user-facing functions outside ShutDown, deadlock is not a risk.
+             *
+             * THis allows us to guarantee that streaming events/errors are not emitted after ShutDown is called,
+             * even while asynchronous C shutdown is in-progress.
+             */
+            std::mutex m_streamHandlerLock;
+            std::shared_ptr<StreamResponseHandler> m_streamHandler;
+
+            /*
+             * An unfortunate bit of state needed to differentiate between two cases:
+             *  (1) Failure to create the original continuation for any reason
+             *  (2) A fully-closed continuation
+             *
+             * We want to differentiate these cases in order to communicate clear error codes when attempting
+             * to operate on the continuation.
+             *
+             * This is always true in case (2) and false in case (1)
+             */
+            bool m_continuationValid;
+        };
+
+        ClientContinuationImpl::ClientContinuationImpl(
+            Aws::Crt::Allocator *allocator,
+            struct aws_client_bootstrap *bootstrap,
+            struct aws_event_stream_rpc_client_connection *connection) noexcept
+            : m_allocator(allocator), m_clientBootstrap(aws_client_bootstrap_acquire(bootstrap)),
+              m_connectionEventLoop(aws_event_stream_rpc_client_connection_get_event_loop(connection)), m_sharedState(),
+              m_operationModelContext(nullptr), m_continuationValid(true)
+        {
+            if (connection != nullptr)
+            {
+                struct aws_event_stream_rpc_client_stream_continuation_options continuation_options;
+                AWS_ZERO_STRUCT(continuation_options);
+                continuation_options.on_continuation = s_OnContinuationMessage;
+                continuation_options.on_continuation_closed = s_OnContinuationClosed;
+                continuation_options.on_continuation_terminated = s_OnContinuationTerminated;
+                continuation_options.user_data = this;
+
+                m_sharedState.m_continuation =
+                    aws_event_stream_rpc_client_connection_new_stream(connection, &continuation_options);
+            }
+
+            if (!m_sharedState.m_continuation)
+            {
+                m_continuationValid = false;
+                m_sharedState.m_currentState = ContinuationStateType::Closed;
+            }
+        }
+
+        ClientContinuationImpl::~ClientContinuationImpl()
+        {
+            aws_client_bootstrap_release(m_clientBootstrap);
+        }
+
+        // We use a task to release the C continuation to make it impossible to trigger the termination callback
+        // in a callstack that includes ClientContinuationImpl methods or state.
+        //
+        // If we were the last ref holder then release would trigger the termination callback further down the
+        // callstack.  This isn't necessarily unsafe, but for peace-of-mind, it's best for destruction to never
+        // get invoked on an object that has methods within the callstack.
+        struct AwsEventstreamContinuationReleaseTask
+        {
+            AwsEventstreamContinuationReleaseTask(
+                Aws::Crt::Allocator *allocator,
+                struct aws_event_stream_rpc_client_continuation_token *continuation) noexcept;
+
+            struct aws_task m_task;
+            struct aws_allocator *m_allocator;
+            struct aws_event_stream_rpc_client_continuation_token *m_continuation;
+        };
+
+        static void s_releaseContinuation(struct aws_task *task, void *arg, enum aws_task_status status)
+        {
+            (void)task;
+            (void)status;
+
+            auto releaseTask = static_cast<AwsEventstreamContinuationReleaseTask *>(arg);
+
+            aws_event_stream_rpc_client_continuation_release(releaseTask->m_continuation);
+
+            Aws::Crt::Delete(releaseTask, releaseTask->m_allocator);
+        }
+
+        AwsEventstreamContinuationReleaseTask::AwsEventstreamContinuationReleaseTask(
+            Aws::Crt::Allocator *allocator,
+            struct aws_event_stream_rpc_client_continuation_token *continuation) noexcept
+            : m_task{}, m_allocator(allocator), m_continuation(continuation)
+        {
+            aws_task_init(&m_task, s_releaseContinuation, this, "AwsEventstreamContinuationReleaseTask");
+        }
+
+        void ClientContinuationImpl::ReleaseContinuation(
+            Aws::Crt::Allocator *allocator,
+            const struct aws_client_bootstrap *bootstrap,
+            struct aws_event_stream_rpc_client_continuation_token *continuation) noexcept
+        {
+            if (continuation == nullptr)
+            {
+                return;
+            }
+
+            AWS_FATAL_ASSERT(bootstrap != NULL);
+
+            // We use the bootstrap rather than the connection's event loop because we might not have a connection
+            struct aws_event_loop *event_loop = aws_event_loop_group_get_next_loop(bootstrap->event_loop_group);
+            AWS_FATAL_ASSERT(event_loop != NULL);
+
+            auto releaseTask = Aws::Crt::New<AwsEventstreamContinuationReleaseTask>(allocator, allocator, continuation);
+            aws_event_loop_schedule_task_now(event_loop, &releaseTask->m_task);
+        }
+
+        void ClientContinuationImpl::ShutDown() noexcept
+        {
+            struct aws_event_stream_rpc_client_continuation_token *releaseContinuation = nullptr;
+            std::shared_ptr<OnMessageFlushCallbackContainer> closeCallbackContainer = nullptr;
+            std::shared_ptr<OnMessageFlushCallbackContainer> activationCallbackContainer = nullptr;
+            std::function<void(EventstreamResultVariantType &&)> activationResponseCallback = nullptr;
+
+            // This block prevents streaming event callbacks from triggering after scope exit
+            {
+                if (m_connectionEventLoop != nullptr)
+                {
+                    // If we're on the connection's event loop thread then we risk deadlock by trying to use
+                    // the handler lock.  But in that case, it's safe not to use it, because we only use the lock from
+                    // the event loop (or the single call to ShutDown)
+                    bool useHandlerLock = !aws_event_loop_thread_is_callers_thread(m_connectionEventLoop);
+                    if (useHandlerLock)
                     {
-                        AWS_LOGF_ERROR(
-                            AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                            "The model name of the initial response did not match its expected model name.");
-                        errorCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
+                        m_streamHandlerLock.lock();
                     }
-                    else if (
-                        m_messageCount > 1 && m_operationModelContext.GetStreamingResponseModelName().has_value() &&
-                        m_operationModelContext.GetStreamingResponseModelName().value() != modelName)
+
+                    m_streamHandler = nullptr;
+
+                    if (useHandlerLock)
                     {
-                        AWS_LOGF_ERROR(
-                            AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                            "The model name of a subsequent response did not match its expected model name.");
-                        errorCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
+                        m_streamHandlerLock.unlock();
                     }
                 }
             }
 
-            if (!errorCode)
             {
-                Crt::String contentType;
-                contentHeader = GetHeaderByName(headers, Crt::String(CONTENT_TYPE_HEADER));
-                if (contentHeader == nullptr)
+                // update state and gather up all the callbacks we need to synthesize
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                if (m_sharedState.m_currentState == ContinuationStateType::None)
                 {
-                    /* Missing required content type header. */
-                    AWS_LOGF_ERROR(
-                        AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                        "A required header (%s) could not be found in the message.",
-                        CONTENT_TYPE_HEADER);
-                    errorCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
+                    releaseContinuation = m_sharedState.m_continuation;
+                    m_sharedState.m_continuation = nullptr;
+                    m_sharedState.m_currentState = ContinuationStateType::Closed;
                 }
-                else if (contentHeader->GetValueAsString(contentType) && contentType != CONTENT_TYPE_APPLICATION_JSON)
-                {
-                    /* Missing required content type header. */
-                    AWS_LOGF_ERROR(
-                        AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                        "The content type (%s) header was specified with an unsupported value (%s).",
-                        CONTENT_TYPE_HEADER,
-                        contentType.c_str());
-                    errorCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
-                }
+
+                activationCallbackContainer = m_sharedState.m_activationCallbackContainer;
+                m_sharedState.m_activationCallbackContainer = nullptr;
+
+                closeCallbackContainer = m_sharedState.m_closeCallbackContainer;
+                m_sharedState.m_closeCallbackContainer = nullptr;
+
+                activationResponseCallback = std::move(m_sharedState.m_activationResponseCallback);
+                m_sharedState.m_activationResponseCallback = nullptr;
             }
 
-            if (!errorCode)
+            // synthesize callbacks
+
+            if (activationResponseCallback)
             {
-                if (messageType == AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE)
-                {
-                    errorCode = HandleData(payload);
-                }
-                else
-                {
-                    errorCode = HandleError(modelName, payload, messageFlags);
-                }
+                activationResponseCallback(
+                    EventstreamResultVariantType(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
             }
 
-            if (errorCode)
+            // Short-circuit and simulate both activate and close callbacks as necessary.
+            OnMessageFlushCallbackContainer::Complete(
+                activationCallbackContainer.get(), {EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS});
+
+            OnMessageFlushCallbackContainer::Complete(
+                closeCallbackContainer.get(), {EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS});
+
+            if (releaseContinuation != nullptr)
             {
-                if (m_messageCount == 1)
-                {
-                    const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                    m_resultReceived = true;
-                    RpcError promiseValue = {(EventStreamRpcStatusCode)errorCode, 0};
-                    m_initialResponsePromise.set_value(TaggedResult(promiseValue));
-                }
-                else
-                {
-                    bool shouldClose = true;
-                    if (m_streamHandler)
-                        shouldClose = m_streamHandler->OnStreamError(nullptr, {errorCode, 0});
-                    if (!m_clientContinuation.IsClosed() && shouldClose)
-                    {
-                        Close().wait();
-                    }
-                }
-            }
-        }
-
-        std::future<RpcError> ClientOperation::Activate(
-            const AbstractShapeBase *shape,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            /* Promises must be reset in case the client would like to send a subsequent request with the same
-             * `ClientOperation`. */
-            m_initialResponsePromise = {};
-            {
-                const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                m_resultReceived = false;
-            }
-
-            Crt::List<EventStreamHeader> headers;
-            headers.emplace_back(EventStreamHeader(
-                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
-            headers.emplace_back(
-                EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
-            Crt::JsonObject payloadObject;
-            shape->SerializeToJsonObject(payloadObject);
-            Crt::String payloadString = payloadObject.View().WriteCompact();
-            return m_clientContinuation.Activate(
-                GetModelName(),
-                headers,
-                Crt::ByteBufFromCString(payloadString.c_str()),
-                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
-                0,
-                onMessageFlushCallback);
-        }
-
-        void ClientOperation::OnContinuationClosed()
-        {
-            const std::lock_guard<std::mutex> lock(m_continuationMutex);
-            if (!m_resultReceived)
-            {
-                m_initialResponsePromise.set_value(TaggedResult({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0}));
-                m_resultReceived = true;
-            }
-
-            if (m_expectedCloses.load() > 0)
-            {
-                m_expectedCloses.fetch_sub(1);
-                if (!m_streamClosedCalled.load() && m_streamHandler)
-                {
-                    m_streamHandler->OnStreamClosed();
-                    m_streamClosedCalled.store(true);
-                }
-                m_closeReady.notify_one();
-            }
-        }
-
-        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
-        {
-            m_asyncLaunchMode = mode;
-        }
-
-        std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
-        {
-            const std::lock_guard<std::mutex> lock(m_continuationMutex);
-            if (m_expectedCloses.load() > 0 || m_clientContinuation.IsClosed())
-            {
-                std::promise<RpcError> errorPromise;
-                errorPromise.set_value({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0});
-                return errorPromise.get_future();
+                // An unactivated continuation should be released directly
+                ReleaseContinuation(m_allocator, m_clientBootstrap, releaseContinuation);
             }
             else
             {
-                std::promise<RpcError> onTerminatePromise;
+                // A continuation that has at least started the activation process should be closed first
+                Close();
+            }
+        }
 
-                int errorCode = AWS_OP_ERR;
+        EventStreamRpcStatusCode ClientContinuationImpl::GetEmptyContinuationStatusCode() const
+        {
+            if (m_continuationValid)
+            {
+                return EVENT_STREAM_RPC_CONTINUATION_CLOSED;
+            }
+
+            return EVENT_STREAM_RPC_CONNECTION_CLOSED;
+        }
+
+        std::future<RpcError> ClientContinuationImpl::Activate(
+            const Crt::String &operation,
+            const Crt::List<EventStreamHeader> &headers,
+            const Crt::Optional<Crt::ByteBuf> &payload,
+            MessageType messageType,
+            uint32_t messageFlags,
+            std::function<void(EventstreamResultVariantType &&)> &&onResultCallback,
+            OnMessageFlushCallback &&onMessageFlushCallback) noexcept
+        {
+            AWS_FATAL_ASSERT(static_cast<bool>(onResultCallback));
+
+            int result = AWS_OP_ERR;
+            std::promise<RpcError> activationPromise;
+            std::future<RpcError> activationFuture = activationPromise.get_future();
+            auto activationContainerWrapper = Crt::New<OnMessageFlushCallbackContainerWrapper>(
+                m_allocator, m_allocator, std::move(onMessageFlushCallback), std::move(activationPromise));
+            RpcError activationError = {};
+            struct aws_event_stream_rpc_client_continuation_token *activateContinuation = nullptr;
+
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                if (m_sharedState.m_continuation != nullptr)
+                {
+                    if (m_sharedState.m_currentState == ContinuationStateType::None)
+                    {
+                        // optimistically update shared state to pending activate
+                        activateContinuation = m_sharedState.m_continuation;
+                        aws_event_stream_rpc_client_continuation_acquire(activateContinuation);
+                        m_sharedState.m_currentState = ContinuationStateType::PendingActivate;
+                        m_sharedState.m_activationCallbackContainer = activationContainerWrapper->GetContainer();
+                        m_sharedState.m_activationResponseCallback = std::move(onResultCallback);
+                    }
+                    else
+                    {
+                        // we're not in a state we can activate
+                        switch (m_sharedState.m_currentState)
+                        {
+                            case ContinuationStateType::PendingActivate:
+                            case ContinuationStateType::Activated:
+                                // simulate what would be returned if we invoked the C API
+                                activationError = {EVENT_STREAM_RPC_CRT_ERROR, AWS_ERROR_INVALID_STATE};
+                                break;
+
+                            case ContinuationStateType::PendingClose:
+                            case ContinuationStateType::Closed:
+                                activationError = {GetEmptyContinuationStatusCode(), 0};
+                                break;
+
+                            default:
+                                AWS_FATAL_ASSERT(false);
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    activationError = {GetEmptyContinuationStatusCode(), 0};
+                }
+            }
+
+            if (activateContinuation)
+            {
+                struct aws_array_list
+                    headersArray; // guaranteed to be zeroed or valid if we reach the end of the function
+
+                // cleanup requirements mean we can't early out from here on
+                s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
+
+                struct aws_event_stream_rpc_message_args msg_args;
+                msg_args.headers = static_cast<struct aws_event_stream_header_value_pair *>(headersArray.data);
+                msg_args.headers_count = headers.size();
+                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
+                msg_args.message_type = messageType;
+                msg_args.message_flags = messageFlags;
+
+                result = aws_event_stream_rpc_client_continuation_activate(
+                    activateContinuation,
+                    Crt::ByteCursorFromCString(operation.c_str()),
+                    &msg_args,
+                    s_protocolMessageCallback,
+                    reinterpret_cast<void *>(activationContainerWrapper));
+
+                if (result != AWS_OP_SUCCESS)
+                {
+                    // ah shucks, we failed, rollback our optimistic shared state update
+                    std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                    m_sharedState.m_currentState = ContinuationStateType::None;
+                    m_sharedState.m_activationCallbackContainer = nullptr;
+                    m_sharedState.m_activationResponseCallback = nullptr;
+
+                    activationError = {EVENT_STREAM_RPC_CRT_ERROR, aws_last_error()};
+                }
+
+                if (aws_array_list_is_valid(&headersArray))
+                {
+                    aws_array_list_clean_up(&headersArray);
+                }
+
+                aws_event_stream_rpc_client_continuation_release(activateContinuation);
+            }
+
+            if (result != AWS_OP_SUCCESS)
+            {
+                AWS_FATAL_ASSERT(activationContainerWrapper != nullptr);
+
+                OnMessageFlushCallbackContainerWrapper::Complete(activationContainerWrapper, activationError);
+                Aws::Crt::Delete(activationContainerWrapper, activationContainerWrapper->GetAllocator());
+            }
+
+            return activationFuture;
+        }
+
+        std::future<RpcError> ClientContinuationImpl::SendStreamMessage(
+            const Crt::List<EventStreamHeader> &headers,
+            const Crt::Optional<Crt::ByteBuf> &payload,
+            MessageType messageType,
+            uint32_t messageFlags,
+            OnMessageFlushCallback &&onMessageFlushCallback)
+        {
+            int result = AWS_OP_ERR;
+            std::promise<RpcError> sendPromise;
+            std::future<RpcError> sendFuture = sendPromise.get_future();
+            auto sendContainerWrapper = Crt::New<OnMessageFlushCallbackContainerWrapper>(
+                m_allocator, m_allocator, std::move(onMessageFlushCallback), std::move(sendPromise));
+            RpcError sendError = {};
+            struct aws_event_stream_rpc_client_continuation_token *sendContinuation = nullptr;
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                if (m_sharedState.m_continuation != nullptr)
+                {
+                    if (m_sharedState.m_currentState == ContinuationStateType::Activated)
+                    {
+                        // it's safe to send a stream message
+                        sendContinuation = m_sharedState.m_continuation;
+                        aws_event_stream_rpc_client_continuation_acquire(sendContinuation);
+                    }
+                    else
+                    {
+                        // we're not in a state to send a stream message
+                        switch (m_sharedState.m_currentState)
+                        {
+                            case ContinuationStateType::PendingActivate:
+                            case ContinuationStateType::None:
+                                sendError = {EVENT_STREAM_RPC_CONTINUATION_NOT_YET_OPENED, 0};
+                                break;
+
+                            case ContinuationStateType::PendingClose:
+                            case ContinuationStateType::Closed:
+                                sendError = {EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0};
+                                break;
+
+                            default:
+                                AWS_FATAL_ASSERT(false);
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    sendError = {GetEmptyContinuationStatusCode(), 0};
+                }
+            }
+
+            if (sendContinuation)
+            {
+                struct aws_array_list headersArray;
+                s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
+
+                struct aws_event_stream_rpc_message_args msg_args;
+                msg_args.headers = static_cast<struct aws_event_stream_header_value_pair *>(headersArray.data);
+                msg_args.headers_count = headers.size();
+                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
+                msg_args.message_type = messageType;
+                msg_args.message_flags = messageFlags;
+
+                result = aws_event_stream_rpc_client_continuation_send_message(
+                    sendContinuation,
+                    &msg_args,
+                    s_protocolMessageCallback,
+                    reinterpret_cast<void *>(sendContainerWrapper));
+
+                if (result != AWS_OP_SUCCESS)
+                {
+                    sendError = {EVENT_STREAM_RPC_CRT_ERROR, aws_last_error()};
+                }
+
+                if (aws_array_list_is_valid(&headersArray))
+                {
+                    aws_array_list_clean_up(&headersArray);
+                }
+
+                aws_event_stream_rpc_client_continuation_release(sendContinuation);
+            }
+
+            if (result == AWS_OP_ERR)
+            {
+                OnMessageFlushCallbackContainerWrapper::Complete(sendContainerWrapper, sendError);
+                Aws::Crt::Delete(sendContainerWrapper, sendContainerWrapper->GetAllocator());
+            }
+
+            return sendFuture;
+        }
+
+        std::future<RpcError> ClientContinuationImpl::Close(OnMessageFlushCallback &&onMessageFlushCallback) noexcept
+        {
+            int closeResult = AWS_OP_ERR;
+            std::promise<RpcError> closePromise;
+            std::future<RpcError> closeFuture = closePromise.get_future();
+            auto closeCallbackContainerWrapper = Crt::New<OnMessageFlushCallbackContainerWrapper>(
+                m_allocator, m_allocator, std::move(onMessageFlushCallback), std::move(closePromise));
+            RpcError closeError = {};
+            struct aws_event_stream_rpc_client_continuation_token *closeContinuation = nullptr;
+
+            // needed to correctly roll back on failure to send the end-stream message
+            ContinuationStateType previousState = ContinuationStateType::PendingClose;
+
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                previousState = m_sharedState.m_currentState;
+
+                if (m_sharedState.m_continuation != nullptr)
+                {
+                    if (m_sharedState.m_currentState == ContinuationStateType::PendingActivate ||
+                        m_sharedState.m_currentState == ContinuationStateType::Activated)
+                    {
+                        m_sharedState.m_currentState = ContinuationStateType::PendingClose;
+
+                        closeContinuation = m_sharedState.m_continuation;
+                        aws_event_stream_rpc_client_continuation_acquire(closeContinuation);
+
+                        m_sharedState.m_closeCallbackContainer = closeCallbackContainerWrapper->GetContainer();
+                    }
+                    else
+                    {
+                        // not in a valid state to close
+                        closeError = {EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0};
+                    }
+                }
+                else
+                {
+                    closeError = {GetEmptyContinuationStatusCode(), 0};
+                }
+            }
+
+            if (closeContinuation)
+            {
                 struct aws_event_stream_rpc_message_args msg_args;
                 msg_args.headers = nullptr;
                 msg_args.headers_count = 0;
@@ -1593,46 +1952,501 @@ namespace Aws
                 msg_args.message_type = AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE;
                 msg_args.message_flags = AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
 
-                /* This heap allocation is necessary so that the flush callback can still be invoked when this function
-                 * returns. */
-                OnMessageFlushCallbackContainer *callbackContainer =
-                    Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
-                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
-                callbackContainer->onFlushPromise = std::move(onTerminatePromise);
+                closeResult = aws_event_stream_rpc_client_continuation_send_message(
+                    closeContinuation,
+                    &msg_args,
+                    s_protocolMessageCallback,
+                    reinterpret_cast<void *>(closeCallbackContainerWrapper));
 
-                if (m_clientContinuation.m_continuationToken)
+                if (closeResult == AWS_OP_ERR)
                 {
-                    errorCode = aws_event_stream_rpc_client_continuation_send_message(
-                        m_clientContinuation.m_continuationToken,
-                        &msg_args,
-                        ClientConnection::s_protocolMessageCallback,
-                        reinterpret_cast<void *>(callbackContainer));
+                    closeError = {EVENT_STREAM_RPC_CRT_ERROR, aws_last_error()};
+
+                    std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                    m_sharedState.m_closeCallbackContainer = nullptr;
+                    if (m_sharedState.m_currentState != ContinuationStateType::Closed)
+                    {
+                        // Rollback to previous state
+                        m_sharedState.m_currentState = previousState;
+                    }
                 }
 
-                if (errorCode)
+                aws_event_stream_rpc_client_continuation_release(closeContinuation);
+            }
+
+            if (closeResult != AWS_OP_SUCCESS)
+            {
+                OnMessageFlushCallbackContainerWrapper::Complete(closeCallbackContainerWrapper, closeError);
+                Aws::Crt::Delete(closeCallbackContainerWrapper, closeCallbackContainerWrapper->GetAllocator());
+            }
+
+            return closeFuture;
+        }
+
+        void ClientContinuationImpl::OnClosed() noexcept
+        {
+            struct aws_event_stream_rpc_client_continuation_token *releaseContinuation = nullptr;
+            std::shared_ptr<OnMessageFlushCallbackContainer> closeCallbackContainer = nullptr;
+            std::shared_ptr<OnMessageFlushCallbackContainer> activationCallbackContainer = nullptr;
+            std::function<void(EventstreamResultVariantType &&)> activationResponseCallback;
+
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+
+                m_sharedState.m_currentState = ContinuationStateType::Closed;
+                releaseContinuation = m_sharedState.m_continuation;
+                m_sharedState.m_continuation = nullptr;
+
+                activationCallbackContainer = m_sharedState.m_activationCallbackContainer;
+                m_sharedState.m_activationCallbackContainer = nullptr;
+
+                closeCallbackContainer = m_sharedState.m_closeCallbackContainer;
+                m_sharedState.m_closeCallbackContainer = nullptr;
+
+                activationResponseCallback = std::move(m_sharedState.m_activationResponseCallback);
+                m_sharedState.m_activationResponseCallback = nullptr;
+            }
+
+            if (activationResponseCallback)
+            {
+                activationResponseCallback(
+                    EventstreamResultVariantType(RpcError{EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS}));
+            }
+
+            OnMessageFlushCallbackContainer::Complete(
+                activationCallbackContainer.get(), {EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS});
+
+            OnMessageFlushCallbackContainer::Complete(
+                closeCallbackContainer.get(), {EVENT_STREAM_RPC_CONTINUATION_CLOSED, AWS_ERROR_SUCCESS});
+
+            ReleaseContinuation(m_allocator, m_clientBootstrap, releaseContinuation);
+        }
+
+        MessageResult ClientContinuationImpl::DeserializeRawMessage(
+            const struct aws_event_stream_rpc_message_args *rawMessage,
+            bool shouldBeActivationResponse) noexcept
+        {
+            MessageResult result;
+
+            Crt::List<EventStreamHeader> continuationMessageHeaders;
+            for (size_t i = 0; i < rawMessage->headers_count; ++i)
+            {
+                continuationMessageHeaders.emplace_back(rawMessage->headers[i], m_allocator);
+            }
+
+            Crt::Optional<Crt::ByteBuf> payload;
+            if (rawMessage->payload)
+            {
+                payload = Crt::Optional<Crt::ByteBuf>(*rawMessage->payload);
+            }
+            else
+            {
+                payload = Crt::Optional<Crt::ByteBuf>();
+            }
+
+            const EventStreamHeader *modelHeader =
+                s_GetHeaderByName(continuationMessageHeaders, Crt::String(SERVICE_MODEL_TYPE_HEADER));
+            if (modelHeader == nullptr)
+            {
+                AWS_LOGF_ERROR(
+                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                    "A required header (%s) could not be found in the message.",
+                    SERVICE_MODEL_TYPE_HEADER);
+                result.m_statusCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
+                return result;
+            }
+
+            Crt::String modelName;
+            modelHeader->GetValueAsString(modelName);
+            if (rawMessage->message_type == AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE)
+            {
+                if (shouldBeActivationResponse)
                 {
-                    onTerminatePromise = std::move(callbackContainer->onFlushPromise);
-                    std::promise<RpcError> errorPromise;
-                    AWS_LOGF_ERROR(
-                        AWS_LS_EVENT_STREAM_RPC_CLIENT,
-                        "A CRT error occurred while closing the stream: %s",
-                        Crt::ErrorDebugString(errorCode));
-                    onTerminatePromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
-                    Crt::Delete(callbackContainer, m_allocator);
+                    if (m_operationModelContext->GetInitialResponseModelName() != modelName)
+                    {
+                        AWS_LOGF_ERROR(
+                            AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                            "The model name of the initial response did not match its expected model name.");
+                        result.m_statusCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
+                        return result;
+                    }
                 }
                 else
                 {
-                    m_expectedCloses.fetch_add(1);
-                    return callbackContainer->onFlushPromise.get_future();
+                    if (m_operationModelContext->GetStreamingResponseModelName().has_value() &&
+                        m_operationModelContext->GetStreamingResponseModelName().value() != modelName)
+                    {
+                        AWS_LOGF_ERROR(
+                            AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                            "The model name of a subsequent response did not match its expected model name.");
+                        result.m_statusCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
+                        return result;
+                    }
                 }
+            }
 
-                return onTerminatePromise.get_future();
+            const EventStreamHeader *contentHeader =
+                s_GetHeaderByName(continuationMessageHeaders, Crt::String(CONTENT_TYPE_HEADER));
+            if (contentHeader == nullptr)
+            {
+                /* Missing required content type header. */
+                AWS_LOGF_ERROR(
+                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                    "A required header (%s) could not be found in the message.",
+                    CONTENT_TYPE_HEADER);
+                result.m_statusCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
+                return result;
+            }
+
+            Crt::String contentType;
+            if (contentHeader->GetValueAsString(contentType))
+            {
+                if (contentType != CONTENT_TYPE_APPLICATION_JSON)
+                {
+                    /* Unrecognized content type header value. */
+                    AWS_LOGF_ERROR(
+                        AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                        "The content type (%s) header was specified with an unsupported value (%s).",
+                        CONTENT_TYPE_HEADER,
+                        contentType.c_str());
+                    result.m_statusCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
+                    return result;
+                }
+            }
+            else
+            {
+                /* Invalid content type header value type. */
+                AWS_LOGF_ERROR(
+                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                    "The content type (%s) header value was not a string type (%d)",
+                    CONTENT_TYPE_HEADER,
+                    (int)(contentHeader->GetUnderlyingHandle()->header_value_type));
+                result.m_statusCode = EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
+                return result;
+            }
+
+            Crt::StringView payloadStringView;
+            if (payload.has_value())
+            {
+                payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
+            }
+
+            if (rawMessage->message_type == AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE)
+            {
+                if (shouldBeActivationResponse)
+                {
+                    result.m_message = MessageDeserialization{
+                        EventStreamMessageRoutingType::Response,
+                        m_operationModelContext->AllocateInitialResponseFromPayload(payloadStringView, m_allocator)};
+                }
+                else
+                {
+                    result.m_message = MessageDeserialization{
+                        EventStreamMessageRoutingType::Stream,
+                        m_operationModelContext->AllocateStreamingResponseFromPayload(payloadStringView, m_allocator)};
+                }
+            }
+            else
+            {
+                auto errorShape = m_operationModelContext->AllocateOperationErrorFromPayload(
+                    modelName, payloadStringView, m_allocator);
+
+                auto shape = Crt::SafeSuperCast<OperationError, AbstractShapeBase>(std::move(errorShape));
+                result.m_message = MessageDeserialization{EventStreamMessageRoutingType::Error, std::move(shape)};
+            }
+
+            if (result.m_message.value().m_shape.get() == nullptr)
+            {
+                result.m_statusCode = EVENT_STREAM_RPC_UNMAPPED_DATA;
+            }
+
+            return result;
+        }
+
+        void ClientContinuationImpl::OnMessage(const struct aws_event_stream_rpc_message_args *messageArgs) noexcept
+        {
+            MessageResult result;
+            bool isResponse = false;
+            bool shouldClose = false;
+            std::function<void(EventstreamResultVariantType &&)> activationResultCallback = nullptr;
+
+            {
+                std::lock_guard<std::mutex> lock(m_sharedStateLock);
+                isResponse = static_cast<bool>(m_sharedState.m_currentState == ContinuationStateType::PendingActivate);
+                result = DeserializeRawMessage(messageArgs, isResponse);
+
+                if (isResponse)
+                {
+                    activationResultCallback = std::move(m_sharedState.m_activationResponseCallback);
+                    m_sharedState.m_activationResponseCallback = nullptr;
+                    m_sharedState.m_activationCallbackContainer = nullptr;
+
+                    if (result.m_statusCode == EVENT_STREAM_RPC_SUCCESS &&
+                        result.m_message.value().m_route == EventStreamMessageRoutingType::Response)
+                    {
+                        if ((messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM) == 0)
+                        {
+                            m_sharedState.m_currentState = ContinuationStateType::Activated;
+                        }
+                        else
+                        {
+                            /*
+                             * The underlying implementation is going to close underneath us.  No need to send
+                             * an empty terminate stream message, which older server versions can fail on.
+                             */
+                            m_sharedState.m_currentState = ContinuationStateType::PendingClose;
+                        }
+                    }
+                    else
+                    {
+                        shouldClose = true;
+                    }
+                }
+            }
+
+            if (activationResultCallback)
+            {
+                if (result.m_statusCode == EVENT_STREAM_RPC_SUCCESS)
+                {
+                    const auto &message = result.m_message.value();
+                    if (message.m_route == EventStreamMessageRoutingType::Response)
+                    {
+                        activationResultCallback(
+                            EventstreamResultVariantType(std::move(result.m_message.value().m_shape)));
+                    }
+                    else
+                    {
+                        auto errorResponse = Crt::SafeSubCast<AbstractShapeBase, OperationError>(
+                            std::move(result.m_message.value().m_shape));
+                        activationResultCallback(EventstreamResultVariantType(std::move(errorResponse)));
+                    }
+                }
+                else
+                {
+                    activationResultCallback(EventstreamResultVariantType(RpcError{result.m_statusCode, 0}));
+                }
+            }
+
+            if (!isResponse)
+            {
+                std::lock_guard<std::mutex> handlerLock(m_streamHandlerLock);
+
+                auto streamHandler = m_streamHandler;
+                if (streamHandler)
+                {
+                    if (result.m_message.has_value())
+                    {
+                        auto shape = std::move(result.m_message.value().m_shape);
+                        auto route = result.m_message.value().m_route;
+                        switch (route)
+                        {
+                            case EventStreamMessageRoutingType::Stream:
+                            {
+
+                                streamHandler->OnStreamEvent(std::move(shape));
+                                break;
+                            }
+
+                            case EventStreamMessageRoutingType::Error:
+                            {
+                                auto errorResponse =
+                                    Crt::SafeSubCast<AbstractShapeBase, OperationError>(std::move(shape));
+                                shouldClose = streamHandler->OnStreamError(
+                                    std::move(errorResponse), {EVENT_STREAM_RPC_SUCCESS, 0});
+                                break;
+                            }
+
+                            default:
+                                AWS_FATAL_ASSERT(false);
+                        }
+                    }
+                    else
+                    {
+                        shouldClose = streamHandler->OnStreamError(nullptr, {result.m_statusCode, 0});
+                    }
+                }
+            }
+
+            if (shouldClose)
+            {
+                Close();
             }
         }
 
-        void OperationError::s_customDeleter(OperationError *shape) noexcept
+        void ClientContinuationImpl::s_OnContinuationClosed(
+            struct aws_event_stream_rpc_client_continuation_token *token,
+            void *user_data) noexcept
         {
-            AbstractShapeBase::s_customDeleter(shape);
+            (void)token;
+
+            auto impl = reinterpret_cast<ClientContinuationImpl *>(user_data);
+            impl->OnClosed();
+        }
+
+        void ClientContinuationImpl::s_OnContinuationMessage(
+            struct aws_event_stream_rpc_client_continuation_token *token,
+            const struct aws_event_stream_rpc_message_args *message_args,
+            void *user_data) noexcept
+        {
+            (void)token;
+
+            auto impl = reinterpret_cast<ClientContinuationImpl *>(user_data);
+            impl->OnMessage(message_args);
+        }
+
+        void ClientContinuationImpl::s_OnContinuationTerminated(void *user_data) noexcept
+        {
+            auto impl = reinterpret_cast<ClientContinuationImpl *>(user_data);
+
+            // We don't need to put this on an event loop task since we release the continuation on an event loop task
+            impl->m_selfReference = nullptr;
+        }
+
+        Crt::String ClientContinuationImpl::GetModelName() const noexcept
+        {
+            return m_operationModelContext->GetOperationName();
+        }
+
+        std::shared_ptr<ClientContinuationImpl> ClientConnectionImpl::NewStream() noexcept
+        {
+            std::lock_guard<std::mutex> lock(m_sharedStateLock);
+            return Aws::Crt::MakeShared<ClientContinuationImpl>(
+                m_allocator, m_allocator, m_bootstrap, m_sharedState.m_underlyingConnection);
+        }
+
+        ClientOperation::ClientOperation(
+            ClientConnection &connection,
+            std::shared_ptr<StreamResponseHandler> streamHandler,
+            const std::shared_ptr<OperationModelContext> &operationModelContext,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator), m_impl(connection.NewStream())
+        {
+            m_impl->Initialize(operationModelContext, std::move(streamHandler));
+        }
+
+        ClientOperation::~ClientOperation() noexcept
+        {
+            m_impl->ShutDown();
+            m_impl = nullptr;
+        }
+
+        std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            return m_impl->Close(std::move(onMessageFlushCallback));
+        }
+
+        void ClientOperation::WithLaunchMode(std::launch mode) noexcept
+        {
+            (void)mode;
+        }
+
+        Crt::String ClientOperation::GetModelName() const noexcept
+        {
+            return m_impl->GetModelName();
+        }
+
+        std::future<RpcError> ClientOperation::Activate(
+            const AbstractShapeBase *shape,
+            OnMessageFlushCallback &&onMessageFlushCallback,
+            std::function<void(EventstreamResultVariantType &&)> &&onResultCallback) noexcept
+        {
+            Crt::List<EventStreamHeader> headers;
+            headers.emplace_back(
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator);
+            headers.emplace_back(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator);
+            Crt::JsonObject payloadObject;
+            shape->SerializeToJsonObject(payloadObject);
+            Crt::String payloadString = payloadObject.View().WriteCompact();
+
+            return m_impl->Activate(
+                GetModelName(),
+                headers,
+                Crt::ByteBufFromCString(payloadString.c_str()),
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                0,
+                std::move(onResultCallback),
+                std::move(onMessageFlushCallback));
+        }
+
+        std::future<RpcError> ClientOperation::SendStreamMessage(
+            const AbstractShapeBase *shape,
+            OnMessageFlushCallback &&onMessageFlushCallback) noexcept
+        {
+            Crt::List<EventStreamHeader> headers;
+            headers.emplace_back(
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator);
+            headers.emplace_back(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator);
+            Crt::JsonObject payloadObject;
+            shape->SerializeToJsonObject(payloadObject);
+            Crt::String payloadString = payloadObject.View().WriteCompact();
+
+            return m_impl->SendStreamMessage(
+                headers,
+                Crt::ByteBufFromCString(payloadString.c_str()),
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                0,
+                std::move(onMessageFlushCallback));
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType()
+            : m_type(ResultType::NONE), m_modeledResponse(nullptr), m_modeledError(nullptr),
+              m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(
+            Crt::ScopedResource<AbstractShapeBase> &&modeledResult) noexcept
+            : m_type(ResultType::OPERATION_RESPONSE), m_modeledResponse(std::move(modeledResult)),
+              m_modeledError(nullptr),
+              m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(
+            Crt::ScopedResource<OperationError> &&modeledError) noexcept
+            : m_type(ResultType::OPERATION_ERROR), m_modeledResponse(nullptr), m_modeledError(std::move(modeledError)),
+              m_rpcError({EventStreamRpcStatusCode::EVENT_STREAM_RPC_SUCCESS, AWS_ERROR_SUCCESS})
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(RpcError rpcError) noexcept
+            : m_type(ResultType::RPC_ERROR), m_modeledResponse(nullptr), m_modeledError(nullptr), m_rpcError(rpcError)
+        {
+        }
+
+        EventstreamResultVariantType::EventstreamResultVariantType(EventstreamResultVariantType &&rhs) noexcept
+            : m_type(rhs.m_type), m_modeledResponse(std::move(rhs.m_modeledResponse)),
+              m_modeledError(std::move(rhs.m_modeledError)), m_rpcError(rhs.m_rpcError)
+        {
+        }
+
+        EventstreamResultVariantType &EventstreamResultVariantType::operator=(
+            EventstreamResultVariantType &&rhs) noexcept
+        {
+            if (this != &rhs)
+            {
+                m_type = rhs.m_type;
+                m_modeledResponse = std::move(rhs.m_modeledResponse);
+                m_modeledError = std::move(rhs.m_modeledError);
+                m_rpcError = rhs.m_rpcError;
+            }
+
+            return *this;
+        }
+
+        AbstractShapeBase *EventstreamResultVariantType::GetModeledResponse() const
+        {
+            return m_modeledResponse.get();
+        }
+
+        OperationError *EventstreamResultVariantType::GetModeledError() const
+        {
+            return m_modeledError.get();
+        }
+
+        RpcError EventstreamResultVariantType::GetRpcError() const
+        {
+            return m_rpcError;
         }
 
     } /* namespace Eventstreamrpc */
