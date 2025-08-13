@@ -60,11 +60,11 @@ namespace Aws
          * https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html
          *
          */
-    class AWS_IOTIDENTITY_API AWS_CRT_SOFT_DEPRECATED(
-        "We strongly recommend using IotIdentityClientV2. There are no current plans to fully "
-        "deprecate IotIdentityClient but it is highly recommended customers migrate to "
-        "IotIdentityClientV2 More details can be found in the GitHub Repo FAQ" IotIdentityClient final
-    {
+        class AWS_IOTIDENTITY_API AWS_CRT_SOFT_DEPRECATED(
+            "We strongly recommend using IotIdentityClientV2. There are no current plans to fully "
+            "deprecate IotIdentityClient but it is highly recommended customers migrate to "
+            "IotIdentityClientV2 More details can be found in the GitHub Repo FAQ") IotIdentityClient final
+        {
           public:
             IotIdentityClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
             IotIdentityClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
@@ -299,7 +299,7 @@ namespace Aws
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
-    };
+        };
 
     } // namespace Iotidentity
 
