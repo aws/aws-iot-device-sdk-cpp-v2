@@ -71,14 +71,20 @@ namespace Aws
             std::function<void(Aws::Iotjobs::RejectedError *, int ioErr)>;
 
         /**
-         * The AWS IoT jobs service can be used to define a set of remote operations that are sent to and executed on
-         * one or more devices connected to AWS IoT.
+         * @deprecated We strongly recommend using IotJobsClientV2. There are no current
+         * plans to fully deprecate IotJobsClient but it is highly recommended customers
+         * migrate to IotJobsClientV2 More details can be found in the GitHub Repo FAQ
+         * The AWS IoT jobs service can be used to define a set of remote operations
+         * that are sent to and executed on one or more devices connected to AWS IoT.
          *
          * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#jobs-mqtt-api
          *
          */
-        class AWS_IOTJOBS_API IotJobsClient final
-        {
+    class AWS_IOTJOBS_API AWS_CRT_SOFT_DEPRECATED(
+        "We strongly recommend using IotJobsClientV2. There are no current plans to fully "
+        "deprecate IotJobsClient but it is highly recommended customers migrate to "
+        "IotJobsClientV2 More details can be found in the GitHub Repo FAQ" IotJobsClient final
+    {
           public:
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
@@ -98,12 +104,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToDescribeJobExecutionAccepted(
                 const Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest &request,
@@ -123,12 +132,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToDescribeJobExecutionRejected(
                 const Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest &request,
@@ -148,12 +160,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToGetPendingJobExecutionsAccepted(
                 const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
@@ -173,12 +188,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToGetPendingJobExecutionsRejected(
                 const Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest &request,
@@ -198,12 +216,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToJobExecutionsChangedEvents(
                 const Aws::Iotjobs::JobExecutionsChangedSubscriptionRequest &request,
@@ -223,12 +244,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToNextJobExecutionChangedEvents(
                 const Aws::Iotjobs::NextJobExecutionChangedSubscriptionRequest &request,
@@ -237,7 +261,8 @@ namespace Aws
                 const OnSubscribeComplete &onSubAck);
 
             /**
-             * Subscribes to the accepted topic for the StartNextPendingJobExecution operation
+             * Subscribes to the accepted topic for the StartNextPendingJobExecution
+             * operation
              *
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution
              *
@@ -248,12 +273,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToStartNextPendingJobExecutionAccepted(
                 const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
@@ -262,7 +290,8 @@ namespace Aws
                 const OnSubscribeComplete &onSubAck);
 
             /**
-             * Subscribes to the rejected topic for the StartNextPendingJobExecution operation
+             * Subscribes to the rejected topic for the StartNextPendingJobExecution
+             * operation
              *
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution
              *
@@ -273,12 +302,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToStartNextPendingJobExecutionRejected(
                 const Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest &request,
@@ -298,12 +330,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToUpdateJobExecutionAccepted(
                 const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
@@ -323,12 +358,15 @@ namespace Aws
              * the SUBACK is received.
              *
              * @param request Subscription request configuration
-             * @param qos Maximum requested QoS that server may use when sending messages to the client.
-             *            The server may grant a lower QoS in the SUBACK
-             * @param handler callback function to invoke with messages received on the subscription topic
-             * @param onSubAck callback function invoked on receipt of the SUBACK from the server
+             * @param qos Maximum requested QoS that server may use when sending messages
+             * to the client. The server may grant a lower QoS in the SUBACK
+             * @param handler callback function to invoke with messages received on the
+             * subscription topic
+             * @param onSubAck callback function invoked on receipt of the SUBACK from the
+             * server
              *
-             * @return true if the subscribe was successfully queued, false if there was an error doing so
+             * @return true if the subscribe was successfully queued, false if there was
+             * an error doing so
              */
             bool SubscribeToUpdateJobExecutionRejected(
                 const Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest &request,
@@ -342,13 +380,15 @@ namespace Aws
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-describejobexecution
              *
              * Publish a DescribeJobExecution message.
-             * If the device is offline, the PUBLISH packet will be sent once the connection resumes.
+             * If the device is offline, the PUBLISH packet will be sent once the
+             * connection resumes.
              *
              * @param request Message to be serialized and sent
              * @param qos Quality of Service for delivering this message
              * @param onPubAck callback when the publish "completes" (see below)
              *
-             * @return true if the message was successfully queued for publication, false if there was an error
+             * @return true if the message was successfully queued for publication, false
+             * if there was an error
              *
              * * For QoS 0, completes as soon as the packet is sent.
              * * For QoS 1, completes when PUBACK is received.
@@ -365,13 +405,15 @@ namespace Aws
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-getpendingjobexecutions
              *
              * Publish a GetPendingJobExecutions message.
-             * If the device is offline, the PUBLISH packet will be sent once the connection resumes.
+             * If the device is offline, the PUBLISH packet will be sent once the
+             * connection resumes.
              *
              * @param request Message to be serialized and sent
              * @param qos Quality of Service for delivering this message
              * @param onPubAck callback when the publish "completes" (see below)
              *
-             * @return true if the message was successfully queued for publication, false if there was an error
+             * @return true if the message was successfully queued for publication, false
+             * if there was an error
              *
              * * For QoS 0, completes as soon as the packet is sent.
              * * For QoS 1, completes when PUBACK is received.
@@ -383,18 +425,21 @@ namespace Aws
                 const OnPublishComplete &onPubAck);
 
             /**
-             * Gets and starts the next pending job execution for a thing (status IN_PROGRESS or QUEUED).
+             * Gets and starts the next pending job execution for a thing (status
+             * IN_PROGRESS or QUEUED).
              *
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-startnextpendingjobexecution
              *
              * Publish a StartNextPendingJobExecution message.
-             * If the device is offline, the PUBLISH packet will be sent once the connection resumes.
+             * If the device is offline, the PUBLISH packet will be sent once the
+             * connection resumes.
              *
              * @param request Message to be serialized and sent
              * @param qos Quality of Service for delivering this message
              * @param onPubAck callback when the publish "completes" (see below)
              *
-             * @return true if the message was successfully queued for publication, false if there was an error
+             * @return true if the message was successfully queued for publication, false
+             * if there was an error
              *
              * * For QoS 0, completes as soon as the packet is sent.
              * * For QoS 1, completes when PUBACK is received.
@@ -406,20 +451,23 @@ namespace Aws
                 const OnPublishComplete &onPubAck);
 
             /**
-             * Updates the status of a job execution. You can optionally create a step timer by setting a value for the
-             * stepTimeoutInMinutes property. If you don't update the value of this property by running
-             * UpdateJobExecution again, the job execution times out when the step timer expires.
+             * Updates the status of a job execution. You can optionally create a step
+             * timer by setting a value for the stepTimeoutInMinutes property. If you
+             * don't update the value of this property by running UpdateJobExecution
+             * again, the job execution times out when the step timer expires.
              *
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-updatejobexecution
              *
              * Publish a UpdateJobExecution message.
-             * If the device is offline, the PUBLISH packet will be sent once the connection resumes.
+             * If the device is offline, the PUBLISH packet will be sent once the
+             * connection resumes.
              *
              * @param request Message to be serialized and sent
              * @param qos Quality of Service for delivering this message
              * @param onPubAck callback when the publish "completes" (see below)
              *
-             * @return true if the message was successfully queued for publication, false if there was an error
+             * @return true if the message was successfully queued for publication, false
+             * if there was an error
              *
              * * For QoS 0, completes as soon as the packet is sent.
              * * For QoS 1, completes when PUBACK is received.
@@ -432,7 +480,7 @@ namespace Aws
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
-        };
+    };
 
     } // namespace Iotjobs
 

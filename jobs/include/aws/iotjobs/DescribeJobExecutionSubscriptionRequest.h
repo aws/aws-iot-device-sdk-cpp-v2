@@ -31,13 +31,15 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Name of the IoT Thing that you want to subscribe to DescribeJobExecution response events for.
+             * Name of the IoT Thing that you want to subscribe to DescribeJobExecution
+             * response events for.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
             /**
-             * Job ID that you want to subscribe to DescribeJobExecution response events for.
+             * Job ID that you want to subscribe to DescribeJobExecution response events
+             * for.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> JobId;
