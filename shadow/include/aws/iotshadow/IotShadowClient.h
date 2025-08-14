@@ -93,6 +93,9 @@ namespace Aws
             std::function<void(Aws::Iotshadow::ErrorResponse *, int ioErr)>;
 
         /**
+         * @deprecated We strongly recommend using IotShadowClientV2. There are no current plans to
+         * fully deprecate IotShadowClient but it is highly recommended customers migrate to IotShadowClientV2
+         * More details can be found in the GitHub Repo FAQ
          * The AWS IoT Device Shadow service adds shadows to AWS IoT thing objects. Shadows are a simple data store for
          * device properties and state.  Shadows can make a device’s state available to apps and other services whether
          * the device is connected to AWS IoT or not.
@@ -100,8 +103,11 @@ namespace Aws
          * https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html
          *
          */
-        class AWS_IOTSHADOW_API IotShadowClient final
-        {
+    class AWS_IOTSHADOW_API AWS_CRT_SOFT_DEPRECATED(
+        "We strongly recommend using IotShadowClientV2. There are no current plans to fully "
+        "deprecate IotShadowClient but it is highly recommended customers migrate to "
+        "IotShadowClientV2 More details can be found in the GitHub Repo FAQ" IotShadowClient final
+    {
           public:
             IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
             IotShadowClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
@@ -649,7 +655,7 @@ namespace Aws
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
-        };
+    };
 
     } // namespace Iotshadow
 
