@@ -80,11 +80,11 @@ namespace Aws
          * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#jobs-mqtt-api
          *
          */
-    class AWS_IOTJOBS_API AWS_CRT_SOFT_DEPRECATED(
-        "We strongly recommend using IotJobsClientV2. There are no current plans to fully "
-        "deprecate IotJobsClient but it is highly recommended customers migrate to "
-        "IotJobsClientV2 More details can be found in the GitHub Repo FAQ" IotJobsClient final
-    {
+        class AWS_IOTJOBS_API AWS_CRT_SOFT_DEPRECATED(
+            "We strongly recommend using IotJobsClientV2. There are no current plans to fully "
+            "deprecate IotJobsClient but it is highly recommended customers migrate to "
+            "IotJobsClientV2 More details can be found in the GitHub Repo FAQ") IotJobsClient final
+        {
           public:
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);
             IotJobsClient(const std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &mqtt5Client);
@@ -480,7 +480,7 @@ namespace Aws
 
           private:
             std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> m_connection;
-    };
+        };
 
     } // namespace Iotjobs
 
