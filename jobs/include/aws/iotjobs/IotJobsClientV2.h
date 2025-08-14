@@ -95,8 +95,8 @@ namespace Aws
         using UpdateJobExecutionResultHandler = std::function<void(UpdateJobExecutionResult &&)>;
 
         /**
-         * The AWS IoT jobs service can be used to define a set of remote operations that are sent to and executed on
-         * one or more devices connected to AWS IoT.
+         * The AWS IoT jobs service can be used to define a set of remote operations
+         * that are sent to and executed on one or more devices connected to AWS IoT.
          *
          * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#jobs-mqtt-api
          *
@@ -139,7 +139,8 @@ namespace Aws
                 const GetPendingJobExecutionsResultHandler &handler) = 0;
 
             /**
-             * Gets and starts the next pending job execution for a thing (status IN_PROGRESS or QUEUED).
+             * Gets and starts the next pending job execution for a thing (status
+             * IN_PROGRESS or QUEUED).
              *
              *
              * AWS documentation:
@@ -155,9 +156,10 @@ namespace Aws
                 const StartNextPendingJobExecutionResultHandler &handler) = 0;
 
             /**
-             * Updates the status of a job execution. You can optionally create a step timer by setting a value for the
-             * stepTimeoutInMinutes property. If you don't update the value of this property by running
-             * UpdateJobExecution again, the job execution times out when the step timer expires.
+             * Updates the status of a job execution. You can optionally create a step
+             * timer by setting a value for the stepTimeoutInMinutes property. If you
+             * don't update the value of this property by running UpdateJobExecution
+             * again, the job execution times out when the step timer expires.
              *
              *
              * AWS documentation:
@@ -173,17 +175,18 @@ namespace Aws
                 const UpdateJobExecutionResultHandler &handler) = 0;
 
             /**
-             * Creates a stream of JobExecutionsChanged notifications for a given IoT thing.
+             * Creates a stream of JobExecutionsChanged notifications for a given IoT
+             * thing.
              *
              *
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-jobexecutionschanged
              *
-             * @param request Modeled streaming operation subscription configuration.
-             * @param options Configuration options for the streaming operation.
+             * @param request modeled streaming operation subscription configuration
+             * @param options
              *
-             * @return A streaming operation which will emit a modeled event every time a message is received on the
-             * associated MQTT topic.
+             * @return a streaming operation which will emit a modeled event every time a
+             * message is received on the associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateJobExecutionsChangedStream(
                 const JobExecutionsChangedSubscriptionRequest &request,
@@ -196,11 +199,11 @@ namespace Aws
              * AWS documentation:
              * https://docs.aws.amazon.com/iot/latest/developerguide/jobs-api.html#mqtt-nextjobexecutionchanged
              *
-             * @param request Modeled streaming operation subscription configuration.
-             * @param options Configuration options for the streaming operation.
+             * @param request modeled streaming operation subscription configuration
+             * @param options
              *
-             * @return A streaming operation which will emit a modeled event every time a message is received on the
-             * associated MQTT topic.
+             * @return a streaming operation which will emit a modeled event every time a
+             * message is received on the associated MQTT topic
              */
             virtual std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> CreateNextJobExecutionChangedStream(
                 const NextJobExecutionChangedSubscriptionRequest &request,
