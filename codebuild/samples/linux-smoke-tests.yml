@@ -12,10 +12,10 @@ phases:
       - echo Build started on `date`
       - $CODEBUILD_SRC_DIR/codebuild/samples/setup-linux.sh
       - $CODEBUILD_SRC_DIR/codebuild/samples/connect-linux.sh
-      - $CODEBUILD_SRC_DIR/codebuild/samples/custom-auth-linux.sh
-      - $CODEBUILD_SRC_DIR/codebuild/samples/pkcs11-connect-linux.sh
-      - $CODEBUILD_SRC_DIR/codebuild/samples/pubsub-linux.sh
-      - $CODEBUILD_SRC_DIR/codebuild/samples/shadow-linux.sh
+      # Multiple tests removed due to removal of mqtt3.1.1 samples. We are moving away from
+      # using samples in our CI and these tests need to be rewritten and run as actual tests
+      # - $CODEBUILD_SRC_DIR/codebuild/samples/custom-auth-linux.sh
+      # - $CODEBUILD_SRC_DIR/codebuild/samples/pkcs11-connect-linux.sh
   post_build:
     commands:
       - echo Build completed on `date`
