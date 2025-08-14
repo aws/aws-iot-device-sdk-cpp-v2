@@ -8,6 +8,8 @@ pushd $CODEBUILD_SRC_DIR/samples/mqtt5/mqtt5_pubsub
 
 mkdir _build
 cd _build
+export CFLAGS="$CFLAGS -DAWS_CRT_DISABLE_DEPRECATION_WARNINGS"
+export CXXFLAGS="$CXXFLAGS -DAWS_CRT_DISABLE_DEPRECATION_WARNINGS"
 cmake -DCMAKE_PREFIX_PATH=/tmp/install ..
 make -j
 
