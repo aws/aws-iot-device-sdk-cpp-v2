@@ -61,6 +61,8 @@ jobs:
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          # Bump from default 1 hour to 2 hours to allow tests to complete
+          role-duration-seconds: 7200
       - name: Install qemu/docker
         run: docker run --privileged --rm tonistiigi/binfmt --install all
       - name: Build ${{ env.PACKAGE_NAME }}
