@@ -247,16 +247,7 @@ int main(int argc, char *argv[])
     // Print the discovery response information and then exit. Does not use the discovery info.
     if (cmdData.input_PrintDiscoverRespOnly)
     {
-        if (!cmdData.input_isCI)
-        {
-            printGreengrassResponse(*discoverResponse.GGGroups);
-        }
-        else
-        {
-            fprintf(
-                stdout,
-                "Received a greengrass discovery result! Not showing result in CI for possible data sensitivity.\n");
-        }
+        printGreengrassResponse(*discoverResponse.GGGroups);
         return 0;
     }
 
