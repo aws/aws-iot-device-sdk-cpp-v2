@@ -38,13 +38,6 @@ class BuildSamples(Builder.Action):
             defender_samples.append('samples/device_defender/basic_report')
             defender_samples.append('samples/device_defender/mqtt5_basic_report')
 
-        da_samples = [
-            'deviceadvisor/tests/mqtt_connect',
-            'deviceadvisor/tests/mqtt_publish',
-            'deviceadvisor/tests/mqtt_subscribe',
-            'deviceadvisor/tests/shadow_update'
-        ]
-
         servicetests = [
             'servicetests/tests/JobsExecution/',
             'servicetests/tests/FleetProvisioning/',
