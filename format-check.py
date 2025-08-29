@@ -18,7 +18,7 @@ args = arg_parser.parse_args()
 
 os.chdir(Path(__file__).parent)
 
-check_dirs = ['deviceadvisor', 'devicedefender', 'discovery', 'eventstream_rpc', 'greengrass_ipc', 'identity', 'iotdevicecommon', 'jobs', 'shadow', 'samples', 'secure_tunneling']
+check_dirs = ['devicedefender', 'discovery', 'eventstream_rpc', 'greengrass_ipc', 'identity', 'iotdevicecommon', 'jobs', 'shadow', 'samples', 'secure_tunneling']
 
 filepaths_file = NamedTemporaryFile(delete=False)
 for check_dir in check_dirs:
