@@ -44,7 +44,7 @@ class BuildSamples(Builder.Action):
             'servicetests/tests/ShadowUpdate/',
         ]
 
-        for sample_path in itertools.chain(samples, servicetests, da_samples, defender_samples):
+        for sample_path in itertools.chain(samples, servicetests, defender_samples):
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
                           f'-B{build_path}',
