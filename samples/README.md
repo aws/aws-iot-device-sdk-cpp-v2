@@ -8,17 +8,6 @@
     + [Direct MQTT with Custom Authentication](./mqtt5/mqtt5_pubsub/README.md#direct-mqtt-with-custom-authentication)
     + [MQTT over Websockets with Cognito](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-cognito)
     + [HTTP Proxy](./mqtt5/mqtt5_pubsub/README.md#http-proxy)
-* [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
-## MQTT311 Samples
-* [Basic Pub-Sub](./pub_sub/basic_pub_sub/README.md)
-* [Basic Connect](./mqtt/basic_connect/README.md)
-* [Websocket Connect](./mqtt/websocket_connect/README.md)
-* [PKCS#11 Connect](./mqtt/pkcs11_connect/README.md)
-* [PKCS#12 Connect](./mqtt/pkcs12_connect/README.md)
-* [x509 Credentials Provider Connect](./mqtt/x509_credentials_provider_connect/README.md)
-* [Windows Certificate MQTT Connect](./mqtt/windows_cert_connect/README.md)
-* [Custom Authorizer Connect](./mqtt/custom_authorizer_connect/README.md)
-* [Cognito Connect](./mqtt/cognito_connect/README.md)
 ## Other Samples
 * [Jobs Sandbox](./jobs/jobs-sandbox/README.md)
 * [Shadow Sandbox](./shadow/shadow-sandbox/README.md)
@@ -35,7 +24,7 @@
 
 ## Build Instruction
 
-Firstly, build and install aws-iot-devices-sdk-cpp-v2 with following instructions from [Installation](../README.md#Installation).
+First build and install aws-iot-devices-sdk-cpp-v2 with following instructions from [Installation](../README.md#Installation).
 
 ### Build individual sample
 
