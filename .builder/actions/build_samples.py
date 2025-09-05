@@ -26,7 +26,6 @@ class BuildSamples(Builder.Action):
             'samples/fleet_provisioning/provision-csr',
             'samples/jobs/jobs-sandbox',
             'samples/mqtt5/mqtt5_pubsub',
-            'samples/mqtt5/mqtt5_shared_subscription',
             'samples/secure_tunneling/secure_tunnel',
             'samples/secure_tunneling/tunnel_notification',
             'samples/shadow/shadow-sandbox',
