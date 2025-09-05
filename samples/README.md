@@ -8,7 +8,6 @@
     + [Direct MQTT with Custom Authentication](./mqtt5/mqtt5_pubsub/README.md#direct-mqtt-with-custom-authentication)
     + [MQTT over Websockets with Cognito](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-cognito)
     + [HTTP Proxy](./mqtt5/mqtt5_pubsub/README.md#http-proxy)
-* [Mqtt5 Shared Subscription](./mqtt5/mqtt5_shared_subscription/README.md)
 ## Other Samples
 * [Jobs Sandbox](./jobs/jobs-sandbox/README.md)
 * [Shadow Sandbox](./shadow/shadow-sandbox/README.md)
