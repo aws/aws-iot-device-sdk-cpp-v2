@@ -7,14 +7,91 @@
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
 
+#include <algorithm>
+#include <cstring>
 #include <thread>
-
-#include "../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
 
+/* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+struct CmdArgs {
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String topic = "test/topic";
+    String message = "Hello from mqtt5 sample";
+    uint32_t count = 5;
+};
+
+void printHelp() {
+    printf("MQTT5 X509 Sample (mTLS)\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname (default: None)\n");
+    printf(
+        "  --cert        Path to the certificate file to use during mTLS connection establishment (default: None)\n");
+    printf(
+        "  --key         Path to the private key file to use during mTLS connection establishment (default: None)\n");
+    printf("optional arguments:\n");
+    printf("  --client-id   Client ID (default: mqtt5-sample-<uuid>)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM) (default: None)\n");
+    printf("  --topic       Topic (default: test/topic)\n");
+    printf("  --message     Message payload (default: Hello from mqtt5 sample)\n");
+    printf("  --count       Messages to publish (0 = infinite) (default: 5)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[]) {
+    CmdArgs args;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--help") == 0) {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1) {
+            if (strcmp(argv[i], "--endpoint") == 0) {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0) {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0) {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0) {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--topic") == 0) {
+                args.topic = argv[++i];
+            }
+            else if (strcmp(argv[i], "--message") == 0) {
+                args.message = argv[++i];
+            }
+            else if (strcmp(argv[i], "--count") == 0) {
+                args.count = atoi(argv[++i]);
+            }
+            else {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty()) {
+        fprintf(stderr, "Error: --endpoint, --cert, and --key are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty()) args.clientId = String("test-") + UUID().ToString();
+    return args;
+}
+/* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
+
 int main(int argc, char *argv[])
 {
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
 
     /************************ Setup ****************************/
 
@@ -26,17 +103,10 @@ int main(int argc, char *argv[])
     std::condition_variable receiveSignal;
     uint32_t receivedCount = 0;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputPubSub(argc, argv, &apiHandle, "mqtt5-pubsub");
-
     // Create the MQTT5 builder and populate it with data from cmdData.
     auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -49,12 +119,8 @@ int main(int argc, char *argv[])
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
-    connectOptions->WithClientId(cmdData.input_clientId);
+    connectOptions->WithClientId(cmdData.clientId);
     builder->WithConnectOptions(connectOptions);
-    if (cmdData.input_port != 0)
-    {
-        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
-    }
 
     std::promise<bool> connectionPromise;
     std::promise<void> stoppedPromise;
@@ -155,7 +221,7 @@ int main(int argc, char *argv[])
             subscribeSuccess.set_value(true);
         };
 
-        Mqtt5::Subscription sub1(cmdData.input_topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+        Mqtt5::Subscription sub1(cmdData.topic, Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
         sub1.WithNoLocal(false);
         std::shared_ptr<Mqtt5::SubscribePacket> subPacket =
             Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
@@ -197,15 +263,15 @@ int main(int argc, char *argv[])
                 };
 
                 uint32_t publishedCount = 0;
-                while (publishedCount < cmdData.input_count)
+                while (publishedCount < cmdData.count)
                 {
                     // Add \" to 'JSON-ify' the message
-                    String message = "\"" + cmdData.input_message + std::to_string(publishedCount + 1).c_str() + "\"";
+                    String message = "\"" + cmdData.message + std::to_string(publishedCount + 1).c_str() + "\"";
                     ByteCursor payload = ByteCursorFromString(message);
 
                     std::shared_ptr<Mqtt5::PublishPacket> publish = Aws::Crt::MakeShared<Mqtt5::PublishPacket>(
                         Aws::Crt::DefaultAllocatorImplementation(),
-                        cmdData.input_topic,
+                        cmdData.topic,
                         payload,
                         Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
                     if (client->Publish(publish, onPublishComplete))
@@ -218,14 +284,14 @@ int main(int argc, char *argv[])
 
                 {
                     std::unique_lock<std::mutex> receivedLock(receiveMutex);
-                    receiveSignal.wait(receivedLock, [&] { return receivedCount >= cmdData.input_count; });
+                    receiveSignal.wait(receivedLock, [&] { return receivedCount >= cmdData.count; });
                 }
 
                 // Unsubscribe from the topic.
                 std::promise<void> unsubscribeFinishedPromise;
                 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub =
                     Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
-                unsub->WithTopicFilter(cmdData.input_topic);
+                unsub->WithTopicFilter(cmdData.topic);
                 if (!client->Unsubscribe(unsub, [&](int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
                         unsubscribeFinishedPromise.set_value();
                     }))
