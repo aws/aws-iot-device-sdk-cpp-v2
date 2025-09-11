@@ -354,7 +354,7 @@ int main(int argc, char *argv[])
              */
             fprintf(stdout, "=== Mqtt5 Client unsubscribing from topic %s === \n", cmdData.topic.c_str());
             // Setup the callback that will be triggered on receiveing UNSUBACK from the server
-            auto onUnSubAck = [&unsubscribeFinishedPromise](int error_code, std::shared_ptr<Mqtt5::UnSubAckPacket> suback)
+            auto onUnSubAck = [&unsubscribeFinishedPromise](int /*error_code*/, std::shared_ptr<Mqtt5::UnSubAckPacket> /*suback*/)
             { unsubscribeFinishedPromise.set_value(); };
 
             // Create an unsubscribe packet
