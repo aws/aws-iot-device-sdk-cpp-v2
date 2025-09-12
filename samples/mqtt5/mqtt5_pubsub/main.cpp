@@ -101,7 +101,8 @@ CmdArgs parseArgs(int argc, char *argv[])
         printHelp();
         exit(1);
     }
-    if (args.clientId.empty()){
+    if (args.clientId.empty())
+    {
         args.clientId = String("mqtt5-sample-") + UUID().ToString();
     }
     return args;
@@ -385,12 +386,10 @@ int main(int argc, char *argv[])
 
     fprintf(stdout, "==== Stopping Client ====\n");
     /* Stop the client. Instructs the client to disconnect and remain in a disconnected state. */
-    if (!client->Stop())
+    if (client->Stop())
     {
-        fprintf(stdout, "Failed to stop Mqtt5Client.\n");
-        exit(1);
+        stoppedPromise.get_future().wait();
+        fprintf(stdout, "==== Client Stopped! ====");
     }
-    stoppedPromise.get_future().wait();
-    fprintf(stdout, "==== Client Stopped! ====");
     exit(0);
 }
