@@ -18,6 +18,7 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
+    String caFile;
     String topic = "test/topic";
     String message = "Hello from mqtt5 sample";
     uint32_t count = 5;
@@ -29,14 +30,14 @@ void printHelp()
     printf("options:\n");
     printf("  --help        show this help message and exit\n");
     printf("required arguments:\n");
-    printf("  --endpoint    IoT endpoint hostname (default: None)\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
     printf(
         "  --cert        Path to the certificate file to use during mTLS connection establishment (default: None)\n");
     printf(
         "  --key         Path to the private key file to use during mTLS connection establishment (default: None)\n");
     printf("optional arguments:\n");
     printf("  --client-id   Client ID (default: mqtt5-sample-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM) (default: None)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --topic       Topic (default: test/topic)\n");
     printf("  --message     Message payload (default: Hello from mqtt5 sample)\n");
     printf("  --count       Messages to publish (0 = infinite) (default: 5)\n");
@@ -65,6 +66,10 @@ CmdArgs parseArgs(int argc, char *argv[])
             else if (strcmp(argv[i], "--key") == 0)
             {
                 args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--ca_file") == 0)
+            {
+                args.caFile = argv[++i];
             }
             else if (strcmp(argv[i], "--client_id") == 0)
             {
@@ -137,7 +142,13 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    /* Setup connection options */
+    // Setup CA file if provided
+    if (!cmdData.caFile.empty())
+    {
+        builder->WithCertificateAuthority(cmdData.caFile.c_str());
+    }
+
+    // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectOptions->WithClientId(cmdData.clientId);
