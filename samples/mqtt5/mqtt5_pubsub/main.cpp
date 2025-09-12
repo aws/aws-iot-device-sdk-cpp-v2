@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
     builder->WithClientDisconnectionCallback(
         [&disconnectPromise](const Mqtt5::OnDisconnectionEventData &eventData)
         {
-            fprintf(stdout, "Mqtt5 Client: Disconnected.\n");
+            fprintf(stdout, "Lifecycle Disconnected.\n");
             if (eventData.disconnectPacket != nullptr)
             {
                 Mqtt5::DisconnectReasonCode reason_code = eventData.disconnectPacket->getReasonCode();
