@@ -246,7 +246,7 @@ int main(int argc, char *argv[])
     if (connectionPromise.get_future().get())
     {
         /**
-         * Subscribe to test topic
+         * Subscribe
          */
         // Setup the callback that will be triggered on receiveing SUBACK from the server
         fprintf(stdout, "==== Subscribing to topic '%s' ==== \n", cmdData.topic.c_str());
@@ -384,13 +384,13 @@ int main(int argc, char *argv[])
     }
 
     fprintf(stdout, "==== Stopping Client ====\n");
-    // Disconnect
+    /* Stop the client. Instructs the client to disconnect and remain in a disconnected state. */
     if (!client->Stop())
     {
         fprintf(stdout, "Failed to stop Mqtt5Client.\n");
         exit(1);
     }
     stoppedPromise.get_future().wait();
-
+    fprintf(stdout, "==== Client Stopped! ====");
     exit(0);
 }
