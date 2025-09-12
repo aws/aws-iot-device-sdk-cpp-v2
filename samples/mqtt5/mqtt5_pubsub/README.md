@@ -93,7 +93,7 @@ required arguments:
   --cert        Path to the certificate file to use during mTLS connection establishment (default: None)
   --key         Path to the private key file to use during mTLS connection establishment (default: None)
 optional arguments:
-  --client-id   Client ID (default: mqtt5-sample-<uuid>)
+  --client_id   Client ID (default: mqtt5-sample-<uuid>)
   --ca_file     Path to optional CA bundle (PEM) (default: None)
   --topic       Topic (default: test/topic)
   --message     Message payload (default: Hello from mqtt5 sample)

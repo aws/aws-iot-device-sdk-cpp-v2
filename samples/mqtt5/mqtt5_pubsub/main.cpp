@@ -36,7 +36,7 @@ void printHelp()
     printf(
         "  --key         Path to the private key file to use during mTLS connection establishment (default: None)\n");
     printf("optional arguments:\n");
-    printf("  --client-id   Client ID (default: mqtt5-sample-<uuid>)\n");
+    printf("  --client_id   Client ID (default: mqtt5-sample-<uuid>)\n");
     printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --topic       Topic (default: test/topic)\n");
     printf("  --message     Message payload (default: Hello from mqtt5 sample)\n");
@@ -101,8 +101,9 @@ CmdArgs parseArgs(int argc, char *argv[])
         printHelp();
         exit(1);
     }
-    if (args.clientId.empty())
-        args.clientId = String("test-") + UUID().ToString();
+    if (args.clientId.empty()){
+        args.clientId = String("mqtt5-sample-") + UUID().ToString();
+    }
     return args;
 }
 /* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
