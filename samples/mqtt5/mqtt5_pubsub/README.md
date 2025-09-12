@@ -1,12 +1,23 @@
-# MQTT5 X509
+# MQTT5 X509 PubSub
 
 [**Return to main sample list**](../../README.md)
 
+*__Jump To:__*
+* [Introduction](#introduction)
+* [Requirements](#requirements)
+* [How To Build](#how-to-build)
+* [How To Run](#how-to-run)
+* [Additional Information](#additional-information)
+
+## Introduction
 This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 for AWS IoT to send and receive messages through an MQTT connection using MQTT5.
 
-MQTT5 introduces additional features and enhancements that improve the development experience with MQTT. You can read more about MQTT5 in the C++ V2 SDK by checking out the [MQTT5 user guide](../../../documents/MQTT5_Userguide.md).
+You can read more about MQTT5 for the CPP IoT Device SDK V2 in the [MQTT5 user guide](../../../documents/MQTT5_Userguide.md).
+
+## Requirements
+This sample assumes you have the required AWS IoT resources available. Information about AWS IoT can be found [HERE](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) and instructions on creating AWS IoT resources (AWS IoT Policy, Device Certificate, Private Key) can be found [HERE](https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html).
 
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
@@ -52,21 +63,16 @@ Replace with the following with the data from your AWS account:
 * `<region>`: The AWS IoT Core region where you created your AWS IoT Core thing you wish to use with this sample. For example `us-east-1`.
 * `<account>`: Your AWS IoT Core account ID. This is the set of numbers in the top right next to your AWS account name when using the AWS IoT Core website.
 
-Note that in a real application, you may want to avoid the use of wildcards in your ClientID or use them selectively. Please follow best practices when working with AWS on production applications using the SDK. Also, for the purposes of this sample, please make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
+Note that in a real application, you may want to avoid the use of wildcards in your ClientID or use them selectively. Please follow best practices when working with AWS on production applications using the SDK. Also, for the purposes of this sample, please make sure your policy allows a client ID of `mqtt5-sample-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 </details>
 
 ## How to build
-**Build the SDK**
 
-Follow the instruction on https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/README.md#installation
-
-**Build the sample**
-
-Change directory into the samples, and build the sample
+To build the sample, change directory into the samples, and run the cmake commands
 ```sh
-# If you followed the build instruction above, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH`
 cd samples/mqtt/mqtt5_x509/
+# If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
 cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-workspace dir>" -DCMAKE_BUILD_TYPE="Debug" .
 cmake --build build --config "Debug"
 ```
