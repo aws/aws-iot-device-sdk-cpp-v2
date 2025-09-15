@@ -6,6 +6,7 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
+#include <aws/crt/auth/Credentials.h>
 
 #include <thread>
 
@@ -15,8 +16,7 @@ using namespace Aws::Crt;
 struct CmdArgs
 {
     String endpoint;
-    String cert;
-    String key;
+    String signingRegion;
     String clientId;
     String caFile;
     String topic = "test/topic";
@@ -26,21 +26,21 @@ struct CmdArgs
 
 void printHelp()
 {
-    printf("MQTT5 X509 Sample (mTLS)\n");
+    printf("MQTT5 AWS Websocket Sample.\n");
+    printf("\n");
     printf("options:\n");
-    printf("  --help        show this help message and exit\n");
+    printf("  -h, --help         show this help message and exit\n");
+    printf("\n");
     printf("required arguments:\n");
-    printf("  --endpoint    IoT endpoint hostname\n");
-    printf(
-        "  --cert        Path to the certificate file to use during mTLS connection establishment\n");
-    printf(
-        "  --key         Path to the private key file to use during mTLS connection establishment\n");
+    printf("  --endpoint         IoT endpoint hostname \n");
+    printf("  --signing_region   Signing region for websocket connection \n");
+    printf("\n");
     printf("optional arguments:\n");
-    printf("  --client_id   Client ID (default: mqtt5-sample-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
-    printf("  --topic       Topic (default: test/topic)\n");
-    printf("  --message     Message payload (default: Hello from mqtt5 sample)\n");
-    printf("  --count       Messages to publish (0 = infinite) (default: 5)\n");
+    printf("  --client_id        Client ID (default: mqtt5-sample-<uuid>)\n");
+    printf("  --ca_file          Path to optional CA bundle (PEM)\n");
+    printf("  --topic            Topic (default: test/topic)\n");
+    printf("  --message          Message payload (default: Hello from mqtt5 sample)\n");
+    printf("  --count            Messages to publish (0 = infinite) (default: 5)\n");
 }
 
 CmdArgs parseArgs(int argc, char *argv[])
@@ -48,7 +48,7 @@ CmdArgs parseArgs(int argc, char *argv[])
     CmdArgs args;
     for (int i = 1; i < argc; i++)
     {
-        if (strcmp(argv[i], "--help") == 0)
+        if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
         {
             printHelp();
             exit(0);
@@ -59,13 +59,9 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.endpoint = argv[++i];
             }
-            else if (strcmp(argv[i], "--cert") == 0)
+            else if (strcmp(argv[i], "--signing_region") == 0)
             {
-                args.cert = argv[++i];
-            }
-            else if (strcmp(argv[i], "--key") == 0)
-            {
-                args.key = argv[++i];
+                args.signingRegion = argv[++i];
             }
             else if (strcmp(argv[i], "--ca_file") == 0)
             {
@@ -95,9 +91,9 @@ CmdArgs parseArgs(int argc, char *argv[])
             }
         }
     }
-    if (args.endpoint.empty() || args.cert.empty() || args.key.empty())
+    if (args.endpoint.empty() || args.signingRegion.empty())
     {
-        fprintf(stderr, "Error: --endpoint, --cert, and --key are required\n");
+        fprintf(stderr, "Error: --endpoint and --signing_region are required\n");
         printHelp();
         exit(1);
     }
@@ -131,9 +127,21 @@ int main(int argc, char *argv[])
      * Create MQTT5 client builder using mutual TLS via X509 Certificate and Private Key,
      * The builder will be used to create the final client
      */
+
+    // Create websocket configuration
+    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+    if (!provider)
+    {
+        fprintf(stderr, "Failure to create credentials provider!\n");
+        exit(-1);
+    }
+    Aws::Iot::WebsocketConfig websocketConfig(cmdData.signingRegion, provider);
+
+    // Create a Client using Mqtt5ClientBuilder
     auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
+            cmdData.endpoint, websocketConfig));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -250,7 +258,7 @@ int main(int argc, char *argv[])
          * Subscribe
          */
         // Setup the callback that will be triggered on receiveing SUBACK from the server
-        fprintf(stdout, "==== Subscribing to topic '%s' ====\n", cmdData.topic.c_str());
+        fprintf(stdout, "==== Subscribing to topic '%s' ==== \n", cmdData.topic.c_str());
         auto onSubAck = [&subscribeSuccess](int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback)
         {
             if (error_code != 0)
@@ -348,7 +356,7 @@ int main(int argc, char *argv[])
         /**
          * Unsubscribe from the topic.
          */
-        fprintf(stdout, "==== Unsubscribing from topic '%s' ====\n", cmdData.topic.c_str());
+        fprintf(stdout, "==== Unsubscribing from topic '%s' ==== \n", cmdData.topic.c_str());
         // Setup the callback that will be triggered on receiveing UNSUBACK from the server
         auto onUnSubAck = [&unsubscribeFinishedPromise](int error_code, std::shared_ptr<Mqtt5::UnSubAckPacket> unsuback)
         {

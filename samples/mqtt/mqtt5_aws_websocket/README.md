@@ -1,4 +1,4 @@
-# MQTT5 X509 PubSub
+# MQTT5 AWS Websocket PubSub
 
 [**Return to main sample list**](../../README.md)
 
@@ -12,14 +12,13 @@
 ## Introduction
 This sample uses the
 [Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
-for AWS IoT to send and receive messages through an MQTT connection using MQTT5.
+for AWS IoT to send and receive messages through an MQTT connection using MQTT5 and a websocket as transport. Using websockets as transport requires the initial handshake request to be signed with the AWS Sigv4 signing algorithm. [`CredentialsProvider::CreateCredentialsProviderChainDefault`](https://awslabs.github.io/aws-crt-cpp/class_aws_1_1_crt_1_1_auth_1_1_credentials_provider.html#aa943e53da72a758b2e921ee8866e3d94) is used to source credentials via the default credentials provider chain to sign the websocket handshake.
 
 You can read more about MQTT5 for the CPP IoT Device SDK V2 in the [MQTT5 user guide](../../../documents/MQTT5_Userguide.md).
 
 ## Requirements
-This sample assumes you have the required AWS IoT resources available. Information about AWS IoT can be found [HERE](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) and instructions on creating AWS IoT resources (AWS IoT Policy, Device Certificate, Private Key) can be found [HERE](https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html).
 
-Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
+The AWS IAM permission policy associated with the AWS credentials resolved by the default credentials provider chain must provide privileges for the sample to connect, subscribe, publish, and receive. Below is a sample policy will allow this sample to run as intended.
 
 <details>
 <summary>(see sample policy)</summary>
@@ -71,7 +70,7 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 To build the sample, change directory into the samples, and run the cmake commands
 ```sh
-cd samples/mqtt/mqtt5_x509/
+cd samples/mqtt/mqtt5_aws_websocket/
 # If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
 cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-workspace dir>" -DCMAKE_BUILD_TYPE="Debug" .
 cmake --build build --config "Debug"
@@ -79,32 +78,36 @@ cmake --build build --config "Debug"
 
 ## How to run
 
-To Run this sample using a direct MQTT connection with a key and certificate, use the following command:
+To Run this sample from the `samples\mqtt\mqtt5_aws_websocket` folder, use the following command:
 
-``` sh
-./mqtt5_x509  --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key>
+```sh
+.mqtt5_aws_websocket \
+  --endpoint <AWS IoT endpoint> \
+  --signing_region <Signing region for websocket connection>
 ```
 
 If you would like to see what optional arguments are available, use the `--help` argument:
 ```sh
-./mqtt5_x509 --help
+./mqtt5_aws_websocket --help
 ```
-will result in the following output
-```sh
->./mqtt5_x509 --help
-MQTT5 X509 Sample (mTLS)
+
+will result in the following output:
+```
+MQTT5 AWS Websocket Sample.
+
 options:
-  --help        show this help message and exit
+  -h, --help         show this help message and exit
+
 required arguments:
-  --endpoint    IoT endpoint hostname
-  --cert        Path to the certificate file to use during mTLS connection establishment
-  --key         Path to the private key file to use during mTLS connection establishment
+  --endpoint         IoT endpoint hostname 
+  --signing_region   Signing region for websocket connection 
+
 optional arguments:
-  --client_id   Client ID (default: mqtt5-sample-<uuid>)
-  --ca_file     Path to optional CA bundle (PEM)
-  --topic       Topic (default: test/topic)
-  --message     Message payload (default: Hello from mqtt5 sample)
-  --count       Messages to publish (0 = infinite) (default: 5)
+  --client_id        Client ID (default: mqtt5-sample-<uuid>)
+  --ca_file          Path to optional CA bundle (PEM)
+  --topic            Topic (default: test/topic)
+  --message          Message payload (default: Hello from mqtt5 sample)
+  --count            Messages to publish (0 = infinite) (default: 5)
 ```
 The sample will not run without the required arguments and will notify you of missing arguments.
 
