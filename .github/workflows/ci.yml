@@ -240,7 +240,7 @@ jobs:
         run: |
           cd ${{ env.CI_FOLDER }}
           echo "Starting to run AppVerifier with mqtt5 pub-sub sample"
-          python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file ".\aws-iot-device-sdk-cpp-v2\build\samples\mqtt5\mqtt5_pubsub\RelWithDebInfo\mqtt5_pubsub.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
+          python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file ".\aws-iot-device-sdk-cpp-v2\build\samples\mqtt5\mqtt5_pubsub\RelWithDebInfo\mqtt5_x509.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
 
   windows-shared-lib:
     runs-on: windows-latest

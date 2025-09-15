@@ -1,4 +1,4 @@
-# MQTT5 X509
+# MQTT5 X509 PubSub
 
 [**Return to main sample list**](../../README.md)
 
