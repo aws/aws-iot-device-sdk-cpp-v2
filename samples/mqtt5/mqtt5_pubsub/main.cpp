@@ -32,9 +32,9 @@ void printHelp()
     printf("required arguments:\n");
     printf("  --endpoint    IoT endpoint hostname\n");
     printf(
-        "  --cert        Path to the certificate file to use during mTLS connection establishment (default: None)\n");
+        "  --cert        Path to the certificate file to use during mTLS connection establishment\n");
     printf(
-        "  --key         Path to the private key file to use during mTLS connection establishment (default: None)\n");
+        "  --key         Path to the private key file to use during mTLS connection establishment\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: mqtt5-sample-<uuid>)\n");
     printf("  --ca_file     Path to optional CA bundle (PEM)\n");

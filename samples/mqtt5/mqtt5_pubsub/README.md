@@ -90,17 +90,18 @@ If you would like to see what optional arguments are available, use the `--help`
 ./mqtt5_x509 --help
 ```
 will result in the following output
-```
+```sh
+>./mqtt5_x509 --help
 MQTT5 X509 Sample (mTLS)
 options:
   --help        show this help message and exit
 required arguments:
-  --endpoint    IoT endpoint hostname (default: None)
-  --cert        Path to the certificate file to use during mTLS connection establishment (default: None)
-  --key         Path to the private key file to use during mTLS connection establishment (default: None)
+  --endpoint    IoT endpoint hostname
+  --cert        Path to the certificate file to use during mTLS connection establishment
+  --key         Path to the private key file to use during mTLS connection establishment
 optional arguments:
   --client_id   Client ID (default: mqtt5-sample-<uuid>)
-  --ca_file     Path to optional CA bundle (PEM) (default: None)
+  --ca_file     Path to optional CA bundle (PEM)
   --topic       Topic (default: test/topic)
   --message     Message payload (default: Hello from mqtt5 sample)
   --count       Messages to publish (0 = infinite) (default: 5)
