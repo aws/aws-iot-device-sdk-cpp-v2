@@ -6,7 +6,6 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
-#include <aws/crt/auth/Credentials.h>
 
 #include <thread>
 
@@ -16,9 +15,13 @@ using namespace Aws::Crt;
 struct CmdArgs
 {
     String endpoint;
-    String signingRegion;
+    String authorizerName;
+    String authSignature;
+    String authTokenKeyName;
+    String authTokenKeyValue;
+    String authUsername;
+    String authPassword;
     String clientId;
-    String caFile;
     String topic = "test/topic";
     String message = "Hello from mqtt5 sample";
     uint32_t count = 5;
@@ -26,21 +29,22 @@ struct CmdArgs
 
 void printHelp()
 {
-    printf("MQTT5 AWS Websocket Sample.\n");
-    printf("\n");
+    printf("MQTT5 Signed Custom Authorizer Sample\n");
     printf("options:\n");
-    printf("  -h, --help         show this help message and exit\n");
-    printf("\n");
+    printf("  --help        show this help message and exit\n");
     printf("required arguments:\n");
-    printf("  --endpoint         IoT endpoint hostname \n");
-    printf("  --signing_region   Signing region for websocket connection \n");
-    printf("\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --authorizer_name    The name of the custom authorizer to connect to invoke\n");
+    printf("  --auth_signature     Custom authorizer signature\n");
+    printf("  --auth_token_key_name    Authorizer token key name\n");
+    printf("  --auth_token_key_value   Authorizer token key value\n");
+    printf("  --auth_username      The name to send when connecting through the custom authorizer\n");
+    printf("  --auth_password      The password to send when connecting through a custom authorizer\n");
     printf("optional arguments:\n");
-    printf("  --client_id        Client ID (default: mqtt5-sample-<uuid>)\n");
-    printf("  --ca_file          Path to optional CA bundle (PEM)\n");
-    printf("  --topic            Topic (default: test/topic)\n");
-    printf("  --message          Message payload (default: Hello from mqtt5 sample)\n");
-    printf("  --count            Messages to publish (0 = infinite) (default: 5)\n");
+    printf("  --client_id   Client ID (default: mqtt5-sample-<uuid>)\n");
+    printf("  --topic       Topic (default: test/topic)\n");
+    printf("  --message     Message payload (default: Hello from mqtt5 sample)\n");
+    printf("  --count       Messages to publish (0 = infinite) (default: 5)\n");
 }
 
 CmdArgs parseArgs(int argc, char *argv[])
@@ -48,7 +52,7 @@ CmdArgs parseArgs(int argc, char *argv[])
     CmdArgs args;
     for (int i = 1; i < argc; i++)
     {
-        if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
+        if (strcmp(argv[i], "--help") == 0)
         {
             printHelp();
             exit(0);
@@ -59,13 +63,29 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.endpoint = argv[++i];
             }
-            else if (strcmp(argv[i], "--signing_region") == 0)
+            else if (strcmp(argv[i], "--authorizer_name") == 0)
             {
-                args.signingRegion = argv[++i];
+                args.authorizerName = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
+            else if (strcmp(argv[i], "--auth_signature") == 0)
             {
-                args.caFile = argv[++i];
+                args.authSignature = argv[++i];
+            }
+            else if (strcmp(argv[i], "--auth_token_key_name") == 0)
+            {
+                args.authTokenKeyName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--auth_token_key_value") == 0)
+            {
+                args.authTokenKeyValue = argv[++i];
+            }
+            else if (strcmp(argv[i], "--auth_username") == 0)
+            {
+                args.authUsername = argv[++i];
+            }
+            else if (strcmp(argv[i], "--auth_password") == 0)
+            {
+                args.authPassword = argv[++i];
             }
             else if (strcmp(argv[i], "--client_id") == 0)
             {
@@ -91,15 +111,20 @@ CmdArgs parseArgs(int argc, char *argv[])
             }
         }
     }
-    if (args.endpoint.empty() || args.signingRegion.empty())
+    if (args.endpoint.empty() || args.authorizerName.empty() || args.authSignature.empty() ||
+        args.authTokenKeyName.empty() || args.authTokenKeyValue.empty() || args.authUsername.empty() ||
+        args.authPassword.empty())
     {
-        fprintf(stderr, "Error: --endpoint and --signing_region are required\n");
+        fprintf(
+            stderr,
+            "Error: --endpoint, --authorizer_name, --auth_signature, --auth_token_key_name, --auth_token_key_value, "
+            "--auth_username, and --auth_password are required\n");
         printHelp();
         exit(1);
     }
     if (args.clientId.empty())
     {
-        args.clientId = String("mqtt5-sample-") + UUID().ToString();
+        args.clientId = String("mqtt5-sample-") + UUID().ToString().substr(0, 8);
     }
     return args;
 }
@@ -123,38 +148,33 @@ int main(int argc, char *argv[])
     /* Do the global initialization for the API. */
     ApiHandle apiHandle;
 
+    printf("\n==== Starting MQTT5 Custom Auth Signed PubSub Sample ====\n\n");
+
     /**
-     * Create MQTT5 client builder using mutual TLS via X509 Certificate and Private Key,
+     * Create MQTT5 client builder using custom authorizer,
      * The builder will be used to create the final client
      */
 
-    // Create websocket configuration
-    Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
-    if (!provider)
-    {
-        fprintf(stderr, "Failure to create credentials provider!\n");
-        exit(-1);
-    }
-    Aws::Iot::WebsocketConfig websocketConfig(cmdData.signingRegion, provider);
+    // Setup custom authorization config
+    Aws::Iot::Mqtt5CustomAuthConfig customAuth;
+    customAuth.WithAuthorizerName(cmdData.authorizerName.c_str());
+    customAuth.WithUsername(cmdData.authUsername.c_str());
+    customAuth.WithPassword(ByteCursorFromCString(cmdData.authPassword.c_str()));
+    customAuth.WithTokenSignature(cmdData.authSignature.c_str());
+    customAuth.WithTokenKeyName(cmdData.authTokenKeyName.c_str());
+    customAuth.WithTokenValue(cmdData.authTokenKeyValue.c_str());
 
-    // Create a Client using Mqtt5ClientBuilder
     auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
-            cmdData.endpoint, websocketConfig));
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomAuthorizer(cmdData.endpoint, customAuth, DefaultAllocatorImplementation()));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
         printf(
-            "Failed to setup Mqtt5 client builder with error code %d: %s\n", LastError(), ErrorDebugString(LastError()));
+            "Failed to setup Mqtt5 client builder with error code %d: %s\n",
+            LastError(),
+            ErrorDebugString(LastError()));
         exit(1);
-    }
-
-    // Setup CA file if provided
-    if (!cmdData.caFile.empty())
-    {
-        builder->WithCertificateAuthority(cmdData.caFile.c_str());
     }
 
     // Setup connection options
@@ -233,7 +253,7 @@ int main(int argc, char *argv[])
         });
 
     /* Create Mqtt5Client from the builder */
-    fprintf(stdout, "==== Starting client ====\n");
+    fprintf(stdout, "==== Creating MQTT5 Client ====\n");
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (client == nullptr)
@@ -258,7 +278,7 @@ int main(int argc, char *argv[])
          * Subscribe
          */
         // Setup the callback that will be triggered on receiveing SUBACK from the server
-        fprintf(stdout, "==== Subscribing to topic '%s' ==== \n", cmdData.topic.c_str());
+        fprintf(stdout, "==== Subscribing to topic '%s' ====\n", cmdData.topic.c_str());
         auto onSubAck = [&subscribeSuccess](int error_code, std::shared_ptr<Mqtt5::SubAckPacket> suback)
         {
             if (error_code != 0)
@@ -293,7 +313,7 @@ int main(int argc, char *argv[])
         }
 
         /**
-         * Publish to the topics
+         * Publish to the topic
          */
         // Setup publish completion callback. The callback will get triggered when the publish completes (when
         // the client received the PubAck from the server).
@@ -356,7 +376,7 @@ int main(int argc, char *argv[])
         /**
          * Unsubscribe from the topic.
          */
-        fprintf(stdout, "==== Unsubscribing from topic '%s' ==== \n", cmdData.topic.c_str());
+        fprintf(stdout, "==== Unsubscribing from topic '%s' ====\n", cmdData.topic.c_str());
         // Setup the callback that will be triggered on receiveing UNSUBACK from the server
         auto onUnSubAck = [&unsubscribeFinishedPromise](int error_code, std::shared_ptr<Mqtt5::UnSubAckPacket> unsuback)
         {

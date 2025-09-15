@@ -120,8 +120,6 @@ optional arguments:
   --topic         Topic (default: test/topic)
   --message       Message payload (default: Hello from mqtt5 sample)
   --count         Messages to publish (0 = infinite) (default: 5)
-  --proxy_host    HTTP proxy host (default: None)
-  --proxy_port    HTTP proxy port (default: 0)
   --client_id     Client ID (default: test-548e4344)
   ```
 

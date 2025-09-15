@@ -293,7 +293,6 @@ int main(int argc, char *argv[])
         });
 
     /* Create Mqtt5Client from the builder */
-    fprintf(stdout, "Failed to init Mqtt5Client with error code %d: %s\n", LastError(), ErrorDebugString(LastError()));
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (client == nullptr)
