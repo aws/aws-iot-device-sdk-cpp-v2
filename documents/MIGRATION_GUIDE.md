@@ -1369,8 +1369,8 @@ samples.
 
 It's always helpful to look at a working example to see how new functionality works,
 to be able to tweak different options, to compare with existing code.
-For that reason, we implemented a [Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt5/mqtt5_pubsub)
-([source code](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_pubsub/main.cpp))
+For that reason, we implemented a [Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt/mqtt5_x509)
+([source code](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt/mqtt5_x509/main.cpp))
 in the v2 SDK similar to a sample provided by the v1 SDK (see a corresponding
 [readme section](https://github.com/aws/aws-iot-device-sdk-cpp/blob/master/samples/README.md) and
 [source code](https://github.com/aws/aws-iot-device-sdk-cpp/blob/master/samples/PubSub/PubSub.cpp)).
