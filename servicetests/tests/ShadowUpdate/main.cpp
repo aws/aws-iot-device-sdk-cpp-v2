@@ -342,7 +342,7 @@ int main(int argc, char *argv[])
     }
     else if (cmdData.mqttVersion == 3)
     {
-        shadowClient = build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);nClosedPromise);
+        shadowClient = build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);
     }
     else
     {
