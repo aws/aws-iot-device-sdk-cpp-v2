@@ -38,8 +38,7 @@ class BuildSamples(Builder.Action):
         defender_samples = []
         # Linux only builds
         if sys.platform == "linux" or sys.platform == "linux2":
-            defender_samples.append('samples/device_defender/basic_report')
-            defender_samples.append('samples/device_defender/mqtt5_basic_report')
+            defender_samples.append('samples/others/device_defender/mqtt5_basic_report')
 
         servicetests = [
             'servicetests/tests/JobsExecution/',
