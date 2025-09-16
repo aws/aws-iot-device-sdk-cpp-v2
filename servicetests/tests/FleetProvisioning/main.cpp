@@ -4,6 +4,7 @@
  */
 
 #include <aws/crt/Api.h>
+#include <aws/crt/UUID.h>
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
