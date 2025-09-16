@@ -1369,7 +1369,7 @@ samples.
 
 It's always helpful to look at a working example to see how new functionality works,
 to be able to tweak different options, to compare with existing code.
-For that reason, we implemented a [Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt/mqtt5_x509)
+For that reason, we implemented a [X509 Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt/mqtt5_x509)
 ([source code](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt/mqtt5_x509/main.cpp))
 in the v2 SDK similar to a sample provided by the v1 SDK (see a corresponding
 [readme section](https://github.com/aws/aws-iot-device-sdk-cpp/blob/master/samples/README.md) and
@@ -1438,9 +1438,7 @@ method in PublishPacketBuilder class.
 
 **Shared Subscriptions**\
 Shared Subscriptions allow multiple clients to share a subscription to a topic and only one client
-will receive messages published to that topic using a random distribution.\
-For more information, see a [shared subscription sample](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_shared_subscription/README.md)
-in the v2 SDK.
+will receive messages published to that topic using a random distribution.
 
 > [!NOTE]
 > AWS Iot Core supports Shared Subscriptions for both MQTT3 and MQTT5. For more information, see

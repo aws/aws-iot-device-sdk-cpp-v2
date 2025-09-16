@@ -229,17 +229,17 @@ try:
 
     if use_mqtt5:
         # Run the sample:
-        exe_path = "build/samples/device_defender/mqtt5_basic_report/"
+        exe_path = "build/samples/others/device_defender/mqtt5_basic_report/"
         # If running locally, comment out the line above and uncomment the line below:
-        #exe_path = "samples/device_defender/basic_report/build/"
+        #exe_path = "samples/others/device_defender/basic_report/build/"
 
         # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
         exe_path = os.path.join(exe_path, "mqtt5-basic-report")
     else:
         # Run the sample:
-        exe_path = "build/samples/device_defender/basic_report/"
+        exe_path = "build/samples/others/device_defender/basic_report/"
         # If running locally, comment out the line above and uncomment the line below:
-        #exe_path = "samples/device_defender/basic_report/build/"
+        #exe_path = "samples/others/device_defender/basic_report/build/"
 
         # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
         exe_path = os.path.join(exe_path, "basic-report")

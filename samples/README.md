@@ -30,6 +30,7 @@ This directory contains sample applications for [aws-iot-device-sdk-cpp-v2](../R
 | [Jobs](./service_clients/jobs/jobs-sandbox/README.md) | Receive and execute remote operations sent from the Jobs service. |
 | [Basic Fleet Provisioning](./service_clients/fleet_provisioning/provision-basic/README.md) | Provision a device using the Fleet Provisioning template. |
 | [CSR Fleet Provisioning](./service_clients/fleet_provisioning/provision-csr/README.md) | Demonstrates CSR-based device certificate provisioning. |
+| [Commands](./service_clients/commands/commands-sandbox/README.md) | Receive and process remote instructions using AWS IoT Device Management commands |
 
 
 ### Greengrass Samples
@@ -38,6 +39,16 @@ This directory contains sample applications for [aws-iot-device-sdk-cpp-v2](../R
 |--------|-------------|
 | [Greengrass Discovery](./greengrass/basic_discovery/README.md) | Discover and connect to a local Greengrass core. |
 | [Greengrass IPC](./greengrass/ipc/README.md) | Demonstrates Inter-Process Communication (IPC) with Greengrass components. |
+
+### Others
+##### Samples that interact with other AWS IoT Services
+| Sample | Description |
+|--------|-------------|
+| [Device Defender](./others/device_defender/mqtt5_basic_report/README.md) | Monitor the health of your IoT device using AWS IoT Device Defender. |
+| [Secure Tunneling](./others/secure_tunneling/secure_tunnel/README.md) | Connect a destination or a source Secure Tunnel Client to an AWS IoT Secure Tunnel endpoint. |
+| [Secure Tunneling Notification](./others/secure_tunneling/tunnel_notification/README.md) | Receive a tunnel notification using a Secure Tunnel Client. |
+
+
 
 ## Instructions
 
