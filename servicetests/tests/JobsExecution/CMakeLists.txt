@@ -4,8 +4,6 @@ project(job-execution CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
-       "../../../samples/utils/CommandLineUtils.cpp"
-       "../../../samples/utils/CommandLineUtils.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})

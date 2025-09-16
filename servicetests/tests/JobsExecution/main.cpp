@@ -33,8 +33,6 @@
 #include <thread>
 #include <vector>
 
-#include "../../../samples/utils/CommandLineUtils.h"
-
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
 
@@ -43,8 +41,20 @@ void getAvailableJobs(
     IotJobsClient &jobsClient,
     std::vector<Aws::Crt::String> &availableJobs);
 
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String caFile;
+    String thingName;
+    uint32_t port = 0;
+    uint32_t mqttVersion = 5;
+};
+
 std::shared_ptr<IotJobsClient> build_mqtt3_client(
-    Utils::cmdData &cmdData,
+    CmdArgs &cmdData,
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection,
     std::promise<bool> &connectionCompletedPromise,
     std::promise<void> &connectionClosedPromise)
@@ -52,11 +62,11 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
     // Create the MQTT builder and populate it with data from cmdData.
     clientConfigBuilder =
-        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
-    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
-    if (cmdData.input_ca != "")
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.endpoint);
+    if (!cmdData.caFile.empty())
     {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
     }
 
     // Create the MQTT connection from the MQTT builder
@@ -106,7 +116,7 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -115,14 +125,14 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
 }
 
 std::shared_ptr<IotJobsClient> build_mqtt5_client(
-    Utils::cmdData &cmdData,
+    CmdArgs &cmdData,
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &client5,
     std::promise<bool> &connectionCompletedPromise,
     std::promise<void> &connectionClosedPromise)
 {
     std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -135,11 +145,11 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
-    connectOptions->WithClientId(cmdData.input_clientId);
+    connectOptions->WithClientId(cmdData.clientId);
     builder->WithConnectOptions(connectOptions);
-    if (cmdData.input_port != 0)
+    if (cmdData.port != 0)
     {
-        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
+        builder->WithPort(cmdData.port);
     }
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
@@ -176,21 +186,99 @@ std::shared_ptr<IotJobsClient> build_mqtt5_client(
     return Aws::Crt::MakeShared<IotJobsClient>(Aws::Crt::DefaultAllocatorImplementation(), client5);
 }
 
+void printHelp()
+{
+    printf("Jobs Execution Test\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --thing_name  Thing name\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
+    printf("  --port        Port override\n");
+    printf("  --mqtt_version     MQTT version (3 or 5, default: 5)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--endpoint") == 0)
+            {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--thing_name") == 0)
+            {
+                args.thingName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0)
+            {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--ca_file") == 0)
+            {
+                args.caFile = argv[++i];
+            }
+            else if (strcmp(argv[i], "--port") == 0)
+            {
+                args.port = atoi(argv[++i]);
+            }
+            else if (strcmp(argv[i], "--mqtt_version") == 0)
+            {
+                args.mqttVersion = atoi(argv[++i]);
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty() || args.thingName.empty())
+    {
+        fprintf(stderr, "Error: --endpoint, --cert, --key, and --thing_name are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty())
+    {
+        args.clientId = String("test-") + UUID().ToString();
+    }
+    return args;
+}
+
 int main(int argc, char *argv[])
 {
 
     fprintf(stdout, "Starting the jobs execution programm\n");
     /************************ Setup ****************************/
 
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
+
     // Do the global initialization for the API
     ApiHandle apiHandle;
-
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputJobs(argc, argv, &apiHandle);
 
     /**
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -202,11 +290,11 @@ int main(int argc, char *argv[])
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client5 = nullptr;
     std::shared_ptr<IotJobsClient> jobsClient = nullptr;
 
-    if (cmdData.input_mqtt_version == 5UL)
+    if (cmdData.mqttVersion == 5UL)
     {
         jobsClient = build_mqtt5_client(cmdData, client5, connectionCompletedPromise, connectionClosedPromise);
     }
-    else if (cmdData.input_mqtt_version == 3UL)
+    else if (cmdData.mqttVersion == 3UL)
     {
         jobsClient = build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);
     }
@@ -219,11 +307,11 @@ int main(int argc, char *argv[])
     if (connectionCompletedPromise.get_future().get())
     {
         std::vector<Aws::Crt::String> availableJobs;
-        getAvailableJobs(cmdData.input_thingName, *jobsClient, availableJobs);
+        getAvailableJobs(cmdData.thingName, *jobsClient, availableJobs);
         for (auto jobid : availableJobs)
         {
             DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
-            describeJobExecutionSubscriptionRequest.ThingName = cmdData.input_thingName;
+            describeJobExecutionSubscriptionRequest.ThingName = cmdData.thingName;
             describeJobExecutionSubscriptionRequest.JobId = jobid;
 
             /**
@@ -282,7 +370,7 @@ int main(int argc, char *argv[])
             subAckedPromise.get_future().wait();
 
             DescribeJobExecutionRequest describeJobExecutionRequest;
-            describeJobExecutionRequest.ThingName = cmdData.input_thingName;
+            describeJobExecutionRequest.ThingName = cmdData.thingName;
             describeJobExecutionRequest.JobId = jobid;
             describeJobExecutionRequest.IncludeJobDocument = true;
             Aws::Crt::UUID uuid;
@@ -333,7 +421,7 @@ int main(int argc, char *argv[])
                     };
 
                 StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
-                subscriptionRequest.ThingName = cmdData.input_thingName;
+                subscriptionRequest.ThingName = cmdData.thingName;
                 subAckedPromise = std::promise<void>();
                 jobsClient->SubscribeToStartNextPendingJobExecutionAccepted(
                     subscriptionRequest,
@@ -350,7 +438,7 @@ int main(int argc, char *argv[])
                 subAckedPromise.get_future().wait();
 
                 StartNextPendingJobExecutionRequest publishRequest;
-                publishRequest.ThingName = cmdData.input_thingName;
+                publishRequest.ThingName = cmdData.thingName;
                 publishRequest.StepTimeoutInMinutes = 15L;
 
                 publishDescribeJobExeCompletedPromise = std::promise<void>();
@@ -374,7 +462,7 @@ int main(int argc, char *argv[])
                     pendingExecutionPromise.set_value();
                 };
                 UpdateJobExecutionSubscriptionRequest subscriptionRequest;
-                subscriptionRequest.ThingName = cmdData.input_thingName;
+                subscriptionRequest.ThingName = cmdData.thingName;
                 subscriptionRequest.JobId = currentJobId;
 
                 subAckedPromise = std::promise<void>();
@@ -392,7 +480,7 @@ int main(int argc, char *argv[])
 
                 publishDescribeJobExeCompletedPromise = std::promise<void>();
                 UpdateJobExecutionRequest publishRequest;
-                publishRequest.ThingName = cmdData.input_thingName;
+                publishRequest.ThingName = cmdData.thingName;
                 publishRequest.JobId = currentJobId;
                 publishRequest.ExecutionNumber = currentExecutionNumber;
                 publishRequest.Status = JobStatus::IN_PROGRESS;
@@ -408,7 +496,7 @@ int main(int argc, char *argv[])
             {
                 pendingExecutionPromise = std::promise<void>();
                 UpdateJobExecutionSubscriptionRequest subscriptionRequest;
-                subscriptionRequest.ThingName = cmdData.input_thingName;
+                subscriptionRequest.ThingName = cmdData.thingName;
                 subscriptionRequest.JobId = currentJobId;
 
                 auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr) {
@@ -432,7 +520,7 @@ int main(int argc, char *argv[])
                 subAckedPromise.get_future().wait();
 
                 UpdateJobExecutionRequest publishRequest;
-                publishRequest.ThingName = cmdData.input_thingName;
+                publishRequest.ThingName = cmdData.thingName;
                 publishRequest.JobId = currentJobId;
                 publishRequest.ExecutionNumber = currentExecutionNumber;
                 publishRequest.Status = JobStatus::SUCCEEDED;
@@ -448,7 +536,7 @@ int main(int argc, char *argv[])
     // Wait just a little bit to let the console print
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-    if (cmdData.input_mqtt_version == 5UL)
+    if (cmdData.mqttVersion == 5UL)
     {
         // Disconnect
         if (client5->Stop() == true)

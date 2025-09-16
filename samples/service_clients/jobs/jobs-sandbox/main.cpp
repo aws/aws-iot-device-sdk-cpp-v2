@@ -26,8 +26,6 @@
 #include <condition_variable>
 #include <iostream>
 
-#include "../../utils/CommandLineUtils.h"
-
 using namespace Aws::Crt;
 using namespace Aws::Iotjobs;
 
@@ -371,22 +369,107 @@ static std::shared_ptr<Aws::Iot::RequestResponse::IStreamingOperation> s_createN
     return stream;
 }
 
+/* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String caFile;
+    String thingName;
+};
+
+void printHelp()
+{
+    printf("Jobs Sandbox Sample\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --thing_name  Thing name\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--endpoint") == 0)
+            {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--thing_name") == 0)
+            {
+                args.thingName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0)
+            {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--ca_file") == 0)
+            {
+                args.caFile = argv[++i];
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty() || args.thingName.empty())
+    {
+        fprintf(stderr, "Error: --endpoint, --cert, --key, and --thing_name are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty())
+    {
+        args.clientId = String("test-") + UUID().ToString();
+    }
+    return args;
+}
+/* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
 
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
+
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    Utils::cmdData cmdData = Utils::parseSampleInputJobs(argc, argv, &apiHandle);
-
     ApplicationContext context;
-    context.m_thingName = cmdData.input_thingName;
+    context.m_thingName = cmdData.thingName;
 
     // Create the MQTT5 builder and populate it with data from cmdData.
     auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
@@ -395,9 +478,14 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    auto clientId = "test-" + UUID().ToString();
     auto connectPacket = MakeShared<Mqtt5::ConnectPacket>(DefaultAllocatorImplementation());
-    connectPacket->WithClientId(clientId);
+    connectPacket->WithClientId(cmdData.clientId);
+
+    // Setup CA file if provided
+    if (!cmdData.caFile.empty())
+    {
+        builder->WithCertificateAuthority(cmdData.caFile.c_str());
+    }
 
     builder->WithConnectOptions(connectPacket);
 

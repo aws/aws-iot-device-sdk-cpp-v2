@@ -21,8 +21,6 @@
 #include <mutex>
 #include <thread>
 
-#include "../../utils/CommandLineUtils.h"
-
 using namespace Aws::Crt;
 
 int s_getCustomMetricNumber(double *output)
@@ -58,24 +56,134 @@ int s_getCustomMetricIpAddressList(Vector<String> *output)
     return AWS_OP_SUCCESS;
 }
 
+/* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String caFile;
+    String thingName = "TestThing";
+    String proxyHost;
+    uint32_t port = 0;
+    uint32_t proxyPort = 8080;
+    uint32_t reportTime = 60;
+    uint32_t count = 10;
+};
+
+void printHelp()
+{
+    printf("MQTT5 Device Defender Sample\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
+    printf("  --thing_name  Thing name (default: TestThing)\n");
+    printf("  --proxy_host  HTTP proxy host\n");
+    printf("  --proxy_port  HTTP proxy port (default: 8080)\n");
+    printf("  --port        Port override\n");
+    printf("  --report_time Report frequency in seconds (default: 60)\n");
+    printf("  --count       Number of reports to send (default: 10)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--endpoint") == 0)
+            {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0)
+            {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--ca_file") == 0)
+            {
+                args.caFile = argv[++i];
+            }
+            else if (strcmp(argv[i], "--thing_name") == 0)
+            {
+                args.thingName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--proxy_host") == 0)
+            {
+                args.proxyHost = argv[++i];
+            }
+            else if (strcmp(argv[i], "--proxy_port") == 0)
+            {
+                args.proxyPort = atoi(argv[++i]);
+            }
+            else if (strcmp(argv[i], "--port") == 0)
+            {
+                args.port = atoi(argv[++i]);
+            }
+            else if (strcmp(argv[i], "--report_time") == 0)
+            {
+                args.reportTime = atoi(argv[++i]);
+            }
+            else if (strcmp(argv[i], "--count") == 0)
+            {
+                args.count = atoi(argv[++i]);
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty())
+    {
+        fprintf(stderr, "Error: --endpoint, --cert, and --key are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty())
+    {
+        args.clientId = String("test-") + UUID().ToString();
+    }
+    return args;
+}
+/* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
 
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
+
     // Do the global initialization for the API.
     ApiHandle apiHandle;
-
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputDeviceDefender(argc, argv, &apiHandle);
 
     // Create the MQTT builder and populate it with data from cmdData.
     auto clientConfigBuilder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
     if (clientConfigBuilder == nullptr)
     {
         fprintf(
@@ -86,21 +194,21 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    if (cmdData.input_ca != "")
+    if (!cmdData.caFile.empty())
     {
-        clientConfigBuilder->WithCertificateAuthority(cmdData.input_ca.c_str());
+        clientConfigBuilder->WithCertificateAuthority(cmdData.caFile.c_str());
     }
-    if (cmdData.input_proxyHost != "")
+    if (!cmdData.proxyHost.empty())
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-        proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
+        proxyOptions.HostName = cmdData.proxyHost;
+        proxyOptions.Port = cmdData.proxyPort;
         proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
         clientConfigBuilder->WithHttpProxyOptions(proxyOptions);
     }
-    if (cmdData.input_port != 0)
+    if (cmdData.port != 0)
     {
-        clientConfigBuilder->WithPort(static_cast<uint32_t>(cmdData.input_port));
+        clientConfigBuilder->WithPort(cmdData.port);
     }
 
     std::promise<bool> connectionPromise;
@@ -125,7 +233,7 @@ int main(int argc, char *argv[])
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
-    connectOptions->WithClientId(cmdData.input_clientId);
+    connectOptions->WithClientId(cmdData.clientId);
     clientConfigBuilder->WithConnectOptions(connectOptions);
 
     // Create Mqtt5Client
@@ -161,9 +269,9 @@ int main(int argc, char *argv[])
         };
 
         Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(
-            allocator, client, *eventLoopGroup, cmdData.input_thingName);
-        taskBuilder.WithTaskPeriodSeconds((uint32_t)cmdData.input_reportTime)
-            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)cmdData.input_reportTime)
+            allocator, client, *eventLoopGroup, cmdData.thingName);
+        taskBuilder.WithTaskPeriodSeconds(cmdData.reportTime)
+            .WithNetworkConnectionSamplePeriodSeconds(cmdData.reportTime)
             .WithTaskCancelledHandler(onCancelled)
             .WithTaskCancellationUserData(&callbackSuccess);
         std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
@@ -211,15 +319,15 @@ int main(int argc, char *argv[])
 
         // Wait until the the desire amount of publishes has been complete
         uint64_t publishedCount = 0;
-        while (publishedCount < cmdData.input_count &&
+        while (publishedCount < cmdData.count &&
                (int)task->GetStatus() == (int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running)
         {
             ++publishedCount;
             fprintf(stdout, "Publishing next Device Defender report...\n");
 
-            if (publishedCount != cmdData.input_count)
+            if (publishedCount != cmdData.count)
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(cmdData.input_reportTime * 1000));
+                std::this_thread::sleep_for(std::chrono::milliseconds(cmdData.reportTime * 1000));
             }
         }
 

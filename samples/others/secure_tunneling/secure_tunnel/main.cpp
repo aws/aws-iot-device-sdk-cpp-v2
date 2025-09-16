@@ -11,7 +11,6 @@
 #include <fstream>
 #include <thread>
 
-#include "../../utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
 using namespace Aws::Iotsecuretunneling;
@@ -148,10 +147,117 @@ int main(int argc, char *argv[])
     bool keepRunning = true;
     uint16_t messagesSent = 0;
 
+    /* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+    struct CmdArgs
+    {
+        String accessToken;
+        String endpoint;
+        String caFile;
+        String clientToken;
+        String localProxyModeSource = "destination";
+        String proxyHost;
+        String proxyUserName;
+        String proxyPassword;
+        String message = "Hello World";
+        uint32_t proxyPort = 0;
+        uint32_t count = 4;
+    };
+
+    auto printHelp = []() {
+        printf("Secure Tunnel Sample\n");
+        printf("options:\n");
+        printf("  --help        show this help message and exit\n");
+        printf("required arguments:\n");
+        printf("  --access_token    Access token for secure tunnel\n");
+        printf("  --endpoint        Secure tunnel endpoint\n");
+        printf("optional arguments:\n");
+        printf("  --ca_file         Path to optional CA bundle (PEM)\n");
+        printf("  --client_token    Client token\n");
+        printf("  --local_proxy_mode_source  Local proxy mode (default: destination)\n");
+        printf("  --proxy_host      HTTP proxy host\n");
+        printf("  --proxy_port      HTTP proxy port\n");
+        printf("  --proxy_username  HTTP proxy username\n");
+        printf("  --proxy_password  HTTP proxy password\n");
+        printf("  --message         Message to send (default: Hello World)\n");
+        printf("  --count           Number of messages to send (default: 4)\n");
+    };
+
+    auto parseArgs = [&](int argc, char *argv[]) -> CmdArgs {
+        CmdArgs args;
+        for (int i = 1; i < argc; i++)
+        {
+            if (strcmp(argv[i], "--help") == 0)
+            {
+                printHelp();
+                exit(0);
+            }
+            else if (i < argc - 1)
+            {
+                if (strcmp(argv[i], "--access_token") == 0)
+                {
+                    args.accessToken = argv[++i];
+                }
+                else if (strcmp(argv[i], "--endpoint") == 0)
+                {
+                    args.endpoint = argv[++i];
+                }
+                else if (strcmp(argv[i], "--ca_file") == 0)
+                {
+                    args.caFile = argv[++i];
+                }
+                else if (strcmp(argv[i], "--client_token") == 0)
+                {
+                    args.clientToken = argv[++i];
+                }
+                else if (strcmp(argv[i], "--local_proxy_mode_source") == 0)
+                {
+                    args.localProxyModeSource = argv[++i];
+                }
+                else if (strcmp(argv[i], "--proxy_host") == 0)
+                {
+                    args.proxyHost = argv[++i];
+                }
+                else if (strcmp(argv[i], "--proxy_username") == 0)
+                {
+                    args.proxyUserName = argv[++i];
+                }
+                else if (strcmp(argv[i], "--proxy_password") == 0)
+                {
+                    args.proxyPassword = argv[++i];
+                }
+                else if (strcmp(argv[i], "--message") == 0)
+                {
+                    args.message = argv[++i];
+                }
+                else if (strcmp(argv[i], "--proxy_port") == 0)
+                {
+                    args.proxyPort = atoi(argv[++i]);
+                }
+                else if (strcmp(argv[i], "--count") == 0)
+                {
+                    args.count = atoi(argv[++i]);
+                }
+                else
+                {
+                    fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                    printHelp();
+                    exit(1);
+                }
+            }
+        }
+        if (args.accessToken.empty() || args.endpoint.empty())
+        {
+            fprintf(stderr, "Error: --access_token and --endpoint are required\n");
+            printHelp();
+            exit(1);
+        }
+        return args;
+    };
+
     /*********************** Parse Arguments ***************************/
-    Utils::cmdData cmdData = Utils::parseSampleInputSecureTunnel(argc, argv, &apiHandle);
+    CmdArgs cmdData = parseArgs(argc, argv);
     // localProxyMode is set to destination by default unless flag is set to source
-    if (cmdData.input_localProxyModeSource != "destination")
+    if (cmdData.localProxyModeSource != "destination")
     {
         localProxyMode = AWS_SECURE_TUNNELING_SOURCE_MODE;
     }
@@ -171,28 +277,28 @@ int main(int argc, char *argv[])
 
     // Use a SecureTunnelBuilder to set up and build the secure tunnel client
     SecureTunnelBuilder builder = SecureTunnelBuilder(
-        allocator, cmdData.input_accessToken.c_str(), localProxyMode, cmdData.input_endpoint.c_str());
+        allocator, cmdData.accessToken.c_str(), localProxyMode, cmdData.endpoint.c_str());
 
-    if (cmdData.input_ca != "")
+    if (!cmdData.caFile.empty())
     {
-        builder.WithRootCa(cmdData.input_ca.c_str());
+        builder.WithRootCa(cmdData.caFile.c_str());
     }
 
     /* Proxy Options */
-    if (cmdData.input_proxyHost != "")
+    if (!cmdData.proxyHost.empty())
     {
         auto proxyOptions = Aws::Crt::Http::HttpClientConnectionProxyOptions();
-        proxyOptions.HostName = cmdData.input_proxyHost != "";
-        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
+        proxyOptions.HostName = cmdData.proxyHost;
+        proxyOptions.Port = cmdData.proxyPort;
 
         // Set up Proxy Strategy if a user name and password is provided
-        if (cmdData.input_proxyUserName != "" || cmdData.input_proxyPassword != "")
+        if (!cmdData.proxyUserName.empty() || !cmdData.proxyPassword.empty())
         {
             fprintf(stdout, "Creating proxy strategy\n");
             Aws::Crt::Http::HttpProxyStrategyBasicAuthConfig basicAuthConfig;
             basicAuthConfig.ConnectionType = Aws::Crt::Http::AwsHttpProxyConnectionType::Tunneling;
-            basicAuthConfig.Username = cmdData.input_proxyUserName.c_str();
-            basicAuthConfig.Password = cmdData.input_proxyPassword.c_str();
+            basicAuthConfig.Username = cmdData.proxyUserName.c_str();
+            basicAuthConfig.Password = cmdData.proxyPassword.c_str();
             proxyOptions.ProxyStrategy =
                 Aws::Crt::Http::HttpProxyStrategy::CreateBasicHttpProxyStrategy(basicAuthConfig, allocator);
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::Basic;
@@ -206,7 +312,10 @@ int main(int argc, char *argv[])
         builder.WithHttpClientConnectionProxyOptions(proxyOptions);
     }
 
-    builder.WithClientToken(cmdData.input_clientToken.c_str());
+    if (!cmdData.clientToken.empty())
+    {
+        builder.WithClientToken(cmdData.clientToken.c_str());
+    }
 
     /* Add callbacks using the builder */
     builder.WithOnMessageReceived([&](SecureTunnel *secureTunnel, const MessageReceivedEventData &eventData) {
@@ -359,10 +468,9 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         if (localProxyMode == AWS_SECURE_TUNNELING_SOURCE_MODE)
         {
-            uint16_t messageCount = static_cast<uint16_t>(cmdData.input_count);
+            uint16_t messageCount = static_cast<uint16_t>(cmdData.count);
             messagesSent++;
-            // String toSend = (std::to_string(messagesSent) + ": " + payloadMessage.c_str()).c_str();
-            String toSend = (std::to_string(messagesSent) + ": " + cmdData.input_message.c_str()).c_str();
+            String toSend = (std::to_string(messagesSent) + ": " + cmdData.message.c_str()).c_str();
 
             if (messagesSent <= messageCount)
             {

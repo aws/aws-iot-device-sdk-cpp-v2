@@ -35,8 +35,6 @@
 #include <mutex>
 #include <thread>
 
-#include "../../../samples/utils/CommandLineUtils.h"
-
 using namespace Aws::Crt;
 using namespace Aws::Iotshadow;
 
@@ -68,8 +66,23 @@ void subscribeShadowUpdatedValue(
     std::shared_ptr<IotShadowClient> shadowClient,
     std::promise<void> &gotResponse);
 
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String caFile;
+    String thingName;
+    String shadowProperty = "color";
+    String shadowName;
+    String shadowValue;
+    uint32_t port = 0;
+    uint32_t mqttVersion = 5;
+};
+
 std::shared_ptr<IotShadowClient> build_mqtt3_client(
-    Utils::cmdData &cmdData,
+    CmdArgs &cmdData,
     std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection,
     std::promise<bool> &connectionCompletedPromise,
     std::promise<void> &connectionClosedPromise)
@@ -77,11 +90,11 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
     Aws::Iot::MqttClientConnectionConfigBuilder clientConfigBuilder;
     // Create the MQTT builder and populate it with data from cmdData.
     clientConfigBuilder =
-        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
-    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
-    if (cmdData.input_ca != "")
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.endpoint);
+    if (!cmdData.caFile.empty())
     {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
     }
 
     // Create the MQTT connection from the MQTT builder
@@ -131,7 +144,7 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
-    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -140,14 +153,14 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
 }
 
 std::shared_ptr<IotShadowClient> build_mqtt5_client(
-    Utils::cmdData &cmdData,
+    CmdArgs &cmdData,
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> &client5,
     std::promise<bool> &connectionCompletedPromise,
     std::promise<void> &connectionClosedPromise)
 {
     std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -160,11 +173,11 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
-    connectOptions->WithClientId(cmdData.input_clientId);
+    connectOptions->WithClientId(cmdData.clientId);
     builder->WithConnectOptions(connectOptions);
-    if (cmdData.input_port != 0)
+    if (cmdData.port != 0)
     {
-        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
+        builder->WithPort(cmdData.port);
     }
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
@@ -205,18 +218,111 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
     return Aws::Crt::MakeShared<IotShadowClient>(Aws::Crt::DefaultAllocatorImplementation(), client5);
 }
 
+void printHelp()
+{
+    printf("Shadow Update Test\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --thing_name  Thing name\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
+    printf("  --shadow_property  Shadow property name (default: color)\n");
+    printf("  --shadow_name      Shadow name\n");
+    printf("  --shadow_value     Shadow value\n");
+    printf("  --port        Port override\n");
+    printf("  --mqtt_version     MQTT version (3 or 5, default: 5)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--endpoint") == 0)
+            {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--thing_name") == 0)
+            {
+                args.thingName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0)
+            {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--ca_file") == 0)
+            {
+                args.caFile = argv[++i];
+            }
+            else if (strcmp(argv[i], "--shadow_property") == 0)
+            {
+                args.shadowProperty = argv[++i];
+            }
+            else if (strcmp(argv[i], "--shadow_name") == 0)
+            {
+                args.shadowName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--shadow_value") == 0)
+            {
+                args.shadowValue = argv[++i];
+            }
+            else if (strcmp(argv[i], "--port") == 0)
+            {
+                args.port = atoi(argv[++i]);
+            }
+            else if (strcmp(argv[i], "--mqtt_version") == 0)
+            {
+                args.mqttVersion = atoi(argv[++i]);
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty() || args.thingName.empty())
+    {
+        fprintf(stderr, "Error: --endpoint, --cert, --key, and --thing_name are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty())
+    {
+        args.clientId = String("test-") + UUID().ToString();
+    }
+    return args;
+}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
     ApiHandle apiHandle;
     fprintf(stderr, "starting Shadow update\n");
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputShadow(argc, argv, &apiHandle);
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
     std::shared_ptr<IotShadowClient> shadowClient = nullptr;
 
     /**
@@ -230,13 +336,13 @@ int main(int argc, char *argv[])
     // Create Mqtt5Client
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client5 = nullptr;
 
-    if (cmdData.input_mqtt_version == 5UL)
+    if (cmdData.mqttVersion == 5)
     {
         shadowClient = build_mqtt5_client(cmdData, client5, connectionCompletedPromise, connectionClosedPromise);
     }
-    else if (cmdData.input_mqtt_version == 3UL)
+    else if (cmdData.mqttVersion == 3)
     {
-        shadowClient = build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);
+        shadowClient = build_mqtt3_client(cmdData, connection, connectionCompletedPromise, connectionClosedPromise);nClosedPromise);
     }
     else
     {
@@ -247,18 +353,18 @@ int main(int argc, char *argv[])
     /************************ Run the sample ****************************/
     if (connectionCompletedPromise.get_future().get())
     {
-        if (cmdData.input_shadowName.empty())
+        if (cmdData.shadowName.empty())
         {
             std::promise<void> gotResponse;
             subscribeShadowUpdatedValue(
-                cmdData.input_thingName,
-                cmdData.input_shadowProperty,
-                cmdData.input_shadowValue,
+                cmdData.thingName,
+                cmdData.shadowProperty,
+                cmdData.shadowValue,
                 shadowClient,
                 gotResponse);
 
             changeShadowValue(
-                cmdData.input_thingName, cmdData.input_shadowProperty, cmdData.input_shadowValue, shadowClient);
+                cmdData.thingName, cmdData.shadowProperty, cmdData.shadowValue, shadowClient);
 
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
             if (status == std::future_status::timeout)
@@ -271,18 +377,18 @@ int main(int argc, char *argv[])
         {
             std::promise<void> gotResponse;
             subscribeNamedShadowUpdatedValue(
-                cmdData.input_thingName,
-                cmdData.input_shadowProperty,
-                cmdData.input_shadowValue,
-                cmdData.input_shadowName,
+                cmdData.thingName,
+                cmdData.shadowProperty,
+                cmdData.shadowValue,
+                cmdData.shadowName,
                 shadowClient,
                 gotResponse);
 
             changeNamedShadowValue(
-                cmdData.input_thingName,
-                cmdData.input_shadowProperty,
-                cmdData.input_shadowValue,
-                cmdData.input_shadowName,
+                cmdData.thingName,
+                cmdData.shadowProperty,
+                cmdData.shadowValue,
+                cmdData.shadowName,
                 shadowClient);
 
             std::future_status status = gotResponse.get_future().wait_for(std::chrono::seconds(5));
@@ -298,7 +404,7 @@ int main(int argc, char *argv[])
     // Wait just a little bit to let the console print
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-    if (cmdData.input_mqtt_version == 5UL)
+    if (cmdData.mqttVersion == 5)
     { // mqtt5
         // Disconnect
         if (client5->Stop() == true)

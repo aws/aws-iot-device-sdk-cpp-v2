@@ -21,8 +21,7 @@
 #include <aws/iotidentity/V2ErrorResponse.h>
 
 #include <fstream>
-
-#include "../../utils/CommandLineUtils.h"
+#include <cstring>
 
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
@@ -45,21 +44,107 @@ static void s_onServiceError(const ServiceErrorV2<V2ErrorResponse> &serviceError
     }
 }
 
+/* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String caFile;
+    String templateName;
+    String templateParameters;
+};
+
+void printHelp()
+{
+    printf("Fleet Provisioning Sample\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --template_name  Provisioning template name\n");
+    printf("optional arguments:\n");
+    printf("  --template_parameters  Template parameters JSON\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--endpoint") == 0)
+            {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--template_name") == 0)
+            {
+                args.templateName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--template_parameters") == 0)
+            {
+                args.templateParameters = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0)
+            {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--ca_file") == 0)
+            {
+                args.caFile = argv[++i];
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty() || args.templateName.empty())
+    {
+        fprintf(stderr, "Error: --endpoint, --cert, --key, and --template_name are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty())
+    {
+        args.clientId = String("test-") + UUID().ToString();
+    }
+    return args;
+}
+/* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
+
 int main(int argc, char *argv[])
 {
-    ApiHandle apiHandle;
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
+    ApiHandle apiHandle;
 
     // Create the MQTT5 builder and populate it with data from cmdData.
     auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
         Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
@@ -68,9 +153,14 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    auto clientId = "test-" + UUID().ToString();
     auto connectPacket = MakeShared<Mqtt5::ConnectPacket>(DefaultAllocatorImplementation());
-    connectPacket->WithClientId(clientId);
+    connectPacket->WithClientId(cmdData.clientId);
+
+    // Setup CA file if provided
+    if (!cmdData.caFile.empty())
+    {
+        builder->WithCertificateAuthority(cmdData.caFile.c_str());
+    }
 
     builder->WithConnectOptions(connectPacket);
 
@@ -147,13 +237,13 @@ int main(int argc, char *argv[])
      * is successfully called, the certificate-and-key pair from Step 1 are useless.
      */
     RegisterThingRequest registerThingRequest;
-    registerThingRequest.TemplateName = cmdData.input_templateName;
+    registerThingRequest.TemplateName = cmdData.templateName;
     registerThingRequest.CertificateOwnershipToken = createKeysResponse.CertificateOwnershipToken;
-    if (cmdData.input_templateParameters.length() > 0)
+    if (cmdData.templateParameters.length() > 0)
     {
         Map<String, String> finalTemplateParameters;
 
-        JsonObject templateParamsAsJson(cmdData.input_templateParameters);
+        JsonObject templateParamsAsJson(cmdData.templateParameters);
         Map<String, JsonView> pm = templateParamsAsJson.View().GetAllObjects();
         for (const auto &x : pm)
         {

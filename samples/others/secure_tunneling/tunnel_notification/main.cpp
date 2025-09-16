@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
+#include <aws/crt/Api.h>
 #include <aws/iot/MqttClient.h>
 #include <aws/iotsecuretunneling/IotSecureTunnelingClient.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
@@ -12,7 +13,6 @@
 #include <chrono>
 #include <thread>
 
-#include "../../utils/CommandLineUtils.h"
 
 using namespace std;
 using namespace Aws::Crt;
@@ -29,20 +29,96 @@ int main(int argc, char *argv[])
     aws_iotdevice_library_init(allocator);
     std::shared_ptr<SecureTunnel> secureTunnel;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputSecureTunnelNotification(argc, argv, &apiHandle);
+    /* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+    struct CmdArgs
+    {
+        String endpoint;
+        String cert;
+        String key;
+        String clientId;
+        String caFile;
+        String thingName;
+    };
+
+    auto printHelp = []() {
+        printf("Tunnel Notification Sample\n");
+        printf("options:\n");
+        printf("  --help        show this help message and exit\n");
+        printf("required arguments:\n");
+        printf("  --endpoint    IoT endpoint hostname\n");
+        printf("  --cert        Path to the certificate file\n");
+        printf("  --key         Path to the private key file\n");
+        printf("  --thing_name  Thing name\n");
+        printf("optional arguments:\n");
+        printf("  --client_id   Client ID (default: test-<uuid>)\n");
+        printf("  --ca_file     Path to optional CA bundle (PEM)\n");
+    };
+
+    auto parseArgs = [&](int argc, char *argv[]) -> CmdArgs {
+        CmdArgs args;
+        for (int i = 1; i < argc; i++)
+        {
+            if (strcmp(argv[i], "--help") == 0)
+            {
+                printHelp();
+                exit(0);
+            }
+            else if (i < argc - 1)
+            {
+                if (strcmp(argv[i], "--endpoint") == 0)
+                {
+                    args.endpoint = argv[++i];
+                }
+                else if (strcmp(argv[i], "--cert") == 0)
+                {
+                    args.cert = argv[++i];
+                }
+                else if (strcmp(argv[i], "--key") == 0)
+                {
+                    args.key = argv[++i];
+                }
+                else if (strcmp(argv[i], "--thing_name") == 0)
+                {
+                    args.thingName = argv[++i];
+                }
+                else if (strcmp(argv[i], "--client_id") == 0)
+                {
+                    args.clientId = argv[++i];
+                }
+                else if (strcmp(argv[i], "--ca_file") == 0)
+                {
+                    args.caFile = argv[++i];
+                }
+                else
+                {
+                    fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                    printHelp();
+                    exit(1);
+                }
+            }
+        }
+        if (args.endpoint.empty() || args.cert.empty() || args.key.empty() || args.thingName.empty())
+        {
+            fprintf(stderr, "Error: --endpoint, --cert, --key, and --thing_name are required\n");
+            printHelp();
+            exit(1);
+        }
+        if (args.clientId.empty())
+        {
+            args.clientId = String("test-") + UUID().ToString();
+        }
+        return args;
+    };
+
+    CmdArgs cmdData = parseArgs(argc, argv);
 
     // Create the MQTT builder and populate it with data from cmdData.
     auto clientConfigBuilder =
-        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
-    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
-    if (cmdData.input_ca != "")
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.endpoint);
+    if (!cmdData.caFile.empty())
     {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
+        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
     }
 
     // Create the MQTT connection from the MQTT builder
@@ -102,7 +178,7 @@ int main(int argc, char *argv[])
 
     // Connect
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);
@@ -175,7 +251,7 @@ int main(int argc, char *argv[])
     if (connectionCompletedPromise.get_future().get())
     {
         SubscribeToTunnelsNotifyRequest request;
-        request.ThingName = cmdData.input_thingName;
+        request.ThingName = cmdData.thingName;
 
         IotSecureTunnelingClient secureClient(connection);
         secureClient.SubscribeToTunnelsNotify(
