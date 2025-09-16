@@ -244,7 +244,7 @@ CmdArgs parseArgs(int argc, char *argv[])
     }
     if (args.clientId.empty())
     {
-        args.clientId = String("test-") + UUID().ToString();
+        args.clientId = String("test-") + Aws::Crt::UUID().ToString();
     }
     return args;
 }
