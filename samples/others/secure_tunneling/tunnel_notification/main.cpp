@@ -4,6 +4,7 @@
  */
 
 #include <aws/crt/Api.h>
+#include <aws/crt/UUID.h>
 #include <aws/iot/MqttClient.h>
 #include <aws/iotsecuretunneling/IotSecureTunnelingClient.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
@@ -105,7 +106,7 @@ int main(int argc, char *argv[])
         }
         if (args.clientId.empty())
         {
-            args.clientId = String("test-") + UUID().ToString();
+            args.clientId = String("test-") + Aws::Crt::UUID().ToString();
         }
         return args;
     };
