@@ -21,7 +21,6 @@
 #include <aws/iotidentity/V2ErrorResponse.h>
 
 #include <fstream>
-#include <cstring>
 
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;

@@ -23,7 +23,6 @@ struct CmdArgs
     String endpoint;
     String cert;
     String key;
-    String clientId;
     String caFile;
     String thingName;
     String topic = "test/topic";
@@ -192,10 +191,6 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.thingName = argv[++i];
             }
-            else if (strcmp(argv[i], "--client_id") == 0)
-            {
-                args.clientId = argv[++i];
-            }
             else if (strcmp(argv[i], "--ca_file") == 0)
             {
                 args.caFile = argv[++i];
@@ -241,10 +236,6 @@ CmdArgs parseArgs(int argc, char *argv[])
         fprintf(stderr, "Error: --cert, --key, and --thing_name are required\n");
         printHelp();
         exit(1);
-    }
-    if (args.clientId.empty())
-    {
-        args.clientId = String("test-") + Aws::Crt::UUID().ToString();
     }
     return args;
 }

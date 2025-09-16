@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.9...3.31)
 project(commands-sandbox CXX)
 
 file(GLOB SRC_FILES
-       "*.cpp"
+       "*.cpp",
+       "*.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
