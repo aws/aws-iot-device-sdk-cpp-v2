@@ -31,7 +31,7 @@ class BuildSamples(Builder.Action):
             'samples/mqtt/mqtt5_custom_auth_unsigned',
             'samples/mqtt/mqtt5_pkcs11',
             'samples/others/secure_tunneling/secure_tunnel',
-            'samples/otheres/secure_tunneling/tunnel_notification',
+            'samples/others/secure_tunneling/tunnel_notification',
             'samples/service_clients/shadow/shadow-sandbox',
         ]
 
