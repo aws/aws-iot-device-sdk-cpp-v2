@@ -376,7 +376,6 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
-    String caFile;
     String thingName;
 };
 
@@ -392,7 +391,6 @@ void printHelp()
     printf("  --thing_name  Thing name\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
 }
 
 CmdArgs parseArgs(int argc, char *argv[])
@@ -427,10 +425,7 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.clientId = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
-            }
+
             else
             {
                 fprintf(stderr, "Unknown argument: %s\n", argv[i]);
@@ -480,12 +475,6 @@ int main(int argc, char *argv[])
 
     auto connectPacket = MakeShared<Mqtt5::ConnectPacket>(DefaultAllocatorImplementation());
     connectPacket->WithClientId(cmdData.clientId);
-
-    // Setup CA file if provided
-    if (!cmdData.caFile.empty())
-    {
-        builder->WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     builder->WithConnectOptions(connectPacket);
 

@@ -101,7 +101,6 @@ required arguments:
   --key         Path to the private key file to use during mTLS connection establishment
 optional arguments:
   --client_id   Client ID (default: mqtt5-sample-<uuid>)
-  --ca_file     Path to optional CA bundle (PEM)
   --topic       Topic (default: test/topic)
   --message     Message payload (default: Hello from mqtt5 sample)
   --count       Messages to publish (0 = infinite) (default: 5)

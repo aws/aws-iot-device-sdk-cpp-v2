@@ -63,7 +63,6 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
-    String caFile;
     String thingName = "TestThing";
     String proxyHost;
     uint32_t port = 0;
@@ -83,7 +82,6 @@ void printHelp()
     printf("  --key         Path to the private key file\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --thing_name  Thing name (default: TestThing)\n");
     printf("  --proxy_host  HTTP proxy host\n");
     printf("  --proxy_port  HTTP proxy port (default: 8080)\n");
@@ -120,10 +118,7 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.clientId = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
-            }
+
             else if (strcmp(argv[i], "--thing_name") == 0)
             {
                 args.thingName = argv[++i];
@@ -194,10 +189,6 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    if (!cmdData.caFile.empty())
-    {
-        clientConfigBuilder->WithCertificateAuthority(cmdData.caFile.c_str());
-    }
     if (!cmdData.proxyHost.empty())
     {
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;

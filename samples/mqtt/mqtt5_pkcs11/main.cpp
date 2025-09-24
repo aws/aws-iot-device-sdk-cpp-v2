@@ -22,7 +22,6 @@ struct CmdArgs
     String pkcs11TokenLabel;
     String pkcs11KeyLabel;
     String clientId;
-    String caFile;
     String topic = "test/topic";
     String message = "Hello from mqtt5 sample";
     uint32_t port = 8883;
@@ -50,7 +49,6 @@ void printHelp()
     printf("  --token_label      Label of the PKCS#11 token to use\n");
     printf("  --slot_id          Slot ID containing the PKCS#11 token to use\n");
     printf("  --key_label        Label of private key on the PKCS#11 token\n");
-    printf("  --ca_file          Path to optional CA bundle (PEM)\n");
     printf("  --topic            Topic (default: test/topic)\n");
     printf("  --message          Message payload (default: Hello from mqtt5 sample)\n");
     printf("  --count            Messages to publish (0 = infinite) (default: 5)\n");
@@ -98,10 +96,7 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.pkcs11KeyLabel = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
-            }
+
             else if (strcmp(argv[i], "--client_id") == 0)
             {
                 args.clientId = argv[++i];
@@ -210,12 +205,6 @@ int main(int argc, char *argv[])
 
     // Setup port if not default
     builder->WithPort(cmdData.port);
-    
-    // Setup CA file if provided
-    if (!cmdData.caFile.empty())
-    {
-        builder->WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     // Setup connection options
     std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =

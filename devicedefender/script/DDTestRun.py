@@ -242,7 +242,7 @@ try:
     arguments = [exe_path, "--endpoint", endpoint_response, "--cert",
                  certificate_path, "--key", key_path, "--thing_name", thing_name, "--count", "2"]
     result = subprocess.run(arguments, timeout=60*2, check=True)
-    print("[Device Defender]Info: Sample finished running.")
+    print(f"[Device Defender]Info: Sample finished running, with result {result.returncode}")
 
     # There does not appear to be any way to get the metrics from the device - so we'll assume that if it didn't return -1, then it worked
 
@@ -264,7 +264,7 @@ except Exception as e:
     if client_made_policy:
         client.delete_policy(policyName=thing_name + "_policy")
 
-    print("[Device Defender]Error: Failed to test: Basic Report")
+    print(f"[Device Defender]Error: Failed to test: Basic Report {e}")
     exit(-1)
 
 print("[Device Defender]Info: Basic Report sample test passed")

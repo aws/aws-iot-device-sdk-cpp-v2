@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
         String cert;
         String key;
         String clientId;
-        String caFile;
         String thingName;
     };
 
@@ -52,7 +51,6 @@ int main(int argc, char *argv[])
         printf("  --thing_name  Thing name\n");
         printf("optional arguments:\n");
         printf("  --client_id   Client ID (default: test-<uuid>)\n");
-        printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     };
 
     auto parseArgs = [&](int argc, char *argv[]) -> CmdArgs {
@@ -86,10 +84,7 @@ int main(int argc, char *argv[])
                 {
                     args.clientId = argv[++i];
                 }
-                else if (strcmp(argv[i], "--ca_file") == 0)
-                {
-                    args.caFile = argv[++i];
-                }
+
                 else
                 {
                     fprintf(stderr, "Unknown argument: %s\n", argv[i]);
@@ -117,10 +112,6 @@ int main(int argc, char *argv[])
     auto clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData.endpoint);
-    if (!cmdData.caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();

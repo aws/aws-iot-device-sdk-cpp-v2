@@ -23,7 +23,6 @@ struct CmdArgs
     String endpoint;
     String cert;
     String key;
-    String caFile;
     String thingName;
     String topic = "test/topic";
     String message;
@@ -157,7 +156,6 @@ void printHelp()
     printf("  --thing_name  Thing name\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --topic       Topic (default: test/topic)\n");
     printf("  --message     Message to publish\n");
     printf("  --mode        Mode: publish, subscribe, both (default: both)\n");
@@ -191,10 +189,7 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.thingName = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
-            }
+
             else if (strcmp(argv[i], "--topic") == 0)
             {
                 args.topic = argv[++i];
@@ -258,11 +253,6 @@ int main(int argc, char *argv[])
     {
         fprintf(stderr, "TLS Context Options creation failed with error %s\n", ErrorDebugString(Aws::Crt::LastError()));
         exit(-1);
-    }
-
-    if (!cmdData.caFile.empty())
-    {
-        tlsCtxOptions.OverrideDefaultTrustStore(nullptr, cmdData.caFile.c_str());
     }
 
     Io::TlsContext tlsCtx(tlsCtxOptions, Io::TlsMode::CLIENT);

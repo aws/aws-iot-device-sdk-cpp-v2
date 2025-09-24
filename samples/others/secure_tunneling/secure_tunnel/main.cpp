@@ -152,7 +152,6 @@ int main(int argc, char *argv[])
     {
         String accessToken;
         String endpoint;
-        String caFile;
         String clientToken;
         String localProxyModeSource = "destination";
         String proxyHost;
@@ -171,7 +170,6 @@ int main(int argc, char *argv[])
         printf("  --access_token    Access token for secure tunnel\n");
         printf("  --endpoint        Secure tunnel endpoint\n");
         printf("optional arguments:\n");
-        printf("  --ca_file         Path to optional CA bundle (PEM)\n");
         printf("  --client_token    Client token\n");
         printf("  --local_proxy_mode_source  Local proxy mode (default: destination)\n");
         printf("  --proxy_host      HTTP proxy host\n");
@@ -201,10 +199,7 @@ int main(int argc, char *argv[])
                 {
                     args.endpoint = argv[++i];
                 }
-                else if (strcmp(argv[i], "--ca_file") == 0)
-                {
-                    args.caFile = argv[++i];
-                }
+
                 else if (strcmp(argv[i], "--client_token") == 0)
                 {
                     args.clientToken = argv[++i];
@@ -278,11 +273,6 @@ int main(int argc, char *argv[])
     // Use a SecureTunnelBuilder to set up and build the secure tunnel client
     SecureTunnelBuilder builder = SecureTunnelBuilder(
         allocator, cmdData.accessToken.c_str(), localProxyMode, cmdData.endpoint.c_str());
-
-    if (!cmdData.caFile.empty())
-    {
-        builder.WithRootCa(cmdData.caFile.c_str());
-    }
 
     /* Proxy Options */
     if (!cmdData.proxyHost.empty())

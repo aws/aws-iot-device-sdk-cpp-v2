@@ -18,7 +18,6 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
-    String caFile;
     String topic = "test/topic";
     String message = "Hello from mqtt5 sample";
     uint32_t count = 5;
@@ -37,7 +36,6 @@ void printHelp()
         "  --key         Path to the private key file to use during mTLS connection establishment\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: mqtt5-sample-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --topic       Topic (default: test/topic)\n");
     printf("  --message     Message payload (default: Hello from mqtt5 sample)\n");
     printf("  --count       Messages to publish (0 = infinite) (default: 5)\n");
@@ -67,10 +65,7 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.key = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
-            }
+
             else if (strcmp(argv[i], "--client_id") == 0)
             {
                 args.clientId = argv[++i];
@@ -141,12 +136,6 @@ int main(int argc, char *argv[])
         printf(
             "Failed to setup Mqtt5 client builder with error code %d: %s\n", LastError(), ErrorDebugString(LastError()));
         exit(1);
-    }
-
-    // Setup CA file if provided
-    if (!cmdData.caFile.empty())
-    {
-        builder->WithCertificateAuthority(cmdData.caFile.c_str());
     }
 
     // Setup connection options

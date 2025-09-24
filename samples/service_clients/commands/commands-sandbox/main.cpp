@@ -192,7 +192,6 @@ struct CmdArgs
     Aws::Crt::String cert;
     Aws::Crt::String key;
     Aws::Crt::String clientId;
-    Aws::Crt::String caFile;
     Aws::Crt::String thingName;
 };
 
@@ -208,7 +207,6 @@ void printHelp()
     printf("  --thing_name  Thing name\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
 }
 
 CmdArgs parseArgs(int argc, char *argv[])
@@ -243,10 +241,7 @@ CmdArgs parseArgs(int argc, char *argv[])
             {
                 args.clientId = argv[++i];
             }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
-            }
+
             else
             {
                 fprintf(stderr, "Unknown argument: %s\n", argv[i]);
@@ -296,12 +291,6 @@ int main(int argc, char *argv[])
     auto connectPacket =
         Aws::Crt::MakeShared<Aws::Crt::Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
     connectPacket->WithClientId(cmdData.clientId);
-
-    // Setup CA file if provided
-    if (!cmdData.caFile.empty())
-    {
-        builder->WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     builder->WithConnectOptions(connectPacket);
 
