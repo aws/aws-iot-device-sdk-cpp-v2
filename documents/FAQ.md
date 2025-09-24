@@ -99,7 +99,6 @@ Here is an example launch.json file to run the pubsub sample
             "program": "${workspaceFolder}/samples/pub_sub/basic_pub_sub/build/basic-pub-sub",
             "args": [
                 "--endpoint", "<account-number>-ats.iot.<region>.amazonaws.com",
-                "--ca_file", "<path to root-CA>",
                 "--cert", "<path to cert>",
                 "--key", "<path to key>",
                 "--client-id", "test-client"
@@ -116,7 +115,6 @@ Here is an example launch.json file to run the pubsub sample
     * Root CA Certificates
         * Download the root CA certificate file that corresponds to the type of data endpoint and cipher suite you're using (You most likely want Amazon Root CA 1)
         * Generated and provided by Amazon. You can download it [here](https://www.amazontrust.com/repository/) or download it when getting the other certificates from the AWS console
-        * When using samples it can look like this: `--ca_file root-CA.crt`
     * Device certificate
         * Intermediate device certificate that is used to generate the key below
         * When using samples it can look like this: `--cert abcde12345-certificate.pem.crt`

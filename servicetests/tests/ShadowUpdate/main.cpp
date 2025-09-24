@@ -230,7 +230,6 @@ void printHelp()
     printf("  --thing_name  Thing name\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --shadow_property  Shadow property name (default: color)\n");
     printf("  --shadow_name      Shadow name\n");
     printf("  --shadow_value     Shadow value\n");
@@ -269,10 +268,6 @@ CmdArgs parseArgs(int argc, char *argv[])
             else if (strcmp(argv[i], "--client_id") == 0)
             {
                 args.clientId = argv[++i];
-            }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
             }
             else if (strcmp(argv[i], "--shadow_property") == 0)
             {

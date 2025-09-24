@@ -538,7 +538,6 @@ void printHelp()
     printf("  --template_parameters  Template parameters JSON\n");
     printf("optional arguments:\n");
     printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --ca_file     Path to optional CA bundle (PEM)\n");
     printf("  --csr         Path to CSR in PEM format\n");
     printf("  --port        Port override\n");
     printf("  --mqtt_version     MQTT version (3 or 5, default: 5)\n");
@@ -579,10 +578,6 @@ CmdArgs parseArgs(int argc, char *argv[])
             else if (strcmp(argv[i], "--client_id") == 0)
             {
                 args.clientId = argv[++i];
-            }
-            else if (strcmp(argv[i], "--ca_file") == 0)
-            {
-                args.caFile = argv[++i];
             }
             else if (strcmp(argv[i], "--csr") == 0)
             {

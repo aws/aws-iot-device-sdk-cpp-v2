@@ -323,6 +323,7 @@ def launch_runnable(runnable_dir):
         # C++
         elif (config_json['language'] == "CPP"):
             runnable_file = os.path.join(runnable_dir, config_json['runnable_file'])
+            print(f"launch runnable with arguments: {config_json_arguments_list}")
             runnable_return = subprocess.run(args=config_json_arguments_list, input=subprocess_stdin, timeout=runnable_timeout, executable=runnable_file)
             exit_code = runnable_return.returncode
 

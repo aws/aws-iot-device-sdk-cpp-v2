@@ -52,7 +52,7 @@ def launchSample(sample_file, sample_region, sample_secret_endpoint, sample_secr
     for arg in sample_arguments_split:
         launch_arguments.append(arg)
 
-    print("Running sample...")
+    print(f"Running sample... {launch_arguments}")
     exit_code = 0
     sample_return = subprocess.run(
         args=launch_arguments, executable=sample_file)
