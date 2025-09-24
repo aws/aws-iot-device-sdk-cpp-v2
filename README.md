@@ -1,138 +1,167 @@
 # AWS IoT Device SDK for C++ v2
 
-This document provides information about the AWS IoT device SDK for C++ V2. This SDK is built on the [AWS Common Runtime](https://docs.aws.amazon.com/sdkref/latest/guide/common-runtime.html)
+The AWS IoT Device SDK for C++ v2 connects your C++ applications and devices to the AWS IoT platform. It handles the complexities of secure communication, authentication, and device management so you can focus on your IoT solution. The SDK makes it easy to use AWS IoT services like Device Shadows, Jobs, Fleet Provisioning, and Commands.
 
-__Jump To:__
+**Supported Platforms**: Linux, Windows 11+, macOS 14+
 
-* [Supported Architectures](#supported-architectures)
+> **Note**: The SDK is known to work on older platform versions, but we only guarantee compatibility for the platforms listed above.
+
+*__Topics:__*
+* [Features](#features)
 * [Installation](#installation)
-* [Samples](./samples)
-* [Mac-Only TLS Behavior](#mac-only-tls-behavior)
-* [Getting Help](#getting-help)
-* [FAQ](./documents/FAQ.md)
-* [API Docs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/)
+  * [Minimum Requirements](#minimum-requirements)
+  * [Building from source](#building-from-source)
+* [Getting Started](#getting-started)
+* [Samples](samples)
 * [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
-* [Migration Guide from the AWS IoT SDK for C++ v1](./documents/MIGRATION_GUIDE.md)
+* [Getting Help](#getting-help)
+* [Resources](#resources)
 
-## Supported Architectures
+## Features
 
-### Linux
-- manylinux2014-x64
-- manylinux2014-x86
+The primary purpose of the AWS IoT Device SDK for C++ v2 is to simplify the process of connecting devices to AWS IoT Core and interacting with AWS IoT services on various platforms. The SDK provides:
+
+* Built on the [AWS Common Runtime](https://docs.aws.amazon.com/sdkref/latest/guide/common-runtime.html) for high performance and minimal footprint
+* Secure device connections to AWS IoT Core using MQTT protocol including MQTT 5.0
+* Support for [multiple authentication methods and connection types](./documents/MQTT5_Userguide.md#how-to-setup-mqtt5-builder-based-on-desired-connection-method)
+* First-class support for AWS IoT Core services
+
+#### Supported AWS IoT Core services
+
+* The [AWS IoT Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html) service manages device state information in the cloud.
+* The [AWS IoT Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) service sends remote operations to connected devices.
+* The [AWS IoT fleet provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) service generates and delivers device certificates automatically.
+* The [AWS IoT Device Management commands](https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html) service sends instructions from the cloud to connected devices.
+
+#### Supported Architectures
+
+**Linux:**
+- manylinux2014-x64, manylinux2014-x86
 - al2-x64
-- alpine-3.16-x64
-- alpine-3.16-x86
-- alpine-3.16-armv6
-- alpine-3.16-armv7
-- alpine-3.16-arm64
+- alpine-3.16 (x64, x86, armv6, armv7, arm64)
 - raspberry pi bullseye
-- ARM64 /aarch64
-- ArmV7
-- x86\_64
-- x86
-### Windows
-- Win32
-- x64
-- ARM64
-### Mac
-- Apple Silicone (M1 and higher)
-- Apple Intel Chips (x86\_64)
+- ARM64/aarch64, ArmV7, x86_64, x86
+
+**Windows:**
+- Win32, x64, ARM64
+
+**macOS:**
+- Apple Silicon (M1 and higher)
+- Apple Intel Chips (x86_64)
 
 ## Installation
 
+The recommended way to use the AWS IoT Device SDK for C++ v2 in your project is to build it from source.
+
 ### Minimum Requirements
+
+To develop applications with the AWS IoT Device SDK for C++ v2, you need:
+
 * C++ 11 or higher
-    * Clang 6+ or GCC 4.8+ or MSVC 2015+
+  * Clang 6+ or GCC 4.8+ or MSVC 2015+
 * CMake 3.9+
 
-[Step-by-step instructions](./documents/PREREQUISITES.md)
+See [detailed setup instructions](./documents/PREREQUISITES.md) for more information.
 
+### Building from source
 
-### Build from source
-
-``` sh
+```bash
 # Create a workspace directory to hold all the SDK files
 mkdir sdk-workspace
 cd sdk-workspace
+
 # Clone the repository
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
-# Make a build directory for the SDK. Can use any name.
+
+# Make a build directory for the SDK
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-# continue with the build steps below based on OS
 ```
 
-#### MacOS and Linux
-```sh
-# Generate the SDK build files.
-# -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory.
-#     (Example: "/Users/example/sdk-workspace/).
+#### macOS and Linux
+
+```bash
+# Generate the SDK build files
+# -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory
 # -DCMAKE_BUILD_TYPE can be "Release", "RelWithDebInfo", or "Debug"
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path to sdk-workspace>" -DCMAKE_BUILD_TYPE="Debug" ../aws-iot-device-sdk-cpp-v2
-# Build and install the library. Once installed, you can develop with the SDK and run the samples
+
+# Build and install the library
 cmake --build . --target install
 ```
 
+If your application uses OpenSSL, configure with `-DUSE_OPENSSL=ON`. The SDK uses s2n-tls by default, but can link against system libcrypto to avoid conflicts.
+
 #### Windows
-``` sh
-# Generate the SDK build files.
-# -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory.
-#     (Example: "C:/users/example/sdk-workspace/).
+
+> [!TIP]
+> Due to path length limitations, we recommend cloning to a short path like: `C:\dev\iotsdk`
+
+```bash
+# Generate the SDK build files
+# -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-workspace dir>" ../aws-iot-device-sdk-cpp-v2
-# Build and install the library. Once installed, you can develop with the SDK and run the samples
+
+# Build and install the library
 # -config can be "Release", "RelWithDebInfo", or "Debug"
 cmake --build . --target install --config "Debug"
 ```
 
-**Windows specific notes**:
-* Due to maximum path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
-* `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
+`--config` is only required for multi-configuration build tools (Visual Studio/MSBuild)
 
-**Linux specific notes**:
+## Getting Started
 
-If your application uses OpenSSL, configure with `-DUSE_OPENSSL=ON`.
+To get started with the AWS IoT Device SDK for C++ v2:
 
-The IoT SDK does not use OpenSSL for TLS.
-On Apple and Windows, the OS's default TLS library is used.
-On Linux, [s2n-tls](https://github.com/aws/s2n-tls) is used.
-But s2n-tls uses libcrypto, the cryptography math library bundled with OpenSSL.
-To simplify the build process, the source code for s2n-tls and libcrypto are
-included as git submodules and built along with the IoT SDK.
-But if your application is also loading the system installation of OpenSSL
-(i.e. your application uses libcurl which uses libssl which uses libcrypto)
-there may be crashes as the application tries to use two different versions of libcrypto at once.
+1. **Build the SDK** - See the [Installation](#installation) section for build instructions
 
-Setting `-DUSE_OPENSSL=ON` will cause the IoT SDK to link against your system's
-existing `libcrypto`, instead of building its own copy.
+2. **Choose your connection method** - The SDK supports multiple authentication methods including X.509 certificates, AWS credentials, and custom authentication. [MQTT5 User Guide connection section](./documents/MQTT5_Userguide.md#connecting-to-aws-iot-core) provides more guidance
+
+3. **Follow a complete example** - Check out the [samples](samples) directory
+
+4. **Learn MQTT5 features** - For advanced usage and configuration options, see the [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
 
 ## Samples
 
-[Samples README](./samples)
+Check out the [samples](samples) directory for working code examples that demonstrate:
+- [Basic MQTT connection and messaging](./samples/mqtt5/mqtt5_pubsub/README.md)
+- [AWS IoT Device Shadow operations](./samples/shadow/shadow-sandbox/README.md)
+- [AWS IoT Jobs](./samples/jobs/jobs-sandbox/README.md)
+- AWS IoT Fleet provisioning: [basic](./samples/fleet_provisioning/provision-basic/README.md) and [with CSR](./samples/fleet_provisioning/provision-csr/README.md)
+- [AWS IoT Commands](./samples/commands/commands-sandbox/README.md)
+- Secure Tunneling: [secure tunnel](./samples/secure_tunneling/secure_tunnel/README.md) and [tunnel notification](./samples/secure_tunneling/tunnel_notification/README.md)
 
-### Mac-Only TLS Behavior
+The samples provide ready-to-run code with detailed setup instructions for each authentication method and use case.
+
+## Getting Help
+
+The best way to interact with our team is through GitHub.
+* Open [discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions): Share ideas and solutions with the SDK community
+* Search [issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues): Find created issues for answers based on a topic
+* Create an [issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues/new/choose): New feature request or file a bug
+
+If you have a support plan with [AWS Support](https://aws.amazon.com/premiumsupport/), you can also create a new support case.
+
+#### Mac-Only TLS Behavior
 
 Please note that on Mac, once a private key is used with a certificate, that certificate-key pair is imported into the Mac Keychain.  All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically.  Beginning in v1.7.3, when a stored private key from the Keychain is used, the following will be logged at the "info" log level:
 
 ```
-static: certificate has an existing certificate-key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.
+static: certificate has an existing certificate-key pair that was previously imported into the Keychain.
+ Using key from Keychain instead of the one provided.
 ```
 
-## Getting Help
+## Resources
 
-The best way to interact with our team is through GitHub. You can open a [discussion](https://github.com/aws/aws-iot-device-sdk-cpp-v2/discussions) for guidance questions or an [issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues/new/choose) for bug reports, or feature requests. You may also find help on community resources such as [StackOverFlow](https://stackoverflow.com/questions/tagged/aws-iot) with the tag [#aws-iot](https://stackoverflow.com/questions/tagged/aws-iot) or if you have a support plan with [AWS Support](https://aws.amazon.com/premiumsupport/), you can also create a new support case.
-
-Please make sure to check out our resources too before opening an issue:
+Check out our resources for additional guidance too before opening an issue:
 
 * [FAQ](./documents/FAQ.md)
+* [AWS IoT Core Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html)
+* [MQTT5 User Guide](./documents/MQTT5_Userguide.md)
 * [API Docs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/)
-* [IoT Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
-* Check for similar [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 * [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
-* [Dev Blog](https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things%23amazon-freertos%7Ccategory-internet-of-things%23aws-greengrass%7Ccategory-internet-of-things%23aws-iot-analytics%7Ccategory-internet-of-things%23aws-iot-button%7Ccategory-internet-of-things%23aws-iot-device-defender%7Ccategory-internet-of-things%23aws-iot-device-management%7Ccategory-internet-of-things%23aws-iot-platform)
-* Integration with AWS IoT Services such as
-[Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
-and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
-is provided by code that been generated from a model of the service.
+* [Dev Blog](https://aws.amazon.com/blogs/iot/category/internet-of-things/)
+* [Migration Guide from the AWS IoT SDK for C++ v1](./documents/MIGRATION_GUIDE.md)
 * [Secure Tunnel User Guide](./documents/Secure_Tunnel_Userguide.md)
 * [Contributions Guidelines](./documents/CONTRIBUTING.md)
 
