@@ -72,7 +72,6 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
-    String caFile;
     String thingName;
     String shadowProperty = "color";
     String shadowName;
@@ -92,10 +91,6 @@ std::shared_ptr<IotShadowClient> build_mqtt3_client(
     clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData.endpoint);
-    if (!cmdData.caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();

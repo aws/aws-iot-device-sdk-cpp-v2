@@ -47,7 +47,6 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
-    String caFile;
     String thingName;
     uint32_t port = 0;
     uint32_t mqttVersion = 5;
@@ -64,10 +63,6 @@ std::shared_ptr<IotJobsClient> build_mqtt3_client(
     clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData.endpoint);
-    if (!cmdData.caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();

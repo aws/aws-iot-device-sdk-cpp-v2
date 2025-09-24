@@ -83,7 +83,6 @@ struct CmdArgs
     String cert;
     String key;
     String clientId;
-    String caFile;
     String templateName;
     String templateParameters;
     String csrPath;
@@ -197,10 +196,6 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const CmdArgs &cmdDa
     auto clientConfigBuilder =
         Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
     clientConfigBuilder.WithEndpoint(cmdData.endpoint);
-    if (!cmdData.caFile.empty())
-    {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.caFile.c_str());
-    }
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();
