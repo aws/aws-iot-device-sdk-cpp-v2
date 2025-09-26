@@ -20,9 +20,14 @@ If you are just getting started make sure you [install this sdk](https://github.
 ### How do I enable logging?
 
 ``` c++
-ApiHandle apiHandle;
-apiHandle.InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
+#include <aws/crt/Api.h>
+
+Aws::Crt::ApiHandle apiHandle;
+apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 ```
+
+**LogLevel**: LogLevel has the following options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, or `None`. Defaults to `Warn`.
+
 You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side sdk.
 
 ### I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP

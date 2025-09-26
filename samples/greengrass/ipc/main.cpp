@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
     };
 
     CmdArgs cmdData = parseArgs(argc, argv);
+    /* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
 
     fprintf(stdout, "Running Greengrass IPC sample\n");
 

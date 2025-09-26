@@ -18,6 +18,7 @@
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
 
+/* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
 struct CmdArgs
 {
     String endpoint;
@@ -32,6 +33,98 @@ struct CmdArgs
     uint32_t proxyPort = 0;
     bool printDiscoverRespOnly = false;
 };
+
+void printHelp()
+{
+    printf("Greengrass Discovery Sample\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --thing_name  Thing name\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --topic       Topic (default: test/topic)\n");
+    printf("  --message     Message to publish\n");
+    printf("  --mode        Mode: publish, subscribe, both (default: both)\n");
+    printf("  --signing_region  Signing region (default: us-east-1)\n");
+    printf("  --proxy_host  HTTP proxy host\n");
+    printf("  --proxy_port  HTTP proxy port\n");
+    printf("  --print_discover_resp_only  Print discovery response only\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--thing_name") == 0)
+            {
+                args.thingName = argv[++i];
+            }
+
+            else if (strcmp(argv[i], "--topic") == 0)
+            {
+                args.topic = argv[++i];
+            }
+            else if (strcmp(argv[i], "--message") == 0)
+            {
+                args.message = argv[++i];
+            }
+            else if (strcmp(argv[i], "--mode") == 0)
+            {
+                args.mode = argv[++i];
+            }
+            else if (strcmp(argv[i], "--signing_region") == 0)
+            {
+                args.signingRegion = argv[++i];
+            }
+            else if (strcmp(argv[i], "--proxy_host") == 0)
+            {
+                args.proxyHost = argv[++i];
+            }
+            else if (strcmp(argv[i], "--proxy_port") == 0)
+            {
+                args.proxyPort = atoi(argv[++i]);
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+        else if (strcmp(argv[i], "--print_discover_resp_only") == 0)
+        {
+            args.printDiscoverRespOnly = true;
+        }
+    }
+    if (args.cert.empty() || args.key.empty() || args.thingName.empty())
+    {
+        fprintf(stderr, "Error: --cert, --key, and --thing_name are required\n");
+        printHelp();
+        exit(1);
+    }
+    return args;
+}
+
+/* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
 
 static std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
     Aws::Iot::MqttClient &mqttClient,
@@ -145,103 +238,12 @@ static void printGreengrassResponse(const Aws::Crt::Vector<GGGroup> &ggGroups)
     }
 }
 
-void printHelp()
-{
-    printf("Greengrass Discovery Sample\n");
-    printf("options:\n");
-    printf("  --help        show this help message and exit\n");
-    printf("required arguments:\n");
-    printf("  --cert        Path to the certificate file\n");
-    printf("  --key         Path to the private key file\n");
-    printf("  --thing_name  Thing name\n");
-    printf("optional arguments:\n");
-    printf("  --client_id   Client ID (default: test-<uuid>)\n");
-    printf("  --topic       Topic (default: test/topic)\n");
-    printf("  --message     Message to publish\n");
-    printf("  --mode        Mode: publish, subscribe, both (default: both)\n");
-    printf("  --signing_region  Signing region (default: us-east-1)\n");
-    printf("  --proxy_host  HTTP proxy host\n");
-    printf("  --proxy_port  HTTP proxy port\n");
-    printf("  --print_discover_resp_only  Print discovery response only\n");
-}
-
-CmdArgs parseArgs(int argc, char *argv[])
-{
-    CmdArgs args;
-    for (int i = 1; i < argc; i++)
-    {
-        if (strcmp(argv[i], "--help") == 0)
-        {
-            printHelp();
-            exit(0);
-        }
-        else if (i < argc - 1)
-        {
-            if (strcmp(argv[i], "--cert") == 0)
-            {
-                args.cert = argv[++i];
-            }
-            else if (strcmp(argv[i], "--key") == 0)
-            {
-                args.key = argv[++i];
-            }
-            else if (strcmp(argv[i], "--thing_name") == 0)
-            {
-                args.thingName = argv[++i];
-            }
-
-            else if (strcmp(argv[i], "--topic") == 0)
-            {
-                args.topic = argv[++i];
-            }
-            else if (strcmp(argv[i], "--message") == 0)
-            {
-                args.message = argv[++i];
-            }
-            else if (strcmp(argv[i], "--mode") == 0)
-            {
-                args.mode = argv[++i];
-            }
-            else if (strcmp(argv[i], "--signing_region") == 0)
-            {
-                args.signingRegion = argv[++i];
-            }
-            else if (strcmp(argv[i], "--proxy_host") == 0)
-            {
-                args.proxyHost = argv[++i];
-            }
-            else if (strcmp(argv[i], "--proxy_port") == 0)
-            {
-                args.proxyPort = atoi(argv[++i]);
-            }
-            else
-            {
-                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
-                printHelp();
-                exit(1);
-            }
-        }
-        else if (strcmp(argv[i], "--print_discover_resp_only") == 0)
-        {
-            args.printDiscoverRespOnly = true;
-        }
-    }
-    if (args.cert.empty() || args.key.empty() || args.thingName.empty())
-    {
-        fprintf(stderr, "Error: --cert, --key, and --thing_name are required\n");
-        printHelp();
-        exit(1);
-    }
-    return args;
-}
-
 int main(int argc, char *argv[])
 {
-    /************************ Setup ****************************/
-
     // Parse command line arguments
     CmdArgs cmdData = parseArgs(argc, argv);
 
+    /************************ Setup ****************************/
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 

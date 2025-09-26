@@ -6,6 +6,7 @@ This directory contains sample applications for [aws-iot-device-sdk-cpp-v2](../R
     * [MQTT5 Client Samples](#mqtt5-client-samples)
     * [Service Client Samples](#service-client-samples)
     * [Greengrass Samples](#greengrass-samples)
+    * [Others](#others)
 * [Instructions](#instructions)
 * [Sample Help](#sample-help)
 * [Enable Logging](#enable-logging)
@@ -18,7 +19,8 @@ This directory contains sample applications for [aws-iot-device-sdk-cpp-v2](../R
 |--------|-------------|
 | [X509-based mutual TLS](./mqtt/mqtt5_x509/README.md) | Demonstrates connecting to AWS IoT Core using X.509 certificates and private keys.
 | [Websockets with Sigv4 authentication](./mqtt/mqtt5_aws_websocket/README.md) | Shows how to authenticate over websockets using AWS Signature Version 4 credentials. |
-| [AWS Custom Authorizer Lambda Function](./mqtt/mqtt5_custom_auth_signed/README.md) | Examples of connecting with a signed and unsigned Lambda-backed custom authorizer.
+| [AWS Signed Custom Authorizer Lambda Function](./mqtt/mqtt5_custom_auth_signed/README.md) | Connecting with a signed Lambda-backed custom authorizer.
+| [AWS Unsigned Custom Authorizer Lambda Function](./mqtt/mqtt5_custom_auth_unsigned/README.md) | Connecting with an unsigned Lambda-backed custom authorizer.
 | [PKCS11](./mqtt/mqtt5_pkcs11/README.md) | Demonstrates connecting using a hardware security module (HSM) or smartcard with PKCS#11. |
 | [Other Connection Methods](../documents/MQTT5_Userguide.md#connecting-to-aws-iot-core) | More connection methods are available for review in the MQTT5 Userguide
 
@@ -81,7 +83,7 @@ cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" 
 cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the MQTT5 PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/mqtt/mqtt5_x509`.
+This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the MQTT5 X509 sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/mqtt/mqtt5_x509`.
 
 For CMake versions that do not support the `-B` command, go to the `aws-iot-device-sdk-cpp-v2/samples` directory and run the following commands:
 
