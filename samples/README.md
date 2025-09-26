@@ -1,28 +1,58 @@
-# Sample apps for the AWS IoT Device SDK for C++ v2
+# Sample for the AWS IoT Device SDK v2 for C++
+This directory contains sample applications for [aws-iot-device-sdk-cpp-v2](../README.md).
 
-## MQTT5 Samples
-#### MQTT5 is the recommended MQTT Client. It has many benefits over MQTT311 outlined in the [MQTT5 User Guide](../documents/MQTT5_Userguide.md)
-* [Mqtt5 Pub-Sub](./mqtt5/mqtt5_pubsub/README.md)
-    + [Direct MQTT with X509-based mutual TLS](./mqtt5/mqtt5_pubsub/README.md#direct-mqtt-with-x509-based-mutual-tls)
-    + [MQTT over Websockets with Sigv4 authentication](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-sigv4-authentication)
-    + [Direct MQTT with Custom Authentication](./mqtt5/mqtt5_pubsub/README.md#direct-mqtt-with-custom-authentication)
-    + [MQTT over Websockets with Cognito](./mqtt5/mqtt5_pubsub/README.md#mqtt-over-websockets-with-cognito)
-    + [HTTP Proxy](./mqtt5/mqtt5_pubsub/README.md#http-proxy)
-## Other Samples
-* [Jobs Sandbox](./jobs/jobs-sandbox/README.md)
-* [Shadow Sandbox](./shadow/shadow-sandbox/README.md)
-* [Basic Fleet Provisioning](./fleet_provisioning/provision-basic/README.md)
-* [CSR Fleet Provisioning](./fleet_provisioning/provision-csr/README.md)
-* [Commands Sandbox](./commands/commands-sandbox/README.md)
-* [Secure Tunnel](./secure_tunneling/secure_tunnel/README.md)
-* [Secure Tunnel Notification](./secure_tunneling/tunnel_notification/README.md)
-* [Cycle Pub-Sub](./pub_sub/cycle_pub_sub/README.md)
-* [Greengrass discovery](./greengrass/basic_discovery/README.md)
-* [Greengrass IPC](./greengrass/ipc/README.md)
-* [Mqtt5 Device Defender](./device_defender/mqtt5_basic_report/README.md)
-* [Mqtt311 Device Defender](./device_defender/basic_report/README.md)
+### Table of Contents
+* [Samples](#samples)
+    * [MQTT5 Client Samples](#mqtt5-client-samples)
+    * [Service Client Samples](#service-client-samples)
+    * [Greengrass Samples](#greengrass-samples)
+    * [Others](#others)
+* [Instructions](#instructions)
+* [Sample Help](#sample-help)
+* [Enable Logging](#enable-logging)
 
-## Build Instruction
+
+## Samples
+### MQTT5 Client Samples
+##### MQTT5 is the recommended MQTT Client. Additional information and usage instructions can be found in the [MQTT5 User Guide](../documents/MQTT5_Userguide.md). The samples below will create an MQTT5 client, connect using the selected method, subscribe to a topic, publish to the topic, and then disconnect.
+| MQTT5 Client Sample | Description |
+|--------|-------------|
+| [X509-based mutual TLS](./mqtt/mqtt5_x509/README.md) | Demonstrates connecting to AWS IoT Core using X.509 certificates and private keys.
+| [Websockets with Sigv4 authentication](./mqtt/mqtt5_aws_websocket/README.md) | Shows how to authenticate over websockets using AWS Signature Version 4 credentials. |
+| [AWS Signed Custom Authorizer Lambda Function](./mqtt/mqtt5_custom_auth_signed/README.md) | Connecting with a signed Lambda-backed custom authorizer.
+| [AWS Unsigned Custom Authorizer Lambda Function](./mqtt/mqtt5_custom_auth_unsigned/README.md) | Connecting with an unsigned Lambda-backed custom authorizer.
+| [PKCS11](./mqtt/mqtt5_pkcs11/README.md) | Demonstrates connecting using a hardware security module (HSM) or smartcard with PKCS#11. |
+| [Other Connection Methods](../documents/MQTT5_Userguide.md#connecting-to-aws-iot-core) | More connection methods are available for review in the MQTT5 Userguide
+
+### Service Client Samples
+##### AWS offers a number of IoT related services using MQTT. The samples below demonstrate how to use the service clients provided by the SDK to interact with those services.
+| Service Client Sample | Description |
+|--------|-------------|
+| [Shadow](./service_clients/shadow/shadow-sandbox/README.md) | Manage and sync device state using the IoT Device Shadow service. |
+| [Jobs](./service_clients/jobs/jobs-sandbox/README.md) | Receive and execute remote operations sent from the Jobs service. |
+| [Basic Fleet Provisioning](./service_clients/fleet_provisioning/provision-basic/README.md) | Provision a device using the Fleet Provisioning template. |
+| [CSR Fleet Provisioning](./service_clients/fleet_provisioning/provision-csr/README.md) | Demonstrates CSR-based device certificate provisioning. |
+| [Commands](./service_clients/commands/commands-sandbox/README.md) | Receive and process remote instructions using AWS IoT Device Management commands |
+
+
+### Greengrass Samples
+##### Samples that interact with [AWS Greengrass](https://aws.amazon.com/greengrass/).
+| Greengrass Sample | Description |
+|--------|-------------|
+| [Greengrass Discovery](./greengrass/basic_discovery/README.md) | Discover and connect to a local Greengrass core. |
+| [Greengrass IPC](./greengrass/ipc/README.md) | Demonstrates Inter-Process Communication (IPC) with Greengrass components. |
+
+### Others
+##### Samples that interact with other AWS IoT Services
+| Sample | Description |
+|--------|-------------|
+| [Device Defender](./others/device_defender/mqtt5_basic_report/README.md) | Monitor the health of your IoT device using AWS IoT Device Defender. |
+| [Secure Tunneling](./others/secure_tunneling/secure_tunnel/README.md) | Connect a destination or a source Secure Tunnel Client to an AWS IoT Secure Tunnel endpoint. |
+| [Secure Tunneling Notification](./others/secure_tunneling/tunnel_notification/README.md) | Receive a tunnel notification using a Secure Tunnel Client. |
+
+
+
+## Instructions
 
 First build and install aws-iot-devices-sdk-cpp-v2 with following instructions from [Installation](../README.md#Installation).
 
@@ -53,13 +83,7 @@ cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" 
 cmake --build build --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-This will compile all the samples at once and place the executables under the `build` directory relative to their file path. To view the commands for a given sample, run the compiled program and pass `--help`. For example, with the MQTT5 PubSub sample:
-
-```sh
-./build/mqtt5/mqtt5_pubsub/mqtt5_pubsub --help
-```
-
-This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the MQTT5 PubSub sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/mqtt5/mqtt5_pubsub`.
+This will compile all of the samples at once. You can then find the samples in the `aws-iot-device-sdk-cpp-v2/samples/build` folder. For example, the MQTT5 X509 sample will be located at `aws-iot-device-sdk-cpp-v2/samples/build/mqtt/mqtt5_x509`.
 
 For CMake versions that do not support the `-B` command, go to the `aws-iot-device-sdk-cpp-v2/samples` directory and run the following commands:
 
@@ -78,23 +102,30 @@ Note that building all the samples at once is currently only available in the V2
 
 * `-DCMAKE_BUILD_TYPE` and `--config` needs to match the `CMAKE_BUILD_TYPE` when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
-### Sample help
+## Sample help
 
-All samples will show their options by passing in `--help`. For example:
-
-```sh
-./build/mqtt5/mqtt5_pubsub/mqtt5_pubsub --help
-```
-
-Which will result in output showing all of the options that can be passed in at the command line, along with descriptions of what each does and whether or not they are optional or not.
-
-### Enable logging in samples
-
-To enable logging in the samples, you can pass in `--verbosity`, and optionally `--log_file`, to the sample:
+All samples will show their options and arguments by passing in `--help`. For example:
 
 ```sh
-./build/basic-pub-sub --verbosity "Trace" --log_file "log.txt"
+./build/mqtt/mqtt5_x509/mqtt5_x509 --help
 ```
+will result in the following print output:
+```
+MQTT5 X509 Sample (mTLS)
+options:
+  --help        show this help message and exit
+required arguments:
+  --endpoint    IoT endpoint hostname
+  --cert        Path to the certificate file to use during mTLS connection establishment
+  --key         Path to the private key file to use during mTLS connection establishment
+optional arguments:
+  --client_id   Client ID (default: mqtt5-sample-<uuid>)
+  --topic       Topic (default: test/topic)
+  --message     Message payload (default: Hello from mqtt5 sample)
+  --count       Messages to publish (0 = infinite) (default: 5)
+```
+The sample will not run without the required arguments and will notify you of missing arguments.
 
-* `--verbosity`: The level of logging shown. Can be `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal` or `None`. Logging will not occur if this is not passed in with `None` or greater logging level.
-* `--log_file`: The filepath to store the logs at. This is optional, and if undefined the logs will be printed to `stdout` instead.
+## Enable logging in samples
+
+Instructions to enable logging are available in the [FAQ](../documents/FAQ.md) under [How do I enable logging](../documents/FAQ.md#how-do-i-enable-logging).

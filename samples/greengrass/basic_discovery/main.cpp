@@ -15,15 +15,121 @@
 #include <mutex>
 #include <thread>
 
-#include "../../utils/CommandLineUtils.h"
-
 using namespace Aws::Crt;
 using namespace Aws::Discovery;
+
+/* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String thingName;
+    String topic = "test/topic";
+    String message;
+    String mode = "both";
+    String signingRegion = "us-east-1";
+    String proxyHost;
+    uint32_t proxyPort = 0;
+    bool printDiscoverRespOnly = false;
+};
+
+void printHelp()
+{
+    printf("Greengrass Discovery Sample\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --thing_name  Thing name\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --topic       Topic (default: test/topic)\n");
+    printf("  --message     Message to publish\n");
+    printf("  --mode        Mode: publish, subscribe, both (default: both)\n");
+    printf("  --signing_region  Signing region (default: us-east-1)\n");
+    printf("  --proxy_host  HTTP proxy host\n");
+    printf("  --proxy_port  HTTP proxy port\n");
+    printf("  --print_discover_resp_only  Print discovery response only\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--thing_name") == 0)
+            {
+                args.thingName = argv[++i];
+            }
+
+            else if (strcmp(argv[i], "--topic") == 0)
+            {
+                args.topic = argv[++i];
+            }
+            else if (strcmp(argv[i], "--message") == 0)
+            {
+                args.message = argv[++i];
+            }
+            else if (strcmp(argv[i], "--mode") == 0)
+            {
+                args.mode = argv[++i];
+            }
+            else if (strcmp(argv[i], "--signing_region") == 0)
+            {
+                args.signingRegion = argv[++i];
+            }
+            else if (strcmp(argv[i], "--proxy_host") == 0)
+            {
+                args.proxyHost = argv[++i];
+            }
+            else if (strcmp(argv[i], "--proxy_port") == 0)
+            {
+                args.proxyPort = atoi(argv[++i]);
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+        else if (strcmp(argv[i], "--print_discover_resp_only") == 0)
+        {
+            args.printDiscoverRespOnly = true;
+        }
+    }
+    if (args.cert.empty() || args.key.empty() || args.thingName.empty())
+    {
+        fprintf(stderr, "Error: --cert, --key, and --thing_name are required\n");
+        printHelp();
+        exit(1);
+    }
+    return args;
+}
+
+/* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
 
 static std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
     Aws::Iot::MqttClient &mqttClient,
     const Aws::Crt::Vector<GGGroup> &ggGroups,
-    Utils::cmdData &cmdData,
+    CmdArgs &cmdData,
     std::promise<void> &shutdownCompletedPromise)
 {
     std::shared_ptr<Mqtt::MqttConnection> connection;
@@ -41,7 +147,7 @@ static std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
                 (int)connectivityInfo.Port.value());
 
             connection = mqttClient.NewConnection(
-                Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str())
+                Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str())
                     .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
                     .WithPortOverride(connectivityInfo.Port.value())
                     .WithEndpoint(connectivityInfo.HostAddress.value())
@@ -98,7 +204,7 @@ static std::shared_ptr<Mqtt::MqttConnection> getMqttConnection(
                 shutdownCompletedPromise.set_value();
             };
 
-            if (!connection->Connect(cmdData.input_thingName.c_str(), false))
+            if (!connection->Connect(cmdData.thingName.c_str(), false))
             {
                 fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
                 continue;
@@ -134,31 +240,21 @@ static void printGreengrassResponse(const Aws::Crt::Vector<GGGroup> &ggGroups)
 
 int main(int argc, char *argv[])
 {
-    /************************ Setup ****************************/
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
 
+    /************************ Setup ****************************/
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputGreengrassDiscovery(argc, argv, &apiHandle);
-
     // We're using Mutual TLS for MQTT, so we need to load our client certificates
     Io::TlsContextOptions tlsCtxOptions =
-        Io::TlsContextOptions::InitClientWithMtls(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
+        Io::TlsContextOptions::InitClientWithMtls(cmdData.cert.c_str(), cmdData.key.c_str());
 
     if (!tlsCtxOptions)
     {
         fprintf(stderr, "TLS Context Options creation failed with error %s\n", ErrorDebugString(Aws::Crt::LastError()));
         exit(-1);
-    }
-
-    if (!cmdData.input_ca.empty())
-    {
-        tlsCtxOptions.OverrideDefaultTrustStore(nullptr, cmdData.input_ca.c_str());
     }
 
     Io::TlsContext tlsCtx(tlsCtxOptions, Io::TlsMode::CLIENT);
@@ -189,13 +285,13 @@ int main(int argc, char *argv[])
     DiscoveryClientConfig clientConfig;
     clientConfig.SocketOptions = socketOptions;
     clientConfig.TlsContext = tlsCtx;
-    clientConfig.Region = cmdData.input_signingRegion;
+    clientConfig.Region = cmdData.signingRegion;
 
     Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-    if (cmdData.input_proxyHost.length() > 0 && cmdData.input_proxyPort != 0)
+    if (cmdData.proxyHost.length() > 0 && cmdData.proxyPort != 0)
     {
-        proxyOptions.HostName = cmdData.input_proxyHost;
-        proxyOptions.Port = static_cast<uint32_t>(cmdData.input_proxyPort);
+        proxyOptions.HostName = cmdData.proxyHost;
+        proxyOptions.Port = cmdData.proxyPort;
         clientConfig.ProxyOptions = proxyOptions;
     }
 
@@ -217,7 +313,7 @@ int main(int argc, char *argv[])
     // NOTE: This is an asynchronous operation, so it completes before the results are actually ready. You need to use
     // synchronization techniques to obtain its results. For simplicity, we use promise/future in this sample.
     discoveryClient->Discover(
-        cmdData.input_thingName,
+        cmdData.thingName,
         [&discoverResponse, &discoveryStatusPromise](DiscoverResponse *response, int error, int httpResponseCode) {
             fprintf(stdout, "Discovery completed with error code %d; http code %d\n", error, httpResponseCode);
 
@@ -245,7 +341,7 @@ int main(int argc, char *argv[])
     }
 
     // Print the discovery response information and then exit. Does not use the discovery info.
-    if (cmdData.input_PrintDiscoverRespOnly)
+    if (cmdData.printDiscoverRespOnly)
     {
         printGreengrassResponse(*discoverResponse.GGGroups);
         return 0;
@@ -260,7 +356,7 @@ int main(int argc, char *argv[])
     }
 
     // Now, with the established connection to a Greengrass core, we can perform MQTT-related actions.
-    if (cmdData.input_mode == "both" || cmdData.input_mode == "subscribe")
+    if (cmdData.mode == "both" || cmdData.mode == "subscribe")
     {
         auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
                              const String &receivedOnTopic,
@@ -294,30 +390,30 @@ int main(int argc, char *argv[])
             }
         };
 
-        connection->Subscribe(cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
+        connection->Subscribe(cmdData.topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
     }
 
     bool first_input = true;
     while (true)
     {
         String input;
-        if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")
+        if (cmdData.mode == "both" || cmdData.mode == "publish")
         {
-            if (cmdData.input_message.empty())
+            if (cmdData.message.empty())
             {
                 fprintf(
                     stdout,
                     "Enter the message you want to publish to topic %s and press enter. Enter 'exit' to exit this "
                     "program.\n",
-                    cmdData.input_topic.c_str());
+                    cmdData.topic.c_str());
                 std::getline(std::cin, input);
-                cmdData.input_message = input;
+                cmdData.message = input;
             }
             else if (!first_input)
             {
                 fprintf(stdout, "Enter a new message or enter 'exit' or 'quit' to exit the program.\n");
                 std::getline(std::cin, input);
-                cmdData.input_message = input;
+                cmdData.message = input;
             }
             first_input = false;
         }
@@ -333,7 +429,7 @@ int main(int argc, char *argv[])
             break;
         }
 
-        if (cmdData.input_mode == "both" || cmdData.input_mode == "publish")
+        if (cmdData.mode == "both" || cmdData.mode == "publish")
         {
             ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
             ByteBuf *payloadPtr = &payload;
@@ -351,7 +447,7 @@ int main(int argc, char *argv[])
                 }
             };
             connection->Publish(
-                cmdData.input_topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+                cmdData.topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
         }
     }
 

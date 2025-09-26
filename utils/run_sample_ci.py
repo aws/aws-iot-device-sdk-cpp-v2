@@ -289,6 +289,8 @@ def launch_sample():
     # C++
     elif (config_json['language'] == "CPP"):
         try:
+            # For cpp, argv[0] is the program name, so we need to add the runnable_file as the first argument
+            config_json_arguments_list.insert(0, config_json['sample_file'])
             sample_return = subprocess.run(
                 args=config_json_arguments_list, executable=config_json['sample_file'], timeout=600, capture_output=True, text=True)
             print("stdout:")

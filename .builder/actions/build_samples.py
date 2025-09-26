@@ -19,23 +19,26 @@ class BuildSamples(Builder.Action):
 
         steps = []
         samples = [
-            'samples/commands/commands-sandbox',
+            'samples/service_clients/commands/commands-sandbox',
             'samples/greengrass/basic_discovery',
             'samples/greengrass/ipc',
-            'samples/fleet_provisioning/provision-basic',
-            'samples/fleet_provisioning/provision-csr',
-            'samples/jobs/jobs-sandbox',
-            'samples/mqtt5/mqtt5_pubsub',
-            'samples/secure_tunneling/secure_tunnel',
-            'samples/secure_tunneling/tunnel_notification',
-            'samples/shadow/shadow-sandbox',
+            'samples/service_clients/fleet_provisioning/provision-basic',
+            'samples/service_clients/fleet_provisioning/provision-csr',
+            'samples/service_clients/jobs/jobs-sandbox',
+            'samples/mqtt/mqtt5_x509',
+            'samples/mqtt/mqtt5_aws_websocket',
+            'samples/mqtt/mqtt5_custom_auth_signed',
+            'samples/mqtt/mqtt5_custom_auth_unsigned',
+            'samples/mqtt/mqtt5_pkcs11',
+            'samples/others/secure_tunneling/secure_tunnel',
+            'samples/others/secure_tunneling/tunnel_notification',
+            'samples/service_clients/shadow/shadow-sandbox',
         ]
 
         defender_samples = []
         # Linux only builds
         if sys.platform == "linux" or sys.platform == "linux2":
-            defender_samples.append('samples/device_defender/basic_report')
-            defender_samples.append('samples/device_defender/mqtt5_basic_report')
+            defender_samples.append('samples/others/device_defender/mqtt5_basic_report')
 
         servicetests = [
             'servicetests/tests/JobsExecution/',

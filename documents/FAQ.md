@@ -20,9 +20,14 @@ If you are just getting started make sure you [install this sdk](https://github.
 ### How do I enable logging?
 
 ``` c++
-ApiHandle apiHandle;
-apiHandle.InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
+#include <aws/crt/Api.h>
+
+Aws::Crt::ApiHandle apiHandle;
+apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 ```
+
+**LogLevel**: LogLevel has the following options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, or `None`. Defaults to `Warn`.
+
 You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side sdk.
 
 ### I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP
@@ -99,7 +104,6 @@ Here is an example launch.json file to run the pubsub sample
             "program": "${workspaceFolder}/samples/pub_sub/basic_pub_sub/build/basic-pub-sub",
             "args": [
                 "--endpoint", "<account-number>-ats.iot.<region>.amazonaws.com",
-                "--ca_file", "<path to root-CA>",
                 "--cert", "<path to cert>",
                 "--key", "<path to key>",
                 "--client-id", "test-client"
@@ -116,7 +120,6 @@ Here is an example launch.json file to run the pubsub sample
     * Root CA Certificates
         * Download the root CA certificate file that corresponds to the type of data endpoint and cipher suite you're using (You most likely want Amazon Root CA 1)
         * Generated and provided by Amazon. You can download it [here](https://www.amazontrust.com/repository/) or download it when getting the other certificates from the AWS console
-        * When using samples it can look like this: `--ca_file root-CA.crt`
     * Device certificate
         * Intermediate device certificate that is used to generate the key below
         * When using samples it can look like this: `--cert abcde12345-certificate.pem.crt`
