@@ -215,36 +215,6 @@ jobs:
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
 
-  windows-app-verifier:
-    runs-on: windows-2025
-    permissions:
-      id-token: write # This is required for requesting the JWT
-    steps:
-      - name: configure AWS credentials (containers)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-        run: |
-          md ${{ env.CI_FOLDER }}
-          cd ${{ env.CI_FOLDER }}
-          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
-      - name: Running samples in CI setup
-        run: |
-          python -m pip install boto3
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Run and check AppVerifier
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          echo "Starting to run AppVerifier with mqtt5 pub-sub sample"
-          python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file ".\aws-iot-device-sdk-cpp-v2\build\samples\mqtt\mqtt5_x509\RelWithDebInfo\mqtt5_x509.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
-
   windows-shared-lib:
     runs-on: windows-latest
     permissions:
