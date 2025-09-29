@@ -37,7 +37,6 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
-      fail-fast: false
       matrix:
         image:
           - manylinux2014-x64
