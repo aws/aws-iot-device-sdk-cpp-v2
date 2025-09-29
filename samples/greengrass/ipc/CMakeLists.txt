@@ -10,8 +10,6 @@ project(greengrass-ipc CXX)
 
 file(GLOB SRC_FILES
        "*.cpp"
-       "../../utils/CommandLineUtils.cpp"
-       "../../utils/CommandLineUtils.h"
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})

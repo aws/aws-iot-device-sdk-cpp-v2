@@ -19,31 +19,26 @@ class BuildSamples(Builder.Action):
 
         steps = []
         samples = [
-            'samples/commands/commands-sandbox',
+            'samples/service_clients/commands/commands-sandbox',
             'samples/greengrass/basic_discovery',
             'samples/greengrass/ipc',
-            'samples/fleet_provisioning/provision-basic',
-            'samples/fleet_provisioning/provision-csr',
-            'samples/jobs/jobs-sandbox',
-            'samples/mqtt5/mqtt5_pubsub',
-            'samples/mqtt5/mqtt5_shared_subscription',
-            'samples/secure_tunneling/secure_tunnel',
-            'samples/secure_tunneling/tunnel_notification',
-            'samples/shadow/shadow-sandbox',
+            'samples/service_clients/fleet_provisioning/provision-basic',
+            'samples/service_clients/fleet_provisioning/provision-csr',
+            'samples/service_clients/jobs/jobs-sandbox',
+            'samples/mqtt/mqtt5_x509',
+            'samples/mqtt/mqtt5_aws_websocket',
+            'samples/mqtt/mqtt5_custom_auth_signed',
+            'samples/mqtt/mqtt5_custom_auth_unsigned',
+            'samples/mqtt/mqtt5_pkcs11',
+            'samples/others/secure_tunneling/secure_tunnel',
+            'samples/others/secure_tunneling/tunnel_notification',
+            'samples/service_clients/shadow/shadow-sandbox',
         ]
 
         defender_samples = []
         # Linux only builds
         if sys.platform == "linux" or sys.platform == "linux2":
-            defender_samples.append('samples/device_defender/basic_report')
-            defender_samples.append('samples/device_defender/mqtt5_basic_report')
-
-        da_samples = [
-            'deviceadvisor/tests/mqtt_connect',
-            'deviceadvisor/tests/mqtt_publish',
-            'deviceadvisor/tests/mqtt_subscribe',
-            'deviceadvisor/tests/shadow_update'
-        ]
+            defender_samples.append('samples/others/device_defender/mqtt5_basic_report')
 
         servicetests = [
             'servicetests/tests/JobsExecution/',
@@ -51,7 +46,7 @@ class BuildSamples(Builder.Action):
             'servicetests/tests/ShadowUpdate/',
         ]
 
-        for sample_path in itertools.chain(samples, servicetests, da_samples, defender_samples):
+        for sample_path in itertools.chain(samples, servicetests, defender_samples):
             build_path = os.path.join('build', sample_path)
             steps.append(['cmake',
                           f'-B{build_path}',

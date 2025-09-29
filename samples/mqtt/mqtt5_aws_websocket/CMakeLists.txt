@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 3.9...3.31)
+# note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
+<<<<<<< HEAD:samples/mqtt5/mqtt5_pubsub/CMakeLists.txt
+
+option(AWS_CRT_DISABLE_DEPRECATION_WARNINGS "Set this to silence [[deprecated]] warnings coming from aws-crt-cpp headers" OFF)
+if(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+    add_compile_definitions(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+endif()
+
+project(mqtt5_pubsub CXX)
+=======
+project(mqtt5_aws_websocket CXX)
+>>>>>>> main:samples/mqtt/mqtt5_aws_websocket/CMakeLists.txt
+
+file(GLOB SRC_FILES
+       "*.cpp"
+)
+
+add_executable(${PROJECT_NAME} ${SRC_FILES})
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    CXX_STANDARD 14)
+
+#set warnings
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /wd4068)
+else ()
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+endif ()
+
+find_package(aws-crt-cpp REQUIRED)
+
+include(AwsSanitizers)
+enable_language(C)
+aws_add_sanitizers(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp)

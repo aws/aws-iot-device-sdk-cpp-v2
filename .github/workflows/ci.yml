@@ -7,7 +7,7 @@ on:
       - 'docs'
 
 env:
-  BUILDER_VERSION: v0.9.79
+  BUILDER_VERSION: v0.9.84
   BUILDER_SOURCE: releases
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
@@ -26,7 +26,6 @@ env:
   CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
   CI_CYCLEPUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_CyclePubSub_Role
   CI_FLEET_PROVISIONING_ROLE: arn:aws:iam::180635532705:role/service-role/CI_FleetProvisioning_Role
-  CI_DEVICE_ADVISOR: arn:aws:iam::180635532705:role/CI_DeviceAdvisor_Role
   CI_DEVICE_DEFENDER: arn:aws:iam::180635532705:role/CI_DeviceDefender_Role
   CI_SECURE_TUNNEL: arn:aws:iam::180635532705:role/CI_SecureTunnel_Role
   CI_MQTT5_ROLE: arn:aws:iam::180635532705:role/CI_MQTT5_Role
@@ -37,6 +36,7 @@ jobs:
   linux-compat:
     runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       fail-fast: false
       matrix:
         image:
@@ -56,6 +56,8 @@ jobs:
         with:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          # Bump from default 1 hour to 2 hours to allow tests to complete
+          role-duration-seconds: 7200
       - name: Install qemu/docker
         run: docker run --privileged --rm tonistiigi/binfmt --install all
       - name: Build ${{ env.PACKAGE_NAME }}
@@ -63,6 +65,7 @@ jobs:
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
           ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} \
           --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
+
   raspberry:
     runs-on: ubuntu-24.04 # latest
     strategy:
@@ -168,27 +171,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }}
-      - name: Running samples in CI setup
-        run: |
-          python -m pip install boto3
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
-      - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run DeviceAdvisor
-        run: |
-          cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
-          python ./deviceadvisor/script/DATestRun.py
+
   windows-vs17:
     runs-on: windows-2025
     strategy:
@@ -213,27 +196,7 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-Tv143 --cmake-extra=-A${{ matrix.arch }}
-      - name: Running samples in CI setup
-        run: |
-          python -m pip install boto3
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
-      - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run DeviceAdvisor
-        run: |
-          cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
-          python ./deviceadvisor/script/DATestRun.py
+
   windows-no-cpu-extensions:
     runs-on: windows-latest
     permissions:
@@ -252,6 +215,23 @@ jobs:
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
+
+  windows-app-verifier:
+    runs-on: windows-2025
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    steps:
+      - name: configure AWS credentials (containers)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          md ${{ env.CI_FOLDER }}
+          cd ${{ env.CI_FOLDER }}
+          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
       - name: Running samples in CI setup
         run: |
           python -m pip install boto3
@@ -260,19 +240,12 @@ jobs:
         with:
           role-to-assume: ${{ env.CI_MQTT5_ROLE }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
+      - name: Run and check AppVerifier
         run: |
           cd ${{ env.CI_FOLDER }}
-          python ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_windows_cfg.json
-      - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run DeviceAdvisor
-        run: |
-          cd ${{ env.CI_FOLDER }}/aws-iot-device-sdk-cpp-v2
-          python ./deviceadvisor/script/DATestRun.py
+          echo "Starting to run AppVerifier with mqtt5 pub-sub sample"
+          python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file ".\aws-iot-device-sdk-cpp-v2\build\samples\mqtt\mqtt5_x509\RelWithDebInfo\mqtt5_x509.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
+
   windows-shared-lib:
     runs-on: windows-latest
     permissions:
@@ -313,33 +286,8 @@ jobs:
         run: |
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
           chmod a+x builder
-          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream \
-          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
-      - name: Running samples in CI setup
-        run: |
-          python3 -m venv .venv
-          source .venv/bin/activate
-          python3 -m pip install boto3
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          source .venv/bin/activate
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
-      - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run DeviceAdvisor
-        run: |
-          source .venv/bin/activate
-          cd ./aws-iot-device-sdk-cpp-v2
-          python3 ./deviceadvisor/script/DATestRun.py
-  # Not strictly needed, but allows us to run Device Advisor and PubSub on Linux without needing to run all samples
+          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+
   linux-github-actions:
     runs-on: ubuntu-latest
     strategy:
@@ -356,26 +304,9 @@ jobs:
         run: |
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
-      - name: Running samples in CI setup
+      - name: Device Defender setup
         run: |
           python3 -m pip install boto3
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
-      - name: configure AWS credentials (Device Advisor)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_DEVICE_ADVISOR }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run DeviceAdvisor
-        run: |
-          cd ./aws-iot-device-sdk-cpp-v2
-          python3 ./deviceadvisor/script/DATestRun.py
       - name: configure AWS credentials (Device Defender)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -389,7 +320,7 @@ jobs:
         run: |
           cd ./aws-iot-device-sdk-cpp-v2
           python3 ./devicedefender/script/DDTestRun.py mqtt5
-  # Runs the samples and ensures that everything is working
+
   linux-smoke-tests:
     runs-on: ubuntu-22.04
     strategy:
@@ -447,7 +378,6 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_fleet_provisioning.py --config-file test_cases/mqtt5_fleet_provisioning_with_csr_cfg.json --thing-name-prefix Fleet_Thing_
-
       - name: configure AWS credentials (Jobs)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -488,28 +418,7 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
-      - name: run MQTT5 Shared Subscription sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_shared_subscription_cfg.json
-      - name: configure AWS credentials (Secure tunneling)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_SECURE_TUNNEL }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      # Secure Tunneling has special requirements, so it uses a different Python file
-      - name: run Secure Tunneling sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}
 
-  # check that docs can still build
   check-docs:
     runs-on: ubuntu-22.04 # latest
     steps:
@@ -530,6 +439,7 @@ jobs:
           cd ../..
           echo "Finished compiling and installing Doxygen"
           ./make-docs.py
+
   check-submodules:
     runs-on: ubuntu-latest
     steps:
@@ -645,23 +555,3 @@ jobs:
         run: |
           export PYTHONPATH=${{ github.workspace }}/aws-iot-device-sdk-cpp-v2/utils
           python3 ./test_cases/test_shadow_update.py --config-file test_cases/mqtt5_named_shadow_cfg.json
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: run MQTT5 PubSub sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_pubsub_cfg.json
-      - name: run MQTT5 Shared Subscription sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_sample_ci.py --file ${{ env.CI_SAMPLES_CFG_FOLDER }}/ci_run_mqtt5_shared_subscription_cfg.json
-      - name: configure AWS credentials (Secure tunneling)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_SECURE_TUNNEL }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      # Secure Tunneling has special requirements, so it uses a different Python file
-      - name: run Secure Tunneling sample
-        run: |
-          python3 ${{ env.CI_UTILS_FOLDER }}/run_secure_tunnel_ci.py --sample_file "./aws-iot-device-sdk-cpp-v2/build/samples/secure_tunneling/secure_tunnel/secure-tunnel" --sample_region ${{ env.AWS_DEFAULT_REGION }}

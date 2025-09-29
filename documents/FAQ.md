@@ -10,6 +10,7 @@
 * [I am experiencing deadlocks](#i-am-experiencing-deadlocks)
 * [How do debug in VSCode?](#how-do-debug-in-vscode)
 * [What certificates do I need?](#what-certificates-do-i-need)
+* [Where can I find MQTT 311 Samples?](#where-can-i-find-mqtt-311-samples)
 * [I still have more questions about this sdk?](#i-still-have-more-questions-about-this-sdk)
 
 ### Where should I start?
@@ -19,9 +20,14 @@ If you are just getting started make sure you [install this sdk](https://github.
 ### How do I enable logging?
 
 ``` c++
-ApiHandle apiHandle;
-apiHandle.InitializeLogging(Aws::Crt::LogLevel::Error, stderr);
+#include <aws/crt/Api.h>
+
+Aws::Crt::ApiHandle apiHandle;
+apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 ```
+
+**LogLevel**: LogLevel has the following options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, or `None`. Defaults to `Warn`.
+
 You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side sdk.
 
 ### I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP
@@ -98,7 +104,6 @@ Here is an example launch.json file to run the pubsub sample
             "program": "${workspaceFolder}/samples/pub_sub/basic_pub_sub/build/basic-pub-sub",
             "args": [
                 "--endpoint", "<account-number>-ats.iot.<region>.amazonaws.com",
-                "--ca_file", "<path to root-CA>",
                 "--cert", "<path to cert>",
                 "--key", "<path to key>",
                 "--client-id", "test-client"
@@ -115,13 +120,15 @@ Here is an example launch.json file to run the pubsub sample
     * Root CA Certificates
         * Download the root CA certificate file that corresponds to the type of data endpoint and cipher suite you're using (You most likely want Amazon Root CA 1)
         * Generated and provided by Amazon. You can download it [here](https://www.amazontrust.com/repository/) or download it when getting the other certificates from the AWS console
-        * When using samples it can look like this: `--ca_file root-CA.crt`
     * Device certificate
         * Intermediate device certificate that is used to generate the key below
         * When using samples it can look like this: `--cert abcde12345-certificate.pem.crt`
     * Key files
         * You should have generated/downloaded private and public keys that will be used to verify that communications are coming from you
         * When using samples you only need the private key and it will look like this: `--key abcde12345-private.pem.key`
+
+### Where can I find MQTT 311 Samples?
+The MQTT 311 Samples can be found in the v1.40.0 samples folder [here](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/v1.40.0/samples)
 
 ### I still have more questions about this sdk?
 
