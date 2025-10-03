@@ -23,7 +23,7 @@ The primary purpose of the AWS IoT Device SDK for C++ v2 is to simplify the proc
 
 * Built on the [AWS Common Runtime](https://docs.aws.amazon.com/sdkref/latest/guide/common-runtime.html) for high performance and minimal footprint
 * Secure device connections to AWS IoT Core using MQTT protocol including MQTT 5.0
-* Support for [multiple authentication methods and connection types](./documents/MQTT5_Userguide.md#how-to-setup-mqtt5-builder-based-on-desired-connection-method)
+* Support for [multiple authentication methods and connection types](./documents/MQTT5_Userguide.md#connecting-to-aws-iot-core)
 * First-class support for AWS IoT Core services
 
 #### Supported AWS IoT Core services
@@ -126,12 +126,12 @@ To get started with the AWS IoT Device SDK for C++ v2:
 ## Samples
 
 Check out the [samples](samples) directory for working code examples that demonstrate:
-- [Basic MQTT connection and messaging](./samples/mqtt5/mqtt5_pubsub/README.md)
-- [AWS IoT Device Shadow operations](./samples/shadow/shadow-sandbox/README.md)
-- [AWS IoT Jobs](./samples/jobs/jobs-sandbox/README.md)
-- AWS IoT Fleet provisioning: [basic](./samples/fleet_provisioning/provision-basic/README.md) and [with CSR](./samples/fleet_provisioning/provision-csr/README.md)
-- [AWS IoT Commands](./samples/commands/commands-sandbox/README.md)
-- Secure Tunneling: [secure tunnel](./samples/secure_tunneling/secure_tunnel/README.md) and [tunnel notification](./samples/secure_tunneling/tunnel_notification/README.md)
+- [Basic MQTT connection and messaging](./samples/README.md#mqtt5-client-samples)
+- [AWS IoT Device Shadow operations](./samples/service_clients/shadow/shadow-sandbox/README.md)
+- [AWS IoT Jobs](./samples/service_clients/jobs/jobs-sandbox/README.md)
+- AWS IoT Fleet provisioning: [basic](./samples/service_clients/fleet_provisioning/provision-basic/README.md) and [with CSR](./samples/service_clients/fleet_provisioning/provision-csr/README.md)
+- [AWS IoT Commands](./samples/service_clients/commands/commands-sandbox/README.md)
+- Secure Tunneling: [secure tunnel](./samples/others/secure_tunneling/secure_tunnel/README.md) and [tunnel notification](./samples/others/secure_tunneling/tunnel_notification/README.md)
 
 The samples provide ready-to-run code with detailed setup instructions for each authentication method and use case.
 
