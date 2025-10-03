@@ -33,6 +33,20 @@ The primary purpose of the AWS IoT Device SDK for C++ v2 is to simplify the proc
 * The [AWS IoT fleet provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) service generates and delivers device certificates automatically.
 * The [AWS IoT Device Management commands](https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html) service sends instructions from the cloud to connected devices.
 
+## Installation
+
+The recommended way to use the AWS IoT Device SDK for C++ v2 in your project is to build it from source.
+
+### Minimum Requirements
+
+To develop applications with the AWS IoT Device SDK for C++ v2, you need:
+
+* C++ 11 or higher
+  * Clang 6+ or GCC 4.8+ or MSVC 2015+
+* CMake 3.9+
+
+See [detailed setup instructions](./documents/PREREQUISITES.md) for more information.
+
 #### Supported Architectures
 
 **Linux:**
@@ -48,20 +62,6 @@ The primary purpose of the AWS IoT Device SDK for C++ v2 is to simplify the proc
 **macOS:**
 - Apple Silicon (M1 and higher)
 - Apple Intel Chips (x86_64)
-
-## Installation
-
-The recommended way to use the AWS IoT Device SDK for C++ v2 in your project is to build it from source.
-
-### Minimum Requirements
-
-To develop applications with the AWS IoT Device SDK for C++ v2, you need:
-
-* C++ 11 or higher
-  * Clang 6+ or GCC 4.8+ or MSVC 2015+
-* CMake 3.9+
-
-See [detailed setup instructions](./documents/PREREQUISITES.md) for more information.
 
 ### Building from source
 
@@ -80,6 +80,10 @@ cd aws-iot-device-sdk-cpp-v2-build
 
 #### macOS and Linux
 
+> [!NOTE]
+> **Linux specific**
+> The IoT SDK uses [s2n-tls](https://github.com/aws/s2n-tls) for TLS on Linux. However, s2n-tls uses libcrypto (the cryptography library from OpenSSL). To simplify building, s2n-tls and libcrypto source code are included as git submodules and built with the SDK. If your application also loads the system OpenSSL installation (e.g., via libcurl), there may be crashes from using two different libcrypto versions simultaneously. In this case, configure with `-DUSE_OPENSSL=ON` to link against system libcrypto and avoid conflicts.
+
 ```bash
 # Generate the SDK build files
 # -DCMAKE_INSTALL_PREFIX needs to be the absolute/full path to the directory
@@ -90,12 +94,10 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path to sdk-workspace>" -DCMAKE_BUILD_TY
 cmake --build . --target install
 ```
 
-If your application uses OpenSSL, configure with `-DUSE_OPENSSL=ON`. The SDK uses s2n-tls by default, but can link against system libcrypto to avoid conflicts.
-
 #### Windows
 
 > [!TIP]
-> Due to path length limitations, we recommend cloning to a short path like: `C:\dev\iotsdk`
+> Due to path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
 
 ```bash
 # Generate the SDK build files
