@@ -83,6 +83,34 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PR
 cmake --build . --target install
 ```
 
+### How to use USE_EXTERNAL_DEPS_SOURCES to build with external dependencies
+
+The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external source directories for AWS CRT dependencies instead of the bundled submodules. This is useful when you want to share dependencies across multiple projects (for example, sharing the aws-crt-cpp dependency with aws-sdk-cpp).
+
+**Build Steps:**
+1. **Configure build options** - Update your CMakeLists.txt to set the required flags. Set `BUILD_DEPS` to `OFF` and `USE_EXTERNAL_DEPS_SOURCES` to `ON`:
+    ```cmake
+    option(BUILD_DEPS "Builds aws common runtime dependencies as part of build. Turn off if you want to control your dependency chain." OFF)
+    option(USE_EXTERNAL_DEPS_SOURCES "Use dependencies provided by add_subdirectory command" ON)
+    ```
+
+2. **Set up CMake module path** - The aws-crt-cpp library requires certain CMake modules that are defined in aws-c-common. Add it to your CMake modules:
+    ```cmake
+    add_subdirectory(<path-to-aws-c-common>/aws-c-common <binary dir>/aws-c-common)
+    list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR}/cmake")
+    ```
+
+3. **Add required dependencies** - The following three dependencies are required. Add them using `add_subdirectory` (or higher-level commands that use `add_subdirectory`, like `FetchContent`):
+    - aws-c-common
+    - aws-crt-cpp
+    - aws-c-iot
+
+    ```cmake
+    add_subdirectory(<path-to-aws-c-common>/aws-c-common <binary dir>/aws-c-common)
+    add_subdirectory(<path to aws-crt-cpp>/aws-crt-cpp  <binary dir>/aws-crt-cpp)
+    add_subdirectory(<path to aws-c-iot>/aws-c-iot  <binary dir>/aws-c-iot)
+    ```
+
 ### I am experiencing deadlocks
 
 You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returns, so the thread will be stuck.
