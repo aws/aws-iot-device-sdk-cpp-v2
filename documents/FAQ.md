@@ -96,7 +96,7 @@ The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external sourc
 
 2. **Set up CMake module path** - The aws-crt-cpp library requires certain CMake modules that are defined in aws-c-common. Add it to your CMake modules:
     ```cmake
-    add_subdirectory(<path-to-aws-c-common>/aws-c-common <binary dir>/aws-c-common)
+    add_subdirectory(<path-to-aws-c-common>/aws-c-common <binary-dir>/aws-c-common)
     list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR}/cmake")
     ```
 
@@ -106,9 +106,9 @@ The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external sourc
     - aws-c-iot
 
     ```cmake
-    add_subdirectory(<path-to-aws-c-common>/aws-c-common <binary dir>/aws-c-common)
-    add_subdirectory(<path to aws-crt-cpp>/aws-crt-cpp  <binary dir>/aws-crt-cpp)
-    add_subdirectory(<path to aws-c-iot>/aws-c-iot  <binary dir>/aws-c-iot)
+    add_subdirectory(<path-to-aws-c-common>/aws-c-common <binary-dir>/aws-c-common)
+    add_subdirectory(<path-to-aws-crt-cpp>/aws-crt-cpp  <binary-dir>/aws-crt-cpp)
+    add_subdirectory(<path-to-aws-c-iot>/aws-c-iot  <binary-dir>/aws-c-iot)
     ```
 
 ### I am experiencing deadlocks
