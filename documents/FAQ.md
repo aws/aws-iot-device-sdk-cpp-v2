@@ -7,15 +7,16 @@
 * [Dependencies are bad](#dependencies-are-bad)
 * [Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)](#connection-loss)
 * [How to use a Pre-Built aws-crt-cpp (Most useful for development of this package)](#prebuilt-aws-crt-cpp)
+* [How to use USE_EXTERNAL_DEPS_SOURCES to build with external dependencies](#use-external-deps-source)
 * [I am experiencing deadlocks](#i-am-experiencing-deadlocks)
-* [How do debug in VSCode?](#how-do-debug-in-vscode)
+* [How to debug in VSCode?](#how-to-debug-in-vscode)
 * [What certificates do I need?](#what-certificates-do-i-need)
 * [Where can I find MQTT 311 Samples?](#where-can-i-find-mqtt-311-samples)
 * [I still have more questions about this sdk?](#i-still-have-more-questions-about-this-sdk)
 
 ### Where should I start?
 
-If you are just getting started make sure you [install this sdk](https://github.com/aws/aws-iot-device-sdk-cpp-v2#installation) and then build and run the [basic PubSub](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples#basic-mqtt-pub-sub)
+If you are just getting started, make sure you [install this SDK](https://github.com/aws/aws-iot-device-sdk-cpp-v2#installation) and then build and run the [X509 PubSub](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt/mqtt5_x509) sample.
 
 ### How do I enable logging?
 
@@ -28,11 +29,11 @@ apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
 **LogLevel**: LogLevel has the following options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, or `None`. Defaults to `Warn`.
 
-You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side sdk.
+You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side SDK.
 
 ### I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP
 
-This could be many different things but it most likely is a policy issue. Start with using a super permissive IAM policy called AWSIOTFullAccess which looks like this:
+This could be many different things, but it is most likely a policy issue. Start by using a super permissive IAM policy called AWSIOTFullAccess which looks like this:
 
 ``` json
 {
@@ -52,8 +53,8 @@ This could be many different things but it most likely is a policy issue. Start 
 After getting it working make sure to only allow the actions and resources that you need. More info about IoT IAM policies can be found [here](https://docs.aws.amazon.com/iot/latest/developerguide/security_iam_service-with-iam.html).
 
 
-### Dependencies are bad.
-If you get the following Error:
+### Dependencies are bad
+If you get the following error:
 ```
 CMake Error at CMakeLists.txt:46 (include):
  include could not find load file:
@@ -76,6 +77,8 @@ There are 3 mechanisms for detecting connection loss:
 
 ### How to use a Pre-Built aws-crt-cpp (Most useful for development of this package) <a name="prebuilt-aws-crt-cpp"></a>
 
+Turning off the `BUILD_DEPS` option allows you to use your own pre-built AWS CRT dependencies instead of the bundled submodules. This is useful when you want to share dependencies across multiple projects (for example, sharing the aws-crt-cpp dependency with aws-sdk-cpp).
+
 ``` sh
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
@@ -83,10 +86,9 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PR
 cmake --build . --target install
 ```
 
-### How to use USE_EXTERNAL_DEPS_SOURCES to build with external dependencies
+### How to use USE_EXTERNAL_DEPS_SOURCES to build with external dependencies <a name="use-external-deps-source"></a>
 
-The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external source directories for AWS CRT dependencies instead of the bundled submodules. This is useful when you want to share dependencies across multiple projects (for example, sharing the aws-crt-cpp dependency with aws-sdk-cpp).
-
+The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external source directories for AWS CRT dependencies instead of the bundled submodules.
 **Build Steps:**
 1. **Configure build options** - Update your CMakeLists.txt to set the required flags. Set `BUILD_DEPS` to `OFF` and `USE_EXTERNAL_DEPS_SOURCES` to `ON`:
     ```cmake
@@ -100,7 +102,7 @@ The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external sourc
     list(APPEND CMAKE_MODULE_PATH "${aws-c-common_SOURCE_DIR}/cmake")
     ```
 
-3. **Add required dependencies** - The following three dependencies are required. Add them using `add_subdirectory` (or higher-level commands that use `add_subdirectory`, like `FetchContent`):
+3. **Add required dependencies** - The following three dependencies are required as a minimum. You can also add other source dependencies as needed. Add them using `add_subdirectory` (or higher-level commands that use `add_subdirectory`, like `FetchContent`):
     - aws-c-common
     - aws-crt-cpp
     - aws-c-iot
@@ -115,9 +117,9 @@ The `USE_EXTERNAL_DEPS_SOURCES` option allows you to use your own external sourc
 
 You MUST NOT perform blocking operations on any callback, or you will cause a deadlock. For example: in the on_publish_received callback, do not send a publish, and then wait for the future to complete within the callback. The Client cannot do work until your callback returns, so the thread will be stuck.
 
-### How do debug in VSCode?
+### How to debug in VSCode?
 
-Here is an example launch.json file to run the pubsub sample
+Here is an example launch.json file to run the x509 pubsub sample:
  ``` json
  {
     // Use IntelliSense to learn about possible attributes.
@@ -126,15 +128,14 @@ Here is an example launch.json file to run the pubsub sample
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "PubSub",
+            "name": "X509 PubSub",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/samples/pub_sub/basic_pub_sub/build/basic-pub-sub",
+            "program": "${workspaceFolder}/samples/mqtt/mqtt5_x509/build/mqtt5_x509",
             "args": [
                 "--endpoint", "<account-number>-ats.iot.<region>.amazonaws.com",
                 "--cert", "<path to cert>",
-                "--key", "<path to key>",
-                "--client-id", "test-client"
+                "--key", "<path to key>"
             ]
         }
     ]
@@ -158,7 +159,7 @@ Here is an example launch.json file to run the pubsub sample
 ### Where can I find MQTT 311 Samples?
 The MQTT 311 Samples can be found in the v1.40.0 samples folder [here](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/v1.40.0/samples)
 
-### I still have more questions about this sdk?
+### I still have more questions about this SDK?
 
 * [Here](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) are the AWS IoT Core docs for more details about IoT Core
 * [Here](https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html) are the AWS IoT Greengrass v2 docs for more details about greengrass
