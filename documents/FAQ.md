@@ -3,7 +3,7 @@
 *__Jump To:__*
 * [Where should I start](#where-should-i-start)
 * [How do I enable logging](#how-do-i-enable-logging)
-* [What does the error code mean](#what-does-the-error-code-mean)
+* [How do I get more information from an error code?](#how-do-i-get-more-information-from-an-error-code)
 * [I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP](#i-keep-getting-aws_error_mqtt_unexpected_hangup)
 * [Dependencies are bad](#dependencies-are-bad)
 * [Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)](#connection-loss)
@@ -32,7 +32,7 @@ apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 
 You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side SDK.
 
-### What does the error code mean?
+### How do I get more information from an error code?
 
 When you encounter error codes in the SDK, you can use `ErrorDebugString()` to get a human-readable error message:
 
