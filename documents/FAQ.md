@@ -3,6 +3,7 @@
 *__Jump To:__*
 * [Where should I start](#where-should-i-start)
 * [How do I enable logging](#how-do-i-enable-logging)
+* [What does the error code mean](#what-does-the-error-code-mean)
 * [I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP](#i-keep-getting-aws_error_mqtt_unexpected_hangup)
 * [Dependencies are bad](#dependencies-are-bad)
 * [Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)](#connection-loss)
@@ -30,6 +31,18 @@ apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, stderr);
 **LogLevel**: LogLevel has the following options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, or `None`. Defaults to `Warn`.
 
 You can also enable [CloudWatch logging](https://docs.aws.amazon.com/iot/latest/developerguide/cloud-watch-logs.html) for IoT which will provide you with additional information that is not available on the client side SDK.
+
+### What does the error code mean?
+
+When you encounter error codes in the SDK, you can use `ErrorDebugString()` to get a human-readable error message:
+
+``` c++
+#include <aws/crt/Api.h>
+
+printf("Error occurred: %s\n", ErrorDebugString(LastError()));
+```
+
+This function converts error codes into descriptive strings that help identify the specific issue.
 
 ### I keep getting AWS_ERROR_MQTT_UNEXPECTED_HANGUP
 
