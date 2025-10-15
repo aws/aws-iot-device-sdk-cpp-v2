@@ -21,7 +21,8 @@ namespace Aws
     {
 
         /**
-         * Sent whenever a job execution is added to or removed from the list of pending job executions for a thing.
+         * Sent whenever a job execution is added to or removed from the list of pending
+         * job executions for a thing.
          *
          */
         class AWS_IOTJOBS_API JobExecutionsChangedEvent final
