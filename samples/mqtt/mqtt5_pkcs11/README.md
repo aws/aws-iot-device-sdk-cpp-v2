@@ -71,7 +71,7 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 ## How to build
 
-To build the sample, change directory into the samples, and run the cmake commands
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/mqtt/mqtt5_pkcs11/build` folder.
 ```sh
 cd samples/mqtt/mqtt5_pkcs11/
 # If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
@@ -81,9 +81,10 @@ cmake --build build --config "Debug"
 
 ## How to run
 
-To Run this sample from the `samples/mqtt/mqtt5_pkcs11` folder, use the following command:
+To run this sample from the `samples/mqtt/mqtt5_pkcs11` folder, use the following command:
 
 ```sh
+cd build
 ./mqtt5_pkcs11 \
   --endpoint <AWS IoT endpoint> \
   --cert <path to certificate file> \

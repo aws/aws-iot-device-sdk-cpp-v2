@@ -63,9 +63,22 @@ This sample expects and requires the following custom metrics:
   * type `ip-list`
   * info: sends a predefined list of documentation IP addresses.
 
-To run the Device Defender sample, use the following command:
+## How to build
 
-``` sh
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/others/device_defender/mqtt5_basic_report/build` folder.
+```sh
+cd samples/others/device_defender/mqtt5_basic_report/
+# If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-workspace dir>" -DCMAKE_BUILD_TYPE="Debug" .
+cmake --build build --config "Debug"
+```
+
+## How to run
+
+To run this sample from the `samples/others/device_defender/mqtt5_basic_report` folder, use the following command:
+
+```sh
+cd build
 ./mqtt5-basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 

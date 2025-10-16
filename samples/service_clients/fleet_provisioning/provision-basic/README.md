@@ -242,6 +242,7 @@ to perform the actual provisioning in the section below.
 
 ### Build and run the sample
 
+### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ``` sh
@@ -250,17 +251,21 @@ cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
 cmake --build _build/ --target install
 ```
 
-Now build the sample:
+### How to build
 
-``` sh
-cd samples/fleet_provisioning/provision-basic
-cmake -S ./ -B _build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
-cmake --build _build/
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/service_clients/fleet_provisioning/provision-basic/build` folder.
+```sh
+cd samples/service_clients/fleet_provisioning/provision-basic
+cmake -S ./ -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
+cmake --build build/
 ```
 
-To run the sample:
+### How to run
 
-``` sh
+To run this sample from the `samples/service_clients/fleet_provisioning/provision-basic` folder, use the following command:
+
+```sh
+cd build
 ./fleet-provisioning-basic --endpoint <endpoint> --cert <path to the provisioning certificate> --key <path to the provisioning private key> --template_name <template name> --template_parameters '{"SerialNumber":"1","DeviceLocation":"Seattle"}'
 ```
 

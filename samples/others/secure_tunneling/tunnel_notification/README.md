@@ -57,9 +57,22 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 </details>
 
+## How to build
+
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/others/secure_tunneling/tunnel_notification/build` folder.
+```sh
+cd samples/others/secure_tunneling/tunnel_notification/
+# If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-workspace dir>" -DCMAKE_BUILD_TYPE="Debug" .
+cmake --build build --config "Debug"
+```
+
 ## How to run
-To Run this sample, use the following command:
-``` sh
+
+To run this sample from the `samples/others/secure_tunneling/tunnel_notification` folder, use the following command:
+
+```sh
+cd build
 ./tunnel-notification --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 Once the MQTT Client is connected, create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.com/iot/) (AWS IoT/Manage/Tunnels/Create tunnel) for the Thing.

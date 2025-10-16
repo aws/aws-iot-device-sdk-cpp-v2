@@ -4,15 +4,26 @@
 
 This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination or a source Secure Tunnel Client to an AWS Secure Tunnel endpoint using access tokens using the [V3WebSocketProtocol](https://github.com/aws-samples/aws-iot-securetunneling-localproxy/blob/main/V3WebSocketProtocolGuide.md). For more information, see the [Secure Tunnel Userguide](../../../documents/Secure_Tunnel_Userguide.md)
 
+## How to build
+
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/others/secure_tunneling/secure_tunnel/build` folder.
+```sh
+cd samples/others/secure_tunneling/secure_tunnel/
+# If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-workspace dir>" -DCMAKE_BUILD_TYPE="Debug" .
+cmake --build build --config "Debug"
+```
+
 ## How to run
 
 Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.com/iot/) (AWS IoT/Manage/Tunnels/Create tunnel) and retrieve the destination and source access tokens. (https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial-open-tunnel.html). Once you have these tokens, you are ready to open a secure tunnel.
 
 ### Destination Mode
 
-To run the sample with a destination access token in destination mode (default), you can use the following command:
+To run the sample with a destination access token in destination mode (default) from the `samples/others/secure_tunneling/secure_tunnel` folder, use the following command:
 
-``` sh
+```sh
+cd build
 ./secure-tunnel --signing_region <signing_region> --access_token_file <path to destination access token>
 ```
 
@@ -22,7 +33,8 @@ The sample will create a Secure Tunnel connection and remain connected in `DESTI
 
 While the focus of the Secure Tunnel Client for the IoT Device SDK is to connect with Secure Tunnels in `DESTINATION MODE` we also support connecting in `SOURCE MODE`. The token file should be the Source Token in this instance and you must add the `--local_proxy_mode_source` flag:
 
-``` sh
+```sh
+cd build
 ./secure-tunnel --signing_region <signing_region> --access_token_file <path to source access token> --local_proxy_mode_source
 ```
 

@@ -127,25 +127,30 @@ job permission so that you can name the jobs whatever you would like.
 
 ## Building and Running the Sample
 
+### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ``` sh
 cd <sdk-root-directory>
-cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
-cmake --build _build/ --target install
+cmake -S ./ -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
+cmake --build build/ --target install
 ```
 
-Now build the sample:
+### How to build
 
-``` sh
-cd samples/jobs/jobs-sandbox
-cmake -S ./ -B _build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
-cmake --build _build/
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/service_clients/jobs/jobs-sandbox/build` folder.
+```sh
+cd samples/service_clients/jobs/jobs-sandbox/
+cmake -S ./ -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
+cmake --build build/
 ```
 
-To run the sample:
+### How to run
 
-``` sh
+To run the sample from the `samples/service_clients/jobs/jobs-sandbox` folder, use the following command:
+
+```sh
+cd build
 ./jobs-sandbox --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 

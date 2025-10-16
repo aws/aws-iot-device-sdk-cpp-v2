@@ -143,6 +143,7 @@ Replace with the following with the data from your AWS account:
 
 ## Building and Running the Sample
 
+### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ```shell
@@ -151,18 +152,22 @@ cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
 cmake --build build/ --target install
 ```
 
-Now build the sample:
+### How to build
 
-```shell
-cd samples/commands/commands-sandbox
+To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/service_clients/commands/commands-sandbox/build` folder.
+```sh
+cd samples/service_clients/commands/commands-sandbox/
 cmake -S . -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
 cmake --build build/
 ```
 
-To run the sample:
+### How to run
 
-```shell
-./build/commands-sandbox \
+To run this sample from the `samples/service_clients/commands/commands-sandbox` folder, use the following command:
+
+```sh
+cd build
+./commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
@@ -243,7 +248,8 @@ Take a notice of the `commandArn` field. It is used in creation of AWS IoT comma
 
 It's time to run the sample (unless you did it already) with the following shell command:
 ```shell
-./build/commands-sandbox \
+cd build
+./commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
