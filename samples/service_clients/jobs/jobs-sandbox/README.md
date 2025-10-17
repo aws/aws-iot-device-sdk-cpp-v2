@@ -335,23 +335,24 @@ aws iot delete-job --job-id QuestionableJob
 Deleting a job fails if an incomplete (non success/failure) job execution exists for the job.
 
 ## FAQ
-#### What happens if I call `StartNextPendingJobExecution` and there are no jobs to execute?
+### What happens if I call `StartNextPendingJobExecution` and there are no jobs to execute?
 The request will not fail, but the `execution` field of the response will be empty, indicating that there is nothing to do.
 
-#### What happens if I call `StartNextPendingJobExecution` twice in a row (or while another job is in the IN_PROGRESS state)?
+### What happens if I call `StartNextPendingJobExecution` twice in a row (or while another job is in the IN_PROGRESS state)?
 The service will return the execution information for the IN_PROGRESS job again.
 
-#### What if I want my device to handle multiple job executions at once?
+### What if I want my device to handle multiple job executions at once?
 Since `startNextPendingJobExecution` does not help here, the device application can manually update a job execution from the QUEUED state to the IN_PROGRESS
 state in the same manner that it completes a job execution: use `getPendingJobExecutions` to get the list of queued executions and use
 `updateJobExecution` to move one or more job executions into the IN_PROGRESS state.
 
-#### What is the proper generic architecture for a job-processing application running on a device?
+### What is the proper generic architecture for a job-processing application running on a device?
 A device's persistent job executor should:
 1. On startup, create and open streaming operations for both the JobExecutionsChanged and NextJobExecutionChanged events
 2. On startup, get and cache the set of incomplete job executions using `GetPendingJobExecutions`
 3. Keep the cached job execution set up to date by reacting appropriately to JobExecutionsChanged and NextJobExecutionChanged events
 4. While there are incomplete job executions, start and execute them one-at-a-time; otherwise wait for a new entry in the incomplete (queued) job executions set.
+
 ## ⚠️ Usage disclaimer
 
 These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).

@@ -532,7 +532,7 @@ command executions stream is determined by `device type`, `device ID`, and `payl
 and `device ID` will be constant, so the application needs to check `payload format`. Notice that Aws IoT Commands service
 distinguishes only JSON and CBOR, all other payload format will be  routed to the generic stream.
 
-#### What is the proper generic architecture for a command-processing application running on a device?
+### What is the proper generic architecture for a command-processing application running on a device?
 
 1. On startup, create and open streaming operations for the needed AWS IoT command events using
    `IClientV2::CreateCommandExecutionsJsonPayloadStream`, `IClientV2::CreateCommandExecutionsCborPayloadStream`,
