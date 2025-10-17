@@ -1,7 +1,21 @@
 # Commands Sandbox
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
+*__Jump To:__*
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Walkthrough](#walkthrough)
+  * [Run the sample](#run-the-sample)
+  * [Creating AWS IoT Commands](#creating-aws-iot-commands)
+  * [Running sample and subscribing to AWS IoT Command Executions](#running-sample-and-subscribing-to-aws-iot-command-executions)
+  * [Sending AWS IoT Command Executions](#sending-aws-iot-command-executions)
+  * [Updating and monitoring AWS IoT command execution status](#updating-and-monitoring-aws-iot-command-execution-status)
+  * [Cleaning up](#cleaning-up)
+* [FAQ](#faq)
+* [Usage disclaimer](#️-usage-disclaimer)
+
+## Introduction
 This is a semi-interactive sample that allows you to use the AWS IoT [Commands](https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html)
 service to receive and process remote instructions.
 
@@ -57,7 +71,7 @@ Miscellaneous
 * close-stream <stream-id> - close a specified stream; <stream-id> is internal ID that can be found with 'list-streams'
 * quit - quit the sample application
 
-### Prerequisites
+## Prerequisites
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive
 in order to perform its data plane operations. Below is a sample policy that can be used on your IoT Core Thing that will
 allow this sample to run as intended.
@@ -141,8 +155,10 @@ Replace with the following with the data from your AWS account:
 
 </details>
 
-## Building and Running the Sample
+## Walkthrough
 
+### Run the sample
+#### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ```shell
@@ -151,18 +167,23 @@ cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
 cmake --build build/ --target install
 ```
 
-Now build the sample:
+#### How to build
 
-```shell
-cd samples/commands/commands-sandbox
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/service_clients/commands/commands-sandbox/build` folder.
+```sh
+cd samples/service_clients/commands/commands-sandbox/
 cmake -S . -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
 cmake --build build/
 ```
 
-To run the sample:
+#### How to run
 
-```shell
-./build/commands-sandbox \
+To run this sample, navigate to the build directory where the executable was created:
+
+```sh
+# From samples/service_clients/commands/commands-sandbox/, go to the build directory
+cd build
+./commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
@@ -243,7 +264,8 @@ Take a notice of the `commandArn` field. It is used in creation of AWS IoT comma
 
 It's time to run the sample (unless you did it already) with the following shell command:
 ```shell
-./build/commands-sandbox \
+cd build
+./commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
@@ -497,7 +519,7 @@ to perform:
 aws iot delete-command --command-id <command-id>
 ```
 
-### Misc Topics
+## FAQ
 
 ### What happens if I open the same stream twice?
 
@@ -510,7 +532,7 @@ command executions stream is determined by `device type`, `device ID`, and `payl
 and `device ID` will be constant, so the application needs to check `payload format`. Notice that Aws IoT Commands service
 distinguishes only JSON and CBOR, all other payload format will be  routed to the generic stream.
 
-#### What is the proper generic architecture for a command-processing application running on a device?
+### What is the proper generic architecture for a command-processing application running on a device?
 
 1. On startup, create and open streaming operations for the needed AWS IoT command events using
    `IClientV2::CreateCommandExecutionsJsonPayloadStream`, `IClientV2::CreateCommandExecutionsCborPayloadStream`,
@@ -521,3 +543,13 @@ distinguishes only JSON and CBOR, all other payload format will be  routed to th
    separate thread(s).
 3. If your application is expected to receive a lot of AWS IoT commands, monitor the number of them enqueued for processing.
    Consider introducing priorities based on AWS IoT command timeouts or some internal value.
+
+## ⚠️ Usage disclaimer
+
+These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).
+
+Additionally, example code might theoretically modify or delete existing AWS resources. As a matter of due diligence, do the following:
+
+- Be aware of the resources that these examples create or delete.
+- Be aware of the costs that might be charged to your account as a result.
+- Back up your important data.

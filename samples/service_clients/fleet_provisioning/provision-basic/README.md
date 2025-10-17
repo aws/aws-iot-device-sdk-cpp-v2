@@ -1,9 +1,21 @@
 # Fleet provisioning
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
+*__Jump To:__*
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Fleet Provisioning Detailed Instructions](#fleet-provisioning-detailed-instructions)
+  * [Aws Resource Setup](#aws-resource-setup)
+  * [Create a provisioning certificate and key pair from a provisioning claim](#create-a-provisioning-certificate-and-key-pair-from-a-provisioning-claim)
+  * [Running the sample using a certificate-key set](#running-the-sample-using-a-certificate-key-set)
+* [Usage disclaimer](#️-usage-disclaimer)
+
+## Introduction
 This sample uses the AWS IoT [Fleet provisioning service](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) to provision devices using the CreateKeysAndCertificate and RegisterThing APIs. This allows you to create new AWS IoT Core thing resources using a Fleet Provisioning Template.
 
+## Prerequisites
 You must have a provisioning certificate and key pair whose associated [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect as well as subscribe, publish, and receive on MQTT topics used by the provisning APIs that the sample invokes. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 <details>
@@ -61,6 +73,40 @@ Replace with the following with the data from your AWS account:
 Note that in a real application, you may want to avoid the use of wildcards in your ClientID or use them selectively. Please follow best practices when working with AWS on production applications using the SDK. Also, for the purposes of this sample, please make sure your policy allows a client ID of `test-*` to connect or use `--client_id <client ID here>` to send the client ID your policy supports.
 
 </details>
+
+## Build and run the sample
+
+### Install the SDK
+Before building and running the sample, you must first build and install the SDK:
+
+``` sh
+cd <sdk-root-directory>
+cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
+cmake --build _build/ --target install
+```
+
+### How to build
+
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/service_clients/fleet_provisioning/provision-basic/build` folder.
+```sh
+cd samples/service_clients/fleet_provisioning/provision-basic
+cmake -S ./ -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
+cmake --build build/
+```
+
+### How to run
+
+To run this sample, navigate to the build directory where the executable was created:
+
+```sh
+# From samples/service_clients/fleet_provisioning/provision-basic/, go to the build directory
+cd build
+./fleet-provisioning-basic --endpoint <endpoint> --cert <path to the provisioning certificate> --key <path to the provisioning private key> --template_name <template name> --template_parameters '{"SerialNumber":"1","DeviceLocation":"Seattle"}'
+```
+
+As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
+
+On success, you will find you have a new AWS IoT Core thing.  A real provisioning process would also need to persist the final certificate and key (in the response to the CreateCertificateAndKeys API call) to a durable, safe storage medium for future use.  After provisioning, the provisioning certificate and key pair are no longer needed.
 
 ## Fleet Provisioning Detailed Instructions
 
@@ -216,7 +262,7 @@ And here is the same JSON document, but as a single line for easier copy-pasting
 
 You can use this JSON document as the `<TemplateJSON>` in the AWS CLI command. This sample will assume you have used the template JSON above, so you may need to adjust if you are using a different template JSON. Thankfully, all of these steps need to only be done and, now that they are complete, you will need not perform them again.
 
-### Creating a provisioning certificate and key pair from a provisioning claim
+### Create a provisioning certificate and key pair from a provisioning claim
 
 To run the provisioning sample, you'll need a provisioning certificate and key set with sufficient permissions (see the policy at the top). Provisioning certificates are normally created ahead of time and placed on your device, but for this sample, we will just create them on the fly. This is primarily done for example purposes.
 
@@ -240,30 +286,24 @@ aws iot create-provisioning-claim \
 This will create a certificate and key in the `tmp` folder with file names starting with `provision`. You can now use these temporary keys
 to perform the actual provisioning in the section below.
 
-### Build and run the sample
 
-Before building and running the sample, you must first build and install the SDK:
+### Running the sample using a certificate-key set
 
-``` sh
-cd <sdk-root-directory>
-cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
-cmake --build _build/ --target install
-```
-
-Now build the sample:
-
-``` sh
-cd samples/fleet_provisioning/provision-basic
-cmake -S ./ -B _build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
-cmake --build _build/
-```
-
-To run the sample:
-
-``` sh
+To run this sample, navigate to the directory where the executable was created:
+```sh
 ./fleet-provisioning-basic --endpoint <endpoint> --cert <path to the provisioning certificate> --key <path to the provisioning private key> --template_name <template name> --template_parameters '{"SerialNumber":"1","DeviceLocation":"Seattle"}'
 ```
 
 As per normal, replace the `<>` parameters with the proper values. Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
 On success, you will find you have a new AWS IoT Core thing.  A real provisioning process would also need to persist the final certificate and key (in the response to the CreateCertificateAndKeys API call) to a durable, safe storage medium for future use.  After provisioning, the provisioning certificate and key pair are no longer needed.
+
+## ⚠️ Usage disclaimer
+
+These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).
+
+Additionally, example code might theoretically modify or delete existing AWS resources. As a matter of due diligence, do the following:
+
+- Be aware of the resources that these examples create or delete.
+- Be aware of the costs that might be charged to your account as a result.
+- Back up your important data.
