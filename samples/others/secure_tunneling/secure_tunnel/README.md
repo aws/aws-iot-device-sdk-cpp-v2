@@ -1,6 +1,6 @@
 # Secure Tunnel
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
 This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to connect a destination or a source Secure Tunnel Client to an AWS Secure Tunnel endpoint using access tokens using the [V3WebSocketProtocol](https://github.com/aws-samples/aws-iot-securetunneling-localproxy/blob/main/V3WebSocketProtocolGuide.md). For more information, see the [Secure Tunnel Userguide](../../../documents/Secure_Tunnel_Userguide.md)
 

@@ -1,6 +1,6 @@
 # Device Defender
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
 This sample uses the AWS IoT [Device Defender](https://aws.amazon.com/iot-device-defender/) Service to send on device metrics to AWS. Device Defender is an AWS IoT Core service that allows you to monitor the health of your IoT device through sending periodic updates containing device data to AWS IoT Core.
 

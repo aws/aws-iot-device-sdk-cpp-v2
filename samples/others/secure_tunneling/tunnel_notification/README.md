@@ -1,6 +1,6 @@
 # Secure Tunnel Notification
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
 This sample uses an MQTT Client and the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification and then connects to the Secure Tunnel using a Secure Tunnel Client.
 
