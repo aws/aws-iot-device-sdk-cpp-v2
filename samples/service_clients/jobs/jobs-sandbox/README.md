@@ -1,6 +1,18 @@
 # Jobs Sandbox
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
+
+*__Jump To:__*
+* [Introduction](#introduction)
+  * [Commands](#commands)
+* [Prerequisites](#prerequisites)
+* [Walkthrough](#walkthrough)
+  * [Run the Sample](#run-the-sample)
+  * [Job Creation](#job-creation)
+  * [Job Execution](#job-execution)
+  * [Job Cleanup](#job-cleanup)
+* [FAQ](#faq)
+* [Usage disclaimer](#️-usage-disclaimer)
 
 ## Introduction
 This is an interactive sample that supports a set of commands that allow you to interact with the AWS IoT [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) Service.   The sample walkthrough assumes the [AWS CLI](https://aws.amazon.com/cli/) has been installed and configured in order to invoke control plane operations that are not possible with the device SDK.
@@ -322,7 +334,7 @@ aws iot delete-job --job-id QuestionableJob
 
 Deleting a job fails if an incomplete (non success/failure) job execution exists for the job.
 
-### FAQ
+## FAQ
 #### What happens if I call `StartNextPendingJobExecution` and there are no jobs to execute?
 The request will not fail, but the `execution` field of the response will be empty, indicating that there is nothing to do.
 

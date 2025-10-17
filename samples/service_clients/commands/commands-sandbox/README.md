@@ -1,6 +1,19 @@
 # Commands Sandbox
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
+
+*__Jump To:__*
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Walkthrough](#walkthrough)
+  * [Run the sample](#run-the-sample)
+  * [Creating AWS IoT Commands](#creating-aws-iot-commands)
+  * [Running sample and subscribing to AWS IoT Command Executions](#running-sample-and-subscribing-to-aws-iot-command-executions)
+  * [Sending AWS IoT Command Executions](#sending-aws-iot-command-executions)
+  * [Updating and monitoring AWS IoT command execution status](#updating-and-monitoring-aws-iot-command-execution-status)
+  * [Cleaning up](#cleaning-up)
+* [FAQ](#faq)
+* [Usage disclaimer](#️-usage-disclaimer)
 
 ## Introduction
 This is a semi-interactive sample that allows you to use the AWS IoT [Commands](https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html)
@@ -506,7 +519,7 @@ to perform:
 aws iot delete-command --command-id <command-id>
 ```
 
-### Misc Topics
+## FAQ
 
 ### What happens if I open the same stream twice?
 

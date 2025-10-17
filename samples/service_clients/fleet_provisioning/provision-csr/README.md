@@ -1,6 +1,18 @@
 # Fleet provisioning via CSR
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
+
+*__Jump To:__*
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Fleet Provisioning Detailed Instructions](#fleet-provisioning-detailed-instructions)
+  * [Aws Resource Setup](#aws-resource-setup)
+  * [Create a certificate-key set from a provisioning claim](#create-a-certificate-key-set-from-a-provisioning-claim)
+  * [Create a certificate signing request](#create-a-certificate-signing-request)
+  * [Running the sample using a certificate-key set](#running-the-sample-using-a-certificate-key-set)
+* [Usage disclaimer](#️-usage-disclaimer)
+
 ## Introduction
 This sample uses the AWS IoT [Fleet provisioning service](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html) to provision devices using the CreateCertificateFromCsr and RegisterThing APIs. This allows you to create new AWS IoT Core thing resources using a Fleet Provisioning Template.  The primary difference between this sample and the basic provisioning sample is that, by using the CreateCertificateFromCsr API, your provisioned certificates can be rooted to the certificate authority of your choice (as opposed to AmazonRootCA1) via the properties of the certificate signing request used.
 
@@ -64,7 +76,7 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 </details>
 
 
-## Build and run the sample
+## Build and Run the Sample
 
 ### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
@@ -254,7 +266,7 @@ And here is the same JSON document, but as a single line for easier copy-pasting
 
 You can use this JSON document as the `<TemplateJSON>` in the AWS CLI command. This sample will assume you have used the template JSON above, so you may need to adjust if you are using a different template JSON. Thankfully, all of these steps need to only be done and, now that they are complete, you will need not perform them again.
 
-#### Creating a certificate-key set from a provisioning claim
+#### Create a certificate-key set from a provisioning claim
 
 To run the provisioning sample, you'll need a provisioning certificate and key set with sufficient permissions (see the policy at the top). Provisioning certificates are normally created ahead of time and placed on your device, but for this sample, we will just create them on the fly. This is primarily done for example purposes.
 

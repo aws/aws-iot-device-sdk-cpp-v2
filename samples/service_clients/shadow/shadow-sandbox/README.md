@@ -1,6 +1,19 @@
 # Shadow
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
+
+*__Jump To:__*
+* [Introduction](#introduction)
+  * [Commands](#commands)
+* [Prerequisites](#prerequisites)
+* [Walkthrough](#walkthrough)
+  * [Run the Sample](#run-the-sample)
+  * [Initialization](#initialization)
+  * [Changing Properties](#changing-properties)
+  * [Multiple Properties](#multiple-properties)
+  * [Removing properties](#removing-properties)
+  * [Removing a shadow](#removing-a-shadow)
+* [Usage disclaimer](#️-usage-disclaimer)
 
 ## Introduction
 This is an interactive sample that supports a set of commands that allow you to interact with "classic" (unnamed) shadows of the AWS IoT [Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html) Service.
@@ -79,7 +92,7 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 ## Walkthrough
 
-### Run the sample
+### Run the Sample
 #### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
