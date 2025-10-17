@@ -6,7 +6,7 @@ This sample uses AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/late
 
 ## How to build
 
-To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/others/secure_tunneling/secure_tunnel/build` folder.
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/others/secure_tunneling/secure_tunnel/build` folder.
 ```sh
 cd samples/others/secure_tunneling/secure_tunnel/
 # If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
@@ -20,9 +20,10 @@ Create a new secure tunnel in the AWS IoT console (https://console.aws.amazon.co
 
 ### Destination Mode
 
-To run the sample with a destination access token in destination mode (default) from the `samples/others/secure_tunneling/secure_tunnel` folder, use the following command:
+To run the sample with a destination access token in destination mode (default), navigate to the build directory where the executable was created:
 
 ```sh
+# From samples/others/secure_tunneling/secure_tunnel/, go to the build directory
 cd build
 ./secure-tunnel --signing_region <signing_region> --access_token_file <path to destination access token>
 ```
@@ -34,6 +35,7 @@ The sample will create a Secure Tunnel connection and remain connected in `DESTI
 While the focus of the Secure Tunnel Client for the IoT Device SDK is to connect with Secure Tunnels in `DESTINATION MODE` we also support connecting in `SOURCE MODE`. The token file should be the Source Token in this instance and you must add the `--local_proxy_mode_source` flag:
 
 ```sh
+# From samples/others/secure_tunneling/secure_tunnel/, go to the build directory
 cd build
 ./secure-tunnel --signing_region <signing_region> --access_token_file <path to source access token> --local_proxy_mode_source
 ```

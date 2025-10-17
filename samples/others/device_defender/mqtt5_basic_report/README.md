@@ -65,7 +65,7 @@ This sample expects and requires the following custom metrics:
 
 ## How to build
 
-To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/others/device_defender/mqtt5_basic_report/build` folder.
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/others/device_defender/mqtt5_basic_report/build` folder.
 ```sh
 cd samples/others/device_defender/mqtt5_basic_report/
 # If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
@@ -75,9 +75,10 @@ cmake --build build --config "Debug"
 
 ## How to run
 
-To run this sample from the `samples/others/device_defender/mqtt5_basic_report` folder, use the following command:
+To run this sample, navigate to the build directory where the executable was created:
 
 ```sh
+# From samples/others/device_defender/mqtt5_basic_report/, go to the build directory
 cd build
 ./mqtt5-basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```

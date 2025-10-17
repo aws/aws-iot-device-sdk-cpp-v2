@@ -59,7 +59,7 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 ## How to build
 
-To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/others/secure_tunneling/tunnel_notification/build` folder.
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/others/secure_tunneling/tunnel_notification/build` folder.
 ```sh
 cd samples/others/secure_tunneling/tunnel_notification/
 # If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
@@ -69,9 +69,10 @@ cmake --build build --config "Debug"
 
 ## How to run
 
-To run this sample from the `samples/others/secure_tunneling/tunnel_notification` folder, use the following command:
+To run this sample, navigate to the build directory where the executable was created:
 
 ```sh
+# From samples/others/secure_tunneling/tunnel_notification/, go to the build directory
 cd build
 ./tunnel-notification --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```

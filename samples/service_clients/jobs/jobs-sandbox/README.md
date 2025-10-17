@@ -2,6 +2,7 @@
 
 [**Return to main sample list**](../../README.md)
 
+## Introduction
 This is an interactive sample that supports a set of commands that allow you to interact with the AWS IoT [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) Service.   The sample walkthrough assumes the [AWS CLI](https://aws.amazon.com/cli/) has been installed and configured in order to invoke control plane operations that are not possible with the device SDK.
 In a real use case, control plane commands would be issued by applications under control of the customer, while the data plane operations would be issue by software running on the
 IoT device itself.
@@ -27,7 +28,7 @@ Miscellaneous
 * `help` - prints the set of supported commands
 * `quit` - quits the sample application
 
-### Prerequisites
+## Prerequisites
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect as well as subscribe, publish, and receive as necessary to perform all of the data plane operations. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 <details>
@@ -125,9 +126,15 @@ job permission so that you can name the jobs whatever you would like.
 
 </details>
 
-## Building and Running the Sample
+## Walkthrough
 
-### Install the SDK
+The jobs sample walkthrough involves a sequence of steps, some of which are commands issued to the running sample, and some of which are AWS CLI control plane commands for
+creating and deleting jobs.  For the walkthrough to work, the CLI commands must use the same region that the sample is connected to.
+
+This walkthrough assumes a freshly-created IoT thing that has no pre-existing jobs targeting it.
+
+### Run the sample
+#### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ``` sh
@@ -136,20 +143,21 @@ cmake -S ./ -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
 cmake --build build/ --target install
 ```
 
-### How to build
+#### How to build
 
-To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/service_clients/jobs/jobs-sandbox/build` folder.
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/service_clients/jobs/jobs-sandbox/build` folder.
 ```sh
 cd samples/service_clients/jobs/jobs-sandbox/
 cmake -S ./ -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
 cmake --build build/
 ```
 
-### How to run
+#### How to run
 
-To run the sample from the `samples/service_clients/jobs/jobs-sandbox` folder, use the following command:
+To run this sample, navigate to the build directory where the executable was created:
 
 ```sh
+# From samples/service_clients/jobs/jobs-sandbox/, go to the build directory
 cd build
 ./jobs-sandbox --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
@@ -158,12 +166,6 @@ The sample also listens to a pair of event streams related the configured thing'
 
 Once successfully connected, you can issue commands.
 
-## Walkthrough
-
-The jobs sample walkthrough involves a sequence of steps, some of which are commands issued to the running sample, and some of which are AWS CLI control plane commands for
-creating and deleting jobs.  For the walkthrough to work, the CLI commands must use the same region that the sample is connected to.
-
-This walkthrough assumes a freshly-created IoT thing that has no pre-existing jobs targeting it.
 
 ### Job Creation
 First, we check if there are any incomplete job executions for this thing.  Assuming the thing is freshly-created, we expect there to be nothing:
@@ -320,7 +322,7 @@ aws iot delete-job --job-id QuestionableJob
 
 Deleting a job fails if an incomplete (non success/failure) job execution exists for the job.
 
-### Misc. Topics
+### FAQ
 #### What happens if I call `StartNextPendingJobExecution` and there are no jobs to execute?
 The request will not fail, but the `execution` field of the response will be empty, indicating that there is nothing to do.
 
@@ -338,3 +340,12 @@ A device's persistent job executor should:
 2. On startup, get and cache the set of incomplete job executions using `GetPendingJobExecutions`
 3. Keep the cached job execution set up to date by reacting appropriately to JobExecutionsChanged and NextJobExecutionChanged events
 4. While there are incomplete job executions, start and execute them one-at-a-time; otherwise wait for a new entry in the incomplete (queued) job executions set.
+## ⚠️ Usage disclaimer
+
+These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).
+
+Additionally, example code might theoretically modify or delete existing AWS resources. As a matter of due diligence, do the following:
+
+- Be aware of the resources that these examples create or delete.
+- Be aware of the costs that might be charged to your account as a result.
+- Back up your important data.

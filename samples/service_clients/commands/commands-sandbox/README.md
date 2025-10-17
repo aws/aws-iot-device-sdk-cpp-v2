@@ -2,6 +2,7 @@
 
 [**Return to main sample list**](../../README.md)
 
+## Introduction
 This is a semi-interactive sample that allows you to use the AWS IoT [Commands](https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html)
 service to receive and process remote instructions.
 
@@ -57,7 +58,7 @@ Miscellaneous
 * close-stream <stream-id> - close a specified stream; <stream-id> is internal ID that can be found with 'list-streams'
 * quit - quit the sample application
 
-### Prerequisites
+## Prerequisites
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive
 in order to perform its data plane operations. Below is a sample policy that can be used on your IoT Core Thing that will
 allow this sample to run as intended.
@@ -141,9 +142,10 @@ Replace with the following with the data from your AWS account:
 
 </details>
 
-## Building and Running the Sample
+## Walkthrough
 
-### Install the SDK
+### Run the sample
+#### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ```shell
@@ -152,20 +154,21 @@ cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
 cmake --build build/ --target install
 ```
 
-### How to build
+#### How to build
 
-To build the sample, change directory into the samples folder and run the cmake commands. The sample executable will be built under `samples/service_clients/commands/commands-sandbox/build` folder.
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/service_clients/commands/commands-sandbox/build` folder.
 ```sh
 cd samples/service_clients/commands/commands-sandbox/
 cmake -S . -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
 cmake --build build/
 ```
 
-### How to run
+#### How to run
 
-To run this sample from the `samples/service_clients/commands/commands-sandbox` folder, use the following command:
+To run this sample, navigate to the build directory where the executable was created:
 
 ```sh
+# From samples/service_clients/commands/commands-sandbox/, go to the build directory
 cd build
 ./commands-sandbox \
     --endpoint <endpoint> \
@@ -527,3 +530,13 @@ distinguishes only JSON and CBOR, all other payload format will be  routed to th
    separate thread(s).
 3. If your application is expected to receive a lot of AWS IoT commands, monitor the number of them enqueued for processing.
    Consider introducing priorities based on AWS IoT command timeouts or some internal value.
+
+## ⚠️ Usage disclaimer
+
+These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).
+
+Additionally, example code might theoretically modify or delete existing AWS resources. As a matter of due diligence, do the following:
+
+- Be aware of the resources that these examples create or delete.
+- Be aware of the costs that might be charged to your account as a result.
+- Back up your important data.
