@@ -18,4 +18,5 @@
 
 #else /* defined (AWS_IOTJOBS_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
 #    define AWS_IOTJOBS_API
-#endif /* defined (AWS_IOTJOBS__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
+#endif /* defined (AWS_IOTJOBS__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32)                                          \
+        */

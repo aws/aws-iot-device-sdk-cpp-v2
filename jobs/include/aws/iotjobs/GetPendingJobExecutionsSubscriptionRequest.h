@@ -31,7 +31,8 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             /**
-             * Name of the IoT Thing that you want to subscribe to GetPendingJobExecutions response events for.
+             * Name of the IoT Thing that you want to subscribe to GetPendingJobExecutions
+             * response events for.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ThingName;

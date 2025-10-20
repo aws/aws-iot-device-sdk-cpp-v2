@@ -59,8 +59,8 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
             /**
-             * A JobExecutionState object. This field is included only when the code field has the value
-             * InvalidStateTransition or VersionMismatch.
+             * A JobExecutionState object. This field is included only when the code field
+             * has the value InvalidStateTransition or VersionMismatch.
              *
              */
             Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
