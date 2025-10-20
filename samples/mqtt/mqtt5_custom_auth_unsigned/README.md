@@ -70,7 +70,7 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 ## How to build
 
-To build the sample, change directory into the samples, and run the cmake commands
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/mqtt/mqtt5_custom_auth_unsigned/build` folder.
 ```sh
 cd samples/mqtt/mqtt5_custom_auth_unsigned/
 # If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
@@ -80,9 +80,11 @@ cmake --build build --config "Debug"
 
 ## How to run
 
-To Run this sample from the `samples\mqtt\mqtt5_custom_auth_unsigned` folder, use the following command:
+To run this sample, navigate to the build directory where the executable was created:
 
 ```sh
+# From samples/mqtt/mqtt5_custom_auth_unsigned/, go to the build directory
+cd build
 ./mqtt5_custom_auth_unsigned \
   --endpoint <AWS IoT endpoint> \
   --authorizer_name <custom authorizer name> \
@@ -115,4 +117,4 @@ optional arguments:
 The sample will not run without the required arguments and will notify you of missing arguments.
 
 ## Additional Information
-Additional help with the MQTT5 Client can be found in the [MQTT5 Userguide](../../../documents/MQTT5_Userguide.md). This guide will provide more details on MQTT5 [operations](../../../documents/MQTT5_Userguide.md#client-operations), [lifecycle events](../../documents/MQTT5_Userguide.md#client-lifecycle-management), [connection methods](../../../documents/MQTT5_Userguide.md#connecting-to-aws-iot-core), and other useful information.
+Additional help with the MQTT5 Client can be found in the [MQTT5 Userguide](../../../documents/MQTT5_Userguide.md). This guide will provide more details on MQTT5 [operations](../../../documents/MQTT5_Userguide.md#client-operations), [lifecycle events](../../../documents/MQTT5_Userguide.md#client-lifecycle-management), [connection methods](../../../documents/MQTT5_Userguide.md#connecting-to-aws-iot-core), and other useful information.

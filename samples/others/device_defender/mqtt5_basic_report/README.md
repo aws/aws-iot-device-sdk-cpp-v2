@@ -1,6 +1,6 @@
 # Device Defender
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
 This sample uses the AWS IoT [Device Defender](https://aws.amazon.com/iot-device-defender/) Service to send on device metrics to AWS. Device Defender is an AWS IoT Core service that allows you to monitor the health of your IoT device through sending periodic updates containing device data to AWS IoT Core.
 
@@ -63,9 +63,23 @@ This sample expects and requires the following custom metrics:
   * type `ip-list`
   * info: sends a predefined list of documentation IP addresses.
 
-To run the Device Defender sample, use the following command:
+## How to build
 
-``` sh
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/others/device_defender/mqtt5_basic_report/build` folder.
+```sh
+cd samples/others/device_defender/mqtt5_basic_report/
+# If you followed the SDK build instruction, you would use the path to `sdk-workspace` folder for `CMAKE_PREFIX_PATH` here
+cmake -B build -S . -DCMAKE_PREFIX_PATH="<absolute path sdk-workspace dir>" -DCMAKE_BUILD_TYPE="Debug" .
+cmake --build build --config "Debug"
+```
+
+## How to run
+
+To run this sample, navigate to the build directory where the executable was created:
+
+```sh
+# From samples/others/device_defender/mqtt5_basic_report/, go to the build directory
+cd build
 ./mqtt5-basic-report --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 

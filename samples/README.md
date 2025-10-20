@@ -9,7 +9,7 @@ This directory contains sample applications for [aws-iot-device-sdk-cpp-v2](../R
     * [Others](#others)
 * [Instructions](#instructions)
 * [Sample Help](#sample-help)
-* [Enable Logging](#enable-logging)
+* [Enable Logging](#enable-logging-in-samples)
 
 
 ## Samples
