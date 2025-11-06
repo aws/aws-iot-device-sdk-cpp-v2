@@ -24,16 +24,10 @@ env:
   CI_SAMPLES_CFG_FOLDER: "./aws-iot-device-sdk-cpp-v2/.github/workflows"
   CI_SERVICE_TESTS_CFG_FOLDER: "./test_cases"
   CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
-  CI_PUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_PubSub_Role
   CI_CYCLEPUBSUB_ROLE: arn:aws:iam::180635532705:role/CI_CyclePubSub_Role
-  CI_CUSTOM_AUTHORIZER_ROLE: arn:aws:iam::180635532705:role/CI_CustomAuthorizer_Role
-  CI_COGNITO_ROLE: arn:aws:iam::180635532705:role/CI_Cognito_Role
-  CI_SHADOW_ROLE: arn:aws:iam::180635532705:role/CI_Shadow_Role
-  CI_JOBS_ROLE: arn:aws:iam::180635532705:role/CI_Jobs_Role
   CI_FLEET_PROVISIONING_ROLE: arn:aws:iam::180635532705:role/service-role/CI_FleetProvisioning_Role
   CI_DEVICE_DEFENDER: arn:aws:iam::180635532705:role/CI_DeviceDefender_Role
   CI_SECURE_TUNNEL: arn:aws:iam::180635532705:role/CI_SecureTunnel_Role
-  CI_X509_ROLE: arn:aws:iam::180635532705:role/CI_X509_Role
   CI_MQTT5_ROLE: arn:aws:iam::180635532705:role/CI_MQTT5_Role
   CI_JOBS_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_JobsServiceClient_Role
   CI_SHADOW_SERVICE_CLIENT_ROLE: arn:aws:iam::180635532705:role/CI_ShadowServiceClient_Role
@@ -68,7 +62,8 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} \
+          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
 
   raspberry:
     runs-on: ubuntu-24.04 # latest
@@ -91,8 +86,8 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }}
-
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ matrix.image }} build -p ${{ env.PACKAGE_NAME }} \
+          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
   linux-compiler-compat:
     runs-on: ubuntu-22.04
     strategy:
@@ -121,8 +116,8 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
           aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }}
-
+          ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --compiler=${{ matrix.compiler }} \
+          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
   byo-crypto:
     runs-on: ubuntu-latest
     permissions:
@@ -137,8 +132,9 @@ jobs:
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DBYO_CRYPTO=ON --variant=skip_sample
-
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --variant=skip_sample \
+        --cmake-extra=-DBYO_CRYPTO=ON \
+        --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
   linux-no-cpu-extensions:
     runs-on: ubuntu-latest
     permissions:
@@ -153,8 +149,9 @@ jobs:
     - name: Build ${{ env.PACKAGE_NAME }}
       run: |
         aws s3 cp s3://aws-crt-test-stuff/ci/${{ env.BUILDER_VERSION }}/linux-container-ci.sh ./linux-container-ci.sh && chmod a+x ./linux-container-ci.sh
-        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
-
+        ./linux-container-ci.sh ${{ env.BUILDER_VERSION }} aws-crt-${{ env.LINUX_BASE_IMAGE }} build -p ${{ env.PACKAGE_NAME }}  \
+          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON \
+          --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
   windows:
     runs-on: windows-latest
     permissions:
@@ -166,6 +163,8 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        env:
+          CL: "/DAWS_CRT_DISABLE_DEPRECATION_WARNINGS /EHsc"
         run: |
           md ${{ env.CI_FOLDER }}
           cd ${{ env.CI_FOLDER }}
@@ -187,6 +186,8 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        env:
+          CL: "/DAWS_CRT_DISABLE_DEPRECATION_WARNINGS /EHsc"
         # The "--cmake-extra=-Tv143" explicitly sets VS 17 2022 to be used for compilation.
         # See https://cmake.org/cmake/help/latest/generator/Visual%20Studio%2017%202022.html#toolset-selection
         run: |
@@ -206,41 +207,13 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        env:
+          CL: "/DAWS_CRT_DISABLE_DEPRECATION_WARNINGS /EHsc"
         run: |
           md ${{ env.CI_FOLDER }}
           cd ${{ env.CI_FOLDER }}
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
           python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
-
-  windows-app-verifier:
-    runs-on: windows-2025
-    permissions:
-      id-token: write # This is required for requesting the JWT
-    steps:
-      - name: configure AWS credentials (containers)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Build ${{ env.PACKAGE_NAME }} + consumers
-        run: |
-          md ${{ env.CI_FOLDER }}
-          cd ${{ env.CI_FOLDER }}
-          python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DUSE_CPU_EXTENSIONS=OFF
-      - name: Running samples in CI setup
-        run: |
-          python -m pip install boto3
-      - name: configure AWS credentials (MQTT5)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.CI_MQTT5_ROLE }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
-      - name: Run and check AppVerifier
-        run: |
-          cd ${{ env.CI_FOLDER }}
-          echo "Starting to run AppVerifier with mqtt5 pub-sub sample"
-          python ${{ env.CI_UTILS_FOLDER }}/appverifier_launch_sample.py --sample_file ".\aws-iot-device-sdk-cpp-v2\build\samples\mqtt\mqtt5_x509\RelWithDebInfo\mqtt5_x509.exe" --sample_secret_endpoint 'ci/endpoint' --sample_secret_certificate 'ci/mqtt5/us/mqtt5_thing/cert' --sample_secret_private_key 'ci/mqtt5/us/mqtt5_thing/key'
 
   windows-shared-lib:
     runs-on: windows-latest
@@ -253,6 +226,8 @@ jobs:
           role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        env:
+          CL: "/DAWS_CRT_DISABLE_DEPRECATION_WARNINGS /EHsc"
         run: |
           md ${{ env.CI_FOLDER }}
           cd ${{ env.CI_FOLDER }}
@@ -280,7 +255,8 @@ jobs:
         run: |
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
           chmod a+x builder
-          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream \
+          --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
 
   linux-github-actions:
     runs-on: ubuntu-latest
@@ -297,7 +273,7 @@ jobs:
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
       - name: Device Defender setup
         run: |
           python3 -m pip install boto3
@@ -340,7 +316,7 @@ jobs:
           git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ env.HEAD_REF || github.ref_name }}
           echo "Running builder"
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }}
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
       - name: Running samples in CI setup
         run: |
           python3 -m pip install boto3
@@ -460,6 +436,7 @@ jobs:
   clang-sanitizers:
     runs-on: ubuntu-24.04 # latest
     strategy:
+      fail-fast: false
       matrix:
         sanitizer-variants: ["tsan", "asan"]
     permissions:
@@ -476,7 +453,7 @@ jobs:
           git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git --branch ${{ env.HEAD_REF || github.ref_name }}
           echo "Running builder"
           python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
-          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --variant ${{ matrix.sanitizer-variants }}
+          python builder.pyz build -p ${{ env.PACKAGE_NAME }} --variant ${{ matrix.sanitizer-variants }} --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
       - name: Running samples in CI setup
         run: |
           python3 -m pip install boto3

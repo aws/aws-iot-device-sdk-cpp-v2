@@ -17,29 +17,34 @@ namespace Aws
     {
 
         /**
-         * A value indicating the kind of error encountered while processing an AWS IoT Jobs request
+         * A value indicating the kind of error encountered while processing an AWS IoT
+         * Jobs request
          *
          */
         enum class RejectedErrorCode
         {
             /**
-             * The request was sent to a topic in the AWS IoT Jobs namespace that does not map to any API.
+             * The request was sent to a topic in the AWS IoT Jobs namespace that does not
+             * map to any API.
              */
             InvalidTopic,
 
             /**
-             * The contents of the request could not be interpreted as valid UTF-8-encoded JSON.
+             * The contents of the request could not be interpreted as valid UTF-8-encoded
+             * JSON.
              */
             InvalidJson,
 
             /**
-             * The contents of the request were invalid. The message contains details about the error.
+             * The contents of the request were invalid. The message contains details
+             * about the error.
              */
             InvalidRequest,
 
             /**
-             * An update attempted to change the job execution to a state that is invalid because of the job execution's
-             * current state. In this case, the body of the error message also contains the executionState field.
+             * An update attempted to change the job execution to a state that is invalid
+             * because of the job execution's current state. In this case, the body of the
+             * error message also contains the executionState field.
              */
             InvalidStateTransition,
 
@@ -49,8 +54,9 @@ namespace Aws
             ResourceNotFound,
 
             /**
-             * The expected version specified in the request does not match the version of the job execution in the AWS
-             * IoT Jobs service. In this case, the body of the error message also contains the executionState field.
+             * The expected version specified in the request does not match the version of
+             * the job execution in the AWS IoT Jobs service. In this case, the body of
+             * the error message also contains the executionState field.
              */
             VersionMismatch,
 
@@ -65,7 +71,8 @@ namespace Aws
             RequestThrottled,
 
             /**
-             * Occurs when a command to describe a job is performed on a job that is in a terminal state.
+             * Occurs when a command to describe a job is performed on a job that is in a
+             * terminal state.
              */
             TerminalStateReached,
 

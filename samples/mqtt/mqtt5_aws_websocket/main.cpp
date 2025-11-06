@@ -4,9 +4,9 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
+#include <aws/crt/auth/Credentials.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
-#include <aws/crt/auth/Credentials.h>
 
 #include <thread>
 
@@ -125,7 +125,8 @@ int main(int argc, char *argv[])
 
     // Create websocket configuration
     Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
-    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+    std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider =
+        Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
     if (!provider)
     {
         fprintf(stderr, "Failure to create credentials provider!\n");
@@ -135,14 +136,15 @@ int main(int argc, char *argv[])
 
     // Create a Client using Mqtt5ClientBuilder
     auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
-            cmdData.endpoint, websocketConfig));
+        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(cmdData.endpoint, websocketConfig));
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
         printf(
-            "Failed to setup Mqtt5 client builder with error code %d: %s\n", LastError(), ErrorDebugString(LastError()));
+            "Failed to setup Mqtt5 client builder with error code %d: %s\n",
+            LastError(),
+            ErrorDebugString(LastError()));
         exit(1);
     }
 

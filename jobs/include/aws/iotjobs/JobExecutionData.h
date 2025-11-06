@@ -53,14 +53,15 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::JsonObject> JobDocument;
 
             /**
-             * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS, FAILED, SUCCEEDED, CANCELED,
-             * TIMED_OUT, REJECTED, or REMOVED.
+             * The status of the job execution. Can be one of: QUEUED, IN_PROGRESS,
+             * FAILED, SUCCEEDED, CANCELED, TIMED_OUT, REJECTED, or REMOVED.
              *
              */
             Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
 
             /**
-             * A collection of name-value pairs that describe the status of the job execution.
+             * A collection of name-value pairs that describe the status of the job
+             * execution.
              *
              */
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
@@ -84,15 +85,15 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
 
             /**
-             * The version of the job execution. Job execution versions are incremented each time they are updated by a
-             * device.
+             * The version of the job execution. Job execution versions are incremented
+             * each time they are updated by a device.
              *
              */
             Aws::Crt::Optional<int32_t> VersionNumber;
 
             /**
-             * A number that identifies a job execution on a device. It can be used later in commands that return or
-             * update job execution information.
+             * A number that identifies a job execution on a device. It can be used later
+             * in commands that return or update job execution information.
              *
              */
             Aws::Crt::Optional<int64_t> ExecutionNumber;

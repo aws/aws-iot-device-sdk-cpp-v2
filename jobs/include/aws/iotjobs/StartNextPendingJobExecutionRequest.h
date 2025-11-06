@@ -37,21 +37,22 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
             /**
-             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
-             * is reflected in the response.
+             * Optional. A client token used to correlate requests and responses. Enter an
+             * arbitrary value here and it is reflected in the response.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
             /**
-             * Specifies the amount of time this device has to finish execution of this job.
+             * Specifies the amount of time this device has to finish execution of this
+             * job.
              *
              */
             Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
 
             /**
-             * A collection of name-value pairs that describe the status of the job execution. If not specified, the
-             * statusDetails are unchanged.
+             * A collection of name-value pairs that describe the status of the job
+             * execution. If not specified, the statusDetails are unchanged.
              *
              */
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;

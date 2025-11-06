@@ -3,6 +3,11 @@ cmake_minimum_required(VERSION 3.9...3.31)
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(mqtt5-basic-report CXX)
 
+option(AWS_CRT_DISABLE_DEPRECATION_WARNINGS "Set this to silence [[deprecated]] warnings coming from aws-crt-cpp headers" OFF)
+if(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+    add_compile_definitions(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+endif()
+
 # Device Defender is only supported on Linux
 if (UNIX AND NOT APPLE)
 

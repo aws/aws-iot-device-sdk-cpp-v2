@@ -2,6 +2,11 @@ include(AwsTestHarness)
 enable_testing()
 include(CTest)
 
+option(AWS_CRT_DISABLE_DEPRECATION_WARNINGS "Set this to silence [[deprecated]] warnings coming from aws-crt-cpp headers" OFF)
+if(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+    add_compile_definitions(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+endif()
+
 file(GLOB AWS_ECHOTESTRPC_HEADERS
         "include/awstest/*.h"
 )
