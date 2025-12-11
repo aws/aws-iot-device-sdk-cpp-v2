@@ -5,10 +5,10 @@ on: [pull_request]
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: [3.13]
 
     steps:
       - name: Checkout main
