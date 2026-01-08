@@ -174,11 +174,11 @@ Here is an example launch.json file to run the x509 pubsub sample:
         * You should have generated/downloaded private and public keys that will be used to verify that communications are coming from you
         * When using samples you only need the private key and it will look like this: `--key abcde12345-private.pem.key`
 
-### Certificate and Private Key Usage Across Different Versions of the SDK on macOS
-A certificate and private key pair cannot be shared on a macOS device between aws-iot-device-sdk-cpp-v2 v1.41.0 and an earlier version. In the update to v1.41.0 we migrated macOS from using Apple's deprecated Security Framework to SecItem API. In doing so, certificate and private keys are imported in a non-backwards compatible manner into the Apple Keychain.
-
 ### Where can I find MQTT 3.1.1 Samples?
 The MQTT 3.1.1 samples can be found in the v1.40.0 samples folder [here](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/v1.40.0/samples)
+
+### Certificate and Private Key Usage Across Different Versions of the SDK on macOS
+A certificate and private key pair cannot be shared on a macOS device between aws-iot-device-sdk-cpp-v2 v1.41.0 and any other versions. In the update to v1.41.0 we migrated macOS from using Apple's deprecated Security Framework to SecItem API. In doing so, certificate and private keys are imported in a non-backwards compatible manner into the Apple Keychain.
 
 ### I still have more questions about this SDK?
 
