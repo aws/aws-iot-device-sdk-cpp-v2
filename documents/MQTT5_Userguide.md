@@ -24,6 +24,7 @@
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
+        - [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
 * [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
@@ -752,6 +753,62 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     {
         fprintf(stdout, "Publish Operation Failed.\n");
         return -1;
+    }
+
+```
+
+
+### Manual Publish Acknowledgement
+
+By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLISH it receives, immediately after the `OnPublishReceivedHandler` callback returns. Manual publish acknowledgement gives you control over when that PUBACK is sent, allowing you to defer acknowledgement until after your application has fully processed the message. For example; after persisting it to a database or forwarding it to another service.
+
+To take manual control of the PUBACK, call `eventData.acquirePublishAcknowledgement()` **within** the `OnPublishReceivedHandler` callback. This returns a `ScopedResource<PublishAcknowledgementHandle>` that you can store and use later to send the PUBACK by calling `client->InvokePublishAcknowledgement()`.
+
+**Important constraints:**
+* `acquirePublishAcknowledgement()` must be called within the `OnPublishReceivedHandler` callback. Calling it after the callback returns will return `nullptr`.
+* This is only relevant for QoS 1 messages. For QoS 0 messages, `acquirePublishAcknowledgement()` returns `nullptr`.
+* If `acquirePublishAcknowledgement()` is not called (or returns `nullptr`), the client will automatically send the PUBACK when the callback returns.
+
+The following example shows how to acquire the acknowledgement handle within the callback and invoke it later:
+
+```cpp
+    // A shared location to store the acknowledgement handle for later use
+    Crt::ScopedResource<Mqtt5::PublishAcknowledgementHandle> pendingAck;
+
+    // Set the publish received callback on the builder
+    builder->WithPublishReceivedCallback(
+        [&pendingAck](const Mqtt5::PublishReceivedEventData &eventData) {
+            if (eventData.publishPacket == nullptr)
+                return;
+
+            fprintf(stdout, "Publish received on topic %s\n",
+                eventData.publishPacket->getTopic().c_str());
+
+            // Acquire manual control of the PUBACK for this QoS 1 message.
+            // This must be called within the callback. After the callback returns,
+            // acquirePublishAcknowledgement() will return nullptr.
+            pendingAck = eventData.acquirePublishAcknowledgement();
+
+            if (pendingAck == nullptr)
+            {
+                // QoS 0 message or acknowledgement already taken — nothing to do.
+                return;
+            }
+
+            // The PUBACK will NOT be sent automatically because we acquired the handle.
+        });
+
+    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+
+    // ... connect, subscribe, and receive messages ...
+
+    // After processing is complete, send the PUBACK by invoking the acknowledgement.
+    if (pendingAck != nullptr)
+    {
+        if (!client->InvokePublishAcknowledgement(pendingAck))
+        {
+            fprintf(stdout, "Failed to invoke publish acknowledgement.\n");
+        }
     }
 
 ```
