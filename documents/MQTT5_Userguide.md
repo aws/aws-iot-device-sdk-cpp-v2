@@ -24,7 +24,8 @@
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
-        - [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
+* [Advanced Operations and Settings](#advanced-operations-and-settings)
+    + [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
 * [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
@@ -758,9 +759,11 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
 ```
 
 
-### Manual Publish Acknowledgement
+# Advanced Operations and Settings
 
-By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLISH it receives, immediately after the `OnPublishReceivedHandler` callback returns. Manual publish acknowledgement gives you control over when that PUBACK is sent, allowing you to defer acknowledgement until after your application has fully processed the message. For example; after persisting it to a database or forwarding it to another service.
+## Manual Publish Acknowledgement
+
+By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLISH it receives, immediately after the `OnPublishReceivedHandler` callback returns. Manual publish acknowledgement gives you control over when that PUBACK is sent, allowing you to defer acknowledgement until after your application has fully processed the message — for example, after persisting it to a database or forwarding it to another service.
 
 To take manual control of the PUBACK, call `eventData.acquirePublishAcknowledgement()` **within** the `OnPublishReceivedHandler` callback. This returns a `ScopedResource<PublishAcknowledgementHandle>` that you can store and use later to send the PUBACK by calling `client->InvokePublishAcknowledgement()`.
 
