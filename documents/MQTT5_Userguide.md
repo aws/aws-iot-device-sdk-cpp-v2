@@ -24,9 +24,9 @@
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
+* [MQTT5 Best Practices](#mqtt5-best-practices)
 * [Advanced Operations and Settings](#advanced-operations-and-settings)
     + [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
-* [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
 
@@ -759,9 +759,9 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
 ```
 
 
-# Advanced Operations and Settings
+## Advanced Operations and Settings
 
-## Manual Publish Acknowledgement
+### Manual Publish Acknowledgement
 
 By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLISH it receives, immediately after the `OnPublishReceivedHandler` callback returns. Manual publish acknowledgement gives you control over when that PUBACK is sent, allowing you to defer acknowledgement until after your application has fully processed the message — for example, after persisting it to a database or forwarding it to another service.
 
@@ -769,6 +769,7 @@ To take manual control of the PUBACK, call `eventData.acquirePublishAcknowledgem
 
 **Important constraints:**
 * `acquirePublishAcknowledgement()` must be called within the `OnPublishReceivedHandler` callback. Calling it after the callback returns will return `nullptr`.
+* `acquirePublishAcknowledgement()` may only be called once per received PUBLISH. Subsequent calls return `nullptr`.
 * This is only relevant for QoS 1 messages. For QoS 0 messages, `acquirePublishAcknowledgement()` returns `nullptr`.
 * If `acquirePublishAcknowledgement()` is not called (or returns `nullptr`), the client will automatically send the PUBACK when the callback returns.
 
@@ -808,7 +809,7 @@ The following example shows how to acquire the acknowledgement handle within the
     // After processing is complete, send the PUBACK by invoking the acknowledgement.
     if (pendingAck != nullptr)
     {
-        if (!client->InvokePublishAcknowledgement(pendingAck))
+        if (!client->InvokePublishAcknowledgement(*pendingAck))
         {
             fprintf(stdout, "Failed to invoke publish acknowledgement.\n");
         }
