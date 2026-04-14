@@ -24,9 +24,9 @@
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
-* [MQTT5 Best Practices](#mqtt5-best-practices)
 * [Advanced Operations and Settings](#advanced-operations-and-settings)
     + [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
+* [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
 
@@ -768,7 +768,7 @@ By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLIS
 To take manual control of the PUBACK, call `eventData.acquirePublishAcknowledgement()` **within** the `OnPublishReceivedHandler` callback. This returns a `ScopedResource<PublishAcknowledgementHandle>` that you can store and use later to send the PUBACK by calling `client->InvokePublishAcknowledgement()`.
 
 **Important constraints:**
-* `acquirePublishAcknowledgement()` must be called within the `OnPublishReceivedHandler` callback. Calling it after the callback returns will return `nullptr`.
+* `acquirePublishAcknowledgement()` must be called within the `OnPublishReceivedHandler` callback. Calling it after the callback returns or from a different thread will return `nullptr`.
 * `acquirePublishAcknowledgement()` may only be called once per received PUBLISH. Subsequent calls return `nullptr`.
 * This is only relevant for QoS 1 messages. For QoS 0 messages, `acquirePublishAcknowledgement()` returns `nullptr`.
 * If `acquirePublishAcknowledgement()` is not called (or returns `nullptr`), the client will automatically send the PUBACK when the callback returns.
@@ -816,6 +816,14 @@ The following example shows how to acquire the acknowledgement handle within the
     }
 
 ```
+
+**AWS IoT broker redelivery behavior**
+
+The AWS IoT broker will periodically resend unacknowledged QoS 1 PUBLISH packets. These redeliveries should be treated as duplicates even if the DUP flag in the PUBLISH packet is not set. If `acquirePublishAcknowledgement()` is not called again for a redelivered packet, the acknowledgement will be sent automatically.
+
+**Session resumption after disconnect/reconnect**
+
+Upon a disconnect and reconnect of the MQTT5 client, if a session is resumed, any previously acquired `ScopedResource<PublishAcknowledgementHandle>` is void. The broker will resend the unacknowledged PUBLISH packet, and `acquirePublishAcknowledgement()` must be called again within the callback for that resent packet. If the resent packet is not handled for manual acknowledgement, the acknowledgement will be sent automatically.
 
 
 # MQTT5 Best Practices
