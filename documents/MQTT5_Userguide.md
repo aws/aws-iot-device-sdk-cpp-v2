@@ -24,6 +24,8 @@
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
+* [Advanced Operations and Settings](#advanced-operations-and-settings)
+    + [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
 * [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
@@ -755,6 +757,73 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     }
 
 ```
+
+
+## Advanced Operations and Settings
+
+### Manual Publish Acknowledgement
+
+By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLISH it receives, immediately after the `OnPublishReceivedHandler` callback returns. Manual publish acknowledgement gives you control over when that PUBACK is sent, allowing you to defer acknowledgement until after your application has fully processed the message — for example, after persisting it to a database or forwarding it to another service.
+
+To take manual control of the PUBACK, call `eventData.acquirePublishAcknowledgement()` **within** the `OnPublishReceivedHandler` callback. This returns a `ScopedResource<PublishAcknowledgementHandle>` that you can store and use later to send the PUBACK by calling `client->InvokePublishAcknowledgement()`.
+
+**Important constraints:**
+* `acquirePublishAcknowledgement()` must be called within the `OnPublishReceivedHandler` callback. Calling it after the callback returns or from a different thread will return `nullptr`.
+* `acquirePublishAcknowledgement()` may only be called once per received PUBLISH. Subsequent calls return `nullptr`.
+* This is only relevant for QoS 1 messages. For QoS 0 messages, `acquirePublishAcknowledgement()` returns `nullptr`.
+* If `acquirePublishAcknowledgement()` is not called (or returns `nullptr`), the client will automatically send the PUBACK when the callback returns.
+
+The following example shows how to acquire the acknowledgement handle within the callback and invoke it later:
+
+```cpp
+    // A shared location to store the acknowledgement handle for later use
+    Crt::ScopedResource<Mqtt5::PublishAcknowledgementHandle> pendingAck;
+
+    // Set the publish received callback on the builder
+    builder->WithPublishReceivedCallback(
+        [&pendingAck](const Mqtt5::PublishReceivedEventData &eventData) {
+            if (eventData.publishPacket == nullptr)
+                return;
+
+            fprintf(stdout, "Publish received on topic %s\n",
+                eventData.publishPacket->getTopic().c_str());
+
+            // Acquire manual control of the PUBACK for this QoS 1 message.
+            // This must be called within the callback. After the callback returns,
+            // acquirePublishAcknowledgement() will return nullptr.
+            pendingAck = eventData.acquirePublishAcknowledgement();
+
+            if (pendingAck == nullptr)
+            {
+                // QoS 0 message or acknowledgement already taken — nothing to do.
+                return;
+            }
+
+            // The PUBACK will NOT be sent automatically because we acquired the handle.
+        });
+
+    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+
+    // ... connect, subscribe, and receive messages ...
+
+    // After processing is complete, send the PUBACK by invoking the acknowledgement.
+    if (pendingAck != nullptr)
+    {
+        if (!client->InvokePublishAcknowledgement(*pendingAck))
+        {
+            fprintf(stdout, "Failed to invoke publish acknowledgement.\n");
+        }
+    }
+
+```
+
+**AWS IoT broker redelivery behavior**
+
+The AWS IoT broker will periodically resend unacknowledged QoS 1 PUBLISH packets. These redeliveries should be treated as duplicates even if the DUP flag in the PUBLISH packet is not set. If `acquirePublishAcknowledgement()` is not called again for a redelivered packet, the acknowledgement will be sent automatically.
+
+**Session resumption after disconnect/reconnect**
+
+Upon a disconnect and reconnect of the MQTT5 client, if a session is resumed, any previously acquired `ScopedResource<PublishAcknowledgementHandle>` is void. The broker will resend the unacknowledged PUBLISH packet, and `acquirePublishAcknowledgement()` must be called again within the callback for that resent packet. If the resent packet is not handled for manual acknowledgement, the acknowledgement will be sent automatically.
 
 
 # MQTT5 Best Practices

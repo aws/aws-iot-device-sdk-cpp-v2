@@ -24,6 +24,7 @@ The primary purpose of the AWS IoT Device SDK for C++ v2 is to simplify the proc
 * Integrated service clients for AWS IoT Core services
 * Secure device connections to AWS IoT Core using MQTT protocol including MQTT 5.0
 * Support for [multiple authentication methods and connection types](./documents/MQTT5_Userguide.md#connecting-to-aws-iot-core)
+* Support for [manual publish acknowledgement](./documents/MQTT5_Userguide.md#manual-publish-acknowledgement) for control over QoS 1 PUBACK delivery
 
 #### Supported AWS IoT Core services
 
