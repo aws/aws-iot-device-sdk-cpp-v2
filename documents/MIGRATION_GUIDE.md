@@ -100,26 +100,25 @@ std::shared_ptr<MqttClient>client = std::shared_ptr<MqttClient>(
                 mqtt_timeout,
                 /* disconnect handler */, nullptr,
                 /* reconnect handler */, nullptr,
-                /* resubscribe handler */, nullptr);
+                /* resubscribe handler */, nullptr));
 ```
 
 #### Example of creating a client in the v2 SDK
 
 The v2 SDK supports different connection types. Given the same input parameters as in the v1 example above,
-the most recommended method to create an MQTT5 client will be [NewMqtt5ClientBuilderWithMtlsFromPath](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#ab595bbc50e08b9d2f78f62e9efeafd65).
+the most recommended method to create an MQTT5 client will be [CreateMqtt5ClientBuilderWithMtlsFromPath](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a21c365a232be4447b21eb56cc55d4b62).
 
 ```cpp
 util::String clientEndpoint = "<prefix>-ats.iot.<region>.amazonaws.com";
 util::String certificateFile = "<certificate file>";  // X.509 based certificate file
 util::String privateKeyFile = "<private key file>";   // PEM encoded private key file
-uint32_t clientPort = <port number>
+uint32_t clientPort = <port number>;
 String client_id = "unique client id";
 
-std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
-            Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-                    clientEndpoint,
-                    certificateFile,
-                    privateKeyFile));
+std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder =
+        Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+                clientEndpoint, certificateFile.c_str(), privateKeyFile.c_str());
+
 std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
         Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
 util::String clientId = "client_id";
