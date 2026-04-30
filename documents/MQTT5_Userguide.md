@@ -408,7 +408,7 @@ If your custom authenticator does not use signing, you don't specify anything re
     customAuth.WithPassword(<Binary data value of the password field to be passed to the authorizer lambda>);
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomCustomAuthorizer(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithCustomAuthorizer(
         "<clientEndpoint>", customAuth);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
@@ -439,7 +439,7 @@ If your custom authorizer uses signing, you must specify the three signed token 
     customAuth.WithTokenSignature("<The signature of the custom authorizer>")
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomCustomAuthorizer(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithCustomAuthorizer(
         "<clientEndpoint>", customAuth);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
@@ -497,7 +497,7 @@ To create a MQTT5 builder configured for this connection, see the following code
     Aws::Iot::WebsocketConfig websocketConfig(<signing region>, provider);
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithWebsocket(
         "<clientEndpoint>", websocketConfig);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
@@ -526,7 +526,7 @@ store, rather than simply being files on disk. To create a MQTT5 builder configu
 ```cpp
     String windowsCertPath = "CurrentUser\\MY\\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6";
 
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWindowsCertStorePath(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithWindowsCertStorePath(
             "<clientEndpoint>", windowsCertPath);
 
     // Build Mqtt5Client
@@ -566,7 +566,7 @@ the private key for mutual TLS is stored on a PKCS#11 compatible smart card or H
     pkcs11Options.SetTokenLabel("<pkcs11_tokenLabel>");
     pkcs11Options.SetPrivateKeyObjectLabel("<pkcs11_privateKeyLabel>");
 
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs11(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsPkcs11(
 			"<endpoint>", pkcs11Options);
 
     builder->WithPort(8883);
@@ -591,7 +591,7 @@ To create a MQTT5 builder configured for this connection, see the following code
     testPkcs12Options.pkcs12_file = "<pkcs12_key>";
     testPkcs12Options.pkcs12_password = "<pkcs12_password>";
 
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs12(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsPkcs12(
         "<endpoint>", testPkcs12Options);
 
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
@@ -611,7 +611,7 @@ No matter what your connection transport or authentication method is, you may co
 
 ```cpp
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithXXXXX( ... );
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithXXXXX( ... );
 
     Http::HttpClientConnectionProxyOptions proxyOptions;
     proxyOptions.HostName = "<proxyHost>";

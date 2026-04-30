@@ -164,8 +164,8 @@ int main(int argc, char *argv[])
     customAuth.WithTokenKeyName(cmdData.authTokenKeyName.c_str());
     customAuth.WithTokenValue(cmdData.authTokenKeyValue.c_str());
 
-    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomAuthorizer(cmdData.endpoint, customAuth, DefaultAllocatorImplementation()));
+    auto builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithCustomAuthorizer(
+        cmdData.endpoint, customAuth, DefaultAllocatorImplementation());
 
     // Check if the builder setup correctly.
     if (builder == nullptr)

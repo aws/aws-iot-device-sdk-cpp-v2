@@ -618,7 +618,7 @@ except QOS0 publish packets in the offline queue on disconnect:
 
 ```cpp
 std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
-    Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(/* ... */));
+    Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(/* ... */));
 
 builder.WithOfflineQueueBehavior(
         Mqtt5::ClientOperationQueueBehaviorType::
