@@ -181,7 +181,7 @@ The MQTT5 client emits a set of events related to state and network status chang
         });
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (mqtt5Client == nullptr)
     {
@@ -263,7 +263,7 @@ Emitted once the client has shutdown any associated network connection and enter
         fprintf(stdout, "\n");
     });
 
-    std::shared_ptr<Aws::Crt::Mqtt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 ```
 
 
@@ -280,7 +280,7 @@ Invoking `start()` on the client will put it into an active state where it recur
      std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(...);
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (mqtt5Client == nullptr)
     {
