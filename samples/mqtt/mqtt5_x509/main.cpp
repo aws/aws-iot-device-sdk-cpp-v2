@@ -126,9 +126,8 @@ int main(int argc, char *argv[])
      * Create MQTT5 client builder using mutual TLS via X509 Certificate and Private Key,
      * The builder will be used to create the final client
      */
-    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
+    auto builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+        cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str());
 
     // Check if the builder setup correctly.
     if (builder == nullptr)

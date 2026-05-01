@@ -134,9 +134,8 @@ int main(int argc, char *argv[])
     Aws::Iot::WebsocketConfig websocketConfig(cmdData.signingRegion, provider);
 
     // Create a Client using Mqtt5ClientBuilder
-    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
-            cmdData.endpoint, websocketConfig));
+    auto builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithWebsocket(
+        cmdData.endpoint, websocketConfig);
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
