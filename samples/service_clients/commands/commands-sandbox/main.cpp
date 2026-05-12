@@ -6,6 +6,7 @@
 #include <aws/crt/UUID.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
+#include <aws/iotcommands/CommandExecutionResult.h>
 
 #include "command_stream_handler.h"
 
@@ -60,15 +61,19 @@ static void s_printHelp()
     fprintf(stdout, "  open-thing-stream <payload-format>\n");
     fprintf(stdout, "                   subscribe to a stream of command executions with a specified payload format\n");
     fprintf(stdout, "                   targeting the IoT Thing set on the application startup\n");
+    fprintf(stdout, "                   supported payload formats: json, cbor, or any other value for generic\n");
     fprintf(stdout, "  open-client-stream <payload-format>\n");
     fprintf(stdout, "                   subscribe to a stream of command executions with a specified payload format\n");
     fprintf(stdout, "                   targeting the MQTT client ID set on the application startup\n");
-    fprintf(stdout, "  update-command-execution <execution-id> <status> [<reason-code>] [<reason-description>]\n");
+    fprintf(stdout, "                   supported payload formats: json, cbor, or any other value for generic\n");
+    fprintf(stdout, "  update-command-execution <execution-id> <status> [reason-code=<value>] [reason-description=<value>] [result=<key:value;...>]\n");
     fprintf(stdout, "                   update status for specified command execution ID;\n");
     fprintf(stdout, "                   <status> can be one of the following:\n");
     fprintf(stdout, "                       IN_PROGRESS, SUCCEEDED, REJECTED, FAILED, TIMED_OUT\n");
-    fprintf(stdout, "                   <reason-code> and <reason-description> may be optionally provided for\n");
-    fprintf(stdout, "                       the REJECTED, FAILED, or TIMED_OUT statuses\n");
+    fprintf(stdout, "                   reason-code is required if reason-description is specified\n");
+    fprintf(stdout, "                   result format: key1:value1;key2:value2\n");
+    fprintf(stdout, "                       values of 'true'/'false' are treated as boolean, others as string\n");
+    fprintf(stdout, "                       use quotes for values with spaces: key:\"hello world\"\n");
     fprintf(stdout, "  list-streams     list all open streaming operations\n");
     fprintf(stdout, "  close-stream <stream-id>\n");
     fprintf(stdout, "                   close a specified stream;\n");
@@ -102,6 +107,76 @@ static void s_handleOpenStream(
     }
 }
 
+static Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult> s_parseResult(
+    const Aws::Crt::String &input)
+{
+    Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult> result;
+
+    size_t pos = 0;
+    while (pos < input.size())
+    {
+        auto colonPos = input.find(':', pos);
+        if (colonPos == Aws::Crt::String::npos)
+            break;
+
+        Aws::Crt::String key = input.substr(pos, colonPos - pos);
+        pos = colonPos + 1;
+
+        Aws::Crt::String value;
+        if (pos < input.size() && input[pos] == '"')
+        {
+            // Quoted value
+            pos++; // skip opening quote
+            auto closeQuote = input.find('"', pos);
+            if (closeQuote == Aws::Crt::String::npos)
+            {
+                value = input.substr(pos);
+                pos = input.size();
+            }
+            else
+            {
+                value = input.substr(pos, closeQuote - pos);
+                pos = closeQuote + 1;
+            }
+            // Skip semicolon after quoted value
+            if (pos < input.size() && input[pos] == ';')
+                pos++;
+        }
+        else
+        {
+            auto semiPos = input.find(';', pos);
+            if (semiPos == Aws::Crt::String::npos)
+            {
+                value = input.substr(pos);
+                pos = input.size();
+            }
+            else
+            {
+                value = input.substr(pos, semiPos - pos);
+                pos = semiPos + 1;
+            }
+        }
+
+        Aws::Iotcommands::CommandExecutionResult entry;
+        if (value == "true")
+        {
+            entry.B = true;
+        }
+        else if (value == "false")
+        {
+            entry.B = false;
+        }
+        else
+        {
+            entry.S = value;
+        }
+
+        result.emplace(std::move(key), std::move(entry));
+    }
+
+    return result;
+}
+
 static void s_handleUpdateCommandExecution(const Aws::Crt::String &params, ApplicationContext &context)
 {
     Aws::Crt::String paramCopy = params;
@@ -115,15 +190,47 @@ static void s_handleUpdateCommandExecution(const Aws::Crt::String &params, Appli
         return;
     }
 
-    // NOTE: For debug builds, invalid values will cause abort here.
     Aws::Iotcommands::CommandExecutionStatus status =
         Aws::Iotcommands::CommandExecutionStatusMarshaller::FromString(statusStr);
 
-    Aws::Crt::String reasonCode = s_nibbleNextToken(paramCopy);
-    Aws::Crt::String reasonDescription = paramCopy;
+    Aws::Crt::String reasonCode;
+    Aws::Crt::String reasonDescription;
+    Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult> result;
+
+    // Parse optional key=value arguments
+    while (!paramCopy.empty())
+    {
+        Aws::Crt::String token = s_nibbleNextToken(paramCopy);
+        auto eqPos = token.find('=');
+        if (eqPos == Aws::Crt::String::npos)
+            continue;
+
+        Aws::Crt::String key = token.substr(0, eqPos);
+        Aws::Crt::String value = token.substr(eqPos + 1);
+
+        if (key == "reason-code")
+        {
+            reasonCode = value;
+        }
+        else if (key == "reason-description")
+        {
+            reasonDescription = value;
+        }
+        else if (key == "result")
+        {
+            result = s_parseResult(value);
+        }
+    }
+
+    if (!reasonDescription.empty() && reasonCode.empty())
+    {
+        fprintf(stdout, "reason-code is required when reason-description is specified!\n\n");
+        s_printHelp();
+        return;
+    }
 
     context.commandStreamHandler->updateCommandExecutionStatus(
-        commandExecutionId, status, reasonCode, reasonDescription);
+        commandExecutionId, status, reasonCode, reasonDescription, result);
 }
 
 static void s_handleListStreams(ApplicationContext &context)
@@ -331,6 +438,7 @@ int main(int argc, char *argv[])
     auto commandStreamHandler = Aws::Crt::MakeShared<Aws::IotcommandsSample::CommandStreamHandler>(
         Aws::Crt::DefaultAllocatorImplementation(), std::move(commandClient));
 
+    // Establish connection
     protocolClient->Start();
     auto isConnected = connectedWaiter.get_future().get();
     connectedWaiter = {};
