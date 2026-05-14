@@ -26,6 +26,18 @@ namespace Aws
             {
                 val.StatusReason = doc.GetJsonObject("statusReason");
             }
+
+            if (doc.ValueExists("result"))
+            {
+                auto resultMap = doc.GetJsonObject("result");
+                val.Result = Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult>();
+                for (auto &resultMapMember : resultMap.GetAllObjects())
+                {
+                    Aws::Iotcommands::CommandExecutionResult resultMapValMember;
+                    resultMapValMember = resultMapMember.second.AsObject();
+                    val.Result->emplace(resultMapMember.first, std::move(resultMapValMember));
+                }
+            }
         }
 
         void UpdateCommandExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
@@ -42,6 +54,20 @@ namespace Aws
                 Aws::Crt::JsonObject jsonObject;
                 StatusReason->SerializeToObject(jsonObject);
                 object.WithObject("statusReason", std::move(jsonObject));
+            }
+
+            if (Result)
+            {
+                Aws::Crt::JsonObject resultMap;
+                for (auto &resultMapMember : *Result)
+                {
+                    Aws::Crt::JsonObject resultMapValMember;
+                    Aws::Crt::JsonObject jsonObject;
+                    resultMapMember.second.SerializeToObject(jsonObject);
+                    resultMapValMember.AsObject(std::move(jsonObject));
+                    resultMap.WithObject(resultMapMember.first, std::move(resultMapValMember));
+                }
+                object.WithObject("result", std::move(resultMap));
             }
         }
 
