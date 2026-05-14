@@ -144,6 +144,8 @@ static Aws::Crt::String s_extractValue(std::istringstream &stream)
 static Aws::Iotcommands::CommandExecutionResult s_makeResultEntry(const Aws::Crt::String &value)
 {
     Aws::Iotcommands::CommandExecutionResult entry;
+    // NOTE: CommandExecutionResult also supports binary data via the `Bin` member, which is not demonstrated in this
+    // sample.
     if (value == "true" || value == "false")
     {
         entry.B = (value == "true");

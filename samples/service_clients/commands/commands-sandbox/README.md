@@ -440,6 +440,9 @@ You can also provide a result with the update:
 update-command-execution <execution-id> IN_PROGRESS result=battery_ok:true;message:"doing something"
 ```
 
+> [!NOTE]
+> You can also pass binary data in the result field using the CommandExecutionResult::Bin member, which is not supported in this sample.
+
 Then this AWS CLI command
 ```shell
 aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID> --include-result
