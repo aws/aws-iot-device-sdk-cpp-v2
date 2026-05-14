@@ -58,13 +58,16 @@ API calls.
 Once connected, the sample supports the following commands:
 
 * open-thing-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
-targeting the IoT Thing set on the application startup
+targeting the IoT Thing set on the application startup. Supported payload formats: `json`, `cbor`, or any other value for `generic`.
 * open-client-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
-targeting the MQTT client ID set on the application startup
-* update-command-execution <execution-id> \<status> \[\<reason-code>] \[\<reason-description>] - update status for specified
+targeting the MQTT client ID set on the application startup. Supported payload formats: `json`, `cbor`, or any other value for `generic`.
+* update-command-execution <execution-id> \<status> [reason-code=\<value>] [reason-description=\<value>] [result=\<key:value;...>] - update status for specified
 execution ID;
   * status can be one of the following: IN_PROGRESS, SUCCEEDED, REJECTED, FAILED, TIMED_OUT
-  * reason-code and reason-description may be optionally provided for the REJECTED, FAILED, or TIMED_OUT statuses
+  * reason-code is required if reason-description is specified
+  * result format: `key1:value1;key2:value2`
+    * values of `true`/`false` are treated as boolean, others as string
+    * use quotes for values with spaces: `key:"hello world"`
 
 Miscellaneous
 * list-streams - list all open streaming operations
@@ -432,6 +435,11 @@ Take an AWS IoT command execution ID your sample received at the end of the prev
 update-command-execution <execution-id> IN_PROGRESS
 ```
 
+You can also provide a result with the update:
+```
+update-command-execution <execution-id> SUCCEEDED result=battery_ok:true;message:"all good"
+```
+
 Then this AWS CLI command
 ```shell
 aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID>
@@ -463,7 +471,11 @@ update-command-execution <execution-id> SUCCEEDED
 ```
 or
 ```
-update-command-execution <execution-id> FAILED SHORT_FAILURE_CODE A longer description
+update-command-execution <execution-id> SUCCEEDED result=status:"task complete";success:true
+```
+or
+```
+update-command-execution <execution-id> FAILED reason-code=SHORT_FAILURE_CODE reason-description="A longer description"
 ```
 
 will yield something like

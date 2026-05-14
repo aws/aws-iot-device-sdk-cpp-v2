@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#include "command_stream_handler.h"
+#include "CommandStreamHandler.h"
 
 #include <aws/crt/Api.h>
 #include <aws/iotcommands/CommandExecutionEvent.h>
