@@ -437,12 +437,12 @@ update-command-execution <execution-id> IN_PROGRESS
 
 You can also provide a result with the update:
 ```
-update-command-execution <execution-id> SUCCEEDED result=battery_ok:true;message:"all good"
+update-command-execution <execution-id> IN_PROGRESS result=battery_ok:true;message:"doing something"
 ```
 
 Then this AWS CLI command
 ```shell
-aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID>
+aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID> --include-result
 ```
 
 should return something like
@@ -453,6 +453,14 @@ should return something like
     "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
     "targetArn": "arn:aws:iot:...:thing/MyIotThing",
     "status": "IN_PROGRESS",
+    "result": {
+      "battery_ok": {
+        "B": true
+      },
+      "message": {
+        "S": "doing something"
+      }
+  },
     "executionTimeoutSeconds": 300
 }
 ```
@@ -471,11 +479,7 @@ update-command-execution <execution-id> SUCCEEDED
 ```
 or
 ```
-update-command-execution <execution-id> SUCCEEDED result=status:"task complete";success:true
-```
-or
-```
-update-command-execution <execution-id> FAILED reason-code=SHORT_FAILURE_CODE reason-description="A longer description"
+update-command-execution <execution-id> FAILED reason-code=SHORT_FAILURE_CODE reason-description="A longer description" result=status:"task complete";success:false
 ```
 
 will yield something like
@@ -516,6 +520,14 @@ which will yield
     "statusReason": {
         "reasonCode": "SHORT_FAILURE_CODE",
         "reasonDescription": "A longer description"
+    },
+    "result": {
+      "success": {
+        "B": false
+      },
+      "status": {
+        "S": "task complete"
+      }
     },
     "executionTimeoutSeconds": 300
 }
