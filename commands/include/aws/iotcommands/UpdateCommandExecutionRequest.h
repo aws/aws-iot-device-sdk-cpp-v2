@@ -6,6 +6,7 @@
  * This file is generated
  */
 
+#include <aws/iotcommands/CommandExecutionResult.h>
 #include <aws/iotcommands/CommandExecutionStatus.h>
 #include <aws/iotcommands/DeviceType.h>
 #include <aws/iotcommands/StatusReason.h>
@@ -65,6 +66,14 @@ namespace Aws
              *
              */
             Aws::Crt::Optional<Aws::Iotcommands::StatusReason> StatusReason;
+
+            /**
+             * The result value for the current state of the command execution. The status provides information about
+             * the progress of the command execution. The device can use the result field to share additional details
+             * about the execution such as a return value of a remote function call.
+             *
+             */
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult>> Result;
 
           private:
             static void LoadFromObject(UpdateCommandExecutionRequest &obj, const Crt::JsonView &doc);

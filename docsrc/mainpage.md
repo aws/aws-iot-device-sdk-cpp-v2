@@ -19,6 +19,7 @@ GitHub: [https://github.com/aws/aws-iot-device-sdk-cpp-v2](https://github.com/aw
 * [Iotjobs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html)
 * [Iotsecuretunneling](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotsecuretunneling.html)
 * [Iotshadow](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotshadow.html)
+* [Iotcommands](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotcommands.html)
 
 ## AWS Crt C++
 
