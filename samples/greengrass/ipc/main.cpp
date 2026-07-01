@@ -7,8 +7,6 @@
 
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
 
-#include "../../utils/CommandLineUtils.h"
-
 using namespace Aws::Crt;
 using namespace Aws::Greengrass;
 
@@ -22,12 +20,54 @@ int main(int argc, char *argv[])
     // Do the global initialization for the API.
     ApiHandle apiHandle;
 
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputGreengrassIPC(argc, argv, &apiHandle);
+    /* --------------------------------- ARGUMENT PARSING ----------------------------------------- */
+    struct CmdArgs
+    {
+        String topic = "test/topic";
+        String message = "Hello from Greengrass IPC";
+    };
+
+    auto printHelp = []() {
+        printf("Greengrass IPC Sample\n");
+        printf("options:\n");
+        printf("  --help        show this help message and exit\n");
+        printf("optional arguments:\n");
+        printf("  --topic       Topic (default: test/topic)\n");
+        printf("  --message     Message to publish (default: Hello from Greengrass IPC)\n");
+    };
+
+    auto parseArgs = [&](int argc, char *argv[]) -> CmdArgs {
+        CmdArgs args;
+        for (int i = 1; i < argc; i++)
+        {
+            if (strcmp(argv[i], "--help") == 0)
+            {
+                printHelp();
+                exit(0);
+            }
+            else if (i < argc - 1)
+            {
+                if (strcmp(argv[i], "--topic") == 0)
+                {
+                    args.topic = argv[++i];
+                }
+                else if (strcmp(argv[i], "--message") == 0)
+                {
+                    args.message = argv[++i];
+                }
+                else
+                {
+                    fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                    printHelp();
+                    exit(1);
+                }
+            }
+        }
+        return args;
+    };
+
+    CmdArgs cmdData = parseArgs(argc, argv);
+    /* --------------------------------- ARGUMENT PARSING END ----------------------------------------- */
 
     fprintf(stdout, "Running Greengrass IPC sample\n");
 
@@ -113,13 +153,13 @@ int main(int argc, char *argv[])
     auto subscribeOperation = client.NewSubscribeToIoTCore(streamHandler);
     SubscribeToIoTCoreRequest subscribeRequest;
     subscribeRequest.SetQos(QOS_AT_LEAST_ONCE);
-    subscribeRequest.SetTopicName(cmdData.input_topic);
+    subscribeRequest.SetTopicName(cmdData.topic);
 
-    fprintf(stdout, "Attempting to subscribe to %s topic\n", cmdData.input_topic.c_str());
+    fprintf(stdout, "Attempting to subscribe to %s topic\n", cmdData.topic.c_str());
     auto requestStatus = subscribeOperation->Activate(subscribeRequest).get();
     if (!requestStatus)
     {
-        fprintf(stderr, "Failed to send subscription request to %s topic\n", cmdData.input_topic.c_str());
+        fprintf(stderr, "Failed to send subscription request to %s topic\n", cmdData.topic.c_str());
         exit(-1);
     }
 
@@ -127,7 +167,7 @@ int main(int argc, char *argv[])
     auto subscribeResult = subscribeResultFuture.get();
     if (subscribeResult)
     {
-        fprintf(stdout, "Successfully subscribed to %s topic\n", cmdData.input_topic.c_str());
+        fprintf(stdout, "Successfully subscribed to %s topic\n", cmdData.topic.c_str());
     }
     else
     {
@@ -156,19 +196,19 @@ int main(int argc, char *argv[])
     // Publish to the same topic that is currently subscribed to.
     auto publishOperation = client.NewPublishToIoTCore();
     PublishToIoTCoreRequest publishRequest;
-    publishRequest.SetTopicName(cmdData.input_topic);
-    Vector<uint8_t> payload(cmdData.input_message.begin(), cmdData.input_message.end());
+    publishRequest.SetTopicName(cmdData.topic);
+    Vector<uint8_t> payload(cmdData.message.begin(), cmdData.message.end());
     publishRequest.SetPayload(payload);
     publishRequest.SetQos(QOS_AT_LEAST_ONCE);
 
-    fprintf(stdout, "Attempting to publish to %s topic\n", cmdData.input_topic.c_str());
+    fprintf(stdout, "Attempting to publish to %s topic\n", cmdData.topic.c_str());
     requestStatus = publishOperation->Activate(publishRequest).get();
     if (!requestStatus)
     {
         fprintf(
             stderr,
             "Failed to publish to %s topic with error %s\n",
-            cmdData.input_topic.c_str(),
+            cmdData.topic.c_str(),
             requestStatus.StatusToString().c_str());
         exit(-1);
     }
@@ -178,7 +218,7 @@ int main(int argc, char *argv[])
     auto publishResult = publishResultFuture.get();
     if (publishResult)
     {
-        fprintf(stdout, "Successfully published to %s topic\n", cmdData.input_topic.c_str());
+        fprintf(stdout, "Successfully published to %s topic\n", cmdData.topic.c_str());
         auto *response = publishResult.GetOperationResponse();
         (void)response;
     }

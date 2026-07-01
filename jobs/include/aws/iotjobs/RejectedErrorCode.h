@@ -76,5 +76,5 @@ namespace Aws
             AWS_IOTJOBS_API const char *ToString(RejectedErrorCode val);
             AWS_IOTJOBS_API RejectedErrorCode FromString(const Aws::Crt::String &val);
         } // namespace RejectedErrorCodeMarshaller
-    }     // namespace Iotjobs
+    } // namespace Iotjobs
 } // namespace Aws

@@ -1,5 +1,8 @@
 {
   "name": "aws-iot-device-sdk-cpp-v2",
+  "packages": [
+    "maven"
+  ],
   "!cmake_args": [
     "-DPERFORM_HEADER_CHECK=OFF",
     "-DS2N_NO_PQ_ASM=ON"
@@ -23,17 +26,41 @@
     "build",
     "build-samples"
   ],
+  "test_steps": [
+    "setup-eventstream-server",
+    "sdk-ci-prep",
+    "test"
+  ],
   "variants" : {
     "skip_sample": {
         "!build_steps": [
           "build"
         ]
     },
+    "tsan": {
+      "cmake_args": [
+        "-DENABLE_SANITIZERS=ON",
+        "-DSANITIZERS=thread"
+      ]
+    },
+    "asan": {
+      "cmake_args": [
+        "-DENABLE_SANITIZERS=ON",
+        "-DSANITIZERS=address,undefined"
+      ]
+    },
     "build_gg_samples_only": {
         "!build_steps": [
           "build",
           "build-gg-samples"
         ]
+    }
+  },
+  "targets" : {
+    "macos" : {
+      "!test_steps": [
+        "test"
+      ]
     }
   }
 }

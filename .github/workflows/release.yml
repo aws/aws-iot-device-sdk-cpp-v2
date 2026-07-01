@@ -19,7 +19,7 @@ on:
 
 jobs:
   update-version:
-    runs-on: ubuntu-20.04 # latest
+    runs-on: ubuntu-22.04 # latest
     permissions:
       contents: write # allow push
       pull-requests: write # allow making PR
@@ -33,20 +33,21 @@ jobs:
 
     - name: Make new release
       env:
-        Title: ${{ github.event.inputs.release_title }}
+        TITLE: ${{ github.event.inputs.release_title }}
+        RELEASE_TYPE: ${{ github.event.inputs.release_type }}
       run: |
         # Escape special characters
-        Title=$(echo ${Title//[\"]\\\"})
-        Title=$(echo ${Title//[\']\\\'})
-        Title=$(echo ${Title//[\$]})
+        TITLE=$(echo ${TITLE//[\"]\\\"})
+        TITLE=$(echo ${TITLE//[\']\\\'})
+        TITLE=$(echo ${TITLE//[\$]})
 
-        ./utils/publish-release.sh "${{ github.event.inputs.release_type }}" "$Title"
+        ./utils/publish-release.sh "$RELEASE_TYPE" "$TITLE"
 
     - name: Generate documentation
       run: |
-        echo "Compiling and installing doxygen 1.8.20 from source"
+        echo "Compiling and installing doxygen 1.17.0 from source"
         sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
-        git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
+        git clone https://github.com/doxygen/doxygen.git -b Release_1_17_0
         cd doxygen
         mkdir build
         cd build

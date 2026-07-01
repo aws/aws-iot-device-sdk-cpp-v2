@@ -100,27 +100,27 @@ std::shared_ptr<MqttClient>client = std::shared_ptr<MqttClient>(
                 mqtt_timeout,
                 /* disconnect handler */, nullptr,
                 /* reconnect handler */, nullptr,
-                /* resubscribe handler */, nullptr);
+                /* resubscribe handler */, nullptr));
 ```
 
 #### Example of creating a client in the v2 SDK
 
 The v2 SDK supports different connection types. Given the same input parameters as in the v1 example above,
-the most recommended method to create an MQTT5 client will be [NewMqtt5ClientBuilderWithMtlsFromPath](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#ab595bbc50e08b9d2f78f62e9efeafd65).
+the most recommended method to create an MQTT5 client will be [CreateMqtt5ClientBuilderWithMtlsFromPath](https://aws.github.io/aws-iot-device-sdk-cpp-v2/class_aws_1_1_iot_1_1_mqtt5_client_builder.html#a21c365a232be4447b21eb56cc55d4b62).
 
 ```cpp
 util::String clientEndpoint = "<prefix>-ats.iot.<region>.amazonaws.com";
 util::String certificateFile = "<certificate file>";  // X.509 based certificate file
 util::String privateKeyFile = "<private key file>";   // PEM encoded private key file
-uint32_t clientPort = <port number>
+uint32_t clientPort = <port number>;
 String client_id = "unique client id";
 
-std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
-            Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-                    clientEndpoint,
-                    certificateFile,
-                    privateKeyFile));
-std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
+std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder =
+        Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+                clientEndpoint, certificateFile.c_str(), privateKeyFile.c_str());
+
+std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
 util::String clientId = "client_id";
 connectOptions->WithClientId(clientId);
 builder->WithConnectOptions(connectOptions);
@@ -168,20 +168,20 @@ and other connection-related features.
 For more information, refer to the [Connecting To AWS IoT Core](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#connecting-to-aws-iot-core)
 section of the MQTT5 user guide for detailed information and code snippets on each connection type and connection feature.
 
-| Connection type/feature                                  | v1 SDK                                | v2 SDK                           | User guide |
-|----------------------------------------------------------|---------------------------------------|----------------------------------|:----------:|
-| MQTT over Secure WebSocket with AWS SigV4 authentication | $${\Large\color{green}&#10004}$$      | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-sigv4-authentication) |
-| MQTT with X.509 certificate based mutual authentication  | $${\Large\color{green}&#10004}$$      | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-x509-based-mutual-tls) |
-| Websocket Connection with Cognito Authentication Method  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-cognito) |
-| MQTT with PKCS12 Method                                  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs12-method) |
-| MQTT with Custom Authorizer Method                       | $${\Large\color{orange}&#10004\*}$$   | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-custom-authentication) |
-| MQTT with Windows Certificate Store Method               | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-windows-certificate-store-method) |
-| MQTT with PKCS11 Method                                  | $${\Large\color{red}&#10008}$$        | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs11-method) |
-| HTTP Proxy                                               | $${\Large\color{orange}&#10004\*\*}$$ | $${\Large\color{green}&#10004}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#adding-an-http-proxy) |
+| Connection type/feature                                  | v1 SDK                                            | v2 SDK                            | User guide |
+|----------------------------------------------------------|---------------------------------------------------|-----------------------------------|:----------:|
+| MQTT over Secure WebSocket with AWS SigV4 authentication | $${\Large\color{green}&#10004;}$$                 | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-sigv4-authentication) |
+| MQTT with X.509 certificate based mutual authentication  | $${\Large\color{green}&#10004;}$$                 | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-x509-based-mutual-tls) |
+| Websocket Connection with Cognito Authentication Method  | $${\Large\color{red}&#10008;}$$                   | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#mqtt-over-websockets-with-cognito) |
+| MQTT with PKCS12 Method                                  | $${\Large\color{red}&#10008;}$$                   | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs12-method) |
+| MQTT with Custom Authorizer Method                       | $${\Large\color{orange}&#10004;}$$<sup>\*</sup>   | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-custom-authentication) |
+| MQTT with Windows Certificate Store Method               | $${\Large\color{red}&#10008;}$$                   | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-windows-certificate-store-method) |
+| MQTT with PKCS11 Method                                  | $${\Large\color{red}&#10008;}$$                   | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#direct-mqtt-with-pkcs11-method) |
+| HTTP Proxy                                               | $${\Large\color{orange}&#10004;}$$<sup>\*\*</sup> | $${\Large\color{green}&#10004;}$$ | [link](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/documents/MQTT5_Userguide.md#adding-an-http-proxy) |
 
-${\Large\color{orange}&#10004\*}$ - To get this connection type work in the v1 SDK, you need to implement the
+${\Large\color{orange}&#10004;}$<sup>\*</sup> - To get this connection type work in the v1 SDK, you need to implement the
 [Custom Authentication workflow](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authorizer.html).\
-${\Large\color{orange}&#10004\*\*}$ - The v1 SDK does not allow specifying HTTP proxy, but it is possible to configure
+${\Large\color{orange}&#10004;}$<sup>\*\*</sup> - The v1 SDK does not allow specifying HTTP proxy, but it is possible to configure
 systemwide proxy.
 
 ### Lifecycle Events
@@ -365,8 +365,8 @@ rc = client->PublishAsync(Utf8String::Create("my/topic"),
 #### Example of publishing in the v2 SDK
 
 ```cpp
-std::shared_ptr<Mqtt5::PublishPacket> publish =
-        std::make_shared<Mqtt5::PublishPacket>(
+std::shared_ptr<Mqtt5::PublishPacket> publish = Aws::Crt::MakeShared<Mqtt5::PublishPacket>(
+                Aws::Crt::DefaultAllocatorImplementation(),
                 "my topic",
                 "hello",
                 Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
@@ -458,7 +458,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 Mqtt5::Subscription sub1("my/own/topic",
                          Mqtt5::QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
 std::shared_ptr<Mqtt5::SubscribePacket> subPacket =
-        std::make_shared<Mqtt5::SubscribePacket>();
+        Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
 subPacket->WithSubscription(std::move(sub1));
 
 auto onSubAck = [&](int error_code,
@@ -533,7 +533,7 @@ ResponseCode rc = client->UnsubscribeAsync(
 
 ```cpp
 std::shared_ptr<Mqtt5::UnsubscribePacket> unsub =
-        std::make_shared<Mqtt5::UnsubscribePacket>();
+        Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
 unsub->WithTopicFilter("my/topic");
 auto unsubAck = [&](int, std::shared_ptr<Mqtt5::UnSubAckPacket>) {
     /* callback */
@@ -618,7 +618,7 @@ except QOS0 publish packets in the offline queue on disconnect:
 
 ```cpp
 std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
-    Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(/* ... */));
+    Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(/* ... */));
 
 builder.WithOfflineQueueBehavior(
         Mqtt5::ClientOperationQueueBehaviorType::
@@ -1368,8 +1368,8 @@ samples.
 
 It's always helpful to look at a working example to see how new functionality works,
 to be able to tweak different options, to compare with existing code.
-For that reason, we implemented a [Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt5/mqtt5_pubsub)
-([source code](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_pubsub/main.cpp))
+For that reason, we implemented a [X509 Publish/Subscribe example](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/mqtt/mqtt5_x509)
+([source code](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt/mqtt5_x509/main.cpp))
 in the v2 SDK similar to a sample provided by the v1 SDK (see a corresponding
 [readme section](https://github.com/aws/aws-iot-device-sdk-cpp/blob/master/samples/README.md) and
 [source code](https://github.com/aws/aws-iot-device-sdk-cpp/blob/master/samples/PubSub/PubSub.cpp)).
@@ -1437,12 +1437,9 @@ method in PublishPacketBuilder class.
 
 **Shared Subscriptions**\
 Shared Subscriptions allow multiple clients to share a subscription to a topic and only one client
-will receive messages published to that topic using a random distribution.\
-For more information, see a [shared subscription sample](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/main/samples/mqtt5/mqtt5_shared_subscription/README.md)
-in the v2 SDK.
+will receive messages published to that topic using a random distribution.
 
 > [!NOTE]
 > AWS Iot Core supports Shared Subscriptions for both MQTT3 and MQTT5. For more information, see
 > [Shared Subscriptions](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html#mqtt5-shared-subscription)
 > from the AWS IoT Core developer guide
-

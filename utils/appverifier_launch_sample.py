@@ -24,7 +24,7 @@ def launchSample(sample_file, sample_region, sample_secret_endpoint, sample_secr
             SecretId=sample_secret_certificate)
         sample_private_key = secrets_client.get_secret_value(
             SecretId=sample_secret_private_key)
-    except Exception: # lgtm [py/catch-base-exception]
+    except Exception:  # lgtm [py/catch-base-exception]
         sys.exit("ERROR: Could not get secrets to launch sample!")
 
     current_folder = pathlib.Path(__file__).resolve()
@@ -41,7 +41,7 @@ def launchSample(sample_file, sample_region, sample_secret_endpoint, sample_secr
     print("Saved credentials to file...")
 
     print("Processing arguments...")
-    launch_arguments = []
+    launch_arguments = [sample_file]
     launch_arguments.append("--endpoint")
     launch_arguments.append(sample_endpoint)
     launch_arguments.append("--cert")

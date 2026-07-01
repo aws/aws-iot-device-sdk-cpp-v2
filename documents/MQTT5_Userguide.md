@@ -17,13 +17,15 @@
         - [Direct MQTT with Custom Authentication](#direct-mqtt-with-custom-authentication)
         - [MQTT over Websockets with Cognito](#mqtt-over-websockets-with-cognito)
         - [Direct MQTT with Windows Certificate Store Method](#direct-mqtt-with-windows-certificate-store-method)
-        - [Direct MQTT with PKCS11 Method](#direct-mqtt-with-pkcs11-method)
-        - [Direct MQTT with pkcs12 method](#direct-mqtt-with-pkcs12-method)
+        - [Direct MQTT with PKCS11 Method (Unix Only)](#direct-mqtt-with-pkcs11-method-unix-only)
+        - [Direct MQTT with pkcs12 method (macOS Only)](#direct-mqtt-with-pkcs12-method-macos-only)
     + [Adding an HTTP Proxy](#adding-an-http-proxy)
     + [Client Operations](#client-operations)
         - [Subscribe](#subscribe)
         - [Unsubscribe](#unsubscribe)
         - [Publish](#publish)
+* [Advanced Operations and Settings](#advanced-operations-and-settings)
+    + [Manual Publish Acknowledgement](#manual-publish-acknowledgement)
 * [MQTT5 Best Practices](#mqtt5-best-practices)
 
 # Introduction
@@ -79,7 +81,7 @@ Example:
     std::shared_ptr<Mqtt5Client> client = nullptr;
 
     // Create Mqtt5Client Builder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(...);
 
     // Setup lifecycle callbacks
     builder->WithClientConnectionSuccessCallback(
@@ -113,10 +115,10 @@ Once a MQTT5 client builder has been created, it is ready to make a [MQTT5 clien
 ```cpp
 
     // Create Mqtt5Client Builder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(...);
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (mqtt5Client == nullptr)
     {
@@ -140,7 +142,7 @@ The MQTT5 client emits a set of events related to state and network status chang
 ```cpp
 
     // Create Mqtt5Client Builder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(...);
 
 
     /* setup lifecycle event callbacks */
@@ -179,7 +181,7 @@ The MQTT5 client emits a set of events related to state and network status chang
         });
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (mqtt5Client == nullptr)
     {
@@ -251,7 +253,7 @@ Emitted once the client has shutdown any associated network connection and enter
 
 ```cpp
     // Create Mqtt5Client Builder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(...);
 
     builder->WithPublishReceivedCallback([](const Mqtt5::PublishReceivedEventData &eventData) {
         if (eventData.publishPacket == nullptr)
@@ -261,7 +263,7 @@ Emitted once the client has shutdown any associated network connection and enter
         fprintf(stdout, "\n");
     });
 
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 ```
 
 
@@ -275,10 +277,10 @@ Invoking `start()` on the client will put it into an active state where it recur
 ```cpp
 
     // Create Mqtt5Client Builder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(...);
+     std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(...);
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (mqtt5Client == nullptr)
     {
@@ -320,8 +322,9 @@ For X509 based mutual TLS, you can create a client where the certificate and pri
 
 ```cpp
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-        "<clientEndpoint>", "<certificateFilePath>", "<privateKeyFilePath>");
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder =
+        Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+            "<clientEndpoint>", "<certificateFilePath>", "<privateKeyFilePath>");
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -329,7 +332,7 @@ For X509 based mutual TLS, you can create a client where the certificate and pri
     */
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 
     if (client == nullptr)
     {
@@ -367,8 +370,9 @@ If the default credentials provider chain and AWS region are specified, you do n
     Aws::Iot::WebsocketConfig websocketConfig(<signing region>, provider);
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
-        "<clientEndpoint>", websocketConfig);
+    std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder =
+        Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithWebsocket(
+            "<clientEndpoint>", websocketConfig);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
     ** Once the the client get built, you could no longer update the client options or connection options
@@ -376,7 +380,7 @@ If the default credentials provider chain and AWS region are specified, you do n
     */
 
     // Build Mqtt5Client
-    std::shared_ptr<Aws::Crt::Mqtt5Client> mqtt5Client = builder->Build();
+    std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
 
     if (mqtt5Client == nullptr)
     {
@@ -404,7 +408,7 @@ If your custom authenticator does not use signing, you don't specify anything re
     customAuth.WithPassword(<Binary data value of the password field to be passed to the authorizer lambda>);
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomCustomAuthorizer(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithCustomAuthorizer(
         "<clientEndpoint>", customAuth);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
@@ -435,7 +439,7 @@ If your custom authorizer uses signing, you must specify the three signed token 
     customAuth.WithTokenSignature("<The signature of the custom authorizer>")
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithCustomCustomAuthorizer(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithCustomAuthorizer(
         "<clientEndpoint>", customAuth);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
@@ -493,7 +497,7 @@ To create a MQTT5 builder configured for this connection, see the following code
     Aws::Iot::WebsocketConfig websocketConfig(<signing region>, provider);
 
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWebsocket(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithWebsocket(
         "<clientEndpoint>", websocketConfig);
 
     /* You can setup other client options and lifecycle event callbacks before call builder->Build().
@@ -522,7 +526,7 @@ store, rather than simply being files on disk. To create a MQTT5 builder configu
 ```cpp
     String windowsCertPath = "CurrentUser\\MY\\A11F8A9B5DF5B98BA3508FBCA575D09570E0D2C6";
 
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithWindowsCertStorePath(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithWindowsCertStorePath(
             "<clientEndpoint>", windowsCertPath);
 
     // Build Mqtt5Client
@@ -543,7 +547,7 @@ store, rather than simply being files on disk. To create a MQTT5 builder configu
 Note: This is the primary way to use HSM/TPMs on Windows.
 Note: Windows Certificate Store connection support is only available on Windows devices.
 
-### Direct MQTT with PKCS11 Method
+### Direct MQTT with PKCS11 Method (Unix Only)
 
 A MQTT5 direct connection can be made using a PKCS11 device rather than using a PEM encoded private key,
 the private key for mutual TLS is stored on a PKCS#11 compatible smart card or Hardware Security Module (HSM).
@@ -562,7 +566,7 @@ the private key for mutual TLS is stored on a PKCS#11 compatible smart card or H
     pkcs11Options.SetTokenLabel("<pkcs11_tokenLabel>");
     pkcs11Options.SetPrivateKeyObjectLabel("<pkcs11_privateKeyLabel>");
 
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs11(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsPkcs11(
 			"<endpoint>", pkcs11Options);
 
     builder->WithPort(8883);
@@ -579,7 +583,7 @@ the private key for mutual TLS is stored on a PKCS#11 compatible smart card or H
 ```
 Note: Currently, TLS integration with PKCS#11 is only available on Unix devices.
 
-### Direct MQTT with PKCS12 Method
+### Direct MQTT with PKCS12 Method (macOS Only)
 A MQTT5 direct connection can be made using a PKCS12 file rather than using a PEM encoded private key.
 To create a MQTT5 builder configured for this connection, see the following code:
 ```cpp
@@ -587,7 +591,7 @@ To create a MQTT5 builder configured for this connection, see the following code
     testPkcs12Options.pkcs12_file = "<pkcs12_key>";
     testPkcs12Options.pkcs12_password = "<pkcs12_password>";
 
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs12(
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsPkcs12(
         "<endpoint>", testPkcs12Options);
 
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client = builder->Build();
@@ -607,7 +611,7 @@ No matter what your connection transport or authentication method is, you may co
 
 ```cpp
     // Create a Client using Mqtt5ClientBuilder
-    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithXXXXX( ... );
+    Aws::Iot::Mqtt5ClientBuilder *builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithXXXXX( ... );
 
     Http::HttpClientConnectionProxyOptions proxyOptions;
     proxyOptions.HostName = "<proxyHost>";
@@ -657,8 +661,10 @@ The Subscribe operation takes a description of the SUBSCRIBE packet you wish to 
     subscriptionList.push_back(data2);
     subscriptionList.push_back(data3);
 
-    // Creaet a SubscribePacket with the subscription list. You can also use packet->WithSubscription(subscription) to push_back a single subscription data.
-    std::shared_ptr<Mqtt5::SubscribePacket> packet = std::make_shared<SubscribePacket>();
+    // Create a SubscribePacket with the subscription list. You can also use packet->WithSubscription(subscription)
+    // to push_back a single subscription data.
+    std::shared_ptr<Mqtt5::SubscribePacket> packet =
+            Aws::Crt::MakeShared<Mqtt5::SubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
     packet->WithSubscriptions(subscriptionList);
 
     bool subSuccess = mqtt5Client->Subscribe(
@@ -692,7 +698,8 @@ The Unsubscribe operation takes a description of the UNSUBSCRIBE packet you wish
     Vector<String> topics;
     topics.push_back(topic1);
     topics.push_back(topic2);
-    std::shared_ptr<UnsubscribePacket> unsub = std::make_shared<UnsubscribePacket>();
+    std::shared_ptr<UnsubscribePacket> unsub =
+            Aws::Crt::MakeShared<Mqtt5::UnsubscribePacket>(Aws::Crt::DefaultAllocatorImplementation());
     unsub->WithTopicFilters(topics);
     bool unsubSuccess = mqtt5Client->Unsubscribe(
         packet,
@@ -727,7 +734,11 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     ByteCursor payload = ByteCursorFromString(message_string);
 
     // Create PublishPacket.
-    std::shared_ptr<PublishPacket> publish = std::make_shared<PublishPacket>(testTopic, payload, QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
+    std::shared_ptr<PublishPacket> publish = Aws::Crt::MakeShared<PublishPacket>(
+            Aws::Crt::DefaultAllocatorImplementation(),
+            testTopic,
+            payload,
+            QOS::AWS_MQTT5_QOS_AT_LEAST_ONCE);
 
     // Setup publish completion callback. The callback will get triggered when the pulbish completes and publish result returned from the server
     OnPublishCompletionHandler callback = [](int, std::shared_ptr<PublishResult> result){
@@ -748,6 +759,73 @@ If the PUBLISH was a QoS 1 publish, then the completion callback returns a PubAc
     }
 
 ```
+
+
+## Advanced Operations and Settings
+
+### Manual Publish Acknowledgement
+
+By default, the MQTT5 client automatically sends a PUBACK for every QoS 1 PUBLISH it receives, immediately after the `OnPublishReceivedHandler` callback returns. Manual publish acknowledgement gives you control over when that PUBACK is sent, allowing you to defer acknowledgement until after your application has fully processed the message — for example, after persisting it to a database or forwarding it to another service.
+
+To take manual control of the PUBACK, call `eventData.acquirePublishAcknowledgement()` **within** the `OnPublishReceivedHandler` callback. This returns a `ScopedResource<PublishAcknowledgementHandle>` that you can store and use later to send the PUBACK by calling `client->InvokePublishAcknowledgement()`.
+
+**Important constraints:**
+* `acquirePublishAcknowledgement()` must be called within the `OnPublishReceivedHandler` callback. Calling it after the callback returns or from a different thread will return `nullptr`.
+* `acquirePublishAcknowledgement()` may only be called once per received PUBLISH. Subsequent calls return `nullptr`.
+* This is only relevant for QoS 1 messages. For QoS 0 messages, `acquirePublishAcknowledgement()` returns `nullptr`.
+* If `acquirePublishAcknowledgement()` is not called (or returns `nullptr`), the client will automatically send the PUBACK when the callback returns.
+
+The following example shows how to acquire the acknowledgement handle within the callback and invoke it later:
+
+```cpp
+    // A shared location to store the acknowledgement handle for later use
+    Crt::ScopedResource<Mqtt5::PublishAcknowledgementHandle> pendingAck;
+
+    // Set the publish received callback on the builder
+    builder->WithPublishReceivedCallback(
+        [&pendingAck](const Mqtt5::PublishReceivedEventData &eventData) {
+            if (eventData.publishPacket == nullptr)
+                return;
+
+            fprintf(stdout, "Publish received on topic %s\n",
+                eventData.publishPacket->getTopic().c_str());
+
+            // Acquire manual control of the PUBACK for this QoS 1 message.
+            // This must be called within the callback. After the callback returns,
+            // acquirePublishAcknowledgement() will return nullptr.
+            pendingAck = eventData.acquirePublishAcknowledgement();
+
+            if (pendingAck == nullptr)
+            {
+                // QoS 0 message or acknowledgement already taken — nothing to do.
+                return;
+            }
+
+            // The PUBACK will NOT be sent automatically because we acquired the handle.
+        });
+
+    std::shared_ptr<Aws::Crt::Mqtt5Client> client = builder->Build();
+
+    // ... connect, subscribe, and receive messages ...
+
+    // After processing is complete, send the PUBACK by invoking the acknowledgement.
+    if (pendingAck != nullptr)
+    {
+        if (!client->InvokePublishAcknowledgement(*pendingAck))
+        {
+            fprintf(stdout, "Failed to invoke publish acknowledgement.\n");
+        }
+    }
+
+```
+
+**AWS IoT broker redelivery behavior**
+
+The AWS IoT broker will periodically resend unacknowledged QoS 1 PUBLISH packets. These redeliveries should be treated as duplicates even if the DUP flag in the PUBLISH packet is not set. If `acquirePublishAcknowledgement()` is not called again for a redelivered packet, the acknowledgement will be sent automatically.
+
+**Session resumption after disconnect/reconnect**
+
+Upon a disconnect and reconnect of the MQTT5 client, if a session is resumed, any previously acquired `ScopedResource<PublishAcknowledgementHandle>` is void. The broker will resend the unacknowledged PUBLISH packet, and `acquirePublishAcknowledgement()` must be called again within the callback for that resent packet. If the resent packet is not handled for manual acknowledgement, the acknowledgement will be sent automatically.
 
 
 # MQTT5 Best Practices

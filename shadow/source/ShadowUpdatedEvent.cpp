@@ -55,7 +55,10 @@ namespace Aws
             }
         }
 
-        ShadowUpdatedEvent::ShadowUpdatedEvent(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        ShadowUpdatedEvent::ShadowUpdatedEvent(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         ShadowUpdatedEvent &ShadowUpdatedEvent::operator=(const Crt::JsonView &doc)
         {

@@ -23,10 +23,6 @@
         {
             "name": "--thing_name",
             "data": "ServiceTest_Jobs_$INPUT_UUID"
-        },
-        {
-            "name": "--job_id",
-            "data": "1"
         }
     ]
 }

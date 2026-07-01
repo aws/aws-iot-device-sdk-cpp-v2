@@ -61,7 +61,10 @@ namespace Aws
             }
         }
 
-        ErrorResponse::ErrorResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        ErrorResponse::ErrorResponse(const Crt::JsonView &doc)
+        {
+            LoadFromObject(*this, doc);
+        }
 
         ErrorResponse &ErrorResponse::operator=(const Crt::JsonView &doc)
         {

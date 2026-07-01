@@ -164,11 +164,20 @@ namespace Aws
             return true;
         }
 
-        const Crt::Optional<Crt::ByteCursor> &Message::getPayload() const noexcept { return m_payload; }
+        const Crt::Optional<Crt::ByteCursor> &Message::getPayload() const noexcept
+        {
+            return m_payload;
+        }
 
-        const Crt::Optional<Crt::ByteCursor> &Message::getServiceId() const noexcept { return m_serviceId; }
+        const Crt::Optional<Crt::ByteCursor> &Message::getServiceId() const noexcept
+        {
+            return m_serviceId;
+        }
 
-        const uint32_t &Message::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &Message::getConnectionId() const noexcept
+        {
+            return m_connectionId;
+        }
 
         Message::~Message()
         {
@@ -193,9 +202,15 @@ namespace Aws
             m_messageType = aws_byte_cursor_from_buf(&m_messageTypeStorage);
         }
 
-        const Crt::ByteCursor &SendMessageCompleteData::getMessageType() const noexcept { return m_messageType; }
+        const Crt::ByteCursor &SendMessageCompleteData::getMessageType() const noexcept
+        {
+            return m_messageType;
+        }
 
-        SendMessageCompleteData::~SendMessageCompleteData() { aws_byte_buf_clean_up(&m_messageTypeStorage); }
+        SendMessageCompleteData::~SendMessageCompleteData()
+        {
+            aws_byte_buf_clean_up(&m_messageTypeStorage);
+        }
 
         //***********************************************************************************************************************
         /*                                              ConnectionData */
@@ -215,9 +230,18 @@ namespace Aws
             setPacketByteBufOptional(m_serviceId3, m_serviceId3Storage, m_allocator, connection.service_id_3);
         }
 
-        const Crt::Optional<Crt::ByteCursor> &ConnectionData::getServiceId1() const noexcept { return m_serviceId1; }
-        const Crt::Optional<Crt::ByteCursor> &ConnectionData::getServiceId2() const noexcept { return m_serviceId2; }
-        const Crt::Optional<Crt::ByteCursor> &ConnectionData::getServiceId3() const noexcept { return m_serviceId3; }
+        const Crt::Optional<Crt::ByteCursor> &ConnectionData::getServiceId1() const noexcept
+        {
+            return m_serviceId1;
+        }
+        const Crt::Optional<Crt::ByteCursor> &ConnectionData::getServiceId2() const noexcept
+        {
+            return m_serviceId2;
+        }
+        const Crt::Optional<Crt::ByteCursor> &ConnectionData::getServiceId3() const noexcept
+        {
+            return m_serviceId3;
+        }
 
         ConnectionData::~ConnectionData()
         {
@@ -241,11 +265,20 @@ namespace Aws
             m_connectionId = message.connection_id;
         }
 
-        const Crt::Optional<Crt::ByteCursor> &StreamStartedData::getServiceId() const noexcept { return m_serviceId; }
+        const Crt::Optional<Crt::ByteCursor> &StreamStartedData::getServiceId() const noexcept
+        {
+            return m_serviceId;
+        }
 
-        const uint32_t &StreamStartedData::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &StreamStartedData::getConnectionId() const noexcept
+        {
+            return m_connectionId;
+        }
 
-        StreamStartedData::~StreamStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+        StreamStartedData::~StreamStartedData()
+        {
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+        }
 
         //***********************************************************************************************************************
         /*                                              StreamStoppedData */
@@ -261,9 +294,15 @@ namespace Aws
             setPacketByteBufOptional(m_serviceId, m_serviceIdStorage, m_allocator, message.service_id);
         }
 
-        const Crt::Optional<Crt::ByteCursor> &StreamStoppedData::getServiceId() const noexcept { return m_serviceId; }
+        const Crt::Optional<Crt::ByteCursor> &StreamStoppedData::getServiceId() const noexcept
+        {
+            return m_serviceId;
+        }
 
-        StreamStoppedData::~StreamStoppedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+        StreamStoppedData::~StreamStoppedData()
+        {
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+        }
 
         //***********************************************************************************************************************
         /*                                              ConnectionStartedData */
@@ -285,9 +324,15 @@ namespace Aws
             return m_serviceId;
         }
 
-        const uint32_t &ConnectionStartedData::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &ConnectionStartedData::getConnectionId() const noexcept
+        {
+            return m_connectionId;
+        }
 
-        ConnectionStartedData::~ConnectionStartedData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+        ConnectionStartedData::~ConnectionStartedData()
+        {
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+        }
 
         //***********************************************************************************************************************
         /*                                              ConnectionResetData */
@@ -304,11 +349,20 @@ namespace Aws
             m_connectionId = message.connection_id;
         }
 
-        const Crt::Optional<Crt::ByteCursor> &ConnectionResetData::getServiceId() const noexcept { return m_serviceId; }
+        const Crt::Optional<Crt::ByteCursor> &ConnectionResetData::getServiceId() const noexcept
+        {
+            return m_serviceId;
+        }
 
-        const uint32_t &ConnectionResetData::getConnectionId() const noexcept { return m_connectionId; }
+        const uint32_t &ConnectionResetData::getConnectionId() const noexcept
+        {
+            return m_connectionId;
+        }
 
-        ConnectionResetData::~ConnectionResetData() { aws_byte_buf_clean_up(&m_serviceIdStorage); }
+        ConnectionResetData::~ConnectionResetData()
+        {
+            aws_byte_buf_clean_up(&m_serviceIdStorage);
+        }
 
         //***********************************************************************************************************************
         /*                                          SecureTunnelBuilder */
@@ -558,6 +612,7 @@ namespace Aws
             m_OnDataReceive = std::move(onDataReceive);
             m_OnStreamStarted = std::move(onStreamStarted);
             m_OnStreamStart = std::move(onStreamStart);
+            m_OnStreamStopped = std::move(onStreamStopped);
             m_OnStreamReset = std::move(onStreamReset);
             m_OnConnectionStarted = std::move(onConnectionStarted);
             m_OnConnectionReset = std::move(onConnectionReset);
@@ -785,7 +840,10 @@ namespace Aws
             return *this;
         }
 
-        bool SecureTunnel::IsValid() { return m_secure_tunnel ? true : false; }
+        bool SecureTunnel::IsValid()
+        {
+            return m_secure_tunnel ? true : false;
+        }
 
         int SecureTunnel::Start()
         {
@@ -796,19 +854,28 @@ namespace Aws
             return aws_secure_tunnel_start(m_secure_tunnel);
         }
 
-        int SecureTunnel::Stop() { return aws_secure_tunnel_stop(m_secure_tunnel); }
+        int SecureTunnel::Stop()
+        {
+            return aws_secure_tunnel_stop(m_secure_tunnel);
+        }
 
         /* Deprecated - Use Start() */
-        int SecureTunnel::Connect() { return Start(); }
+        int SecureTunnel::Connect()
+        {
+            return Start();
+        }
 
         /* Deprecated - Use Stop() */
-        int SecureTunnel::Close() { return Stop(); }
+        int SecureTunnel::Close()
+        {
+            return Stop();
+        }
 
         /* Deprecated - Use SendMessage() */
         int SecureTunnel::SendData(const Crt::ByteCursor &data)
         {
             // return SendData("", data);
-            std::shared_ptr<Message> message = std::make_shared<Message>(data);
+            std::shared_ptr<Message> message = Aws::Crt::MakeShared<Message>(m_allocator, data);
             return SendMessage(message);
         }
 
@@ -824,9 +891,18 @@ namespace Aws
             return aws_secure_tunnel_send_message(m_secure_tunnel, &message);
         }
 
-        int SecureTunnel::SendStreamStart() { return SendStreamStart(""); }
-        int SecureTunnel::SendStreamStart(std::string serviceId) { return SendStreamStart(serviceId, 0); }
-        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId) { return SendStreamStart(serviceId, 0); }
+        int SecureTunnel::SendStreamStart()
+        {
+            return SendStreamStart("");
+        }
+        int SecureTunnel::SendStreamStart(std::string serviceId)
+        {
+            return SendStreamStart(serviceId, 0);
+        }
+        int SecureTunnel::SendStreamStart(Crt::ByteCursor serviceId)
+        {
+            return SendStreamStart(serviceId, 0);
+        }
         int SecureTunnel::SendStreamStart(std::string serviceId, uint32_t connectionId)
         {
             struct aws_byte_cursor service_id_cur;
@@ -850,7 +926,10 @@ namespace Aws
             return aws_secure_tunnel_stream_start(m_secure_tunnel, &messageView);
         }
 
-        int SecureTunnel::SendConnectionStart(uint32_t connectionId) { return SendConnectionStart("", connectionId); }
+        int SecureTunnel::SendConnectionStart(uint32_t connectionId)
+        {
+            return SendConnectionStart("", connectionId);
+        }
 
         int SecureTunnel::SendConnectionStart(std::string serviceId, uint32_t connectionId)
         {
@@ -872,9 +951,15 @@ namespace Aws
             return aws_secure_tunnel_connection_start(m_secure_tunnel, &messageView);
         }
 
-        int SecureTunnel::SendStreamReset() { return aws_secure_tunnel_stream_reset(m_secure_tunnel, NULL); }
+        int SecureTunnel::SendStreamReset()
+        {
+            return aws_secure_tunnel_stream_reset(m_secure_tunnel, NULL);
+        }
 
-        aws_secure_tunnel *SecureTunnel::GetUnderlyingHandle() { return m_secure_tunnel; }
+        aws_secure_tunnel *SecureTunnel::GetUnderlyingHandle()
+        {
+            return m_secure_tunnel;
+        }
 
         void SecureTunnel::s_OnConnectionComplete(
             const struct aws_secure_tunnel_connection_view *connection,
@@ -888,8 +973,8 @@ namespace Aws
                 /* Check for full callback */
                 if (secureTunnel->m_OnConnectionSuccess)
                 {
-                    std::shared_ptr<ConnectionData> packet =
-                        std::make_shared<ConnectionData>(*connection, secureTunnel->m_allocator);
+                    std::shared_ptr<ConnectionData> packet = Aws::Crt::MakeShared<ConnectionData>(
+                        secureTunnel->m_allocator, *connection, secureTunnel->m_allocator);
                     ConnectionSuccessEventData eventData;
                     eventData.connectionData = packet;
                     secureTunnel->m_OnConnectionSuccess(secureTunnel, eventData);
@@ -930,8 +1015,8 @@ namespace Aws
 
             if (secureTunnel->m_OnSendMessageComplete)
             {
-                std::shared_ptr<SendMessageCompleteData> packet =
-                    std::make_shared<SendMessageCompleteData>(type, secureTunnel->m_allocator);
+                std::shared_ptr<SendMessageCompleteData> packet = Aws::Crt::MakeShared<SendMessageCompleteData>(
+                    secureTunnel->m_allocator, type, secureTunnel->m_allocator);
                 SendMessageCompleteEventData eventData;
                 eventData.sendMessageCompleteData = packet;
                 secureTunnel->m_OnSendMessageComplete(secureTunnel, error_code, eventData);
@@ -955,8 +1040,8 @@ namespace Aws
                     /* V2 Protocol API */
                     if (secureTunnel->m_OnMessageReceived != nullptr)
                     {
-                        std::shared_ptr<Message> packet =
-                            std::make_shared<Message>(*message, secureTunnel->m_allocator);
+                        std::shared_ptr<Message> packet = Aws::Crt::MakeShared<Message>(
+                            secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                         MessageReceivedEventData eventData;
                         eventData.message = packet;
                         secureTunnel->m_OnMessageReceived(secureTunnel, eventData);
@@ -997,8 +1082,8 @@ namespace Aws
             {
                 if (secureTunnel->m_OnStreamStarted)
                 {
-                    std::shared_ptr<StreamStartedData> packet =
-                        std::make_shared<StreamStartedData>(*message, secureTunnel->m_allocator);
+                    std::shared_ptr<StreamStartedData> packet = Aws::Crt::MakeShared<StreamStartedData>(
+                        secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                     StreamStartedEventData eventData;
                     eventData.streamStartedData = packet;
                     secureTunnel->m_OnStreamStarted(secureTunnel, error_code, eventData);
@@ -1024,8 +1109,8 @@ namespace Aws
 
             if (secureTunnel->m_OnStreamStopped)
             {
-                std::shared_ptr<StreamStoppedData> packet =
-                    std::make_shared<StreamStoppedData>(*message, secureTunnel->m_allocator);
+                std::shared_ptr<StreamStoppedData> packet = Aws::Crt::MakeShared<StreamStoppedData>(
+                    secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                 StreamStoppedEventData eventData;
                 eventData.streamStoppedData = packet;
                 secureTunnel->m_OnStreamStopped(secureTunnel, eventData);
@@ -1049,8 +1134,8 @@ namespace Aws
             {
                 if (secureTunnel->m_OnConnectionStarted)
                 {
-                    std::shared_ptr<ConnectionStartedData> packet =
-                        std::make_shared<ConnectionStartedData>(*message, secureTunnel->m_allocator);
+                    std::shared_ptr<ConnectionStartedData> packet = Aws::Crt::MakeShared<ConnectionStartedData>(
+                        secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                     ConnectionStartedEventData eventData;
                     eventData.connectionStartedData = packet;
                     secureTunnel->m_OnConnectionStarted(secureTunnel, error_code, eventData);
@@ -1068,8 +1153,8 @@ namespace Aws
 
             if (secureTunnel->m_OnConnectionReset)
             {
-                std::shared_ptr<ConnectionResetData> packet =
-                    std::make_shared<ConnectionResetData>(*message, secureTunnel->m_allocator);
+                std::shared_ptr<ConnectionResetData> packet = Aws::Crt::MakeShared<ConnectionResetData>(
+                    secureTunnel->m_allocator, *message, secureTunnel->m_allocator);
                 ConnectionResetEventData eventData;
                 eventData.connectionResetData = packet;
                 secureTunnel->m_OnConnectionReset(secureTunnel, error_code, eventData);
@@ -1096,6 +1181,9 @@ namespace Aws
             }
         }
 
-        void SecureTunnel::Shutdown() { Stop(); }
+        void SecureTunnel::Shutdown()
+        {
+            Stop();
+        }
     } // namespace Iotsecuretunneling
 } // namespace Aws

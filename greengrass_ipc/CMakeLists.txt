@@ -1,24 +1,11 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9...3.31)
 
-project(GreengrassIpc-cpp LANGUAGES CXX)
-if (DEFINED SIMPLE_VERSION)
-    message("GreengrassIpc version is ${SIMPLE_VERSION}")
-    set(PROJECT_VERSION ${SIMPLE_VERSION})
-endif()
+project(GreengrassIpc-cpp LANGUAGES CXX VERSION ${SIMPLE_VERSION})
 
-set(RUNTIME_DIRECTORY bin)
-
-if (UNIX AND NOT APPLE)
-    include(GNUInstallDirs)
-elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-    set(CMAKE_INSTALL_LIBDIR "lib")
-
-    if (${CMAKE_INSTALL_LIBDIR} STREQUAL "lib64")
-        set(FIND_LIBRARY_USE_LIB64_PATHS true)
-    endif()
-endif()
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
+set(GENERATED_ROOT_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
+set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/greengrass/Config.h")
+configure_file(include/aws/greengrass/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
 
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
@@ -26,6 +13,7 @@ endif()
 
 file(GLOB AWS_GREENGRASSIPC_HEADERS
         "include/aws/greengrass/*.h"
+        ${GENERATED_CONFIG_HEADER}
 )
 
 file(GLOB AWS_GREENGRASSIPC_SRC
@@ -45,7 +33,7 @@ if (WIN32)
 endif()
 
 add_library(GreengrassIpc-cpp ${AWS_GREENGRASSIPC_CPP_SRC})
-target_link_libraries(GreengrassIpc-cpp EventstreamRpc-cpp)
+target_link_libraries(GreengrassIpc-cpp PUBLIC EventstreamRpc-cpp)
 
 set_target_properties(GreengrassIpc-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -81,7 +69,7 @@ if (BUILD_SHARED_LIBS)
             NAMELINK_SKIP
             COMPONENT Runtime
             RUNTIME
-            DESTINATION ${RUNTIME_DIRECTORY}
+            DESTINATION ${CMAKE_INSTALL_BINDIR}
             COMPONENT Runtime)
 
     install(TARGETS GreengrassIpc-cpp
@@ -105,10 +93,10 @@ if (NOT IS_SUBDIRECTORY_INCLUDE)
     aws_use_package(aws-crt-cpp)
 endif()
 
+aws_add_sanitizers(GreengrassIpc-cpp)
+target_link_libraries(GreengrassIpc-cpp PUBLIC ${DEP_AWS_LIBS})
 
-target_link_libraries(GreengrassIpc-cpp ${DEP_AWS_LIBS})
-
-install(FILES ${AWS_GREENGRASSIPC_HEADERS} DESTINATION "include/aws/greengrass/" COMPONENT Development)
+install(FILES ${AWS_GREENGRASSIPC_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/aws/greengrass/" COMPONENT Development)
 
 if (BUILD_SHARED_LIBS)
     set(TARGET_DIR "shared")
@@ -125,7 +113,7 @@ if (DEFINED SIMPLE_VERSION)
 endif()
 
 install(EXPORT "GreengrassIpc-cpp-targets"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/GreengrassIpc-cpp/cmake/${TARGET_DIR}"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/GreengrassIpc-cpp/${TARGET_DIR}"
         NAMESPACE AWS::
         COMPONENT Development)
 
@@ -134,5 +122,5 @@ configure_file("cmake/greengrassipc-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/greengrassipc-cpp-config.cmake"
-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/GreengrassIpc-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/GreengrassIpc-cpp/"
         COMPONENT Development)

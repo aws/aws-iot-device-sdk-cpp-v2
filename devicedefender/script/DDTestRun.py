@@ -43,10 +43,6 @@ metrics_added = []
 thing_arn = None
 client_made_thing = False
 client_made_policy = False
-use_mqtt5 = False
-if len(sys.argv) > 1:
-    use_mqtt5 = (sys.argv[1] == "mqtt5")
-    print("Run Device Defender with Mqtt5 Client")
 
 ##############################################
 # create a test thing
@@ -227,22 +223,13 @@ try:
 
     print("[Device Defender]Info: Running sample (this should take ~60 seconds).")
 
-    if use_mqtt5:
-        # Run the sample:
-        exe_path = "build/samples/device_defender/mqtt5_basic_report/"
-        # If running locally, comment out the line above and uncomment the line below:
-        #exe_path = "samples/device_defender/basic_report/build/"
+    # Run the sample:
+    exe_path = "build/samples/others/device_defender/mqtt5_basic_report/"
+    # If running locally, comment out the line above and uncomment the line below:
+    #exe_path = "samples/others/device_defender/mqtt5_basic_report/build/"
 
-        # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
-        exe_path = os.path.join(exe_path, "mqtt5-basic-report")
-    else:
-        # Run the sample:
-        exe_path = "build/samples/device_defender/basic_report/"
-        # If running locally, comment out the line above and uncomment the line below:
-        #exe_path = "samples/device_defender/basic_report/build/"
-
-        # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
-        exe_path = os.path.join(exe_path, "basic-report")
+    # Windows has a different build folder structure, but this ONLY runs on Linux currently so we do not need to worry about it
+    exe_path = os.path.join(exe_path, "mqtt5-basic-report")
 
     print("[Device Defender]Info: Start to run: " + exe_path)
     # The Device Defender sample will take ~1 minute to run even if successful
@@ -250,7 +237,7 @@ try:
     arguments = [exe_path, "--endpoint", endpoint_response, "--cert",
                  certificate_path, "--key", key_path, "--thing_name", thing_name, "--count", "2"]
     result = subprocess.run(arguments, timeout=60*2, check=True)
-    print("[Device Defender]Info: Sample finished running.")
+    print(f"[Device Defender]Info: Sample finished running, with result {result.returncode}")
 
     # There does not appear to be any way to get the metrics from the device - so we'll assume that if it didn't return -1, then it worked
 
@@ -272,7 +259,7 @@ except Exception as e:
     if client_made_policy:
         client.delete_policy(policyName=thing_name + "_policy")
 
-    print("[Device Defender]Error: Failed to test: Basic Report")
+    print(f"[Device Defender]Error: Failed to test: Basic Report {e}")
     exit(-1)
 
 print("[Device Defender]Info: Basic Report sample test passed")

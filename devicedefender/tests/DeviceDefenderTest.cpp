@@ -46,7 +46,8 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
         std::condition_variable cv;
         bool taskStopped = false;
 
-        auto onCancelled = [&](void *a) -> void {
+        auto onCancelled = [&](void *a) -> void
+        {
             auto *data = reinterpret_cast<bool *>(a);
             *data = true;
             taskStopped = true;
@@ -177,7 +178,8 @@ static int s_TestMqtt5DeviceDefenderResourceSafety(Aws::Crt::Allocator *allocato
     std::condition_variable cv;
     bool taskStopped = false;
 
-    auto onCancelled = [&](void *a) -> void {
+    auto onCancelled = [&](void *a) -> void
+    {
         auto *data = reinterpret_cast<bool *>(a);
         *data = true;
         taskStopped = true;

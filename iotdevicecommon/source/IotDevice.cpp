@@ -17,9 +17,15 @@ namespace Aws
     namespace Iotdevicecommon
     {
 
-        DeviceApiHandle::DeviceApiHandle(Crt::Allocator *allocator) noexcept { aws_iotdevice_library_init(allocator); }
+        DeviceApiHandle::DeviceApiHandle(Crt::Allocator *allocator) noexcept
+        {
+            aws_iotdevice_library_init(allocator);
+        }
 
-        DeviceApiHandle::~DeviceApiHandle() { aws_iotdevice_library_clean_up(); }
+        DeviceApiHandle::~DeviceApiHandle()
+        {
+            aws_iotdevice_library_clean_up();
+        }
     } // namespace Iotdevicecommon
 
 } // namespace Aws

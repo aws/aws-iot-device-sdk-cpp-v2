@@ -4,6 +4,7 @@
  */
 
 #include <aws/crt/Api.h>
+#include <aws/crt/UUID.h>
 #include <aws/crt/JsonObject.h>
 #include <aws/crt/mqtt/Mqtt5Packets.h>
 #include <aws/iot/Mqtt5Client.h>
@@ -22,8 +23,6 @@
 #include <aws/iotidentity/RegisterThingSubscriptionRequest.h>
 
 #include <fstream>
-
-#include "../../../samples/utils/CommandLineUtils.h"
 
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;
@@ -78,15 +77,27 @@ struct RegisterThingContext
     std::promise<void> thingCreatedPromise;
 };
 
+struct CmdArgs
+{
+    String endpoint;
+    String cert;
+    String key;
+    String clientId;
+    String templateName;
+    String templateParameters;
+    String csrPath;
+    uint32_t port = 0;
+    uint32_t mqttVersion = 5;
+};
+
 /**
  * Create MQTT5 client.
  */
-std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmdData &cmdData, Mqtt5ClientContext &ctx)
+std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const CmdArgs &cmdData, Mqtt5ClientContext &ctx)
 {
     // Create the MQTT5 builder and populate it with data from cmdData.
-    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.input_endpoint, cmdData.input_cert.c_str(), cmdData.input_key.c_str()));
+    auto builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str());
 
     // Check if the builder setup correctly.
     if (builder == nullptr)
@@ -97,12 +108,13 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
     }
 
     // Setup connection options
-    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions = std::make_shared<Mqtt5::ConnectPacket>();
-    connectOptions->WithClientId(cmdData.input_clientId);
+    std::shared_ptr<Mqtt5::ConnectPacket> connectOptions =
+        Aws::Crt::MakeShared<Mqtt5::ConnectPacket>(Aws::Crt::DefaultAllocatorImplementation());
+    connectOptions->WithClientId(cmdData.clientId);
     builder->WithConnectOptions(connectOptions);
-    if (cmdData.input_port != 0)
+    if (cmdData.port != 0)
     {
-        builder->WithPort(static_cast<uint32_t>(cmdData.input_port));
+        builder->WithPort(cmdData.port);
     }
 
     // Setup lifecycle callbacks
@@ -150,7 +162,7 @@ std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> createMqtt5Client(const Utils::cmd
 /**
  * Create MQTT3 connection.
  */
-std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData &cmdData, Mqtt3ConnectionContext &ctx)
+std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const CmdArgs &cmdData, Mqtt3ConnectionContext &ctx)
 {
     /**
      * In a real world application you probably don't want to enforce synchronous behavior
@@ -181,12 +193,8 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
 
     // Create the MQTT builder and populate it with data from cmdData.
     auto clientConfigBuilder =
-        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.input_cert.c_str(), cmdData.input_key.c_str());
-    clientConfigBuilder.WithEndpoint(cmdData.input_endpoint);
-    if (cmdData.input_ca != "")
-    {
-        clientConfigBuilder.WithCertificateAuthority(cmdData.input_ca.c_str());
-    }
+        Aws::Iot::MqttClientConnectionConfigBuilder(cmdData.cert.c_str(), cmdData.key.c_str());
+    clientConfigBuilder.WithEndpoint(cmdData.endpoint);
 
     // Create the MQTT connection from the MQTT builder
     auto clientConfig = clientConfigBuilder.Build();
@@ -213,7 +221,7 @@ std::shared_ptr<Mqtt::MqttConnection> createMqtt3Connection(const Utils::cmdData
     connection->OnDisconnect = std::move(onDisconnect);
 
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect(cmdData.input_clientId.c_str(), true, 0))
+    if (!connection->Connect(cmdData.clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         return nullptr;
@@ -411,7 +419,7 @@ void createCertificateFromCsr(
 void registerThing(
     const std::shared_ptr<IotIdentityClient> &identityClient,
     RegisterThingContext &ctx,
-    const Utils::cmdData &cmdData,
+    const CmdArgs &cmdData,
     const String &token)
 {
     auto onRegisterAcceptedSubAck = [&ctx](int ioErr) {
@@ -473,7 +481,7 @@ void registerThing(
 
     fprintf(stdout, "Subscribing to RegisterThing Accepted and Rejected topics\n");
     RegisterThingSubscriptionRequest registerSubscriptionRequest;
-    registerSubscriptionRequest.TemplateName = cmdData.input_templateName;
+    registerSubscriptionRequest.TemplateName = cmdData.templateName;
 
     identityClient->SubscribeToRegisterThingAccepted(
         registerSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterAccepted, onRegisterAcceptedSubAck);
@@ -487,9 +495,9 @@ void registerThing(
 
     fprintf(stdout, "Publishing to RegisterThing topic\n");
     RegisterThingRequest registerThingRequest;
-    registerThingRequest.TemplateName = cmdData.input_templateName;
+    registerThingRequest.TemplateName = cmdData.templateName;
 
-    const Aws::Crt::String jsonValue = cmdData.input_templateParameters;
+    const Aws::Crt::String jsonValue = cmdData.templateParameters;
     Aws::Crt::JsonObject value(jsonValue);
     Map<String, JsonView> pm = value.View().GetAllObjects();
     Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String> params = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
@@ -511,19 +519,102 @@ void registerThing(
     ctx.thingCreatedPromise.get_future().wait();
 }
 
+void printHelp()
+{
+    printf("Fleet Provisioning Test\n");
+    printf("options:\n");
+    printf("  --help        show this help message and exit\n");
+    printf("required arguments:\n");
+    printf("  --endpoint    IoT endpoint hostname\n");
+    printf("  --cert        Path to the certificate file\n");
+    printf("  --key         Path to the private key file\n");
+    printf("  --template_name  Provisioning template name\n");
+    printf("  --template_parameters  Template parameters JSON\n");
+    printf("optional arguments:\n");
+    printf("  --client_id   Client ID (default: test-<uuid>)\n");
+    printf("  --csr         Path to CSR in PEM format\n");
+    printf("  --port        Port override\n");
+    printf("  --mqtt_version     MQTT version (3 or 5, default: 5)\n");
+}
+
+CmdArgs parseArgs(int argc, char *argv[])
+{
+    CmdArgs args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--help") == 0)
+        {
+            printHelp();
+            exit(0);
+        }
+        else if (i < argc - 1)
+        {
+            if (strcmp(argv[i], "--endpoint") == 0)
+            {
+                args.endpoint = argv[++i];
+            }
+            else if (strcmp(argv[i], "--cert") == 0)
+            {
+                args.cert = argv[++i];
+            }
+            else if (strcmp(argv[i], "--key") == 0)
+            {
+                args.key = argv[++i];
+            }
+            else if (strcmp(argv[i], "--template_name") == 0)
+            {
+                args.templateName = argv[++i];
+            }
+            else if (strcmp(argv[i], "--template_parameters") == 0)
+            {
+                args.templateParameters = argv[++i];
+            }
+            else if (strcmp(argv[i], "--client_id") == 0)
+            {
+                args.clientId = argv[++i];
+            }
+            else if (strcmp(argv[i], "--csr") == 0)
+            {
+                args.csrPath = argv[++i];
+            }
+            else if (strcmp(argv[i], "--port") == 0)
+            {
+                args.port = atoi(argv[++i]);
+            }
+            else if (strcmp(argv[i], "--mqtt_version") == 0)
+            {
+                args.mqttVersion = atoi(argv[++i]);
+            }
+            else
+            {
+                fprintf(stderr, "Unknown argument: %s\n", argv[i]);
+                printHelp();
+                exit(1);
+            }
+        }
+    }
+    if (args.endpoint.empty() || args.cert.empty() || args.key.empty() || args.templateName.empty() || args.templateParameters.empty())
+    {
+        fprintf(stderr, "Error: --endpoint, --cert, --key, --template_name, and --template_parameters are required\n");
+        printHelp();
+        exit(1);
+    }
+    if (args.clientId.empty())
+    {
+        args.clientId = String("test-") + UUID().ToString();
+    }
+    return args;
+}
+
 int main(int argc, char *argv[])
 {
     /************************ Setup ****************************/
 
+    // Parse command line arguments
+    CmdArgs cmdData = parseArgs(argc, argv);
+
     // Do the global initialization for the API
     ApiHandle apiHandle;
-
-    /**
-     * cmdData is the arguments/input from the command line placed into a single struct for
-     * use in this sample. This handles all of the command line parsing, validating, etc.
-     * See the Utils/CommandLineUtils for more information.
-     */
-    Utils::cmdData cmdData = Utils::parseSampleInputFleetProvisioning(argc, argv, &apiHandle);
 
     Mqtt5ClientContext mqtt5ClientContext;
     std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> mqtt5Client;
@@ -533,7 +624,7 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<IotIdentityClient> identityClient;
 
-    if (cmdData.input_mqtt_version == 5UL)
+    if (cmdData.mqttVersion == 5)
     {
         mqtt5Client = createMqtt5Client(cmdData, mqtt5ClientContext);
         if (!mqtt5Client)
@@ -541,9 +632,10 @@ int main(int argc, char *argv[])
             fprintf(stderr, "MQTT5 Connection failed to start");
             return -1;
         }
-        identityClient = std::make_shared<IotIdentityClient>(mqtt5Client);
+        identityClient =
+            Aws::Crt::MakeShared<IotIdentityClient>(Aws::Crt::DefaultAllocatorImplementation(), mqtt5Client);
     }
-    else if (cmdData.input_mqtt_version == 3UL)
+    else if (cmdData.mqttVersion == 3)
     {
         mqtt3Connection = createMqtt3Connection(cmdData, mqtt3ConnectionContext);
         if (!mqtt3Connection)
@@ -551,7 +643,8 @@ int main(int argc, char *argv[])
             fprintf(stderr, "MQTT3 Connection failed to start");
             return -1;
         }
-        identityClient = std::make_shared<IotIdentityClient>(mqtt3Connection);
+        identityClient =
+            Aws::Crt::MakeShared<IotIdentityClient>(Aws::Crt::DefaultAllocatorImplementation(), mqtt3Connection);
     }
     else
     {
@@ -565,9 +658,9 @@ int main(int argc, char *argv[])
 
     // Create certificate.
     CreateCertificateContext certificateContext;
-    if (cmdData.input_csrPath != "")
+    if (!cmdData.csrPath.empty())
     {
-        auto csrFile = getFileData(cmdData.input_csrPath);
+        auto csrFile = getFileData(cmdData.csrPath);
         createCertificateFromCsr(identityClient, certificateContext, csrFile);
     }
     else
@@ -583,14 +676,14 @@ int main(int argc, char *argv[])
     registerThing(identityClient, registerThingContext, cmdData, token);
 
     // Disconnect
-    if (cmdData.input_mqtt_version == 5UL)
+    if (cmdData.mqttVersion == 5)
     {
         if (mqtt5Client->Stop())
         {
             mqtt5ClientContext.stoppedPromise.get_future().wait();
         }
     }
-    else if (cmdData.input_mqtt_version == 3UL)
+    else if (cmdData.mqttVersion == 3)
     {
         if (mqtt3Connection->Disconnect())
         {
