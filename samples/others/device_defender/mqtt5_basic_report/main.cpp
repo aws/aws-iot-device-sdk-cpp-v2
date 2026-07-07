@@ -176,9 +176,9 @@ int main(int argc, char *argv[])
     ApiHandle apiHandle;
 
     // Create the MQTT builder and populate it with data from cmdData.
-    auto clientConfigBuilder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
+    auto clientConfigBuilder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str());
+            
     if (clientConfigBuilder == nullptr)
     {
         fprintf(

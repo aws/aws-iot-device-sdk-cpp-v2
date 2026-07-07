@@ -9,7 +9,7 @@ endif()
 project(commands-sandbox CXX)
 
 file(GLOB SRC_FILES
-       "*.cpp",
+       "*.cpp"
        "*.h"
 )
 

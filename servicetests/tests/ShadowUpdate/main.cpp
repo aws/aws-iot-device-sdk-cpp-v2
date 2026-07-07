@@ -154,7 +154,7 @@ std::shared_ptr<IotShadowClient> build_mqtt5_client(
     std::promise<void> &connectionClosedPromise)
 {
     std::shared_ptr<Aws::Iot::Mqtt5ClientBuilder> builder(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
+        Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
             cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
 
     // Check if the builder setup correctly.

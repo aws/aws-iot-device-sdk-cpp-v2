@@ -1,7 +1,21 @@
 # Commands Sandbox
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
+*__Jump To:__*
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Walkthrough](#walkthrough)
+  * [Run the sample](#run-the-sample)
+  * [Creating AWS IoT Commands](#creating-aws-iot-commands)
+  * [Running sample and subscribing to AWS IoT Command Executions](#running-sample-and-subscribing-to-aws-iot-command-executions)
+  * [Sending AWS IoT Command Executions](#sending-aws-iot-command-executions)
+  * [Updating and monitoring AWS IoT command execution status](#updating-and-monitoring-aws-iot-command-execution-status)
+  * [Cleaning up](#cleaning-up)
+* [FAQ](#faq)
+* [Usage disclaimer](#️-usage-disclaimer)
+
+## Introduction
 This is a semi-interactive sample that allows you to use the AWS IoT [Commands](https://docs.aws.amazon.com/iot/latest/developerguide/iot-remote-command.html)
 service to receive and process remote instructions.
 
@@ -44,20 +58,23 @@ API calls.
 Once connected, the sample supports the following commands:
 
 * open-thing-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
-targeting the IoT Thing set on the application startup
+targeting the IoT Thing set on the application startup. Supported payload formats: `json`, `cbor`, or any other value for `generic`.
 * open-client-stream <payload-format> - subscribe to a stream of AWS IoT command executions with a specified payload format
-targeting the MQTT client ID set on the application startup
-* update-command-execution <execution-id> \<status> \[\<reason-code>] \[\<reason-description>] - update status for specified
+targeting the MQTT client ID set on the application startup. Supported payload formats: `json`, `cbor`, or any other value for `generic`.
+* update-command-execution <execution-id> \<status> [reason-code=\<value>] [reason-description=\<value>] [result=\<key:value;...>] - update status for specified
 execution ID;
   * status can be one of the following: IN_PROGRESS, SUCCEEDED, REJECTED, FAILED, TIMED_OUT
-  * reason-code and reason-description may be optionally provided for the REJECTED, FAILED, or TIMED_OUT statuses
+  * reason-code is required if reason-description is specified
+  * result format: `key1:value1;key2:value2`
+    * values of `true`/`false` are treated as boolean, others as string
+    * use quotes for values with spaces: `key:"hello world"`
 
 Miscellaneous
 * list-streams - list all open streaming operations
 * close-stream <stream-id> - close a specified stream; <stream-id> is internal ID that can be found with 'list-streams'
 * quit - quit the sample application
 
-### Prerequisites
+## Prerequisites
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive
 in order to perform its data plane operations. Below is a sample policy that can be used on your IoT Core Thing that will
 allow this sample to run as intended.
@@ -141,8 +158,10 @@ Replace with the following with the data from your AWS account:
 
 </details>
 
-## Building and Running the Sample
+## Walkthrough
 
+### Run the sample
+#### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ```shell
@@ -151,18 +170,23 @@ cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
 cmake --build build/ --target install
 ```
 
-Now build the sample:
+#### How to build
 
-```shell
-cd samples/commands/commands-sandbox
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/service_clients/commands/commands-sandbox/build` folder.
+```sh
+cd samples/service_clients/commands/commands-sandbox/
 cmake -S . -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
 cmake --build build/
 ```
 
-To run the sample:
+#### How to run
 
-```shell
-./build/commands-sandbox \
+To run this sample, navigate to the build directory where the executable was created:
+
+```sh
+# From samples/service_clients/commands/commands-sandbox/, go to the build directory
+cd build
+./commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
@@ -243,7 +267,8 @@ Take a notice of the `commandArn` field. It is used in creation of AWS IoT comma
 
 It's time to run the sample (unless you did it already) with the following shell command:
 ```shell
-./build/commands-sandbox \
+cd build
+./commands-sandbox \
     --endpoint <endpoint> \
     --cert <path to the certificate> \
     --key <path to the private key> \
@@ -410,9 +435,17 @@ Take an AWS IoT command execution ID your sample received at the end of the prev
 update-command-execution <execution-id> IN_PROGRESS
 ```
 
+You can also provide a result with the update:
+```
+update-command-execution <execution-id> IN_PROGRESS result=battery_ok:true;message:"doing something"
+```
+
+> [!NOTE]
+> You can also pass binary data in the result field using the CommandExecutionResult::Bin member, which is not supported in this sample.
+
 Then this AWS CLI command
 ```shell
-aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID>
+aws iot get-command-execution --target-arn "<thing ARN>" --execution-id <IoT command execution ID> --include-result
 ```
 
 should return something like
@@ -423,6 +456,14 @@ should return something like
     "commandArn": "arn:aws:iot:...:command/MyJsonCommand",
     "targetArn": "arn:aws:iot:...:thing/MyIotThing",
     "status": "IN_PROGRESS",
+    "result": {
+      "battery_ok": {
+        "B": true
+      },
+      "message": {
+        "S": "doing something"
+      }
+  },
     "executionTimeoutSeconds": 300
 }
 ```
@@ -441,7 +482,7 @@ update-command-execution <execution-id> SUCCEEDED
 ```
 or
 ```
-update-command-execution <execution-id> FAILED SHORT_FAILURE_CODE A longer description
+update-command-execution <execution-id> FAILED reason-code=SHORT_FAILURE_CODE reason-description="A longer description" result=status:"task complete";success:false
 ```
 
 will yield something like
@@ -483,6 +524,14 @@ which will yield
         "reasonCode": "SHORT_FAILURE_CODE",
         "reasonDescription": "A longer description"
     },
+    "result": {
+      "success": {
+        "B": false
+      },
+      "status": {
+        "S": "task complete"
+      }
+    },
     "executionTimeoutSeconds": 300
 }
 ```
@@ -497,7 +546,7 @@ to perform:
 aws iot delete-command --command-id <command-id>
 ```
 
-### Misc Topics
+## FAQ
 
 ### What happens if I open the same stream twice?
 
@@ -510,7 +559,7 @@ command executions stream is determined by `device type`, `device ID`, and `payl
 and `device ID` will be constant, so the application needs to check `payload format`. Notice that Aws IoT Commands service
 distinguishes only JSON and CBOR, all other payload format will be  routed to the generic stream.
 
-#### What is the proper generic architecture for a command-processing application running on a device?
+### What is the proper generic architecture for a command-processing application running on a device?
 
 1. On startup, create and open streaming operations for the needed AWS IoT command events using
    `IClientV2::CreateCommandExecutionsJsonPayloadStream`, `IClientV2::CreateCommandExecutionsCborPayloadStream`,
@@ -521,3 +570,13 @@ distinguishes only JSON and CBOR, all other payload format will be  routed to th
    separate thread(s).
 3. If your application is expected to receive a lot of AWS IoT commands, monitor the number of them enqueued for processing.
    Consider introducing priorities based on AWS IoT command timeouts or some internal value.
+
+## ⚠️ Usage disclaimer
+
+These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).
+
+Additionally, example code might theoretically modify or delete existing AWS resources. As a matter of due diligence, do the following:
+
+- Be aware of the resources that these examples create or delete.
+- Be aware of the costs that might be charged to your account as a result.
+- Back up your important data.

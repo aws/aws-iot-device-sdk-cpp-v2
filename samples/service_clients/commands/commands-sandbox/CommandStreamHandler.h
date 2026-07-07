@@ -6,6 +6,7 @@
 
 #include <aws/crt/Types.h>
 #include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionResult.h>
 #include <aws/iotcommands/CommandExecutionStatus.h>
 #include <aws/iotcommands/DeviceType.h>
 #include <aws/iotcommands/IotCommandsClientV2.h>
@@ -22,7 +23,7 @@ namespace Aws
 
         /**
          * Sample wrapper around client for the AWS IoT command service.
-         * It helps
+         * It helps handle all the streaming operations and command execution updates.
          */
         class CommandStreamHandler
         {
@@ -55,13 +56,15 @@ namespace Aws
              * @param status One of the following statuses: IN_PROGRESS, SUCCEEDED, FAILED, REJECTED, TIMED_OUT.
              * @param reasonCode A short code in the [A-Z0-9_-]+ format and not exceeding 64 characters in length.
              * @param reasonDescription Detailed description of the reason.
+             * @param result A map of result entries. Each entry value is either a string or boolean.
              * @return Success status.
              */
             bool updateCommandExecutionStatus(
                 const Aws::Crt::String &executionId,
                 Aws::Iotcommands::CommandExecutionStatus status,
                 const Aws::Crt::String &reasonCode,
-                const Aws::Crt::String &reasonDescription);
+                const Aws::Crt::String &reasonDescription,
+                const Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult> &result);
 
             void listOpenedStreams();
 

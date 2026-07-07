@@ -189,8 +189,8 @@ int main(int argc, char *argv[])
         pkcs11Options.SetSlotId(cmdData.pkcs11SlotId);
     }
 
-    Aws::Iot::Mqtt5ClientBuilder *builder =
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsPkcs11(cmdData.endpoint, pkcs11Options);
+    auto builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsPkcs11(
+        cmdData.endpoint, pkcs11Options);
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {

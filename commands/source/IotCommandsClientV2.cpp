@@ -210,6 +210,10 @@ namespace Aws
             CommandExecutionEvent &modeledEvent)
         {
             auto segmentExecutionId = s_getSegmentFromTopic(publishEvent.GetTopic(), 5);
+            if (segmentExecutionId.ptr == nullptr || segmentExecutionId.len == 0)
+            {
+                return false;
+            }
             modeledEvent.SetExecutionId(segmentExecutionId);
             modeledEvent.SetPayload(publishEvent.GetPayload());
             auto contentType = publishEvent.GetContentType();

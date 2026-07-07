@@ -142,9 +142,8 @@ int main(int argc, char *argv[])
     ApiHandle apiHandle;
 
     // Create the MQTT5 builder and populate it with data from cmdData.
-    auto builder = std::unique_ptr<Aws::Iot::Mqtt5ClientBuilder>(
-        Aws::Iot::Mqtt5ClientBuilder::NewMqtt5ClientBuilderWithMtlsFromPath(
-            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str()));
+    auto builder = Aws::Iot::Mqtt5ClientBuilder::CreateMqtt5ClientBuilderWithMtlsFromPath(
+            cmdData.endpoint, cmdData.cert.c_str(), cmdData.key.c_str());
     // Check if the builder setup correctly.
     if (builder == nullptr)
     {
@@ -220,7 +219,7 @@ int main(int argc, char *argv[])
         [&createFromCsrResultPromise](CreateCertificateFromCsrResult &&result)
         { createFromCsrResultPromise.set_value(std::move(result)); });
 
-    const auto &createFromCsrResult = createFromCsrResultPromise.get_future().get().value();
+    auto createFromCsrResult = createFromCsrResultPromise.get_future().get().value();
     if (!createFromCsrResult.IsSuccess())
     {
         s_onServiceError(createFromCsrResult.GetError(), "create-certificate-from-csr");
@@ -263,7 +262,7 @@ int main(int argc, char *argv[])
         [&registerThingResultPromise](RegisterThingResult &&result)
         { registerThingResultPromise.set_value(std::move(result)); });
 
-    const auto &registerThingResult = registerThingResultPromise.get_future().get().value();
+    auto registerThingResult = registerThingResultPromise.get_future().get().value();
     if (!registerThingResult.IsSuccess())
     {
         s_onServiceError(registerThingResult.GetError(), "register-thing");

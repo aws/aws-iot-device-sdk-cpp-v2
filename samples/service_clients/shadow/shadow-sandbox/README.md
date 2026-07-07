@@ -1,7 +1,21 @@
 # Shadow
 
-[**Return to main sample list**](../../README.md)
+[**Return to main sample list**](../../../README.md)
 
+*__Jump To:__*
+* [Introduction](#introduction)
+  * [Commands](#commands)
+* [Prerequisites](#prerequisites)
+* [Walkthrough](#walkthrough)
+  * [Run the Sample](#run-the-sample)
+  * [Initialization](#initialization)
+  * [Changing Properties](#changing-properties)
+  * [Multiple Properties](#multiple-properties)
+  * [Removing properties](#removing-properties)
+  * [Removing a shadow](#removing-a-shadow)
+* [Usage disclaimer](#️-usage-disclaimer)
+
+## Introduction
 This is an interactive sample that supports a set of commands that allow you to interact with "classic" (unnamed) shadows of the AWS IoT [Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html) Service.
 
 ### Commands
@@ -16,7 +30,7 @@ Two additional commands are supported:
 * `help` - prints the set of supported commands
 * `quit` - quits the sample application
 
-### Prerequisites
+## Prerequisites
 Your IoT Core Thing's [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) must provide privileges for this sample to connect, subscribe, publish, and receive. Below is a sample policy that can be used on your IoT Core Thing that will allow this sample to run as intended.
 
 <details>
@@ -78,25 +92,32 @@ Note that in a real application, you may want to avoid the use of wildcards in y
 
 ## Walkthrough
 
+### Run the Sample
+#### Install the SDK
 Before building and running the sample, you must first build and install the SDK:
 
 ``` sh
 cd <sdk-root-directory>
-cmake -S ./ -B _build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
-cmake --build _build/ --target install
+cmake -S ./ -B build/ -DCMAKE_INSTALL_PREFIX=<sdk_install_path>
+cmake --build build/ --target install
 ```
 
-Now build the sample:
+#### How to build
 
-``` sh
-cd samples/shadow/shadow-sandbox
-cmake -S ./ -B _build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
-cmake --build _build/
+To build the sample, change directory into the sample's folder and run the cmake commands. The sample executable will be built into the `samples/service_clients/shadow/shadow-sandbox/build` folder.
+```sh
+cd samples/service_clients/shadow/shadow-sandbox/
+cmake -S ./ -B build/ -DCMAKE_PREFIX_PATH=<sdk_install_path>
+cmake --build build/
 ```
 
-To run the sample:
+#### How to run
 
-``` sh
+To run this sample, navigate to the build directory where the executable was created:
+
+```sh
+# From samples/service_clients/shadow/shadow-sandbox/, go to the build directory
+cd build
 ./shadow-sandbox --endpoint <endpoint> --cert <path to the certificate> --key <path to the private key> --thing_name <thing name>
 ```
 
@@ -302,3 +323,12 @@ results in something similar to
 get failed with error code: libaws-c-mqtt: AWS_ERROR_MQTT_REQUEST_RESPONSE_MODELED_SERVICE_ERROR, Request-response operation failed with a modeled service error.
 modeled error: {"clientToken":"0228fa77-2bbf-bf91-9915-128668692dbb","code":404,"message":"No shadow exists with name: '<Thing Name>'"}
 ```
+## ⚠️ Usage disclaimer
+
+These code examples interact with services that may incur charges to your AWS account. For more information, see [AWS Pricing](https://aws.amazon.com/pricing/).
+
+Additionally, example code might theoretically modify or delete existing AWS resources. As a matter of due diligence, do the following:
+
+- Be aware of the resources that these examples create or delete.
+- Be aware of the costs that might be charged to your account as a result.
+- Back up your important data.

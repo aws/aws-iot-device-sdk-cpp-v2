@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#include "command_stream_handler.h"
+#include "CommandStreamHandler.h"
 
 #include <aws/crt/Api.h>
 #include <aws/iotcommands/CommandExecutionEvent.h>
+#include <aws/iotcommands/CommandExecutionResult.h>
 #include <aws/iotcommands/CommandExecutionsSubscriptionRequest.h>
 #include <aws/iotcommands/RejectedErrorCode.h>
 #include <aws/iotcommands/UpdateCommandExecutionRequest.h>
@@ -101,7 +102,8 @@ namespace Aws
             const Crt::String &executionId,
             Aws::Iotcommands::CommandExecutionStatus status,
             const Aws::Crt::String &reasonCode,
-            const Aws::Crt::String &reasonDescription)
+            const Aws::Crt::String &reasonDescription,
+            const Aws::Crt::Map<Aws::Crt::String, Aws::Iotcommands::CommandExecutionResult> &result)
         {
             CommandExecutionContext commandExecutionContext;
 
@@ -131,6 +133,11 @@ namespace Aws
                 request.StatusReason = Aws::Iotcommands::StatusReason();
                 request.StatusReason->ReasonCode = reasonCode;
                 request.StatusReason->ReasonDescription = reasonDescription;
+            }
+
+            if (!result.empty())
+            {
+                request.Result = result;
             }
 
             fprintf(stdout, "Updating command execution '%s'\n", commandExecutionContext.event.ExecutionId->c_str());

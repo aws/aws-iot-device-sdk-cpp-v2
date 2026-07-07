@@ -7,7 +7,7 @@ on:
       - 'docs'
 
 env:
-  BUILDER_VERSION: v0.9.84
+  BUILDER_VERSION: v0.9.95
   BUILDER_SOURCE: releases
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
@@ -240,7 +240,6 @@ jobs:
       fail-fast: false
       matrix:
         runner:
-          - macos-13
           - macos-latest
     permissions:
       id-token: write # This is required for requesting the JWT
@@ -257,6 +256,30 @@ jobs:
           chmod a+x builder
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream \
           --cmake-extra=-DAWS_CRT_DISABLE_DEPRECATION_WARNINGS=ON
+
+  # Verify the SDK builds and tests pass when using s2n-tls (TLS 1.3) instead of Apple Secure Transport
+  osx-s2n-tls:
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - macos-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    env:
+      AWS_CRT_USE_NON_FIPS_TLS_13: "1"
+    steps:
+      - name: configure AWS credentials (containers)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
+          chmod a+x builder
+          ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
   linux-github-actions:
     runs-on: ubuntu-latest
@@ -397,9 +420,9 @@ jobs:
           submodules: recursive
       - name: Check docs
         run: |
-          echo "Compiling and installing doxygen 1.8.20 from source"
+          echo "Compiling and installing doxygen 1.17.0 from source"
           sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
-          git clone https://github.com/doxygen/doxygen.git -b Release_1_8_20
+          git clone https://github.com/doxygen/doxygen.git -b Release_1_17_0
           cd doxygen
           mkdir build
           cd build

@@ -1628,8 +1628,9 @@ AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessBoolean, s_TestEchoClientSt
 
 static int s_TestEchoClientStreamingOperationEchoSuccessTime(struct aws_allocator *allocator, void *ctx)
 {
+    auto ts = Aws::Crt::DateTime::Now();
     return s_DoTestEchoClientStreamingOperationEchoSuccess(
-        allocator, [](MessageData &messageData) { messageData.SetTimeMessage(Aws::Crt::DateTime::Now()); });
+        allocator, [ts](MessageData &messageData) { messageData.SetTimeMessage(ts); });
 }
 
 AWS_TEST_CASE(EchoClientStreamingOperationEchoSuccessTime, s_TestEchoClientStreamingOperationEchoSuccessTime);
