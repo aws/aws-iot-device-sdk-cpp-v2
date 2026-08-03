@@ -1,4 +1,5 @@
 # note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
+cmake_minimum_required(VERSION 3.9...3.31)
 project(secure_tunnel_test CXX)
 
 file(GLOB SRC_FILES
