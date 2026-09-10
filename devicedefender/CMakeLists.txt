@@ -7,6 +7,11 @@ set(GENERATED_INCLUDE_DIR "${GENERATED_ROOT_DIR}/include")
 set(GENERATED_CONFIG_HEADER "${GENERATED_INCLUDE_DIR}/aws/iotdevicedefender/Config.h")
 configure_file(include/aws/iotdevicedefender/Config.h.in ${GENERATED_CONFIG_HEADER} @ONLY)
 
+option(AWS_CRT_DISABLE_DEPRECATION_WARNINGS "Set this to silence [[deprecated]] warnings coming from aws-crt-cpp headers" OFF)
+if(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+    add_compile_definitions(AWS_CRT_DISABLE_DEPRECATION_WARNINGS)
+endif()
+
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
 endif()

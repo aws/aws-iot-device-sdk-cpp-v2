@@ -37,8 +37,8 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
             /**
-             * Optional. A client token used to correlate requests and responses. Enter an arbitrary value here and it
-             * is reflected in the response.
+             * Optional. A client token used to correlate requests and responses. Enter an
+             * arbitrary value here and it is reflected in the response.
              *
              */
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;

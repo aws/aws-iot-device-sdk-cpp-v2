@@ -52,12 +52,18 @@ namespace Aws
             std::function<void(Aws::Iotidentity::ErrorResponse *, int ioErr)>;
 
         /**
+         * @deprecated We strongly recommend using IotIdentityClientV2. There are no current plans to
+         * fully deprecate IotIdentityClient but it is highly recommended customers migrate to IotIdentityClientV2
+         * More details can be found in the GitHub Repo FAQ
          * An AWS IoT service that assists with provisioning a device and installing unique client certificates on it
          *
          * https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html
          *
          */
-        class AWS_IOTIDENTITY_API IotIdentityClient final
+        class AWS_IOTIDENTITY_API AWS_CRT_SOFT_DEPRECATED(
+            "We strongly recommend using IotIdentityClientV2. There are no current plans to fully "
+            "deprecate IotIdentityClient but it is highly recommended customers migrate to "
+            "IotIdentityClientV2 More details can be found in the GitHub Repo FAQ") IotIdentityClient final
         {
           public:
             IotIdentityClient(const std::shared_ptr<Aws::Crt::Mqtt::MqttConnection> &connection);

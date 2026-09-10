@@ -47,7 +47,8 @@ namespace Aws
             Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
 
             /**
-             * A UTF-8 encoded JSON document that contains information that your devices need to perform the job.
+             * A UTF-8 encoded JSON document that contains information that your devices
+             * need to perform the job.
              *
              */
             Aws::Crt::Optional<Aws::Crt::JsonObject> JobDocument;

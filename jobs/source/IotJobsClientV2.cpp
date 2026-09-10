@@ -71,7 +71,8 @@ namespace Aws
             std::shared_ptr<Aws::Iot::RequestResponse::IMqttRequestResponseClient> bindingClient)
             : m_allocator(allocator), m_bindingClient(std::move(bindingClient))
         {
-            // It's simpler to do this than branch the codegen based on the presence of streaming operations
+            // It's simpler to do this than branch the codegen based on the presence of
+            // streaming operations
             (void)m_allocator;
         }
 
@@ -520,38 +521,6 @@ namespace Aws
             return submitResult == AWS_OP_SUCCESS;
         }
 
-        static bool s_initModeledEvent(
-            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
-            NextJobExecutionChangedEvent &modeledEvent)
-        {
-            const auto &payload = publishEvent.GetPayload();
-            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-            Aws::Crt::JsonObject jsonObject(objectStr);
-            if (!jsonObject.WasParseSuccessful())
-            {
-                return false;
-            }
-
-            modeledEvent = NextJobExecutionChangedEvent(jsonObject);
-            return true;
-        }
-
-        static bool s_initModeledEvent(
-            const Aws::Iot::RequestResponse::IncomingPublishEvent &publishEvent,
-            JobExecutionsChangedEvent &modeledEvent)
-        {
-            const auto &payload = publishEvent.GetPayload();
-            Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
-            Aws::Crt::JsonObject jsonObject(objectStr);
-            if (!jsonObject.WasParseSuccessful())
-            {
-                return false;
-            }
-
-            modeledEvent = JobExecutionsChangedEvent(jsonObject);
-            return true;
-        }
-
         template <typename T> class ServiceStreamingOperation : public Aws::Iot::RequestResponse::IStreamingOperation
         {
           public:
@@ -568,13 +537,17 @@ namespace Aws
             {
 
                 std::function<void(Aws::Iot::RequestResponse::IncomingPublishEvent &&)> unmodeledHandler =
-                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&publishEvent)
+                    [options](Aws::Iot::RequestResponse::IncomingPublishEvent &&event)
                 {
-                    T modeledEvent;
-                    if (!s_initModeledEvent(publishEvent, modeledEvent))
+                    const auto &payload = event.GetPayload();
+                    Aws::Crt::String objectStr(reinterpret_cast<char *>(payload.ptr), payload.len);
+                    Aws::Crt::JsonObject jsonObject(objectStr);
+                    if (!jsonObject.WasParseSuccessful())
                     {
                         return;
                     }
+
+                    T modeledEvent(jsonObject);
                     options.GetStreamHandler()(std::move(modeledEvent));
                 };
 
