@@ -754,14 +754,14 @@ In the v2 SDK, logging is shutdown automatically with ApiHandle destruction when
 The v1 SDK is built with [AWS IoT device shadow support](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html),
 which provides access to thing shadows (sometimes referred to as device shadows).
 
-The v2 SDK also supports device shadow service, but with completely different APIs.
-First, you subscribe to special topics to get data and feedback from a service. The service client provides API for that.
-For example, `SubscribeToGetShadowAccepted` subscribes to a topic to which AWS IoT Core will publish a shadow document.
-The server will notify you if it cannot send you a requested document and via the `SubscribeToGetShadowRejected`.\
-After subscribing to all the required topics, the service client can start interacting with the server,
-for example update the status or request for data. These actions are also performed via client API calls.
-For example, `PublishGetShadow`  sends a request to AWS IoT Core to get a shadow document.
-The requested Shadow document will be received in a callback specified in the `SubscribeToGetShadowAccepted` call.
+The v2 SDK also supports the device shadow service, but with completely different APIs.
+The v2 service client exposes a request-response API: each operation (for example, `GetShadow` or `UpdateShadow`)
+is a single method call that takes a request object and a result handler. On operation success, the handler is
+invoked with a result carrying the modeled response; on failure, the same handler receives a result carrying a
+`ServiceErrorV2<V2ErrorResponse>` with the modeled error. The client manages the underlying MQTT topic subscriptions
+for you, so you no longer subscribe to accepted/rejected topics manually.
+For change notifications that are not tied to a specific request (for example, `ShadowUpdated` and `ShadowDeltaUpdated`
+events), the client provides streaming operations that you open once and receive events from continuously.
 
 AWS IoT Core [documentation for Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html)
 service provides detailed descriptions for the topics used to interact with the service.
@@ -778,7 +778,7 @@ ResponseCode rc = client->Connect(/* ... */);
 Shadow shadowClient(
         client,
         mqtt_command_timeout,
-        thingNmae,
+        thingName,
         clientTokenPrefix);
 
 // 2nd way through a static method
@@ -822,10 +822,19 @@ shadowClient.AddShadowSubscription(request_mapping);
 
 A thing name in the v2 SDK shadow client is specified for the operations with shadow documents.
 
+The v2 SDK shadow client is created directly from an MQTT5 client using `Aws::Iotshadow::NewClientFrom5`.
+
 ```cpp
 std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 client->Start();
-Aws::Iotshadow::IotShadowClient shadowClient(client);
+
+Aws::Iot::RequestResponse::RequestResponseClientOptions requestResponseOptions;
+requestResponseOptions.WithMaxRequestResponseSubscriptions(4);
+requestResponseOptions.WithMaxStreamingSubscriptions(10);
+requestResponseOptions.WithOperationTimeoutInSeconds(30);
+
+std::shared_ptr<Aws::Iotshadow::IClientV2> shadowClient =
+        Aws::Iotshadow::NewClientFrom5(*client, requestResponseOptions);
 
 ```
 
@@ -870,42 +879,20 @@ std::unique_lock<std::mutex> block_handler_lock(sync_action_response_lock_);
 #### Example of getting a shadow document in the v2 SDK
 
 ```cpp
-GetShadowSubscriptionRequest shadowSubscriptionRequest;
-shadowSubscriptionRequest.ThingName = "<thing name>";
+// The v2 service client uses a request-response API: a single call sends the
+// request, and the result handler is invoked once with the outcome.
+GetShadowRequest request;
+request.ThingName = "<thing name>";
 
-auto onGetShadowAccepted = [&](GetShadowResponse *response, int ioErr) {
-        /* shadow document received. */
-        /* The response object contains the shadow document. */
-    };
-auto onGetShadowUpdatedAcceptedSubAck = [&](int ioErr) { };
-auto onGetShadowRejected = [&](ErrorResponse *error, int ioErr) {
-        /* called when getting the shadow document failed. */
-    };
-
-shadowClient.SubscribeToGetShadowAccepted(
-        shadowSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onGetShadowAccepted,
-        onGetShadowUpdatedAcceptedSubAck);
-
-auto onGetShadowUpdatedRejectedSubAck = [&](int ioErr) { };
-shadowClient.SubscribeToGetShadowRejected(
-        shadowSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onGetShadowRejected,
-        onGetShadowUpdatedRejectedSubAck);
-
-GetShadowRequest shadowGetRequest;
-shadowGetRequest.ThingName = "<thing name>";
-auto onGetShadowRequestSubAck = [&](int ioErr) { };
-
-/* Send request for a shadow document.
-   On success, the document will be received on `onGetShadowAccepted` callback.
-   On failure, the `onGetShadowRejected` callback will be called. */
-shadowClient.PublishGetShadow(
-        shadowGetRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onGetShadowRequestSubAck);
+shadowClient->GetShadow(request, [](GetShadowResult &&result) {
+    if (result.IsSuccess()) {
+        // On success, the response object contains the shadow document.
+        const GetShadowResponse &response = result.GetResponse();
+    } else {
+        // On failure, the error carries the modeled error details.
+        const ServiceErrorV2<V2ErrorResponse> &error = result.GetError();
+    }
+});
 
 ```
 
@@ -927,51 +914,31 @@ rc = my_shadow.PerformUpdateAsync();
 #### Example of updating a shadow document in the v2 SDK
 
 ```cpp
-UpdateShadowRequest updateShadowRequest;
-updateShadowRequest.ClientToken = uuid.ToString();
-updateShadowRequest.ThingName = "<thing name">;
+// The v2 service client uses a request-response API: a single call sends the
+// update, and the result handler is invoked once with the outcome.
+UpdateShadowRequest request;
+request.ThingName = "<thing name>";
 
 ShadowState state;
 JsonObject desired;
 desired.WithString("sensor", "2.9");
 state.Desired = desired;
-updateShadowRequest.State = state;
+request.State = state;
 
-
-auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
-        // Called when an update request succeeded.
-    };
-auto onUpdatedAcceptedSubAck = [&](int ioErr) { };
-
-UpdateShadowSubscriptionRequest updateShadowSubscriptionRequest;
-updateShadowSubscriptionRequest.ThingName = "<thing name>";
-shadowClient.SubscribeToUpdateShadowAccepted(
-        updateShadowSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onUpdateShadowAccepted,
-        onUpdatedAcceptedSubAck);
-
-auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
-        // Called when an update request failed.
-    };
-auto onUpdatedRejectedSubAck = [&](int ioErr) { };
-shadowClient.SubscribeToUpdateShadowRejected(
-        updateShadowSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        onUpdateShadowRejected,
-        onUpdatedRejectedSubAck);
-
-
-auto publishCompleted = [&](int ioErr) { };
-shadowClient.PublishUpdateShadow(
-        updateShadowRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        std::move(publishCompleted));
+shadowClient->UpdateShadow(request, [](UpdateShadowResult &&result) {
+    if (result.IsSuccess()) {
+        // On success, the response object contains the accepted update.
+        const UpdateShadowResponse &response = result.GetResponse();
+    } else {
+        // On failure, the error carries the modeled error details.
+        const ServiceErrorV2<V2ErrorResponse> &error = result.GetError();
+    }
+});
 
 ```
 
 For more information, see API documentation for the v2 SDK [Device Shadow](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotshadow.html).\
-For code examples, see the v2 SDK [Device Shadow](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/b065b818f955aef6181b2c89815425ea6c5b4194/samples/shadow).
+For code examples, see the v2 SDK [Device Shadow](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/service_clients/shadow/shadow-sandbox).
 
 ### Client for AWS IoT Jobs
 
@@ -979,11 +946,10 @@ The v1 and v2 SDKs both offer support for AWS IoT Core services implementing a s
 for the [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) service which helps with
 defining a set of remote operations that can be sent to and run on one or more devices connected to AWS IoT.
 
-The Jobs service client provides APIs similar to the APIs provided by [Client for Device Shadow Service](#client-for-device-shadow-service).
-First, you subscribe to special topics to get data and feedback from a service.
-The service client provides API for that. After subscribing to all the required topics,
-the service client can start interacting with the server,
-for example, update the status or request for data. These actions are also performed via client API calls.
+The Jobs service client provides an API similar to the API provided by [Client for Device Shadow Service](#client-for-device-shadow-service).
+It exposes a request-response API where each operation is a single method call that takes a request object and a
+result handler, and the client manages the underlying MQTT topic subscriptions for you. Notifications that are not tied
+to a specific request are delivered through streaming operations.
 
 
 #### Example creating a jobs client in the v1 SDK
@@ -1003,11 +969,19 @@ jobsClient = Jobs::Create(
 
 #### Example creating a jobs client in the v2 SDK
 
+The v2 SDK jobs client is created directly from an MQTT5 client using `Aws::Iotjobs::NewClientFrom5`.
+
 ```cpp
 std::shared_ptr<Aws::Crt::Mqtt5::Mqtt5Client> client = builder->Build();
 client->Start();
 
-IotJobsClient jobsClient(client);
+Aws::Iot::RequestResponse::RequestResponseClientOptions requestResponseOptions;
+requestResponseOptions.WithMaxRequestResponseSubscriptions(4);
+requestResponseOptions.WithMaxStreamingSubscriptions(10);
+requestResponseOptions.WithOperationTimeoutInSeconds(30);
+
+std::shared_ptr<Aws::Iotjobs::IClientV2> jobsClient =
+        Aws::Iotjobs::NewClientFrom5(*client, requestResponseOptions);
 
 ```
 
@@ -1119,47 +1093,21 @@ rc = jobsClient->SendJobsQuery(Jobs::JOB_DESCRIBE_TOPIC, "$next");
 
 ```
 
-#### Example subscribing to jobs topics in the v2 SDK
-Subscribing to events in the v2 SDK is done for each API
+#### Example of getting pending job executions in the v2 SDK
 
 ```cpp
-auto err_handler = [&](Aws::Iotjobs::RejectedError *rejectedError, int ioErr)
-    {
-        /* callback received on error */
+// The v2 service client manages subscriptions for you: a single call sends the
+// request, and the result handler is invoked once with the outcome.
+GetPendingJobExecutionsRequest request;
+request.ThingName = "<thing name>";
+
+jobsClient->GetPendingJobExecutions(request, [](GetPendingJobExecutionsResult &&result) {
+    if (result.IsSuccess()) {
+        const GetPendingJobExecutionsResponse &response = result.GetResponse();
+    } else {
+        const ServiceErrorV2<V2ErrorResponse> &error = result.GetError();
     }
-
-auto publishHandler = [&](int ioErr)
-    {
-        /* callback received when the server accepts the request */
-    }
-
-auto success_handler = [&](Aws::Iotjobs::GetPendingJobExecutionsResponse *response, int ioErr)
-    {
-        /* callback received on successfull reception of data or ioErr is set */
-    }
-
-GetPendingJobExecutionsSubscriptionRequest subscriptionRequest;
-subscriptionRequest.ThingName = thingName;
-
-jobsClient.SubscribeToGetPendingJobExecutionsAccepted(
-        subscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        success_handler,
-        publishHandler);
-
-jobsClient.SubscribeToGetPendingJobExecutionsRejected(
-        subscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        err_handler,
-        publishHandler);
-
-GetPendingJobExecutionsRequest publishRequest;
-publishRequest.ThingName = thingName;
-
-jobsClient.PublishGetPendingJobExecutions(
-        publishRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        publishHandler);
+});
 
 ```
 
@@ -1174,47 +1122,17 @@ jobsClient.PublishGetPendingJobExecutions(
 #### Example of execution of the next pending job in the v2 SDK
 
 ```cpp
-// Gets and starts the next pending job execution for a thing
+// Gets and starts the next pending job execution for a thing.
+StartNextPendingJobExecutionRequest request;
+request.ThingName = "<thing name>";
 
-auto OnSubscribeToStartNextPendingJobExecutionAcceptedResponse =
-        [&](StartNextJobExecutionResponse *response, int ioErr)
-    {
-        /* callback received on successfull reception of data or ioErr is set */
-    };
-
-auto subAckHandler = [&](int ioErr)
-    {
-        /* callback received when the server accepts the request */
-    };
-
-auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-    {
-        /* callback received on error */
-    };
-
-StartNextPendingJobExecutionSubscriptionRequest subscriptionRequest;
-subscriptionRequest.ThingName = "<thing name>";
-
-jobsClient.SubscribeToStartNextPendingJobExecutionAccepted(
-        subscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        OnSubscribeToStartNextPendingJobExecutionAcceptedResponse,
-        subAckHandler);
-
-jobsClient.SubscribeToStartNextPendingJobExecutionRejected(
-        subscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        failureHandler,
-        subAckHandler);
-
-StartNextPendingJobExecutionRequest publishRequest;
-publishRequest.ThingName = cmdData.input_thingName;
-publishRequest.StepTimeoutInMinutes = 15L;
-
-jobsClient.PublishStartNextPendingJobExecution(
-        publishRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        subAckHandler);
+jobsClient->StartNextPendingJobExecution(request, [](StartNextPendingJobExecutionResult &&result) {
+    if (result.IsSuccess()) {
+        const StartNextJobExecutionResponse &response = result.GetResponse();
+    } else {
+        const ServiceErrorV2<V2ErrorResponse> &error = result.GetError();
+    }
+});
 
 ```
 
@@ -1235,48 +1153,19 @@ rc = jobsClient.SendJobsDescribe(
 #### Example of getting detailed information about a job execution in the v2 SDK
 
 ```cpp
+// Get information about a job execution.
+DescribeJobExecutionRequest request;
+request.ThingName = "<thing name>";
+request.JobId = "<job id>";
+request.IncludeJobDocument = true;
 
-auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr)
-    {
-        /* callback received on successfull operation */
-    };
-auto subAckHandler = [&](int ioErr)
-    {
-        /* callback received when the server accepts the request */
-    };
-auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-    {
-        /* callback received on error */
-    };
-
-// Get information about the job
-DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
-describeJobExecutionSubscriptionRequest.ThingName = "<thing name>";
-describeJobExecutionSubscriptionRequest.JobId = "<job id>";
-
-jobsClient.SubscribeToDescribeJobExecutionAccepted(
-        describeJobExecutionSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        subscriptionHandler,
-        subAckHandler);
-
-jobsClient.SubscribeToDescribeJobExecutionRejected(
-        describeJobExecutionSubscriptionRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        failureHandler,
-        subAckHandler);
-
-DescribeJobExecutionRequest describeJobExecutionRequest;
-describeJobExecutionRequest.ThingName = "<thing name>";
-describeJobExecutionRequest.JobId = "<job id>";
-describeJobExecutionRequest.IncludeJobDocument = true;
-Aws::Crt::UUID uuid;
-describeJobExecutionRequest.ClientToken = uuid.ToString();
-
-jobsClient.PublishDescribeJobExecution(
-        describeJobExecutionRequest,
-        QTT_QOS_AT_LEAST_ONCE,
-        subAckHandler);
+jobsClient->DescribeJobExecution(request, [](DescribeJobExecutionResult &&result) {
+    if (result.IsSuccess()) {
+        const DescribeJobExecutionResponse &response = result.GetResponse();
+    } else {
+        const ServiceErrorV2<V2ErrorResponse> &error = result.GetError();
+    }
+});
 
 ```
 
@@ -1299,37 +1188,21 @@ rc = jobsClient->SendJobsUpdate(jobId, Jobs::JOB_EXECUTION_FAILED, statusDetails
 #### Example updating status of a job on the v2 SDK
 
 ```cpp
-// Send an update about the status of the job
-auto failureHandler = [&](RejectedError *rejectedError, int ioErr)
-    {
-        /* callback received on error */
-    };
-auto subscribeHandler = [&](UpdateJobExecutionResponse *response, int ioErr)
-    {
-        /* callback received on success */
-    };
-auto subAckHandler = [&](int)
-    {
-        /* callback received when the server accepts the request */
-    };
+// Send an update about the status of a job execution.
+UpdateJobExecutionRequest request;
+request.ThingName = "<thing name>";
+request.JobId = "<job id>";
+request.ExecutionNumber = 12;
+request.Status = JobStatus::IN_PROGRESS;
+request.ExpectedVersion = 0;
 
-jobsClient.SubscribeToUpdateJobExecutionAccepted(
-subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscribeHandler, subAckHandler);
-
-jobsClient.SubscribeToUpdateJobExecutionRejected(
-subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
-
-UpdateJobExecutionRequest publishRequest;
-publishRequest.ThingName = "<thing name>";
-publishRequest.JobId = "<job id>";
-publishRequest.ExecutionNumber = 12;
-publishRequest.Status = JobStatus::IN_PROGRESS;
-publishRequest.ExpectedVersion = 0
-
-jobsClient.PublishUpdateJobExecution(
-        publishRequest,
-        AWS_MQTT_QOS_AT_LEAST_ONCE,
-        subAckHandler);
+jobsClient->UpdateJobExecution(request, [](UpdateJobExecutionResult &&result) {
+    if (result.IsSuccess()) {
+        const UpdateJobExecutionResponse &response = result.GetResponse();
+    } else {
+        const ServiceErrorV2<V2ErrorResponse> &error = result.GetError();
+    }
+});
 
 ```
 
@@ -1339,7 +1212,7 @@ For detailed descriptions for the topics used to interact with the Jobs service,
 For more information about the service clients, see API documentation for the v2 SDK
 [Jobs](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotjobs.html).
 
-For code examples, see [Jobs](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/jobs/mqtt5_job_execution) samples.
+For code examples, see the v2 SDK [Jobs](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/service_clients/jobs/jobs-sandbox) samples.
 
 ### Client for AWS IoT fleet provisioning
 
@@ -1348,11 +1221,10 @@ For code examples, see [Jobs](https://github.com/aws/aws-iot-device-sdk-cpp-v2/t
 By using AWS IoT fleet provisioning, AWS IoT can generate and securely deliver device certificates and private keys
 to your devices when they connect to AWS IoT for the first time.
 
-The Fleet Provisioning service client provides an API similar to APIs provided by [Client for Device Shadow Service](#client for-device-shadow-service).
-First, you subscribe to special topics to get data and feedback from a service.
-The service client provides APIs for that.
-After subscribing to all the required topics, the service client can start interacting with the server,
-for example, update the status or request for data. These actions are also performed via client API calls.
+The Fleet Provisioning service client provides an API similar to the API provided by [Client for Device Shadow Service](#client-for-device-shadow-service).
+It exposes a request-response API where each operation is a single method call that takes a request object and a
+result handler, and the client manages the underlying MQTT topic subscriptions for you. Notifications that are not tied
+to a specific request are delivered through streaming operations.
 
 
 For detailed descriptions for the topics used to interact with the Fleet Provisioning service, see AWS IoT Core
@@ -1361,8 +1233,9 @@ documentation for [Fleet Provisioning](https://docs.aws.amazon.com/iot/latest/de
 For more information about the Fleet Provisioning service client,
 see API documentation for the v2 SDK [Fleet Provisioning](https://aws.github.io/aws-iot-device-sdk-cpp-v2/namespace_aws_1_1_iotidentity.html).
 
-For code examples, see the v2 SDK [Fleet Provisioning](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/fleet_provisioning/mqtt5_fleet_provisioning)
-samples.
+For code examples, see the v2 SDK Fleet Provisioning samples:
+[provision-basic](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/service_clients/fleet_provisioning/provision-basic)
+and [provision-csr](https://github.com/aws/aws-iot-device-sdk-cpp-v2/tree/main/samples/service_clients/fleet_provisioning/provision-csr).
 
 ### Example
 
