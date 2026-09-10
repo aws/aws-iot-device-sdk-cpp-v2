@@ -985,7 +985,7 @@ std::shared_ptr<Aws::Iotjobs::IClientV2> jobsClient =
 
 ```
 
-#### Example subscribing to jobs topics in the v1 SDK
+#### Example of getting pending job executions in the v1 SDK
 
 ```cpp
 ResponseCode GetPendingCallback(
