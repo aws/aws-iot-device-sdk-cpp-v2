@@ -45,8 +45,8 @@ namespace Aws
             Aws::Crt::Optional<int64_t> ExecutionNumber;
 
             /**
-             * The version of the job execution. Job execution versions are incremented each time the AWS IoT Jobs
-             * service receives an update from a device.
+             * The version of the job execution. Job execution versions are incremented
+             * each time the AWS IoT Jobs service receives an update from a device.
              *
              */
             Aws::Crt::Optional<int32_t> VersionNumber;

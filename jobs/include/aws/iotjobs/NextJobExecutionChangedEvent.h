@@ -20,10 +20,11 @@ namespace Aws
     {
 
         /**
-         * Sent whenever there is a change to which job execution is next on the list of pending job executions for a
-         * thing, as defined for DescribeJobExecution with jobId $next. This message is not sent when the next job's
-         * execution details change, only when the next job that would be returned by DescribeJobExecution with jobId
-         * $next has changed.
+         * Sent whenever there is a change to which job execution is next on the list of
+         * pending job executions for a thing, as defined for DescribeJobExecution with
+         * jobId $next. This message is not sent when the next job's execution details
+         * change, only when the next job that would be returned by DescribeJobExecution
+         * with jobId $next has changed.
          *
          */
         class AWS_IOTJOBS_API NextJobExecutionChangedEvent final
