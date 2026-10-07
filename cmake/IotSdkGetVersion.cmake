@@ -1,4 +1,4 @@
-function(aws_get_version var_version_simple var_version_full var_git_hash)
+function(aws_get_iot_sdk_version var_version_simple var_version_full var_git_hash)
     # Simple version is "MAJOR.MINOR.PATCH" from VERSION file
     file(READ "${CMAKE_CURRENT_SOURCE_DIR}/VERSION" version_simple)
     string(STRIP ${version_simple} version_simple)
