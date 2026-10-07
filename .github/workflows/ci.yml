@@ -76,7 +76,7 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - raspbian-bullseye
+          - raspbian-bookworm
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
