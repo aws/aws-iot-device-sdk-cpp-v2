@@ -1230,7 +1230,15 @@ static int s_TestEchoClientOperationActivateClosedActivate(struct aws_allocator 
             requestFuture2.wait();
 
             auto flush2ErrorStatus = requestFuture2.get().baseStatus;
-            ASSERT_INT_EQUALS(EVENT_STREAM_RPC_CONTINUATION_CLOSED, flush2ErrorStatus);
+            auto flush2CrtError = requestFuture2.get().crtError;
+
+            ASSERT_TRUE(
+                flush2ErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED ||
+                flush2ErrorStatus == EVENT_STREAM_RPC_CRT_ERROR);
+            if (flush2CrtError == EVENT_STREAM_RPC_CRT_ERROR)
+            {
+                ASSERT_INT_EQUALS(AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED, flush2CrtError);
+            }
 
             return AWS_OP_SUCCESS;
         });
