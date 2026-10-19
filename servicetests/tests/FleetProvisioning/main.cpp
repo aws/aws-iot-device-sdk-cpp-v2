@@ -313,6 +313,8 @@ void createKeysAndCertificate(const std::shared_ptr<IotIdentityClient> &identity
     ctx.acceptedSubAckPromise.get_future().wait();
     ctx.rejectedSubAckPromise.get_future().wait();
 
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
     // Now, when we subscribed to the keys and certificate topics, we can make a request for a certificate.
     fprintf(stdout, "Publishing to CreateKeysAndCertificate topic\n");
     CreateKeysAndCertificateRequest createKeysAndCertificateRequest;
@@ -404,6 +406,8 @@ void createCertificateFromCsr(
     ctx.acceptedSubAckPromise.get_future().wait();
     ctx.rejectedSubAckPromise.get_future().wait();
 
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
     // Now, when we subscribed to the certificates topics, we can make a request for a certificate.
     fprintf(stdout, "Publishing to CreateCertificateFromCsr topic\n");
     CreateCertificateFromCsrRequest createCertificateFromCsrRequest;
@@ -492,6 +496,8 @@ void registerThing(
     // Wait for the subscriptions to the accept and reject RegisterThing topics to be established.
     ctx.acceptedSubAckPromise.get_future().wait();
     ctx.rejectedSubAckPromise.get_future().wait();
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     fprintf(stdout, "Publishing to RegisterThing topic\n");
     RegisterThingRequest registerThingRequest;

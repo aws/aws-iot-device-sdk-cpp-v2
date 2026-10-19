@@ -359,6 +359,8 @@ int main(int argc, char *argv[])
                 describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
             subAckedPromise.get_future().wait();
 
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
             DescribeJobExecutionRequest describeJobExecutionRequest;
             describeJobExecutionRequest.ThingName = cmdData.thingName;
             describeJobExecutionRequest.JobId = jobid;
@@ -427,6 +429,8 @@ int main(int argc, char *argv[])
 
                 subAckedPromise.get_future().wait();
 
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
                 StartNextPendingJobExecutionRequest publishRequest;
                 publishRequest.ThingName = cmdData.thingName;
                 publishRequest.StepTimeoutInMinutes = 15L;
@@ -468,6 +472,8 @@ int main(int argc, char *argv[])
                     subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
                 subAckedPromise.get_future().wait();
 
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
                 publishDescribeJobExeCompletedPromise = std::promise<void>();
                 UpdateJobExecutionRequest publishRequest;
                 publishRequest.ThingName = cmdData.thingName;
@@ -508,6 +514,8 @@ int main(int argc, char *argv[])
                 jobsClient->SubscribeToUpdateJobExecutionRejected(
                     subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
                 subAckedPromise.get_future().wait();
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
                 UpdateJobExecutionRequest publishRequest;
                 publishRequest.ThingName = cmdData.thingName;
@@ -629,6 +637,8 @@ void getAvailableJobs(
     jobsClient.SubscribeToGetPendingJobExecutionsRejected(
         subscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, err_handler, publishHandler);
     publishDescribeJobExeCompletedPromise.get_future().wait();
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     publishDescribeJobExeCompletedPromise = std::promise<void>();
     GetPendingJobExecutionsRequest publishRequest;

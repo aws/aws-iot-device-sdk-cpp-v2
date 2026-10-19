@@ -455,6 +455,8 @@ void subscribeShadowUpdatedValue(
     shadowClient->SubscribeToShadowUpdatedEvents(
         requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, (handler), (publishCompleted));
     shadowCompletedPromise.get_future().get();
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 void subscribeNamedShadowUpdatedValue(
@@ -501,6 +503,8 @@ void subscribeNamedShadowUpdatedValue(
     shadowClient->SubscribeToNamedShadowUpdatedEvents(
         requestUpdate, AWS_MQTT_QOS_AT_LEAST_ONCE, handler, std::move(publishCompleted));
     shadowCompletedPromise.get_future().get();
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 void changeShadowValue(
