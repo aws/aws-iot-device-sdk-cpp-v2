@@ -1229,8 +1229,9 @@ static int s_TestEchoClientOperationActivateClosedActivate(struct aws_allocator 
             auto requestFuture2 = getAllCustomers->Activate(getAllCustomersRequest, s_onMessageFlush);
             requestFuture2.wait();
 
-            auto flush2ErrorStatus = requestFuture2.get().baseStatus;
-            auto flush2CrtError = requestFuture2.get().crtError;
+            auto result2 = requestFuture2.get();
+            auto flush2ErrorStatus = result2.baseStatus;
+            auto flush2CrtError = result2.crtError;
 
             ASSERT_TRUE(
                 flush2ErrorStatus == EVENT_STREAM_RPC_CONTINUATION_CLOSED ||
