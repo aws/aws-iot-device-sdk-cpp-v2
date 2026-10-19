@@ -22,7 +22,9 @@
 #include <aws/iotidentity/RegisterThingResponse.h>
 #include <aws/iotidentity/RegisterThingSubscriptionRequest.h>
 
+#include <chrono>
 #include <fstream>
+#include <thread>
 
 using namespace Aws::Crt;
 using namespace Aws::Iotidentity;

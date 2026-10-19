@@ -30,6 +30,7 @@
 #include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
 #include <algorithm>
+#include <chrono>
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
