@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.9...3.31)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(AwsGetVersion)
-aws_get_version(SIMPLE_VERSION FULL_VERSION GIT_HASH)
+include(IotSdkGetVersion)
+aws_get_iot_sdk_version(SIMPLE_VERSION FULL_VERSION GIT_HASH)
 message(STATUS "AWS SDK C++ ${FULL_VERSION}")
 
 project(aws-iot-device-sdk-cpp-v2
