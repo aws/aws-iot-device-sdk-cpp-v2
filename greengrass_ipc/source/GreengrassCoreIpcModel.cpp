@@ -501,6 +501,83 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
+        void ConnectionStatusEvent::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_status.has_value())
+            {
+                payloadObject.WithString("status", m_status.value());
+            }
+        }
+
+        void ConnectionStatusEvent::s_loadFromJsonView(
+            ConnectionStatusEvent &connectionStatusEvent,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("status"))
+            {
+                connectionStatusEvent.m_status = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("status"));
+            }
+        }
+
+        void ConnectionStatusEvent::SetStatus(ConnectionStatus status) noexcept
+        {
+            switch (status)
+            {
+                case CONNECTION_STATUS_CONNECTED:
+                    m_status = Aws::Crt::String("CONNECTED");
+                    break;
+                case CONNECTION_STATUS_DISCONNECTED:
+                    m_status = Aws::Crt::String("DISCONNECTED");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Aws::Crt::Optional<ConnectionStatus> ConnectionStatusEvent::GetStatus() const noexcept
+        {
+            if (!m_status.has_value())
+                return Aws::Crt::Optional<ConnectionStatus>();
+            if (m_status.value() == Aws::Crt::String("CONNECTED"))
+            {
+                return Aws::Crt::Optional<ConnectionStatus>(CONNECTION_STATUS_CONNECTED);
+            }
+            if (m_status.value() == Aws::Crt::String("DISCONNECTED"))
+            {
+                return Aws::Crt::Optional<ConnectionStatus>(CONNECTION_STATUS_DISCONNECTED);
+            }
+
+            return Aws::Crt::Optional<ConnectionStatus>();
+        }
+
+        const char *ConnectionStatusEvent::MODEL_NAME = "aws.greengrass#ConnectionStatusEvent";
+
+        Aws::Crt::String ConnectionStatusEvent::GetModelName() const noexcept
+        {
+            return ConnectionStatusEvent::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> ConnectionStatusEvent::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ConnectionStatusEvent> shape(
+                Aws::Crt::New<ConnectionStatusEvent>(allocator), ConnectionStatusEvent::s_customDeleter);
+            shape->m_allocator = allocator;
+            ConnectionStatusEvent::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void ConnectionStatusEvent::s_customDeleter(ConnectionStatusEvent *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void MQTTMessage::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_topicName.has_value())
@@ -1658,6 +1735,69 @@ namespace Aws
         }
 
         void SubscriptionResponseMessage::s_customDeleter(SubscriptionResponseMessage *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void IoTCoreConnectionStatusEvent::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_chosenMember == TAG_CONNECTION_STATUS_EVENT && m_connectionStatusEvent.has_value())
+            {
+                Aws::Crt::JsonObject connectionStatusEventValue;
+                m_connectionStatusEvent.value().SerializeToJsonObject(connectionStatusEventValue);
+                payloadObject.WithObject("connectionStatusEvent", std::move(connectionStatusEventValue));
+            }
+        }
+
+        void IoTCoreConnectionStatusEvent::s_loadFromJsonView(
+            IoTCoreConnectionStatusEvent &ioTCoreConnectionStatusEvent,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("connectionStatusEvent"))
+            {
+                ioTCoreConnectionStatusEvent.m_connectionStatusEvent = ConnectionStatusEvent();
+                ConnectionStatusEvent::s_loadFromJsonView(
+                    ioTCoreConnectionStatusEvent.m_connectionStatusEvent.value(),
+                    jsonView.GetJsonObject("connectionStatusEvent"));
+                ioTCoreConnectionStatusEvent.m_chosenMember = TAG_CONNECTION_STATUS_EVENT;
+            }
+        }
+
+        IoTCoreConnectionStatusEvent &IoTCoreConnectionStatusEvent::operator=(
+            const IoTCoreConnectionStatusEvent &objectToCopy) noexcept
+        {
+            if (objectToCopy.m_chosenMember == TAG_CONNECTION_STATUS_EVENT)
+            {
+                m_connectionStatusEvent = objectToCopy.m_connectionStatusEvent;
+                m_chosenMember = objectToCopy.m_chosenMember;
+            }
+            return *this;
+        }
+
+        const char *IoTCoreConnectionStatusEvent::MODEL_NAME = "aws.greengrass#IoTCoreConnectionStatusEvent";
+
+        Aws::Crt::String IoTCoreConnectionStatusEvent::GetModelName() const noexcept
+        {
+            return IoTCoreConnectionStatusEvent::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> IoTCoreConnectionStatusEvent::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<IoTCoreConnectionStatusEvent> shape(
+                Aws::Crt::New<IoTCoreConnectionStatusEvent>(allocator), IoTCoreConnectionStatusEvent::s_customDeleter);
+            shape->m_allocator = allocator;
+            IoTCoreConnectionStatusEvent::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void IoTCoreConnectionStatusEvent::s_customDeleter(IoTCoreConnectionStatusEvent *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
@@ -3437,6 +3577,96 @@ namespace Aws
         }
 
         void SubscribeToTopicRequest::s_customDeleter(SubscribeToTopicRequest *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void SubscribeToIoTCoreConnectionStatusResponse::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            (void)payloadObject;
+        }
+
+        void SubscribeToIoTCoreConnectionStatusResponse::s_loadFromJsonView(
+            SubscribeToIoTCoreConnectionStatusResponse &subscribeToIoTCoreConnectionStatusResponse,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            (void)subscribeToIoTCoreConnectionStatusResponse;
+            (void)jsonView;
+        }
+
+        const char *SubscribeToIoTCoreConnectionStatusResponse::MODEL_NAME =
+            "aws.greengrass#SubscribeToIoTCoreConnectionStatusResponse";
+
+        Aws::Crt::String SubscribeToIoTCoreConnectionStatusResponse::GetModelName() const noexcept
+        {
+            return SubscribeToIoTCoreConnectionStatusResponse::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreConnectionStatusResponse::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<SubscribeToIoTCoreConnectionStatusResponse> shape(
+                Aws::Crt::New<SubscribeToIoTCoreConnectionStatusResponse>(allocator),
+                SubscribeToIoTCoreConnectionStatusResponse::s_customDeleter);
+            shape->m_allocator = allocator;
+            SubscribeToIoTCoreConnectionStatusResponse::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void SubscribeToIoTCoreConnectionStatusResponse::s_customDeleter(
+            SubscribeToIoTCoreConnectionStatusResponse *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void SubscribeToIoTCoreConnectionStatusRequest::SerializeToJsonObject(
+            Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            (void)payloadObject;
+        }
+
+        void SubscribeToIoTCoreConnectionStatusRequest::s_loadFromJsonView(
+            SubscribeToIoTCoreConnectionStatusRequest &subscribeToIoTCoreConnectionStatusRequest,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            (void)subscribeToIoTCoreConnectionStatusRequest;
+            (void)jsonView;
+        }
+
+        const char *SubscribeToIoTCoreConnectionStatusRequest::MODEL_NAME =
+            "aws.greengrass#SubscribeToIoTCoreConnectionStatusRequest";
+
+        Aws::Crt::String SubscribeToIoTCoreConnectionStatusRequest::GetModelName() const noexcept
+        {
+            return SubscribeToIoTCoreConnectionStatusRequest::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreConnectionStatusRequest::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<SubscribeToIoTCoreConnectionStatusRequest> shape(
+                Aws::Crt::New<SubscribeToIoTCoreConnectionStatusRequest>(allocator),
+                SubscribeToIoTCoreConnectionStatusRequest::s_customDeleter);
+            shape->m_allocator = allocator;
+            SubscribeToIoTCoreConnectionStatusRequest::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void SubscribeToIoTCoreConnectionStatusRequest::s_customDeleter(
+            SubscribeToIoTCoreConnectionStatusRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
@@ -8717,6 +8947,122 @@ namespace Aws
             return activateFuture;
         }
 
+        void SubscribeToIoTCoreConnectionStatusStreamHandler::OnStreamEvent(
+            Aws::Crt::ScopedResource<AbstractShapeBase> response)
+        {
+            OnStreamEvent(static_cast<IoTCoreConnectionStatusEvent *>(response.get()));
+        }
+
+        bool SubscribeToIoTCoreConnectionStatusStreamHandler::OnStreamError(
+            Aws::Crt::ScopedResource<OperationError> operationError,
+            RpcError rpcError)
+        {
+            bool streamShouldTerminate = false;
+            if (rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
+            {
+                streamShouldTerminate = OnStreamError(rpcError);
+            }
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError") &&
+                !streamShouldTerminate)
+            {
+                streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
+            }
+            if (operationError != nullptr && !streamShouldTerminate)
+                streamShouldTerminate = OnStreamError(operationError.get());
+            return streamShouldTerminate;
+        }
+
+        class SubscribeToIoTCoreConnectionStatusOperationContext : public OperationModelContext
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusOperationContext(
+                const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
+                Aws::Crt::StringView stringView,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
+            Aws::Crt::String GetRequestModelName() const noexcept override;
+            Aws::Crt::String GetInitialResponseModelName() const noexcept override;
+            Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
+            Aws::Crt::String GetOperationName() const noexcept override;
+        };
+
+        SubscribeToIoTCoreConnectionStatusOperationContext::SubscribeToIoTCoreConnectionStatusOperationContext(
+            const GreengrassCoreIpcServiceModel &serviceModel) noexcept
+            : OperationModelContext(serviceModel)
+        {
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreConnectionStatusOperationContext::
+            AllocateInitialResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
+        {
+            return SubscribeToIoTCoreConnectionStatusResponse::s_allocateFromPayload(stringView, allocator);
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreConnectionStatusOperationContext::
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator)
+                const noexcept
+        {
+            return IoTCoreConnectionStatusEvent::s_allocateFromPayload(stringView, allocator);
+        }
+
+        Aws::Crt::String SubscribeToIoTCoreConnectionStatusOperationContext::GetRequestModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreConnectionStatusRequest");
+        }
+
+        Aws::Crt::String SubscribeToIoTCoreConnectionStatusOperationContext::GetInitialResponseModelName()
+            const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreConnectionStatusResponse");
+        }
+
+        Aws::Crt::Optional<Aws::Crt::String> SubscribeToIoTCoreConnectionStatusOperationContext::
+            GetStreamingResponseModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#IoTCoreConnectionStatusEvent");
+        }
+
+        Aws::Crt::String SubscribeToIoTCoreConnectionStatusOperationContext::GetOperationName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreConnectionStatus");
+        }
+
+        std::future<SubscribeToIoTCoreConnectionStatusResult> SubscribeToIoTCoreConnectionStatusOperation::
+            GetResult() noexcept
+        {
+            return m_resultPromise->get_future();
+        }
+
+        SubscribeToIoTCoreConnectionStatusOperation::SubscribeToIoTCoreConnectionStatusOperation(
+            ClientConnection &connection,
+            std::shared_ptr<SubscribeToIoTCoreConnectionStatusStreamHandler> streamHandler,
+            const std::shared_ptr<OperationModelContext> &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, streamHandler, operationContext, allocator),
+              m_resultPromise(Aws::Crt::MakeShared<std::promise<SubscribeToIoTCoreConnectionStatusResult>>(allocator))
+        {
+        }
+
+        std::future<RpcError> SubscribeToIoTCoreConnectionStatusOperation::Activate(
+            const SubscribeToIoTCoreConnectionStatusRequest &request,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            auto promiseReference = m_resultPromise;
+
+            auto activateFuture = ClientOperation::Activate(
+                static_cast<const AbstractShapeBase *>(&request),
+                std::move(onMessageFlushCallback),
+                [promiseReference](EventstreamResultVariantType &&unmodeledResult)
+                { promiseReference->set_value(SubscribeToIoTCoreConnectionStatusResult(std::move(unmodeledResult))); });
+
+            return activateFuture;
+        }
+
         class GetThingShadowOperationContext : public OperationModelContext
         {
           public:
@@ -10191,6 +10537,8 @@ namespace Aws
               m_listComponentsOperationContext(Aws::Crt::MakeShared<ListComponentsOperationContext>(allocator, *this)),
               m_createDebugPasswordOperationContext(
                   Aws::Crt::MakeShared<CreateDebugPasswordOperationContext>(allocator, *this)),
+              m_subscribeToIoTCoreConnectionStatusOperationContext(
+                  Aws::Crt::MakeShared<SubscribeToIoTCoreConnectionStatusOperationContext>(allocator, *this)),
               m_getThingShadowOperationContext(Aws::Crt::MakeShared<GetThingShadowOperationContext>(allocator, *this)),
               m_sendConfigurationValidityReportOperationContext(
                   Aws::Crt::MakeShared<SendConfigurationValidityReportOperationContext>(allocator, *this)),

@@ -95,6 +95,12 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_topic;
         };
 
+        enum ConnectionStatus
+        {
+            CONNECTION_STATUS_CONNECTED,
+            CONNECTION_STATUS_DISCONNECTED
+        };
+
         enum PayloadFormat
         {
             PAYLOAD_FORMAT_BYTES,
@@ -366,6 +372,36 @@ namespace Aws
           private:
             Aws::Crt::Optional<Aws::Crt::JsonObject> m_message;
             Aws::Crt::Optional<MessageContext> m_context;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API ConnectionStatusEvent : public AbstractShapeBase
+        {
+          public:
+            ConnectionStatusEvent() noexcept {};
+            ConnectionStatusEvent(const ConnectionStatusEvent &) = default;
+            /**
+             * The connection status.
+             */
+            void SetStatus(ConnectionStatus status) noexcept;
+            /**
+             * The connection status.
+             */
+            Aws::Crt::Optional<ConnectionStatus> GetStatus() const noexcept;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(ConnectionStatusEvent &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(ConnectionStatusEvent *) noexcept;
+            /* This needs to be defined so that `ConnectionStatusEvent` can be used as a key in maps. */
+            bool operator<(const ConnectionStatusEvent &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_status;
         };
 
         class AWS_GREENGRASSCOREIPC_API MQTTMessage : public AbstractShapeBase
@@ -1130,6 +1166,55 @@ namespace Aws
         {
             RECEIVE_MODE_RECEIVE_ALL_MESSAGES,
             RECEIVE_MODE_RECEIVE_MESSAGES_FROM_OTHERS
+        };
+
+        class AWS_GREENGRASSCOREIPC_API IoTCoreConnectionStatusEvent : public AbstractShapeBase
+        {
+          public:
+            IoTCoreConnectionStatusEvent() noexcept {};
+            IoTCoreConnectionStatusEvent &operator=(const IoTCoreConnectionStatusEvent &) noexcept;
+            IoTCoreConnectionStatusEvent(const IoTCoreConnectionStatusEvent &objectToCopy) { *this = objectToCopy; }
+            /**
+             * The connection status event.
+             */
+            void SetConnectionStatusEvent(const ConnectionStatusEvent &connectionStatusEvent) noexcept
+            {
+                m_connectionStatusEvent = connectionStatusEvent;
+                m_chosenMember = TAG_CONNECTION_STATUS_EVENT;
+            }
+            /**
+             * The connection status event.
+             */
+            Aws::Crt::Optional<ConnectionStatusEvent> GetConnectionStatusEvent() const noexcept
+            {
+                if (m_chosenMember == TAG_CONNECTION_STATUS_EVENT)
+                {
+                    return m_connectionStatusEvent;
+                }
+                else
+                {
+                    return Aws::Crt::Optional<ConnectionStatusEvent>();
+                }
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(IoTCoreConnectionStatusEvent &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(IoTCoreConnectionStatusEvent *) noexcept;
+            /* This needs to be defined so that `IoTCoreConnectionStatusEvent` can be used as a key in maps. */
+            bool operator<(const IoTCoreConnectionStatusEvent &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            enum ChosenMember
+            {
+                TAG_CONNECTION_STATUS_EVENT
+            } m_chosenMember;
+            Aws::Crt::Optional<ConnectionStatusEvent> m_connectionStatusEvent;
         };
 
         class AWS_GREENGRASSCOREIPC_API IoTCoreMessage : public AbstractShapeBase
@@ -2282,6 +2367,54 @@ namespace Aws
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_topic;
             Aws::Crt::Optional<Aws::Crt::String> m_receiveMode;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusResponse : public AbstractShapeBase
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusResponse() noexcept {};
+            SubscribeToIoTCoreConnectionStatusResponse(const SubscribeToIoTCoreConnectionStatusResponse &) = default;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(
+                SubscribeToIoTCoreConnectionStatusResponse &,
+                const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(SubscribeToIoTCoreConnectionStatusResponse *) noexcept;
+            /* This needs to be defined so that `SubscribeToIoTCoreConnectionStatusResponse` can be used as a key in
+             * maps. */
+            bool operator<(const SubscribeToIoTCoreConnectionStatusResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusRequest : public AbstractShapeBase
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusRequest() noexcept {};
+            SubscribeToIoTCoreConnectionStatusRequest(const SubscribeToIoTCoreConnectionStatusRequest &) = default;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(
+                SubscribeToIoTCoreConnectionStatusRequest &,
+                const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(SubscribeToIoTCoreConnectionStatusRequest *) noexcept;
+            /* This needs to be defined so that `SubscribeToIoTCoreConnectionStatusRequest` can be used as a key in
+             * maps. */
+            bool operator<(const SubscribeToIoTCoreConnectionStatusRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreResponse : public AbstractShapeBase
@@ -5647,6 +5780,109 @@ namespace Aws
             std::shared_ptr<std::promise<CreateDebugPasswordResult>> m_resultPromise;
         };
 
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusStreamHandler : public StreamResponseHandler
+        {
+          public:
+            virtual void OnStreamEvent(IoTCoreConnectionStatusEvent *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
+            virtual bool OnStreamError(RpcError rpcError)
+            {
+                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving ANY error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+          private:
+            /**
+             * Invoked when a message is received on this continuation.
+             */
+            void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
+            /**
+             * Invoked when a message is received on this continuation but results in an error.
+             *
+             * This callback can return true so that the stream is closed afterwards.
+             */
+            bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusResult
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusResult() noexcept {};
+            SubscribeToIoTCoreConnectionStatusResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
+            {
+            }
+            SubscribeToIoTCoreConnectionStatusResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<SubscribeToIoTCoreConnectionStatusResponse *>(m_result.GetModeledResponse());
+            }
+
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
+            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
+            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+
+          private:
+            EventstreamResultVariantType m_result;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusOperation : public ClientOperation
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToIoTCoreConnectionStatusStreamHandler> streamHandler,
+                const std::shared_ptr<OperationModelContext> &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
+            /**
+             * Used to activate a stream for the `SubscribeToIoTCoreConnectionStatusOperation`
+             * @param request The request used for the `SubscribeToIoTCoreConnectionStatusOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const SubscribeToIoTCoreConnectionStatusRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<SubscribeToIoTCoreConnectionStatusResult> GetResult() noexcept;
+
+          private:
+            std::shared_ptr<std::promise<SubscribeToIoTCoreConnectionStatusResult>> m_resultPromise;
+        };
+
         class AWS_GREENGRASSCOREIPC_API GetThingShadowResult
         {
           public:
@@ -6550,6 +6786,7 @@ namespace Aws
             std::shared_ptr<OperationModelContext> m_authorizeClientDeviceActionOperationContext;
             std::shared_ptr<OperationModelContext> m_listComponentsOperationContext;
             std::shared_ptr<OperationModelContext> m_createDebugPasswordOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToIoTCoreConnectionStatusOperationContext;
             std::shared_ptr<OperationModelContext> m_getThingShadowOperationContext;
             std::shared_ptr<OperationModelContext> m_sendConfigurationValidityReportOperationContext;
             std::shared_ptr<OperationModelContext> m_updateThingShadowOperationContext;
