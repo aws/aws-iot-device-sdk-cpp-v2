@@ -95,6 +95,12 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::String> m_topic;
         };
 
+        enum ConnectionStatus
+        {
+            CONNECTION_STATUS_CONNECTED,
+            CONNECTION_STATUS_DISCONNECTED
+        };
+
         enum PayloadFormat
         {
             PAYLOAD_FORMAT_BYTES,
@@ -366,6 +372,36 @@ namespace Aws
           private:
             Aws::Crt::Optional<Aws::Crt::JsonObject> m_message;
             Aws::Crt::Optional<MessageContext> m_context;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API ConnectionStatusEvent : public AbstractShapeBase
+        {
+          public:
+            ConnectionStatusEvent() noexcept {};
+            ConnectionStatusEvent(const ConnectionStatusEvent &) = default;
+            /**
+             * The connection status.
+             */
+            void SetStatus(ConnectionStatus status) noexcept;
+            /**
+             * The connection status.
+             */
+            Aws::Crt::Optional<ConnectionStatus> GetStatus() const noexcept;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(ConnectionStatusEvent &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(ConnectionStatusEvent *) noexcept;
+            /* This needs to be defined so that `ConnectionStatusEvent` can be used as a key in maps. */
+            bool operator<(const ConnectionStatusEvent &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            Aws::Crt::Optional<Aws::Crt::String> m_status;
         };
 
         class AWS_GREENGRASSCOREIPC_API MQTTMessage : public AbstractShapeBase
@@ -1130,6 +1166,55 @@ namespace Aws
         {
             RECEIVE_MODE_RECEIVE_ALL_MESSAGES,
             RECEIVE_MODE_RECEIVE_MESSAGES_FROM_OTHERS
+        };
+
+        class AWS_GREENGRASSCOREIPC_API IoTCoreConnectionStatusEvent : public AbstractShapeBase
+        {
+          public:
+            IoTCoreConnectionStatusEvent() noexcept {};
+            IoTCoreConnectionStatusEvent &operator=(const IoTCoreConnectionStatusEvent &) noexcept;
+            IoTCoreConnectionStatusEvent(const IoTCoreConnectionStatusEvent &objectToCopy) { *this = objectToCopy; }
+            /**
+             * The connection status event.
+             */
+            void SetConnectionStatusEvent(const ConnectionStatusEvent &connectionStatusEvent) noexcept
+            {
+                m_connectionStatusEvent = connectionStatusEvent;
+                m_chosenMember = TAG_CONNECTION_STATUS_EVENT;
+            }
+            /**
+             * The connection status event.
+             */
+            Aws::Crt::Optional<ConnectionStatusEvent> GetConnectionStatusEvent() const noexcept
+            {
+                if (m_chosenMember == TAG_CONNECTION_STATUS_EVENT)
+                {
+                    return m_connectionStatusEvent;
+                }
+                else
+                {
+                    return Aws::Crt::Optional<ConnectionStatusEvent>();
+                }
+            }
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(IoTCoreConnectionStatusEvent &, const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(IoTCoreConnectionStatusEvent *) noexcept;
+            /* This needs to be defined so that `IoTCoreConnectionStatusEvent` can be used as a key in maps. */
+            bool operator<(const IoTCoreConnectionStatusEvent &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+            enum ChosenMember
+            {
+                TAG_CONNECTION_STATUS_EVENT
+            } m_chosenMember;
+            Aws::Crt::Optional<ConnectionStatusEvent> m_connectionStatusEvent;
         };
 
         class AWS_GREENGRASSCOREIPC_API IoTCoreMessage : public AbstractShapeBase
@@ -2282,6 +2367,54 @@ namespace Aws
           private:
             Aws::Crt::Optional<Aws::Crt::String> m_topic;
             Aws::Crt::Optional<Aws::Crt::String> m_receiveMode;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusResponse : public AbstractShapeBase
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusResponse() noexcept {};
+            SubscribeToIoTCoreConnectionStatusResponse(const SubscribeToIoTCoreConnectionStatusResponse &) = default;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(
+                SubscribeToIoTCoreConnectionStatusResponse &,
+                const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(SubscribeToIoTCoreConnectionStatusResponse *) noexcept;
+            /* This needs to be defined so that `SubscribeToIoTCoreConnectionStatusResponse` can be used as a key in
+             * maps. */
+            bool operator<(const SubscribeToIoTCoreConnectionStatusResponse &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusRequest : public AbstractShapeBase
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusRequest() noexcept {};
+            SubscribeToIoTCoreConnectionStatusRequest(const SubscribeToIoTCoreConnectionStatusRequest &) = default;
+            void SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept override;
+            static void s_loadFromJsonView(
+                SubscribeToIoTCoreConnectionStatusRequest &,
+                const Aws::Crt::JsonView &) noexcept;
+            static Aws::Crt::ScopedResource<AbstractShapeBase> s_allocateFromPayload(
+                Aws::Crt::StringView,
+                Aws::Crt::Allocator *) noexcept;
+            static void s_customDeleter(SubscribeToIoTCoreConnectionStatusRequest *) noexcept;
+            /* This needs to be defined so that `SubscribeToIoTCoreConnectionStatusRequest` can be used as a key in
+             * maps. */
+            bool operator<(const SubscribeToIoTCoreConnectionStatusRequest &) const noexcept;
+            static const char *MODEL_NAME;
+
+          protected:
+            Aws::Crt::String GetModelName() const noexcept override;
+
+          private:
         };
 
         class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreResponse : public AbstractShapeBase
@@ -4485,7 +4618,8 @@ namespace Aws
             SubscribeToIoTCoreResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             SubscribeToIoTCoreResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToIoTCoreResponse *>(m_result.GetModeledResponse());
+                return static_cast<SubscribeToIoTCoreResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4493,9 +4627,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4536,7 +4673,8 @@ namespace Aws
             ResumeComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ResumeComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ResumeComponentResponse *>(m_result.GetModeledResponse());
+                return static_cast<ResumeComponentResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4544,9 +4682,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4586,7 +4727,8 @@ namespace Aws
             PublishToIoTCoreResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PublishToIoTCoreResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PublishToIoTCoreResponse *>(m_result.GetModeledResponse());
+                return static_cast<PublishToIoTCoreResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4594,9 +4736,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4698,7 +4843,8 @@ namespace Aws
             }
             SubscribeToConfigurationUpdateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToConfigurationUpdateResponse *>(m_result.GetModeledResponse());
+                return static_cast<SubscribeToConfigurationUpdateResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4706,9 +4852,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4749,7 +4898,8 @@ namespace Aws
             DeleteThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             DeleteThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<DeleteThingShadowResponse *>(m_result.GetModeledResponse());
+                return static_cast<DeleteThingShadowResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4757,9 +4907,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4799,7 +4952,8 @@ namespace Aws
             PutComponentMetricResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PutComponentMetricResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PutComponentMetricResponse *>(m_result.GetModeledResponse());
+                return static_cast<PutComponentMetricResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4807,9 +4961,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4849,7 +5006,8 @@ namespace Aws
             DeferComponentUpdateResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             DeferComponentUpdateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<DeferComponentUpdateResponse *>(m_result.GetModeledResponse());
+                return static_cast<DeferComponentUpdateResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4857,9 +5015,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -4952,7 +5113,8 @@ namespace Aws
             }
             SubscribeToValidateConfigurationUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(m_result.GetModeledResponse());
+                return static_cast<SubscribeToValidateConfigurationUpdatesResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -4960,9 +5122,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5003,7 +5168,8 @@ namespace Aws
             GetConfigurationResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetConfigurationResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetConfigurationResponse *>(m_result.GetModeledResponse());
+                return static_cast<GetConfigurationResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5011,9 +5177,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5122,7 +5291,8 @@ namespace Aws
             SubscribeToTopicResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             SubscribeToTopicResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToTopicResponse *>(m_result.GetModeledResponse());
+                return static_cast<SubscribeToTopicResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5130,9 +5300,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5173,7 +5346,8 @@ namespace Aws
             GetComponentDetailsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetComponentDetailsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetComponentDetailsResponse *>(m_result.GetModeledResponse());
+                return static_cast<GetComponentDetailsResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5181,9 +5355,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5225,7 +5402,8 @@ namespace Aws
             }
             GetClientDeviceAuthTokenResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetClientDeviceAuthTokenResponse *>(m_result.GetModeledResponse());
+                return static_cast<GetClientDeviceAuthTokenResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5233,9 +5411,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5275,7 +5456,8 @@ namespace Aws
             PublishToTopicResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PublishToTopicResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PublishToTopicResponse *>(m_result.GetModeledResponse());
+                return static_cast<PublishToTopicResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5283,9 +5465,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5397,7 +5582,8 @@ namespace Aws
             }
             SubscribeToCertificateUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToCertificateUpdatesResponse *>(m_result.GetModeledResponse());
+                return static_cast<SubscribeToCertificateUpdatesResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5405,9 +5591,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5451,7 +5640,8 @@ namespace Aws
             }
             VerifyClientDeviceIdentityResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<VerifyClientDeviceIdentityResponse *>(m_result.GetModeledResponse());
+                return static_cast<VerifyClientDeviceIdentityResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5459,9 +5649,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5504,7 +5697,8 @@ namespace Aws
             }
             AuthorizeClientDeviceActionResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<AuthorizeClientDeviceActionResponse *>(m_result.GetModeledResponse());
+                return static_cast<AuthorizeClientDeviceActionResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5512,9 +5706,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5554,7 +5751,8 @@ namespace Aws
             ListComponentsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ListComponentsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListComponentsResponse *>(m_result.GetModeledResponse());
+                return static_cast<ListComponentsResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5562,9 +5760,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5604,7 +5805,8 @@ namespace Aws
             CreateDebugPasswordResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CreateDebugPasswordResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CreateDebugPasswordResponse *>(m_result.GetModeledResponse());
+                return static_cast<CreateDebugPasswordResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5612,9 +5814,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5647,14 +5852,67 @@ namespace Aws
             std::shared_ptr<std::promise<CreateDebugPasswordResult>> m_resultPromise;
         };
 
-        class AWS_GREENGRASSCOREIPC_API GetThingShadowResult
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusStreamHandler : public StreamResponseHandler
         {
           public:
-            GetThingShadowResult() noexcept {};
-            GetThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
-            GetThingShadowResponse *GetOperationResponse() const noexcept
+            virtual void OnStreamEvent(IoTCoreConnectionStatusEvent *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
+            virtual bool OnStreamError(RpcError rpcError)
             {
-                return static_cast<GetThingShadowResponse *>(m_result.GetModeledResponse());
+                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving ANY error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
+                return true;
+            }
+
+          private:
+            /**
+             * Invoked when a message is received on this continuation.
+             */
+            void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
+
+            /**
+             * Invoked when a message is received on this continuation but results in an error.
+             *
+             * This callback can return true so that the stream is closed afterwards.
+             */
+            bool OnStreamError(Aws::Crt::ScopedResource<OperationError> error, RpcError rpcError) override;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusResult
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusResult() noexcept {};
+            SubscribeToIoTCoreConnectionStatusResult(EventstreamResultVariantType &&result) noexcept
+                : m_result(std::move(result))
+            {
+            }
+            SubscribeToIoTCoreConnectionStatusResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<SubscribeToIoTCoreConnectionStatusResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5662,9 +5920,67 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
+
+          private:
+            EventstreamResultVariantType m_result;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API SubscribeToIoTCoreConnectionStatusOperation : public ClientOperation
+        {
+          public:
+            SubscribeToIoTCoreConnectionStatusOperation(
+                ClientConnection &connection,
+                std::shared_ptr<SubscribeToIoTCoreConnectionStatusStreamHandler> streamHandler,
+                const std::shared_ptr<OperationModelContext> &operationContext,
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+
+            /**
+             * Used to activate a stream for the `SubscribeToIoTCoreConnectionStatusOperation`
+             * @param request The request used for the `SubscribeToIoTCoreConnectionStatusOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
+            std::future<RpcError> Activate(
+                const SubscribeToIoTCoreConnectionStatusRequest &request,
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+
+            /**
+             * Retrieve the result from activating the stream.
+             */
+            std::future<SubscribeToIoTCoreConnectionStatusResult> GetResult() noexcept;
+
+          private:
+            std::shared_ptr<std::promise<SubscribeToIoTCoreConnectionStatusResult>> m_resultPromise;
+        };
+
+        class AWS_GREENGRASSCOREIPC_API GetThingShadowResult
+        {
+          public:
+            GetThingShadowResult() noexcept {};
+            GetThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
+            GetThingShadowResponse *GetOperationResponse() const noexcept
+            {
+                return static_cast<GetThingShadowResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
+            }
+
+            /**
+             * @return true if the response is associated with an expected response;
+             * false if the response is associated with an error.
+             */
+            operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5707,7 +6023,8 @@ namespace Aws
             }
             SendConfigurationValidityReportResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SendConfigurationValidityReportResponse *>(m_result.GetModeledResponse());
+                return static_cast<SendConfigurationValidityReportResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5715,9 +6032,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5757,7 +6077,8 @@ namespace Aws
             UpdateThingShadowResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateThingShadowResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateThingShadowResponse *>(m_result.GetModeledResponse());
+                return static_cast<UpdateThingShadowResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5765,9 +6086,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5807,7 +6131,8 @@ namespace Aws
             UpdateConfigurationResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateConfigurationResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateConfigurationResponse *>(m_result.GetModeledResponse());
+                return static_cast<UpdateConfigurationResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5815,9 +6140,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5860,7 +6188,8 @@ namespace Aws
             }
             ValidateAuthorizationTokenResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ValidateAuthorizationTokenResponse *>(m_result.GetModeledResponse());
+                return static_cast<ValidateAuthorizationTokenResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5868,9 +6197,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5910,7 +6242,8 @@ namespace Aws
             RestartComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             RestartComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<RestartComponentResponse *>(m_result.GetModeledResponse());
+                return static_cast<RestartComponentResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5918,9 +6251,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -5962,7 +6298,8 @@ namespace Aws
             }
             GetLocalDeploymentStatusResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetLocalDeploymentStatusResponse *>(m_result.GetModeledResponse());
+                return static_cast<GetLocalDeploymentStatusResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -5970,9 +6307,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6012,7 +6352,8 @@ namespace Aws
             GetSecretValueResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             GetSecretValueResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<GetSecretValueResponse *>(m_result.GetModeledResponse());
+                return static_cast<GetSecretValueResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6020,9 +6361,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6062,7 +6406,8 @@ namespace Aws
             UpdateStateResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             UpdateStateResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<UpdateStateResponse *>(m_result.GetModeledResponse());
+                return static_cast<UpdateStateResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6070,9 +6415,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6112,7 +6460,8 @@ namespace Aws
             CancelLocalDeploymentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CancelLocalDeploymentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CancelLocalDeploymentResponse *>(m_result.GetModeledResponse());
+                return static_cast<CancelLocalDeploymentResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6120,9 +6469,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6164,7 +6516,8 @@ namespace Aws
             }
             ListNamedShadowsForThingResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListNamedShadowsForThingResponse *>(m_result.GetModeledResponse());
+                return static_cast<ListNamedShadowsForThingResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6172,9 +6525,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6276,7 +6632,8 @@ namespace Aws
             }
             SubscribeToComponentUpdatesResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<SubscribeToComponentUpdatesResponse *>(m_result.GetModeledResponse());
+                return static_cast<SubscribeToComponentUpdatesResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6284,9 +6641,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6327,7 +6687,8 @@ namespace Aws
             ListLocalDeploymentsResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             ListLocalDeploymentsResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<ListLocalDeploymentsResponse *>(m_result.GetModeledResponse());
+                return static_cast<ListLocalDeploymentsResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6335,9 +6696,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6377,7 +6741,8 @@ namespace Aws
             StopComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             StopComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<StopComponentResponse *>(m_result.GetModeledResponse());
+                return static_cast<StopComponentResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6385,9 +6750,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6427,7 +6795,8 @@ namespace Aws
             PauseComponentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             PauseComponentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<PauseComponentResponse *>(m_result.GetModeledResponse());
+                return static_cast<PauseComponentResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6435,9 +6804,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6477,7 +6849,8 @@ namespace Aws
             CreateLocalDeploymentResult(EventstreamResultVariantType &&result) noexcept : m_result(std::move(result)) {}
             CreateLocalDeploymentResponse *GetOperationResponse() const noexcept
             {
-                return static_cast<CreateLocalDeploymentResponse *>(m_result.GetModeledResponse());
+                return static_cast<CreateLocalDeploymentResponse *>(
+                    std::get<Aws::Crt::ScopedResource<AbstractShapeBase>>(m_result).get());
             }
 
             /**
@@ -6485,9 +6858,12 @@ namespace Aws
              * false if the response is associated with an error.
              */
             operator bool() const noexcept { return GetResultType() == OPERATION_RESPONSE; }
-            OperationError *GetOperationError() const noexcept { return m_result.GetModeledError(); }
-            RpcError GetRpcError() const noexcept { return m_result.GetRpcError(); }
-            ResultType GetResultType() const noexcept { return m_result.GetType(); }
+            OperationError *GetOperationError() const noexcept
+            {
+                return std::get<Aws::Crt::ScopedResource<OperationError>>(m_result).get();
+            }
+            RpcError GetRpcError() const noexcept { return std::get<RpcError>(m_result); }
+            ResultType GetResultType() const noexcept { return ResultVariantToResultType(m_result); }
 
           private:
             EventstreamResultVariantType m_result;
@@ -6550,6 +6926,7 @@ namespace Aws
             std::shared_ptr<OperationModelContext> m_authorizeClientDeviceActionOperationContext;
             std::shared_ptr<OperationModelContext> m_listComponentsOperationContext;
             std::shared_ptr<OperationModelContext> m_createDebugPasswordOperationContext;
+            std::shared_ptr<OperationModelContext> m_subscribeToIoTCoreConnectionStatusOperationContext;
             std::shared_ptr<OperationModelContext> m_getThingShadowOperationContext;
             std::shared_ptr<OperationModelContext> m_sendConfigurationValidityReportOperationContext;
             std::shared_ptr<OperationModelContext> m_updateThingShadowOperationContext;
