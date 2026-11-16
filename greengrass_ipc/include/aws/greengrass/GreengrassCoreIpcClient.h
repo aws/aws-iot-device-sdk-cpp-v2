@@ -143,6 +143,12 @@ namespace Aws
             std::shared_ptr<CreateDebugPasswordOperation> NewCreateDebugPassword() noexcept;
 
             /**
+             * Subscribe to the connection status of the IoT Core MQTT connection.
+             */
+            std::shared_ptr<SubscribeToIoTCoreConnectionStatusOperation> NewSubscribeToIoTCoreConnectionStatus(
+                std::shared_ptr<SubscribeToIoTCoreConnectionStatusStreamHandler> streamHandler) noexcept;
+
+            /**
              * Retrieves a device shadow document stored by the local shadow service
              */
             std::shared_ptr<GetThingShadowOperation> NewGetThingShadow() noexcept;
