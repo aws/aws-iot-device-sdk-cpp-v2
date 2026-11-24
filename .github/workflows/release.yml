@@ -1,84 +1,157 @@
 name: Release
 
-env:
-  GITHUB_TOKEN: ${{ secrets.TAG_PR_TOKEN }}
+# This workflow cuts a new release:
+#   1. Finds the previous vMAJOR.MINOR.PATCH tag and computes the next version
+#      (patch -> {major}.{minor}.{patch+1}, minor -> {major}.{minor+1}.0).
+#   2. Updates CRTVersion
+#   3. Commits and pushes the change to main using the deploy key.
+#   4. Tags that commit as v<version> and pushes the tag (tags are never moved).
+#   5. Creates the GitHub release with the given title and notes since the previous tag.
 
 on:
   workflow_dispatch:
     inputs:
       release_type:
+        description: 'Release type'
+        required: true
         type: choice
-        description: "Release type:"
-        required: true
         options:
-          - bug fix (PATCH)
-          - new feature (MINOR)
+          - patch
+          - minor
       release_title:
-        description: "The title of the release"
+        description: 'The title of the release'
         required: true
+        type: string
+      dry_run:
+        description: 'Dry run: compute the version and commit locally, but do not push, tag, or release'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  id-token: write   # Required for OIDC authentication with AWS
+  contents: write   # Required to checkout and create the release
+
+env:
+  AWS_REGION: us-east-1
+  GH_TOKEN: ${{github.token}}
+  VERSION_FILE: VERSION
+  DEPLOY_KEY_SECRET_ID: github-deploy-key/${{ github.repository }}
+  CI_IOT_CONTAINERS: arn:aws:iam::123124136734:role/CRT_IoT_Containers
 
 jobs:
-  update-version:
-    runs-on: ubuntu-22.04 # latest
-    permissions:
-      contents: write # allow push
-      pull-requests: write # allow making PR
-
+  release:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout Sources
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        submodules: recursive
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.CI_IOT_CONTAINERS }}
+          aws-region: ${{ env.AWS_REGION }}
 
-    - name: Make new release
-      env:
-        TITLE: ${{ github.event.inputs.release_title }}
-        RELEASE_TYPE: ${{ github.event.inputs.release_type }}
-      run: |
-        # Escape special characters
-        TITLE=$(echo ${TITLE//[\"]\\\"})
-        TITLE=$(echo ${TITLE//[\']\\\'})
-        TITLE=$(echo ${TITLE//[\$]})
+      - name: Retrieve deploy key and setup SSH
+        run: |
+          # Retrieve the private key from Secrets Manager
+          DEPLOY_KEY=$(aws secretsmanager get-secret-value --secret-id "$DEPLOY_KEY_SECRET_ID" --query SecretString --output text | jq -r '.private_key')
+          # Set up SSH configuration
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
 
-        ./utils/publish-release.sh "$RELEASE_TYPE" "$TITLE"
+          # Add GitHub to known hosts to avoid host verification prompt
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
-    - name: Generate documentation
-      run: |
-        echo "Compiling and installing doxygen 1.17.0 from source"
-        sudo apt-get install -y llvm-11 llvm-11-dev clang-11 libclang-11-dev
-        git clone https://github.com/doxygen/doxygen.git -b Release_1_17_0
-        cd doxygen
-        mkdir build
-        cd build
-        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-        sudo make -j 4
-        sudo make install
-        cd ../..
-        echo "Finished compiling and installing Doxygen"
+          # Configure SSH to use the key for GitHub
+          cat > ~/.ssh/config << EOF
+          Host github.com
+            HostName github.com
+            User git
+            IdentityFile ~/.ssh/deploy_key
+          EOF
+          chmod 600 ~/.ssh/config
 
-        version=$(cat ./VERSION)
-        echo "Updating documentation version to ${version//v}"
-        sed -i -r -e "s/PROJECT_NUMBER         = .*$PARTITION_COLUMN.*/PROJECT_NUMBER         = ${version//v}/" docsrc/doxygen.config
-        echo "Finished updating documentation version to ${version//v}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
 
-        ./make-docs.py
+      - name: Configure git to use SSH with deploy key
+        run: |
+          git remote set-url origin git@github.com:${{ github.repository }}.git
+          git config --local user.email "aws-sdk-common-runtime@amazon.com"
+          git config --local user.name "aws-crt-bot"
 
-    - name: Commit documentation
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add --force docs/
-        current_version=$(git describe --tags --abbrev=0)
-        git commit --message="Update Docs: ${current_version}"
+      - name: Compute next version from previous tag
+        id: version
+        env:
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          # Highest vMAJOR.MINOR.PATCH tag; skips beta/rc tags.
+          PREV_TAG=$(git tag --list 'v*' --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+          if [ -z "$PREV_TAG" ]; then
+            echo " No previous vMAJOR.MINOR.PATCH tag found"
+            exit 1
+          fi
 
-    - name: Push generated documentation to docs branch
-      uses: ad-m/github-push-action@v0.6.0
-      with:
-        github_token: ${{ github.token }}
-        branch: docs
-        # Force push so that `docs` branch always looks like `main`,
-        # but with 1 additional "update docs" commit.
-        # This seems simpler than trying to cleanly merge `main` into
-        # `docs` each time.
-        force: true
+          IFS=. read -r MAJOR MINOR PATCH <<< "${PREV_TAG#v}"
+          case "$RELEASE_TYPE" in
+            patch) PATCH=$((PATCH + 1)) ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+          esac
+          VERSION="${MAJOR}.${MINOR}.${PATCH}"
+
+          echo "Previous tag: $PREV_TAG -> new version: $VERSION"
+          echo "prev_tag=$PREV_TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update CRTVersion
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          echo "$VERSION" > "$VERSION_FILE"
+
+      - name: Commit CRTVersion
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git add "$VERSION_FILE"
+          git commit -m "chore: update CRTVersion to $VERSION"
+
+      - name: Push to main
+        if: ${{ !inputs.dry_run }}
+        run: git push origin main
+
+      - name: Tag the version commit
+        if: ${{ !inputs.dry_run }}
+        env:
+          TAG_NAME: ${{ steps.version.outputs.tag }}
+        run: |
+          git tag "$TAG_NAME"
+          git push origin "refs/tags/$TAG_NAME"
+
+      - name: Create GitHub release
+        if: ${{ !inputs.dry_run }}
+        env:
+          TAG_NAME: ${{ steps.version.outputs.tag }}
+          PREV_TAG: ${{ steps.version.outputs.prev_tag }}
+          RELEASE_TITLE: ${{ inputs.release_title }}
+        run: |
+          gh release create "$TAG_NAME" \
+            --repo "${{ github.repository }}" \
+            --title "$RELEASE_TITLE" \
+            --generate-notes \
+            --notes-start-tag "$PREV_TAG" \
+            --verify-tag
+
+      - name: Dry run summary
+        if: ${{ inputs.dry_run }}
+        env:
+          TAG_NAME: ${{ steps.version.outputs.tag }}
+          PREV_TAG: ${{ steps.version.outputs.prev_tag }}
+          RELEASE_TITLE: ${{ inputs.release_title }}
+        run: |
+          git show --stat HEAD
+          echo "Dry run: skipped push to main, tag $TAG_NAME, and release '$RELEASE_TITLE' (notes since $PREV_TAG)"
