@@ -3,10 +3,11 @@ name: Release
 # This workflow cuts a new release:
 #   1. Finds the previous vMAJOR.MINOR.PATCH tag and computes the next version
 #      (patch -> {major}.{minor}.{patch+1}, minor -> {major}.{minor+1}.0).
-#   2. Updates CRTVersion
-#   3. Commits and pushes the change to main using the deploy key.
+#   2. Updates VERSION and the "Latest released version" line in README.md.
+#   3. Commits ("[v<version>] <title>") and pushes the change to main using the deploy key.
 #   4. Tags that commit as v<version> and pushes the tag (tags are never moved).
 #   5. Creates the GitHub release with the given title and notes since the previous tag.
+#   6. Generates the doxygen docs and force-pushes them to the `docs` branch.
 
 on:
   workflow_dispatch:
@@ -75,6 +76,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          submodules: recursive # docs are generated from crt/aws-crt-cpp headers too
           persist-credentials: false
 
       - name: Configure git to use SSH with deploy key
@@ -107,18 +109,21 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Update CRTVersion
+      - name: Update VERSION and README
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           echo "$VERSION" > "$VERSION_FILE"
+          sed -i -r "s/.*Latest released version:.*/Latest released version: v${VERSION}/" README.md
+          grep -q "Latest released version: v${VERSION}" README.md
 
-      - name: Commit CRTVersion
+      - name: Commit version bump
         env:
           VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TITLE: ${{ inputs.release_title }}
         run: |
-          git add "$VERSION_FILE"
-          git commit -m "chore: update CRTVersion to $VERSION"
+          git add "$VERSION_FILE" README.md
+          git commit -m "[v$VERSION] $RELEASE_TITLE"
 
       - name: Push to main
         if: ${{ !inputs.dry_run }}
@@ -139,12 +144,50 @@ jobs:
           PREV_TAG: ${{ steps.version.outputs.prev_tag }}
           RELEASE_TITLE: ${{ inputs.release_title }}
         run: |
+          # Major version 0 is a pre-release.
+          PRERELEASE_FLAG=""
+          if [[ "$TAG_NAME" == v0.* ]]; then
+            PRERELEASE_FLAG="--prerelease"
+          fi
           gh release create "$TAG_NAME" \
             --repo "${{ github.repository }}" \
             --title "$RELEASE_TITLE" \
             --generate-notes \
             --notes-start-tag "$PREV_TAG" \
-            --verify-tag
+            --verify-tag \
+            $PRERELEASE_FLAG
+
+      - name: Install doxygen
+        run: |
+          echo "Compiling and installing doxygen 1.17.0 from source"
+          sudo apt-get update
+          sudo apt-get install -y flex bison
+          git clone --depth 1 https://github.com/doxygen/doxygen.git -b Release_1_17_0 /tmp/doxygen
+          cmake -S /tmp/doxygen -B /tmp/doxygen/build -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+          cmake --build /tmp/doxygen/build -j 4
+          sudo cmake --install /tmp/doxygen/build
+          doxygen --version
+
+      - name: Generate documentation
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          echo "Updating documentation version to ${VERSION}"
+          sed -i -r -e "s/^PROJECT_NUMBER( *)= .*/PROJECT_NUMBER\1= ${VERSION}/" docsrc/doxygen.config
+          ./make-docs.py
+
+      - name: Commit documentation
+        env:
+          TAG_NAME: ${{ steps.version.outputs.tag }}
+        run: |
+          git add --force docs/
+          git commit --message="Update Docs: ${TAG_NAME}"
+
+      - name: Push generated documentation to docs branch
+        if: ${{ !inputs.dry_run }}
+        # Force push so that `docs` branch always looks like `main`,
+        # but with 1 additional "update docs" commit.
+        run: git push --force origin HEAD:refs/heads/docs
 
       - name: Dry run summary
         if: ${{ inputs.dry_run }}
